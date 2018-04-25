@@ -1,0 +1,10 @@
+/.idea/
+/vendor/
+/tests/
+/static/img/actor/
+inframe
+*.log.*
+/ui/node_modules/
+/data/
+/v2
+/server

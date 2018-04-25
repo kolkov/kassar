@@ -1,0 +1,71 @@
+<!--The content below is only a placeholder and can be replaced.-->
+  <div ></div>
+<div class="wrapper">
+  <section class="top-bar">
+    <div class="top1">
+      <ul class="social-icons"><li><a target="_blank" href="#"><i class="fa fa-facebook"></i></a></li><li><a target="_blank" href="#"><i class="fa fa-twitter"></i></a></li><li><a target="_blank" href="#"><i class="fa fa-pinterest"></i></a></li><li><a target="_blank" href="#"><i class="fa fa-instagram"></i></a></li></ul>
+    </div>
+    <div class="top2">
+      <ul class="sp-contact-info"><li class="sp-contact-phone"><i class="fa fa-phone"></i> <a href="tel:+79166805930">+7 916 6805930</a></li><li class="sp-contact-email"><i class="fa fa-envelope"></i> <a href="mailto:info@kassar.ru">info@kassar.ru</a></li></ul>
+    </div>
+    </section>
+  <header class="header">
+    <div class="header--inner">
+      <div class="logo">
+        <a href="#" class="logo--link">
+          <img class="logo--image" src="./assets/logo-02.svg" />
+        </a>
+      </div>
+      <nav class="nav" id="sidebar-menu">
+        <a routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="nav--link" onclick="document.getElementById('sidebar-menu').classList.remove('open')">Главная</a>
+        <a routerLink="about" routerLinkActive="active" class="nav--link" onclick="document.getElementById('sidebar-menu').classList.remove('open')">О нас</a>
+        <a routerLink="equipment" routerLinkActive="active" class="nav--link" onclick="document.getElementById('sidebar-menu').classList.remove('open')">Оборудование</a>
+        <a routerLink="contacts" routerLinkActive="active" class="nav--link" onclick="document.getElementById('sidebar-menu').classList.remove('open')">Контакты</a>
+      </nav>
+      <a id="offcanvas-toggler"  onclick="document.getElementById('sidebar-menu').classList.toggle('open')"><i class="fa fa-bars"></i></a>
+    </div>
+  </header>
+  <aside class="sidebar">
+    <ul>
+      <li><a routerLink="equipment" fragment="kassatka-7">Кассатка 7</a></li>
+      <li><a routerLink="equipment" fragment="kassatka-mini">Кассатка mini</a></li>
+      <li><a routerLink="equipment" fragment="kassatka-10">Кассатка 10</a></li>
+    </ul>
+  </aside>
+  <section class="content">
+    <router-outlet></router-outlet>
+  </section>
+  <section id="contacts" class="bottom">
+    <div class="col1">
+      <div class="module">
+        <h2 class="title">О компании</h2>
+        <p>Наша компания осуществляет системную интеграцию кассового оборудования.</p>
+      </div>
+    </div>
+    <div class="col2">
+      <div class="module">
+        <h2 class="title">Контакты</h2>
+        <p>г.Москва, Красная пл., д.1</p>
+        <p>Тел.: +79166805930</p>
+        <p>email: info@kassar.ru</p>
+      </div>
+    </div>
+    <div class="col3">
+      <div class="module">
+        <h2 class="title">Рабочее время</h2>
+        <p>Пн-Пт. 10 - 18 часов</p>
+        <p>Сб-Вс. 10 - 15 часов</p>
+      </div>
+    </div>
+    <div class="col4">
+      <div class="module">
+        <h2>Новости</h2>
+        <p>Наша компания самая лучшая</p>
+      </div>
+    </div>
+  </section>
+  <footer class="footer">
+    <span class="sp-copyright">© 2017 Кассар. All Rights Reserved. Designed By <a href="https://teletac.com">Teletac</a></span>
+  </footer>
+</div>
+

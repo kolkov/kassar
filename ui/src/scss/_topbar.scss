@@ -1,0 +1,75 @@
+.top-bar {
+  display: grid;
+  background-color: #292d2f;
+  color: #a3adb2;
+  font-size: 69%;
+  text-align: center;
+}
+
+.top-bar > .top1 { grid-area: t1; }
+.top-bar > .top2 { grid-area: t2; }
+
+.top-bar {
+  display: grid;
+  grid-row-gap: 5px;
+  //grid-template-rows: 20px 20px;
+  grid-template-areas:
+    "t1"
+    "t2";
+  @media (min-width: $grid-breakpoints-sm) {
+      /*font-size: 79%;
+      text-align: left;*/
+      //display: grid;
+      grid-column-gap: 20px;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr;
+      grid-template-areas:
+        "t1 t2";
+    .top2 {
+      text-align: center;
+    }
+  }
+}
+
+ul.social-icons {
+  list-style: none;
+  padding: 0;
+  margin: -5px;
+  display: inline-block;
+}
+ul.social-icons >li {
+  display: inline-block;
+  margin: 5px 7px;
+}
+ul.social-icons >li a {
+  color: #999999;
+}
+.sp-contact-info {
+  list-style: none;
+  padding: 0;
+  margin: 0 -10px;
+  @media (min-width: $grid-breakpoints-sm) {
+    float: right;
+  }
+}
+.sp-contact-info li {
+  display: inline-block;
+  margin: 0 10px;
+}
+.sp-contact-info li i {
+  margin: 0 5px;
+}
+.sp-contact-info a {
+  color: #bcbcbc;
+}
+.sp-contact-info a:hover,
+.sp-contact-info a:focus {
+  color: #b09991;
+}
+
+@media (min-width: $grid-breakpoints-sm) {
+  .top-bar {
+    font-size: 79%;
+    text-align: left;
+  }
+}
