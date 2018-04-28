@@ -44,7 +44,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     // Somewhere else we can emit a new ga event
-    //this.googleAnalyticsService.emitEvent("testCategory", "testAction", "testLabel", 10);
+    this.googleAnalyticsService.emitEvent("eventName","testCategory", "testAction", "testLabel", 10);
     this.router.events.subscribe((evt) => {
       if (!(evt instanceof NavigationEnd)) {
         return;
