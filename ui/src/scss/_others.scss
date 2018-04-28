@@ -63,3 +63,56 @@ html {
 .main-contact-info a:focus {
   color: #b09991;
 }
+
+.terminal {
+  border: 1px solid rgba(68, 68, 68, 0.22);
+  padding: 10px;
+
+  .terminal0 {
+    grid-area: t0;
+  }
+  .terminal1 {
+    grid-area: t1;
+  }
+  .terminal2 {
+    grid-area: t2;
+  }
+  .terminal3 {
+    grid-area: t3;
+  }
+
+}
+
+.terminal {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template:
+    "t0"
+    "t1"
+    "t2"
+    "t3"
+;
+  .img {
+    //width: auto;
+    width: 100px;
+  }
+  img {
+    //max-width: 100%;
+    //float: left;
+  }
+  ul {
+    list-style: none;
+  }
+
+  @media screen and (min-width: $grid-breakpoints-sm) {
+    //display: grid;
+    grid-column-gap: 20px;
+    grid-template-columns: 150px 3fr;
+    grid-template-rows: auto 1fr auto;
+    grid-template:
+      "t1 t0"
+      "t1 t2"
+      "t3 t3"
+  ;
+  }
+}

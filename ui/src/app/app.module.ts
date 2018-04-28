@@ -11,11 +11,16 @@ import { ContactsComponent } from './contacts/contacts.component';
 import {SEOService} from "./seo.service";
 import { NewsComponent } from './news/news.component';
 import { ServicesComponent } from './services/services.component';
-import {Kassatka7Component} from "./equipment/kassatka7/kassatka7.component";
+import {Kassatka7Component} from "./equipment/kkt/kassatka7/kassatka7.component";
 import { EquipmentHomeComponent } from './equipment/equipment-home/equipment-home.component';
-import {EquipmentMainComponent} from "./equipment/main/main.component";
-import { KassatkaMiniComponent } from './equipment/kassatka-mini/kassatka-mini.component';
-import { Kassatka10Component } from './equipment/kassatka10/kassatka10.component';
+import { KassatkaMiniComponent } from './equipment/kkt/kassatka-mini/kassatka-mini.component';
+import { Kassatka10Component } from './equipment/kkt/kassatka10/kassatka10.component';
+import { KktComponent } from './equipment/kkt/kkt.component';
+import { KktHomeComponent } from './equipment/kkt/kkt-home/kkt-home.component';
+import { HomeComponent } from './services/home/home.component';
+import {PricelistComponent} from "./services/pricelist/pricelist.component";
+import { ScannersComponent } from './equipment/scanners/scanners.component';
+import { ScannersHomeComponent } from './equipment/scanners/scanners-home/scanners-home.component';
 
 @NgModule({
   declarations: [
@@ -28,10 +33,15 @@ import { Kassatka10Component } from './equipment/kassatka10/kassatka10.component
     NewsComponent,
     ServicesComponent,
     Kassatka7Component,
-    EquipmentMainComponent,
     EquipmentHomeComponent,
     KassatkaMiniComponent,
-    Kassatka10Component
+    Kassatka10Component,
+    KktComponent,
+    KktHomeComponent,
+    PricelistComponent,
+    HomeComponent,
+    ScannersComponent,
+    ScannersHomeComponent
   ],
   imports: [
     BrowserModule,
