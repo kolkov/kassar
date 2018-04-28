@@ -21,6 +21,7 @@ import { HomeComponent } from './services/home/home.component';
 import {PricelistComponent} from "./services/pricelist/pricelist.component";
 import { ScannersComponent } from './equipment/scanners/scanners.component';
 import { ScannersHomeComponent } from './equipment/scanners/scanners-home/scanners-home.component';
+import {GoogleAnalyticsService} from "./google-analytics.service";
 
 @NgModule({
   declarations: [
@@ -47,7 +48,7 @@ import { ScannersHomeComponent } from './equipment/scanners/scanners-home/scanne
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [SEOService],
+  providers: [SEOService, GoogleAnalyticsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
