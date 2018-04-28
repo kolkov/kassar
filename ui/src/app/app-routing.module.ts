@@ -45,10 +45,10 @@ const appRoutes: Routes = [
     component: MainComponent,
     pathMatch: 'full',
     data: {
-      title: 'Главная',
+      title: 'Установка, обслуживание и сервис контрольно-кассовой техники в Москве',
       metatags: {
-        description: 'Page Description or some content here',
-        keywords: 'some, keywords, here, separated, by, a comma'
+        description: 'Мы занимаемся поставками ККТ, настройкой под ключ кассового оборудования и сервисным обсуживанием',
+        keywords: 'касса, онлайн-касса, ккт, обслуживание, установка, сервис'
       }
     }
   },

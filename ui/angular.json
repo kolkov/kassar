@@ -32,6 +32,12 @@
               "./node_modules/font-awesome/scss/font-awesome.scss",
               "src/scss/styles.scss"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src/scss/styles"
+              ]
+            },
+            "extractCss": true,
             "scripts": []
           },
           "configurations": {
@@ -137,7 +143,6 @@
   },
   "schematics": {
     "@schematics/angular:component": {
-      "inlineStyle": true,
       "styleext": "scss"
     }
   }

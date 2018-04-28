@@ -23,7 +23,7 @@ export class SEOService {
         if (root.children && root.children.length) {
           root = root.children[0];
         } else if (root.data && root.data["title"]) {
-          this.titleService.setTitle(root.data["title"] + " | Компания Кассар");
+          this.titleService.setTitle(root.data["title"] + " | компания Кассар");
           let tags = root.data["metatags"];
           for (let tag in tags) {
             this.metaService.addTag({ name: tag, content: tags[tag] });

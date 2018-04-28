@@ -29,11 +29,13 @@
     background-color: #eee;
     color: #555;
   }
-  @media (min-width: $grid-breakpoints-sm) {
+  @media (min-width: $grid-breakpoints-md) {
     display: inline-block;
   }
 }
 
 .nav--link.active {
   color: $active-color;
+  font-weight: 900;
+  background: rgba(0, 0, 0, 0.42);
 }

@@ -28,12 +28,12 @@
     z-index: 1;
     padding: 15px;
 
-    #offcanvas-toggler {
+   /* #offcanvas-toggler {
       display: none !important;
-    }
+    }*/
   }
   @media (min-width: $grid-breakpoints-md) {
-    //flex-direction: row;
+    flex-direction: row;
     //position: fixed;
     width: 100%;
     height: $header-height;
@@ -41,6 +41,9 @@
     left: 0;
     right: 0;
     z-index: 1;
+    #offcanvas-toggler {
+      display: none !important;
+    }
   }
   @media (min-width: $grid-breakpoints-lg) {
     //flex-direction: row;

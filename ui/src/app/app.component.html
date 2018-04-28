@@ -3,23 +3,37 @@
 <div class="wrapper">
   <section class="top-bar">
     <div class="top1">
-      <ul class="social-icons"><li><a target="_blank" href="#"><i class="fa fa-facebook"></i></a></li><li><a target="_blank" href="#"><i class="fa fa-twitter"></i></a></li><li><a target="_blank" href="#"><i class="fa fa-pinterest"></i></a></li><li><a target="_blank" href="#"><i class="fa fa-instagram"></i></a></li></ul>
+      <ul class="social-icons">
+        <li><a target="_blank" href="#"><i class="fa fa-facebook"></i></a></li>
+        <li><a target="_blank" href="#"><i class="fa fa-twitter"></i></a></li>
+        <li><a target="_blank" href="#"><i class="fa fa-pinterest"></i></a></li>
+        <li><a target="_blank" href="#"><i class="fa fa-instagram"></i></a></li>
+      </ul>
     </div>
     <div class="top2">
-      <ul class="sp-contact-info"><li class="sp-contact-phone"><i class="fa fa-phone"></i> <a href="tel:+79166805930">+7 916 6805930</a></li><li class="sp-contact-email"><i class="fa fa-envelope"></i> <a href="mailto:info@kassar.ru">info@kassar.ru</a></li></ul>
+      <ul class="sp-contact-info">
+        <li class="sp-contact-phone">
+          <i class="fa fa-phone"></i> <a href="tel:+79166805930">+7 499 4081130</a>
+        </li>
+        <li class="sp-contact-email">
+          <i class="fa fa-envelope"></i> <a href="mailto:info@kassar.ru">info@kassar.ru</a>
+        </li>
+      </ul>
     </div>
     </section>
   <header class="header">
     <div class="header--inner">
-      <div class="logo">
-        <a href="#" class="logo--link">
-          <img class="logo--image" src="./assets/logo-02.svg" />
+      <div class="logo" itemscope itemtype="http://schema.org/Organization">
+        <a itemprop="url" href="http://kassar.ru/" class="logo--link">
+          <img itemprop="logo" class="logo--image" src="./assets/kassar-logo.svg" alt="Компания Кассар, онлайн кассы России"/>
         </a>
       </div>
       <nav class="nav" id="sidebar-menu">
         <a routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="nav--link" onclick="document.getElementById('sidebar-menu').classList.remove('open')">Главная</a>
         <a routerLink="about" routerLinkActive="active" class="nav--link" onclick="document.getElementById('sidebar-menu').classList.remove('open')">О нас</a>
+        <a routerLink="news" routerLinkActive="active" class="nav--link" onclick="document.getElementById('sidebar-menu').classList.remove('open')">Новости</a>
         <a routerLink="equipment" routerLinkActive="active" class="nav--link" onclick="document.getElementById('sidebar-menu').classList.remove('open')">Оборудование</a>
+        <a routerLink="services" routerLinkActive="active" class="nav--link" onclick="document.getElementById('sidebar-menu').classList.remove('open')">Услуги</a>
         <a routerLink="contacts" routerLinkActive="active" class="nav--link" onclick="document.getElementById('sidebar-menu').classList.remove('open')">Контакты</a>
       </nav>
       <a id="offcanvas-toggler"  onclick="document.getElementById('sidebar-menu').classList.toggle('open')"><i class="fa fa-bars"></i></a>
@@ -39,15 +53,22 @@
     <div class="col1">
       <div class="module">
         <h2 class="title">О компании</h2>
-        <p>Наша компания осуществляет системную интеграцию кассового оборудования.</p>
+        <p>ООО "Кассар" осуществляет системную интеграцию контролько-кассового оборудования.</p>
       </div>
     </div>
     <div class="col2">
       <div class="module">
-        <h2 class="title">Контакты</h2>
-        <p>г.Москва, Красная пл., д.1</p>
-        <p>Тел.: +79166805930</p>
-        <p>email: info@kassar.ru</p>
+        <div itemscope itemtype="http://schema.org/Organization">
+          <h2 class="title">Контакты</h2>
+          <p>ООО "<span itemprop="name">Кассар</span>"</p>
+          <div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress" >
+            <p><span itemprop="postalCode">107031</span>,
+            г.<span itemprop="addressLocality">Москва</span></p>
+            <p><span itemprop="streetAddress"> Театральный проезд, д.3</span></p>
+          </div>
+          <p>Тел.: <span itemprop="telephone">+74994081130</span></p>
+          <p>email: <span itemprop="email">info@kassar.ru</span></p>
+        </div>
       </div>
     </div>
     <div class="col3">
