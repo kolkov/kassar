@@ -2,11 +2,11 @@
   //margin-bottom: 5px;
   .title {
     text-transform: uppercase;
-    font-size: 18px;
+    font-size: 16px;
     line-height: 20px;
     color: #FFFFFF;
     font-weight: 700;
-    margin: 0 0 31px;
+    margin: 25px 0 30px;
     padding: 0 0 14px;
     position: relative;
   }
@@ -22,5 +22,14 @@
     height: 2px;
     z-index: 0;
     background: $active-color;
+  }
+}
+
+.news {
+  margin-top: 25px;
+
+  @media (min-width: $grid-breakpoints-sm) {
+    margin-top: 40px;
+
   }
 }

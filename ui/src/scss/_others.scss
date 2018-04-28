@@ -17,7 +17,7 @@ html {
     span {
       display:inline-block;
       color			: white;
-      font			: bold 1.4vw Helvetica, Sans-Serif;
+      font			: bold 15pt Helvetica, Sans-Serif;
       letter-spacing		: -1px;
       background		: rgb(0, 0, 0); /* на случай, если следующая строка не сработает */
       background		: rgba(0, 0, 0, 0.4);
@@ -27,6 +27,9 @@ html {
         padding	: 0 5px;
         background		: rgba(0, 0, 0, 0.7);
       }*/
+      @media screen and (min-width: $grid-breakpoints-md) {
+        font-size: 20pt;
+      }
     }
   }
 }
@@ -36,4 +39,27 @@ html {
   width: 100%;
   height: 400px;
   //background-color: grey;
+}
+
+.main-contact-info {
+  // list-style: none;
+  padding: 0;
+  //margin: 0 -10px;
+  @media (min-width: $grid-breakpoints-sm) {
+    //float: right;
+  }
+}
+.main-contact-info li {
+  display: inline-block;
+  margin: 0 10px;
+}
+.main-contact-info li i {
+  margin: 0 5px;
+}
+.main-contact-info a {
+  color: #000000;
+}
+.main-contact-info a:hover,
+.main-contact-info a:focus {
+  color: #b09991;
 }

@@ -23,6 +23,15 @@
                 "output": "/"
               },
               {
+                "glob": "robot.txt",
+                "input": "src",
+                "output": "/"
+              },{
+                "glob": "sitemap.xml",
+                "input": "src",
+                "output": "/"
+              },
+              {
                 "glob": "**/*",
                 "input": "src/assets",
                 "output": "/assets"

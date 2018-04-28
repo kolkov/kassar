@@ -5,6 +5,13 @@ import {NotFoundComponent} from "./notfound/not-found.component";
 import {EquipmentComponent} from "./equipment/equipment.component";
 import {MainComponent} from "./main/main.component";
 import {ContactsComponent} from "./contacts/contacts.component";
+import {NewsComponent} from "./news/news.component";
+import {ServicesComponent} from "./services/services.component";
+import {Kassatka7Component} from "./equipment/kassatka7/kassatka7.component";
+import {EquipmentMainComponent} from "./equipment/main/main.component";
+import {EquipmentHomeComponent} from "./equipment/equipment-home/equipment-home.component";
+import {KassatkaMiniComponent} from "./equipment/kassatka-mini/kassatka-mini.component";
+import {Kassatka10Component} from "./equipment/kassatka10/kassatka10.component";
 
 const appRoutes: Routes = [
   {
@@ -13,7 +20,18 @@ const appRoutes: Routes = [
     data: {
       title: 'О нас',
       metatags: {
-        description: 'Page Description or some content here',
+        description: 'Все о нашей компании',
+        keywords: 'some, keywords, here, separated, by, a comma'
+      }
+    }
+  },
+  {
+    path: 'news',
+    component: NewsComponent,
+    data: {
+      title: 'Новости',
+      metatags: {
+        description: 'Новости нашей компании',
         keywords: 'some, keywords, here, separated, by, a comma'
       }
     }
@@ -24,8 +42,44 @@ const appRoutes: Routes = [
     data: {
       title: 'Оборудование',
       metatags: {
-        description: 'Page Description or some content here',
+        description: 'Предлагаемое оборудование',
         keywords: 'some, keywords, here, separated, by, a comma'
+      }
+    },
+    /* children: [
+
+     path: '',
+     component: EquipmentMainComponent,*/
+        children: [
+          {
+            path: 'kassatka-7',
+            component: Kassatka7Component,
+          },
+          {
+            path: 'kassatka-mini',
+            component: KassatkaMiniComponent,
+          },
+          {
+            path: 'kassatka-10',
+            component: Kassatka10Component,
+          },
+          {
+            path: '',
+            component: EquipmentHomeComponent,
+
+          }
+        ]
+      /*}
+    ]*/
+  },
+  {
+    path: 'services',
+    component: ServicesComponent,
+    data: {
+      title: 'Услуги',
+      metatags: {
+        description: 'Услуги, оказываемые нашей компанией',
+        keywords: 'services, услуги, что мы можем, оказание, установка'
       }
     }
   },
@@ -35,8 +89,8 @@ const appRoutes: Routes = [
     data: {
       title: 'Контакты',
       metatags: {
-        description: 'Page Description or some content here',
-        keywords: 'some, keywords, here, separated, by, a comma'
+        description: 'Как с нами связаться',
+        keywords: 'адрес, телефон, связаться'
       }
     }
   },
