@@ -38,6 +38,7 @@
               }
             ],
             "styles": [
+              "src/scss/styles-app-loading.scss",
               "./node_modules/font-awesome/scss/font-awesome.scss",
               "src/scss/styles.scss"
             ],
