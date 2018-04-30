@@ -52,4 +52,8 @@ export class AppComponent implements OnInit {
       window.scroll(0,0);
     });
   }
+
+ /* myFunction() {
+    this.getElementById("dropdown-content").classList.toggle("show");
+  }*/
 }

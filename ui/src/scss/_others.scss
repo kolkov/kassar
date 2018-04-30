@@ -1,5 +1,7 @@
 a {
   text-decoration: none;
+  -webkit-transition: color 400ms, background-color 400ms;
+  transition: color 400ms, background-color 400ms;
 }
 html {
   scroll-behavior: smooth;

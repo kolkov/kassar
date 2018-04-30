@@ -1,39 +1,123 @@
 .dropbtn {
-  background-color: #4CAF50;
+  /*background-color: #3498DB;
   color: white;
   padding: 16px;
   font-size: 16px;
   border: none;
-  cursor: pointer;
+  cursor: pointer;*/
+}
+.dropdown i {
+  /*:before {
+    content: " ";
+  }*/
+  margin-left: 3px;
+}
+
+.dropbtn:hover, .dropbtn:focus {
+  //background-color: #2980B9;
 }
 
 .dropdown {
-  position: relative;
-  display: inline-block;
+  //position: relative;
+  //display: inline-block;
+
+  @media screen and (min-width: $grid-breakpoints-md) {
+    position: relative;
+    display: inline-block;
+    transition-duration: 5s;
+  }
 }
 
 .dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f9f9f9;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
+  //background-color: #343434;
+
+  .dropdown-item {
+    color: #FFFFFF;
+
+      :after {
+        content: ">";
+      }
+  }
+  .dropdown-item.active {
+    color: $active-color;
+  }
+
+  @media screen and (min-width: $grid-breakpoints-md) {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    -webkit-animation: spMenuFadeInUp 500ms;
+    animation: spMenuFadeInUp 500ms;
+    .dropdown-item {
+      color: #000000;
+    }
+  }
 }
 
 .dropdown-content a {
   color: black;
-  padding: 12px 16px;
+  padding: 5px 25px;
   text-decoration: none;
   display: block;
+  @media screen and (min-width: $grid-breakpoints-md) {
+    padding: 12px 16px;
+  }
 }
 
-.dropdown-content a:hover {background-color: #f1f1f1}
-
-.dropdown:hover .dropdown-content {
-  display: block;
+.dropdown a:hover {
+  //background-color: #eee;
+  color: #d70b26;
+  @media screen and (min-width: $grid-breakpoints-md) {
+    background-color: initial;
+    color: #d70b26;
+  }
 }
 
-.dropdown:hover .dropbtn {
-  background-color: #3e8e41;
+.show {
+  display:block;
+  -webkit-animation: spMenuFadeIn 400ms;
+  animation: spMenuFadeIn 400ms;
+
+}
+
+@-webkit-keyframes spMenuFadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes spMenuFadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes spMenuFadeInUp {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0,30px,0);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: none;
+  }
+}
+@keyframes spMenuFadeInUp {
+  0% {
+    opacity: 0;
+    transform: translate3d(0,30px,0);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
 }

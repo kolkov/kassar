@@ -1,5 +1,5 @@
 <!--The content below is only a placeholder and can be replaced.-->
-  <div ></div>
+<div></div>
 <div class="wrapper">
   <section class="top-bar">
     <div class="top1">
@@ -20,23 +20,46 @@
         </li>
       </ul>
     </div>
-    </section>
+  </section>
   <header class="header">
     <div class="header--inner">
       <div class="logo" itemscope itemtype="http://schema.org/Organization">
         <a itemprop="url" href="http://kassar.ru/" class="logo--link">
-          <img itemprop="logo" class="logo--image" src="./assets/kassar-logo.svg" alt="Компания Кассар, онлайн кассы России"/>
+          <img itemprop="logo" class="logo--image" src="./assets/kassar-logo.svg"
+               alt="Компания Кассар, онлайн кассы России"/>
         </a>
       </div>
       <nav class="nav" id="sidebar-menu">
-        <a routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="nav--link" onclick="document.getElementById('sidebar-menu').classList.remove('open')">Главная</a>
-        <a routerLink="company/about" routerLinkActive="active" class="nav--link" onclick="document.getElementById('sidebar-menu').classList.remove('open')">О нас</a>
-        <a routerLink="news" routerLinkActive="active" class="nav--link" onclick="document.getElementById('sidebar-menu').classList.remove('open')">Новости</a>
-        <a routerLink="catalog" routerLinkActive="active" class="nav--link" onclick="document.getElementById('sidebar-menu').classList.remove('open')">Каталог</a>
-        <a routerLink="services" routerLinkActive="active" class="nav--link" onclick="document.getElementById('sidebar-menu').classList.remove('open')">Услуги</a>
-        <a routerLink="company/contacts" routerLinkActive="active" class="nav--link" onclick="document.getElementById('sidebar-menu').classList.remove('open')">Контакты</a>
+        <a routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="nav--link"
+           onclick="document.getElementById('sidebar-menu').classList.remove('open')">Главная</a>
+        <div class="dropdown" onmouseenter="document.getElementById('myDropdown').classList.add('show')"
+             onmouseleave="document.getElementById('myDropdown').classList.remove('show')">
+
+          <a routerLink="company" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: false }"
+             class="nav--link dropbtn" onclick="document.getElementById('sidebar-menu').classList.remove('open')">Компания<i
+            class="fa fa-caret-down"></i></a>
+
+          <div id="myDropdown" class="dropdown-content" aria-labelledby="dropdownBasic1">
+            <a routerLink="company/about" routerLinkActive="active" class="dropdown-item"
+               onclick="document.getElementById('sidebar-menu').classList.remove('open');document.getElementById('myDropdown').classList.remove('show'); return false">О
+              нас</a>
+            <a routerLink="company/news" routerLinkActive="active" class="dropdown-item"
+               onclick="document.getElementById('sidebar-menu').classList.remove('open');document.getElementById('myDropdown').classList.remove('show')">Новости</a>
+            <a routerLink="company/contacts" routerLinkActive="active" class="dropdown-item"
+               onclick="document.getElementById('sidebar-menu').classList.remove('open');document.getElementById('myDropdown').classList.remove('show')">Контакты</a>
+          </div>
+        </div>
+
+        <a routerLink="catalog" routerLinkActive="active" class="nav--link"
+           onclick="document.getElementById('sidebar-menu').classList.remove('open')">Каталог</a>
+        <a routerLink="services" routerLinkActive="active" class="nav--link"
+           onclick="document.getElementById('sidebar-menu').classList.remove('open')">Услуги</a>
+        <a routerLink="service" routerLinkActive="active" class="nav--link"
+           onclick="document.getElementById('sidebar-menu').classList.remove('open')">Сервис</a>
+
       </nav>
-      <a id="offcanvas-toggler"  onclick="document.getElementById('sidebar-menu').classList.toggle('open')"><i class="fa fa-bars"></i></a>
+      <a id="offcanvas-toggler" onclick="document.getElementById('sidebar-menu').classList.toggle('open')"><i
+        class="fa fa-bars"></i></a>
     </div>
   </header>
   <aside class="sidebar">
@@ -62,9 +85,9 @@
         <div itemscope itemtype="http://schema.org/Organization">
           <h2 class="title">Контакты</h2>
           <p>ООО "<span itemprop="name">Кассар</span>"</p>
-          <div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress" >
+          <div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
             <p><span itemprop="postalCode">107031</span>,
-            г.<span itemprop="addressLocality">Москва</span></p>
+              г.<span itemprop="addressLocality">Москва</span></p>
             <p><span itemprop="streetAddress"> Театральный проезд, д.3</span></p>
           </div>
           <p class="bt-contact-info">
