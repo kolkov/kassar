@@ -17,6 +17,10 @@
     color: #848484;
   }
 
+  #offcanvas-toggler >i:hover {
+    color: $active-color;
+  }
+
   @media (min-width: $grid-breakpoints-sm) {
     flex-direction: row;
     //position: fixed;
