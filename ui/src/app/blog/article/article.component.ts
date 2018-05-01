@@ -12,14 +12,7 @@ import {SEOService} from "../../seo.service";
   styleUrls: ['./article.component.scss']
 })
 export class ArticleComponent implements OnInit {
-  article: Article = {
-    id: 0,
-    path: '',
-    title: '',
-    introduction: '',
-    date: '',
-    body: ``,
-  };
+  article: Article = new Article();
 
   id: string;
   error: HttpErrorResponse;
@@ -35,8 +28,8 @@ export class ArticleComponent implements OnInit {
       .subscribe((data: Article) => {
         this.article = data;
         let tags = {
-          description: 'test description',
-          keywords: 'test tags, tags2'
+          description: data.description,
+          keywords: data.keywords,
         };
         this.seoService.setSeoData(data.title, tags);
       },
