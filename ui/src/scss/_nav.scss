@@ -23,7 +23,7 @@
   padding: 15px;
 }
 
-.nav--link {
+.nav-link {
   display: block;
   color: #fff;
   padding: .5rem .75rem;
@@ -43,7 +43,7 @@
   }
 }
 
-.nav--link.active {
+.nav-link.active {
   color: $active-color;
   //color: #FFFFFF;
    //font-weight: 700;

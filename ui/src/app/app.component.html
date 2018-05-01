@@ -30,13 +30,13 @@
         </a>
       </div>
       <nav class="nav" id="sidebar-menu">
-        <a routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="nav--link"
+        <a routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="nav-link"
            onclick="document.getElementById('sidebar-menu').classList.remove('open')">Главная</a>
         <div class="dropdown" onmouseenter="document.getElementById('myDropdown').classList.add('show')"
              onmouseleave="document.getElementById('myDropdown').classList.remove('show')">
 
           <a routerLink="company" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: false }"
-             class="nav--link dropbtn" onclick="document.getElementById('sidebar-menu').classList.remove('open')">Компания<i
+             class="nav-link dropbtn" onclick="document.getElementById('sidebar-menu').classList.remove('open')">Компания<i
             class="fa fa-caret-down"></i></a>
 
           <div id="myDropdown" class="dropdown-content" aria-labelledby="dropdownBasic1">
@@ -50,13 +50,14 @@
           </div>
         </div>
 
-        <a routerLink="catalog" routerLinkActive="active" class="nav--link"
+        <a routerLink="catalog" routerLinkActive="active" class="nav-link"
            onclick="document.getElementById('sidebar-menu').classList.remove('open')">Каталог</a>
-        <a routerLink="services" routerLinkActive="active" class="nav--link"
+        <a routerLink="services" routerLinkActive="active" class="nav-link"
            onclick="document.getElementById('sidebar-menu').classList.remove('open')">Услуги</a>
-        <a routerLink="service" routerLinkActive="active" class="nav--link"
+        <a routerLink="service" routerLinkActive="active" class="nav-link"
            onclick="document.getElementById('sidebar-menu').classList.remove('open')">Сервис</a>
-
+        <a routerLink="articles" routerLinkActive="active" class="nav-link"
+           onclick="document.getElementById('sidebar-menu').classList.remove('open')">Статьи</a>
       </nav>
       <a id="offcanvas-toggler" onclick="document.getElementById('sidebar-menu').classList.toggle('open')"><i
         class="fa fa-bars"></i></a>

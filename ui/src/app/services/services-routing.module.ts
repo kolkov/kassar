@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import {HomeComponent as ServiceHomeComponent} from "./home/home.component";
 import {PricelistComponent} from "./pricelist/pricelist.component";
 import {ServicesComponent} from "./services.component";
+import {OnlajnKassyComponent} from "./onlajn-kassy/onlajn-kassy.component";
 
 const routes: Routes = [
   {
@@ -16,6 +17,17 @@ const routes: Routes = [
       }
     },
     children: [
+      {
+        path: 'onlajn-kassy',
+        component: OnlajnKassyComponent,
+        data: {
+          title: 'Онлайн кассы сервис',
+          metatags: {
+            description: 'Сервисные услуги по онлайн кассам',
+            keywords: ''
+          }
+        }
+      },
       {
         path: 'pricelist',
         component: PricelistComponent,

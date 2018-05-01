@@ -6,6 +6,8 @@ import {NavigationEnd, Router} from "@angular/router";
   providedIn: 'root'
 })
 export class SEOService {
+  companyName: string = 'компания Кассар';
+  titleEnd: string = ' | ' + this.companyName;
 
   constructor(
     private titleService: Title,
@@ -23,10 +25,10 @@ export class SEOService {
         if (root.children && root.children.length) {
           root = root.children[0];
         } else if (root.data && root.data["title"]) {
-          this.titleService.setTitle(root.data["title"] + " | компания Кассар");
+          this.titleService.setTitle(root.data["title"] + this.titleEnd);
           let tags = root.data["metatags"];
           for (let tag in tags) {
-            this.metaService.addTag({ name: tag, content: tags[tag] });
+            this.metaService.updateTag({ name: tag, content: tags[tag] });
           }
           return;
         } else {
@@ -34,5 +36,14 @@ export class SEOService {
         }
       }
     });
+  }
+
+  public setSeoData(title: string, tags: any) {
+    this.titleService.setTitle(title + this.titleEnd);
+
+    for (let tag in tags) {
+      this.metaService.updateTag({ name: tag, content: tags[tag] });
+    }
+    return;
   }
 }

@@ -23,11 +23,17 @@
                 "output": "/"
               },
               {
-                "glob": "robot.txt",
+                "glob": "robots.txt",
                 "input": "src",
                 "output": "/"
-              },{
+              },
+              {
                 "glob": "sitemap.xml",
+                "input": "src",
+                "output": "/"
+              },
+              {
+                "glob": "article.json",
                 "input": "src",
                 "output": "/"
               },

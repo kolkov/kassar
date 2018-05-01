@@ -5,7 +5,7 @@
 
 export const environment = {
   production: false,
-  googleAnalyticsKey: 'UA-118291167-1'
+  googleAnalyticsKey: ''
 };
 
 /*

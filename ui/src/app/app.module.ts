@@ -10,6 +10,8 @@ import {GoogleAnalyticsService} from "./google-analytics.service";
 import {CompanyModule} from "./company/company.module";
 import {CatalogModule} from "./catalog/catalog.module";
 import {ServicesModule} from "./services/services.module";
+import {BlogModule} from "./blog/blog.module";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -20,9 +22,11 @@ import {ServicesModule} from "./services/services.module";
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     CompanyModule,
     CatalogModule,
     ServicesModule,
+    BlogModule,
     AppRoutingModule,
   ],
   providers: [SEOService, GoogleAnalyticsService],

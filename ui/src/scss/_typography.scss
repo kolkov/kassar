@@ -1,9 +1,18 @@
 h1 {
 
 }
-h2{
+
+h2 {
   font-size: 17px;
 }
+
 h3 {
   font-size: 15px;
+}
+
+.article {
+  text-align: justify;
+  @media screen and (min-width: $grid-breakpoints-sm) {
+    padding-right: 10px;
+  }
 }
