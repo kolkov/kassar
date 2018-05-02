@@ -12,6 +12,8 @@ import {CatalogModule} from "./catalog/catalog.module";
 import {ServicesModule} from "./services/services.module";
 import {BlogModule} from "./blog/blog.module";
 import {HttpClientModule} from "@angular/common/http";
+import { HomeNewsComponent } from './home/home-news/home-news.component';
+import {ServiceCenterModule} from "./service-center/service-center.module";
 
 @NgModule({
   declarations: [
@@ -19,6 +21,7 @@ import {HttpClientModule} from "@angular/common/http";
     NotFoundComponent,
     HomeComponent,
     NewsComponent,
+    HomeNewsComponent,
   ],
   imports: [
     BrowserModule,
@@ -26,6 +29,7 @@ import {HttpClientModule} from "@angular/common/http";
     CompanyModule,
     CatalogModule,
     ServicesModule,
+    ServiceCenterModule,
     BlogModule,
     AppRoutingModule,
   ],

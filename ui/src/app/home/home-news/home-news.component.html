@@ -1,6 +1,7 @@
-<h1>Новости компании Кассар</h1>
+<h2>Последние новости</h2>
 <div *ngFor="let item of news.items">
   <h4>{{item.heading}}</h4>
   <p>{{item.date | date:'dd/MM/yyyy'}}</p>
   <p>{{item.body}}</p>
 </div>
+

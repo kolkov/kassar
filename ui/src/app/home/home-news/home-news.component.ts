@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import {NewsService} from "../../home/news.service";
-import {NewsList} from "../../home/news";
+import {NewsService} from "../news.service";
+import {NewsList} from "../news";
 
 @Component({
-  selector: 'app-news',
-  templateUrl: './news.component.html',
-  styleUrls: ['./news.component.scss']
+  selector: 'app-home-news',
+  templateUrl: './home-news.component.html',
+  styleUrls: ['./home-news.component.scss']
 })
-export class NewsComponent implements OnInit {
+export class HomeNewsComponent implements OnInit {
   news: NewsList = new NewsList();
 
   constructor(private newsService: NewsService) { }
@@ -18,6 +18,5 @@ export class NewsComponent implements OnInit {
         this.news = data;
       })
   }
-
 
 }
