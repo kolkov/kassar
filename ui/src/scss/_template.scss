@@ -1,0 +1,17 @@
+/* You can add global styles to this file, and also import other style files */
+
+body {
+  margin: 0;
+  font-family: $font-family;
+  background-color: $background-color;
+}
+
+img {
+  max-width: 100%;
+}
+
+.wrapper > * {
+  background-color: #fff;
+  padding: 15px;
+  font-size: 14px;
+}

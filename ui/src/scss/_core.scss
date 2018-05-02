@@ -5,10 +5,10 @@
 // Additional typography
 @import "typography";
 
-// Layout Options
-@import "layout";
+@import "template";
 
 // Components
+@import "aside";
 @import "header";
 @import "nav";
 @import "dropdown";
@@ -19,3 +19,6 @@
 @import "module";
 @import "sidebarmenu";
 @import "others";
+
+// Layout Options
+@import "layout";

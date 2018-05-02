@@ -1,21 +1,7 @@
-/* You can add global styles to this file, and also import other style files */
+/* Layout styles */
 
 *, *:before, *:after {
   box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  font-family: $font-family;
-  background-color: $background-color;
-}
-
-img {
-  max-width: 100%;
-}
-
-h1, p {
-  //margin: 0 0 1em 0;
 }
 
 .wrapper {
@@ -26,27 +12,6 @@ h1, p {
   margin: 0;
 }
 
-.wrapper > * {
-  background-color: #fff;
-  padding: 15px;
-  font-size: 14px;
-  /* needed for the floated layout*/
-  //margin-bottom: 5px;
-}
-
-aside ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.header {
-  background-color: #151517;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  box-shadow: 1px 3px 3px rgba(0,0,0,0.3);
-}
 .sidebar, .content {
   flex: 1 0 auto;
 }
@@ -57,14 +22,14 @@ aside ul {
   margin: auto auto 0 auto;
 }
 
-.top-bar {grid-area: top-bar;}
-.header  {grid-area: header;}
-.sidebar {grid-area: sidebar;}
-.content {grid-area: content;}
-.bottom  {grid-area: bottom;}
-.footer  {grid-area: footer;}
-
 @supports (display: grid) {
+  .top-bar {grid-area: top-bar;}
+  .header  {grid-area: header;}
+  .sidebar {grid-area: sidebar;}
+  .content {grid-area: content;}
+  .bottom  {grid-area: bottom;}
+  .footer  {grid-area: footer;}
+
   .wrapper {
     display: grid;
     grid-template-areas:
@@ -75,7 +40,6 @@ aside ul {
       "bottom"
       "footer";
   }
-
 
   @media screen and (min-width: $grid-breakpoints-sm) {
     .wrapper {
@@ -91,7 +55,6 @@ aside ul {
     }
 
     .header, .footer {
-      //grid-column: 1 / -1;
       /* needed for the floated layout */
       clear: both;
       padding: 0;

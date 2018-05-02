@@ -12,14 +12,10 @@
 .top-bar {
   display: grid;
   grid-row-gap: 5px;
-  //grid-template-rows: 20px 20px;
   grid-template-areas:
     "t1"
     "t2";
   @media (min-width: $grid-breakpoints-sm) {
-      /*font-size: 79%;
-      text-align: left;*/
-      //display: grid;
       grid-column-gap: 20px;
       grid-template-columns: 1fr 1fr;
       grid-template-rows: 1fr;
