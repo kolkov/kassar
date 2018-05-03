@@ -14,7 +14,8 @@
           <div class="content">
             <p>Все уже внутри!</p>
           <ul>
-            <li *ngFor="let ingredient of product.ingredients ">{{ingredient.name}}<p *ngIf="ingredient.percentage !=''"> - {{ingredient.percentage}}</p></li>
+            <li *ngFor="let property of product.properties ">{{property.name}}<p *ngIf="property.value !=''"> - {{property.value}}</p></li>
+            <li><a routerLink="{{product.url}}">Подробнее...</a></li>
           </ul>
             <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
               <meta itemprop="priceCurrency" content="RUB" />
