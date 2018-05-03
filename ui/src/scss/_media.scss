@@ -7,7 +7,7 @@
 .media > .title { grid-area: title; }
 .media > .img { grid-area: img; }
 .media > .content { grid-area: bd; }
-.media > .footer { grid-area: ft; }
+.media > .media-footer { grid-area: ft; }
 
 .media {
   display: grid;
@@ -19,9 +19,10 @@
     "ft";
 }
 
-.media .footer {
+.media .media-footer {
   background-color: #eee;
   padding: 10px;
+  margin: 10px 0;
 }
 
 @media (min-width: 600px) {
@@ -44,7 +45,7 @@
     width: 150px;
   }
 
-  .media .footer {
+  .media .media-footer {
     background-color: #eee;
     padding: 10px;
   }

@@ -1,9 +1,31 @@
 /* You can add global styles to this file, and also import other style files */
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
   font-family: $font-family;
   background-color: $background-color;
+}
+
+a {
+  text-decoration: none;
+  color: #5e5e5e;
+  -webkit-transition: color 400ms, background-color 400ms;
+  transition: color 400ms, background-color 400ms;
+}
+a:visited {
+  //color: #5e5e5e;
+}
+a:hover{
+  color: $active-color;
+}
+
+a i:hover{
+  color: $active-color;
+  transition: color 400ms, background-color 400ms;
 }
 
 img {
@@ -14,4 +36,54 @@ img {
   background-color: #fff;
   padding: 15px;
   font-size: 14px;
+}
+
+
+.img {
+  position: relative;
+  display:inline-block;
+  h2 {
+    display: inline-block;
+    position: absolute;
+    bottom: 2vw;
+    left: 10px;
+    width: 100%;
+    //transition-property: opacity;
+    //animation-duration: 5s;
+    opacity: 0;
+    -webkit-transition: opacity 0.5s ease-in-out;
+    -moz-transition: opacity 0.5s ease-in-out;
+    transition: opacity 1.5s ease-in-out;
+    span {
+      display: inline-block;
+      color: white;
+      font: bold 15pt Helvetica, Sans-Serif;
+      letter-spacing: -1px;
+      background: rgb(0, 0, 0); /* на случай, если следующая строка не сработает */
+      background: rgba(0, 0, 0, 0.4);
+      //padding			: 15px;
+      padding: 10px 30px;
+      /*.spacer {
+        padding	: 0 5px;
+        background		: rgba(0, 0, 0, 0.7);
+      }*/
+      @media screen and (min-width: $grid-breakpoints-md) {
+        font-size: 20pt;
+        //opacity: 100;
+
+      }
+    }
+    @media screen and (min-width: $grid-breakpoints-sm) {
+      //opacity: 100;
+
+      //opacity: 0;
+
+    }
+  }
+}
+
+.img:hover h2 {
+  transition-property: opacity;
+  animation-duration: 15s;
+  opacity: 100;
 }
