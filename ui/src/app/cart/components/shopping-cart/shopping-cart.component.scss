@@ -1,0 +1,29 @@
+button[disabled]{
+  opacity: .25;
+  cursor: not-allowed;
+}
+.to-checkout {
+  padding: 1rem 3rem;
+  background-color: #5d8b00;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 4px;
+}
+.to-checkout:hover{
+  background-color: #22bb5b;
+}
+.empty-cart {
+  padding: 1rem 3rem;
+  background-color: #767676;
+  color: #fefefe;
+  cursor: pointer;
+  border-radius: 4px;
+  //display: block;
+  /*width: 100%;
+  margin-right: 0;
+  margin-left: 0;*/
+}
+.empty-cart:hover{
+  background-color: #5e5e5e;
+  color: #fefefe;
+}

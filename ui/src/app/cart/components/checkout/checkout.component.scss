@@ -1,0 +1,42 @@
+.product_image {
+  width: 150px;
+}
+.choice-delivery {
+  color: #b12704;
+}
+.conf-row {
+  margin: 15px 0;
+}
+.choice-confirmation {
+  border-radius: 4px;
+  background-color: #5d8b00;
+  padding: 0.5rem 1.5rem;
+  color: #fff;
+}
+.choice-confirmation:hover{
+  background-color: #22bb5b;
+}
+.continue-shopping {
+  background-color: #ffae00;
+
+  color: #0a0a0a;
+  border-radius: 4px;
+  vertical-align: bottom;
+  display: block;
+  width: 100%;
+  margin-right: 0;
+  margin-left: 0;
+  font-size: .9rem;
+  line-height: 1;
+  text-align: center;
+  cursor: pointer;
+  padding: .85em 1em;
+}
+.continue-shopping:hover {
+  background-color: #cc8b00;
+}
+.small{
+  width: 83.33333%;
+  //margin-right: auto;
+  //margin-left: auto;
+}

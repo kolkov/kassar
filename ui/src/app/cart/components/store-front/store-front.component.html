@@ -1,0 +1,39 @@
+<div class="row">
+  <div class="">
+    <app-shopping-cart></app-shopping-cart>
+    <h3>Выберите товары...</h3>
+    <div class="product-list">
+      <div *ngFor="let product of products | async"
+          class="product-container">
+
+        <div id="kassatka-7" class="media" itemscope itemtype="http://schema.org/Product">
+          <div class="img">
+            <img itemprop="image" src="./assets/img/{{product.img}}" alt="{{product.name}}">
+          </div>
+          <h2 class="title"><span itemprop="name">{{product.name}}</span></h2>
+          <div class="content">
+            <p>Все уже внутри!</p>
+          <ul>
+            <li *ngFor="let ingredient of product.ingredients ">{{ingredient.name}}<p *ngIf="ingredient.percentage !=''"> - {{ingredient.percentage}}</p></li>
+          </ul>
+            <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+              <meta itemprop="priceCurrency" content="RUB" />
+              Цена: <span itemprop="price" content="">{{product.price | currency:'RUB':true}}</span>
+              <span itemprop="seller">, Кассар</span>
+              <link itemprop="itemCondition" href="http://schema.org/NewCondition" />
+              <link itemprop="availability" href="https://schema.org/InStock">
+            </div>
+          </div>
+          <div itemprop="description" class="media-footer">{{product.description}}</div>
+          <button type="button"
+                  class="add-to-cart"
+                  (click)="addProductToCart(product, 1)">В корзину</button>
+          <button type="button"
+                  class="remove-from-cart"
+                  *ngIf="productInCart(product) | async"
+                  (click)="removeProductFromCart(product, 1)">Удалить из корзины</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

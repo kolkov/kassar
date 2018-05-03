@@ -1,0 +1,75 @@
+<div class="row">
+  <div class="">
+    <h2>
+      <i class=""></i>
+      <span>Проверка заказа</span>
+    </h2>
+  </div>
+  <div class="">
+  <h4>
+    Всего в заказе
+  <span class="">{{(cart | async).grossTotal | currency:'RUB':true}}</span>
+  </h4>
+  </div>
+  <div class="conf-row">
+    <h5 class="choice-delivery"
+        *ngIf="(cart | async).deliveryOptionId === undefined">Проверьте свой заказ и выберите способ доставки...</h5>
+    <a class="choice-confirmation"
+       *ngIf="(cart | async).deliveryOptionId !== undefined"
+       routerLink="/confirmed">Подтвердить заказ</a>
+  </div>
+  <hr/>
+</div>
+<div class="row">
+  <div class="">
+    <h4>Доставка 1 из 1</h4>
+    <small>Доставка по России....</small>
+    <div class=""
+       *ngFor="let item of cartItems">
+      <div class="">
+        <img src="./assets/img/{{item.product.img}}"
+        class="product_image"/>
+      </div>
+      <div class="">
+      <span class="">{{item.product.name}}</span>
+      <p class="">{{item.product.description}}</p>
+      </div>
+      <div class="">
+      <p class="js-product-costs">{{item.quantity}} x {{item.product.price | currency:'RUB':true}}</p>
+      </div>
+      <div class="">
+      <p class="js-product-total">{{item.totalCost | currency:'RUB':true}}</p>
+      </div>
+    </div>
+  </div>
+  <div class="">
+    <h4>Способ доставки</h4>
+
+    <div class="delivery-option"
+         *ngFor="let option of deliveryOptions | async">
+    <div class="">
+      <input type="radio"
+             name="delivery_option"
+      id="{{option.name}}"
+             [checked]="option.id === (cart | async).deliveryOptionId"
+             (click)="setDeliveryOption(option)">
+    </div>
+    <div class="">
+      <label class="js-option-name" for="{{option.name}}" (click)="setDeliveryOption(option)">{{option.name}}</label>
+    </div>
+    <div class="">
+    <p class="js-option-price">{{option.price | currency:'RUB':true}}</p>
+    </div>
+    <div class="">
+    <p>{{option.description}}</p>
+    </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="small">
+      <a class="continue-shopping"
+         routerLink="/cart">Продолжить покупки</a>
+    </div>
+  </div>
+</div>
