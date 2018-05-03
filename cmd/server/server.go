@@ -80,10 +80,12 @@ func buildRouter(logger *logrus.Logger, db *dbx.DB) *routing.Router {
 	// Initialize all used DAOs
 	articleDAO := daos.NewArticleDAO()
 	newsDAO := daos.NewNewsDAO()
+	productDAO := daos.NewProductDAO()
 
 	// Initialize all used Services
 	articleService := services.NewArticleService(articleDAO)
 	newsService := services.NewNewsService(newsDAO)
+	productService := services.NewProductService(productDAO)
 
 	//rg.Post("/auth", apis.Auth(app.Config.JWTSigningKey))
 	//rg.Post("/user/signup", apis.Signup())
@@ -97,6 +99,7 @@ func buildRouter(logger *logrus.Logger, db *dbx.DB) *routing.Router {
 	// Initialize all used APIs
 	apis.ServArticleResource(rg, articleService)
 	apis.ServeNewsResource(rg, newsService)
+	apis.ServProductResource(rg, productService)
 
 	logger.Info("Start Serving static files on " + app.Config.StaticPath)
 

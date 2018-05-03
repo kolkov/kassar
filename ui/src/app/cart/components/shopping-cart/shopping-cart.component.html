@@ -1,11 +1,11 @@
 <h3><i class=""></i>Ваша корзина</h3>
 <h5>
   Подитог ({{itemCount}} шт.):
-<span class="">{{(cart | async).grossTotal | currency:'RUB':true}}</span>
+<span class="">{{(cart | async).grossTotal | currency:'RUB':'symbol'}}</span>
 </h5>
 <button class="to-checkout"
  [attr.disabled]="itemCount === 0 ? true : null"
- routerLink="/checkout">Подтвердить</button>
+ routerLink="/checkout">Корзина</button>
 <button type="button"
       class="empty-cart"
       (click)="emptyCart()"

@@ -1,5 +1,5 @@
 package apis
-/*
+
 import (
 	"github.com/go-ozzo/ozzo-routing"
 	"kassar/app"
@@ -7,24 +7,24 @@ import (
 )
 
 type (
-	articleService interface {
-		Query(rs app.RequestScope, offset, limit int) ([]models.Article, error)
+	productService interface {
+		Query(rs app.RequestScope, offset, limit int) ([]models.Product, error)
 		Count(rs app.RequestScope) (int, error)
-		GetByPath(rs app.RequestScope, id string) (*models.Article, error)
+		GetByPath(rs app.RequestScope, id string) (*models.Product, error)
 	}
 
-	articleResource struct {
-		service articleService
+	productResource struct {
+		service productService
 	}
 )
 
-func ServArticleResource(rg *routing.RouteGroup, service articleService){
-	r := &articleResource{service}
-	rg.Get("/articles/<id>", r.getByPath)
-	rg.Get("/articles", r.query)
+func ServProductResource(rg *routing.RouteGroup, service productService){
+	r := &productResource{service}
+	rg.Get("/products/<id>", r.getByPath)
+	rg.Get("/products", r.query)
 }
 
-func (r *articleResource) getByPath(c *routing.Context) error {
+func (r *productResource) getByPath(c *routing.Context) error {
 	id := c.Param("id")
 
 	response, err := r.service.GetByPath(app.GetRequestScope(c), id)
@@ -35,7 +35,7 @@ func (r *articleResource) getByPath(c *routing.Context) error {
 	return c.Write(response)
 }
 
-func (r *articleResource) query(c *routing.Context) error {
+func (r *productResource) query(c *routing.Context) error {
 	rs := app.GetRequestScope(c)
 	count, err := r.service.Count(rs)
 	if err != nil {
@@ -49,4 +49,3 @@ func (r *articleResource) query(c *routing.Context) error {
 	paginatedList.Items = items
 	return c.Write(paginatedList)
 }
-*/

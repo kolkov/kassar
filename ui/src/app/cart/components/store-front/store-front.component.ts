@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
-import {Product} from "../../models/product";
+import {Product, ProductList} from "../../models/product";
 import {Observable} from "rxjs/internal/Observable";
 import {ShoppingCartService} from "../../services/shopping-cart.service";
 import {ProductsService} from "../../services/products.service";
@@ -12,13 +12,13 @@ import {Observer} from "rxjs/internal/types";
   styleUrls: ['./store-front.component.scss']
 })
 export class StoreFrontComponent implements OnInit {
-  public products: Observable<Product[]>;
+  public products: Observable<ProductList>;
 
   constructor(private productsService: ProductsService,
               private shoppingCartService: ShoppingCartService) { }
 
   ngOnInit() {
-    this.products = this.productsService.all();
+    this.products = this.productsService.all()
   }
 
   public addProductToCart(product: Product): void {

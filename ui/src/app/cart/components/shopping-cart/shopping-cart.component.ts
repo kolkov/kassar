@@ -2,7 +2,7 @@ import {ChangeDetectionStrategy, Component, OnDestroy, OnInit} from '@angular/co
 import {Subscription} from "rxjs/internal/Subscription";
 import {ShoppingCart} from "../../models/shopping-cart";
 import {Observable} from "rxjs/internal/Observable";
-import {Product} from "../../models/product";
+import {Product, ProductList} from "../../models/product";
 import {ShoppingCartService} from "../../services/shopping-cart.service";
 import {ProductsService} from "../../services/products.service";
 
@@ -13,7 +13,7 @@ import {ProductsService} from "../../services/products.service";
   styleUrls: ['./shopping-cart.component.scss']
 })
 export class ShoppingCartComponent implements OnInit, OnDestroy {
-  public products: Observable<Product[]>;
+  public products: Observable<ProductList>;
   public cart: Observable<ShoppingCart>;
   public itemCount: number;
 

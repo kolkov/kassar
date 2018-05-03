@@ -1,5 +1,5 @@
 package apis
-/*
+
 import (
 	"github.com/go-ozzo/ozzo-routing"
 	"kassar/app"
@@ -49,4 +49,4 @@ func (r *articleResource) query(c *routing.Context) error {
 	paginatedList.Items = items
 	return c.Write(paginatedList)
 }
-*/
+

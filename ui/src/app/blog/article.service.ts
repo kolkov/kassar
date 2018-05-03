@@ -13,12 +13,12 @@ export class ArticleService {
   get(id: string): Observable<Article> {
     const headers = new HttpHeaders();
     headers.set('Content-Type', 'application/json');
-    return this.http.get<Article>('v1/article/' + id, {headers: headers});
+    return this.http.get<Article>('v1/articles/' + id, {headers: headers});
   }
 
   getList(): Observable<ArticleList> {
     const headers = new HttpHeaders();
     headers.set('Content-Type', 'application/json');
-    return this.http.get<ArticleList>('v1/article', {headers: headers});
+    return this.http.get<ArticleList>('v1/articles', {headers: headers});
   }
 }

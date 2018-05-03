@@ -38,7 +38,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     this.cartSubscription = this.cart.subscribe((cart) => {
       this.itemCount = cart.items.map((x) => x.quantity).reduce((p, n) => p + n, 0);
       this.productsService.all().subscribe((products) => {
-        this.products = products;
+        this.products = products.items;
         this.cartItems = cart.items
           .map((item) => {
             const product = this.products.find((p) => p.id === item.productId);

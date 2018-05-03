@@ -13,6 +13,8 @@ import {KassatkaMiniComponent} from "./kkt/kassatka-mini/kassatka-mini.component
 import {KktHomeComponent} from "./kkt/kkt-home/kkt-home.component";
 import {ScannersHomeComponent} from "./scanners/scanners-home/scanners-home.component";
 import { OtherHomeComponent } from './other/other-home/other-home.component';
+import {StoreFrontComponent} from "../cart/components/store-front/store-front.component";
+import {ShoppingCartComponent} from "../cart/components/shopping-cart/shopping-cart.component";
 
 @NgModule({
   imports: [
@@ -30,7 +32,9 @@ import { OtherHomeComponent } from './other/other-home/other-home.component';
     ScannersComponent,
     ScannersHomeComponent,
     OtherComponent,
-    OtherHomeComponent
+    OtherHomeComponent,
+    StoreFrontComponent,
+    ShoppingCartComponent
   ]
 })
 export class CatalogModule { }

@@ -20,3 +20,11 @@ export class Product {
 
   }
 }
+
+export class ProductList {
+  items: Product[];
+  page: number;
+  per_page: number;
+  page_count: number;
+  total_count: number;
+}
