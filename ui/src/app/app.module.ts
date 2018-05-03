@@ -14,6 +14,7 @@ import {BlogModule} from "./blog/blog.module";
 import {HttpClientModule} from "@angular/common/http";
 import { HomeNewsComponent } from './home/home-news/home-news.component';
 import {ServiceCenterModule} from "./service-center/service-center.module";
+import {CartModule} from "./cart/cart.module";
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import {ServiceCenterModule} from "./service-center/service-center.module";
     ServicesModule,
     ServiceCenterModule,
     BlogModule,
+    CartModule,
     AppRoutingModule,
   ],
   providers: [SEOService, GoogleAnalyticsService],
