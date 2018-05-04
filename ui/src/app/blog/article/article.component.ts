@@ -3,7 +3,6 @@ import {Article} from "../article";
 import {ActivatedRoute} from "@angular/router";
 import {ArticleService} from "../article.service";
 import {HttpErrorResponse} from "@angular/common/http";
-import {Title} from "@angular/platform-browser";
 import {SEOService} from "../../seo.service";
 
 @Component({

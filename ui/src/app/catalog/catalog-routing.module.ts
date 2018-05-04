@@ -11,6 +11,7 @@ import {OtherComponent} from "./other/other.component";
 import {KktComponent} from "./kkt/kkt.component";
 import {ScannersComponent} from "./scanners/scanners.component";
 import {OtherHomeComponent} from "./other/other-home/other-home.component";
+import {CartHomeComponent} from "./cart-home/cart-home.component";
 
 const routes: Routes = [
   {
@@ -24,6 +25,16 @@ const routes: Routes = [
       }
     },
     children: [
+      {
+        path:':id',
+        component: CartHomeComponent
+      },
+      {
+        path: '',
+        component: CatalogHomeComponent
+      }
+    ]
+    /*children: [
       {
         path: 'kontrolno-kassovaya-tekhnika',
         component: KktComponent,
@@ -124,7 +135,7 @@ const routes: Routes = [
         path: '',
         component: CatalogHomeComponent
       }
-    ]
+    ]*/
   }
 ];
 

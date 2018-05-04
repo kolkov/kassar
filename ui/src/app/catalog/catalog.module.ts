@@ -15,6 +15,7 @@ import {ScannersHomeComponent} from "./scanners/scanners-home/scanners-home.comp
 import { OtherHomeComponent } from './other/other-home/other-home.component';
 import {StoreFrontComponent} from "../cart/components/store-front/store-front.component";
 import {ShoppingCartComponent} from "../cart/components/shopping-cart/shopping-cart.component";
+import { CartHomeComponent } from './cart-home/cart-home.component';
 
 @NgModule({
   imports: [
@@ -34,7 +35,8 @@ import {ShoppingCartComponent} from "../cart/components/shopping-cart/shopping-c
     OtherComponent,
     OtherHomeComponent,
     StoreFrontComponent,
-    ShoppingCartComponent
+    ShoppingCartComponent,
+    CartHomeComponent
   ]
 })
 export class CatalogModule { }

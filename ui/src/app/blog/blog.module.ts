@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { BlogRoutingModule } from './blog-routing.module';
 import { BlogComponent } from './blog.component';
 import { BlogHomeComponent } from './blog-home/blog-home.component';
-import { Article1Component } from './article1/article1.component';
 import { ArticleComponent } from './article/article.component';
 import { ArticleListComponent } from './article-list/article-list.component';
 
@@ -13,6 +12,6 @@ import { ArticleListComponent } from './article-list/article-list.component';
     CommonModule,
     BlogRoutingModule
   ],
-  declarations: [BlogComponent, BlogHomeComponent, Article1Component, ArticleComponent, ArticleListComponent]
+  declarations: [BlogComponent, BlogHomeComponent, ArticleComponent, ArticleListComponent]
 })
 export class BlogModule { }
