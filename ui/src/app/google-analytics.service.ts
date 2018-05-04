@@ -3,7 +3,9 @@ import {NavigationEnd, Router} from '@angular/router';
 import {environment} from "../environments/environment";
 declare var gtag: Function;
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class GoogleAnalyticsService {
 
   constructor(public router: Router) {

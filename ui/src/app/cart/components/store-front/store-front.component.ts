@@ -4,6 +4,7 @@ import {Observable} from "rxjs/internal/Observable";
 import {ShoppingCartService} from "../../services/shopping-cart.service";
 import {ProductsService} from "../../services/products.service";
 import {Observer} from "rxjs/internal/types";
+import {filter, map, tap} from "rxjs/operators";
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -12,13 +13,17 @@ import {Observer} from "rxjs/internal/types";
   styleUrls: ['./store-front.component.scss']
 })
 export class StoreFrontComponent implements OnInit {
-  public products: Observable<ProductList>;
+  public products: Observable<Product[]>;
 
   constructor(private productsService: ProductsService,
               private shoppingCartService: ShoppingCartService) { }
 
   ngOnInit() {
-    this.products = this.productsService.all()
+    this.products = this.productsService.all().pipe(
+      tap(x => console.log('Tap activated!')),
+      filter(x => x.total_count > 1),
+      map(x => x.items)
+    );
   }
 
   public addProductToCart(product: Product): void {
