@@ -9,7 +9,8 @@ const routes: Routes = [
   {
     path: 'checkout',
     component: CheckoutComponent,
-    canActivate: [PopulatedCartGuard]
+    canActivate: [PopulatedCartGuard],
+
   },
   {
     path: 'confirmed',

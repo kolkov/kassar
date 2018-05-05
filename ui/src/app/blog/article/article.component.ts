@@ -12,9 +12,9 @@ import {SEOService} from "../../seo.service";
 })
 export class ArticleComponent implements OnInit {
   article: Article = new Article();
-
   id: string;
   error: HttpErrorResponse;
+
   constructor(
     private activateRoute: ActivatedRoute,
     private blogService: ArticleService,

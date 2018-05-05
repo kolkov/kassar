@@ -5,8 +5,9 @@
 </h5>
 <button class="to-checkout"
  [attr.disabled]="itemCount === 0 ? true : null"
- routerLink="/checkout">Корзина</button>
+        routerLink="/checkout">Корзина</button>
 <button type="button"
       class="empty-cart"
       (click)="emptyCart()"
       [attr.disabled]="itemCount === 0 ? true : null">Очистить корзину</button>
+<!--routerLink="/checkout"-->

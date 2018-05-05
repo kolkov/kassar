@@ -13,10 +13,18 @@ const appRoutes: Routes = [
       metatags: {
         description: 'Мы занимаемся поставками ККТ, настройкой под ключ кассового оборудования и сервисным обсуживанием',
         keywords: 'касса, онлайн-касса, ккт, обслуживание, установка, сервис'
-      }
+      },
+      breadcrumb: 'forms'
     }
   },
-  {path: '**', component: NotFoundComponent}
+  {
+    path: '**',
+    component: NotFoundComponent,
+    data: {
+      breadcrumb: 'not found'
+    }
+
+  }
 ];
 
 @NgModule({

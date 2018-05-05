@@ -15,7 +15,8 @@ const routes: Routes = [
       metatags: {
         description: 'Все о нашей компании',
         keywords: 'some, keywords, here, separated, by, a comma'
-      }
+      },
+      breadcrumb: 'О нас'
     },
     children: [
       {
@@ -26,7 +27,8 @@ const routes: Routes = [
           metatags: {
             description: 'Все о нашей компании',
             keywords: 'some, keywords, here, separated, by, a comma'
-          }
+          },
+          breadcrumb: 'О компании'
         }
       },
       {

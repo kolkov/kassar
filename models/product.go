@@ -8,4 +8,5 @@ type Product struct {
 	Description string `json:"description"`
 	Img string `json:"img"`
 	Url string `json:"url"`
+	Properties []ProductProperties `json:"properties"`
 }

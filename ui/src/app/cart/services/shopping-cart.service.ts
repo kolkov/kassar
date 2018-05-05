@@ -20,12 +20,13 @@ export class ShoppingCartService {
   private subscribers: Array<Observer<ShoppingCart>> = new Array<Observer<ShoppingCart>>();
   private products: Product[];
   private deliveryOptions: DeliveryOption[];
+  public category: string;
 
   constructor(private storageService: LocalStorageService,
               private productService: ProductsService,
               private deliveryOptionsService: DeliveryOptionsService) {
     this.storage = this.storageService.get();
-    this.productService.all().subscribe((products) => this.products = products.items);
+    this.productService.all("").subscribe((products) => this.products = products.items);
     this.deliveryOptionsService.all().subscribe((options) => this.deliveryOptions = options);
 
     this.subscriptionObservable = new Observable<ShoppingCart>((observer: Observer<ShoppingCart>) => {

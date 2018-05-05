@@ -1,10 +1,11 @@
-import {ChangeDetectionStrategy, Component, OnDestroy, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from "rxjs/internal/Subscription";
 import {ShoppingCart} from "../../models/shopping-cart";
 import {Observable} from "rxjs/internal/Observable";
 import {Product, ProductList} from "../../models/product";
 import {ShoppingCartService} from "../../services/shopping-cart.service";
 import {ProductsService} from "../../services/products.service";
+import {Router} from "@angular/router";
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -13,17 +14,25 @@ import {ProductsService} from "../../services/products.service";
   styleUrls: ['./shopping-cart.component.scss']
 })
 export class ShoppingCartComponent implements OnInit, OnDestroy {
+  @Input() category: string;
+
   public products: Observable<ProductList>;
   public cart: Observable<ShoppingCart>;
   public itemCount: number;
+  id: string;
 
   private cartSubscription: Subscription;
 
   constructor(private productsService: ProductsService,
-              private shoppingCartService: ShoppingCartService) { }
+              private shoppingCartService: ShoppingCartService,
+              private router: Router) { }
 
   ngOnInit() {
-    this.products = this.productsService.all();
+    /*this.productsService.category$.subscribe(val => {
+      console.log(val);
+      this.id = val;
+    });*/
+    this.products = this.productsService.all("");
     this.cart = this.shoppingCartService.get();
     this.cartSubscription = this.cart.subscribe((cart) => {
       this.itemCount = cart.items.map((x) => x.quantity).reduce((p, n) => p + n, 0);
@@ -35,6 +44,10 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
       this.cartSubscription.unsubscribe();
     }
   }
+
+  /*checkoutCart(){
+    this.router.navigate(['/checkout'], { replaceUrl: true });
+  }*/
 
   emptyCart(): void {
     this.shoppingCartService.empty();

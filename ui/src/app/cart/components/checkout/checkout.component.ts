@@ -8,6 +8,7 @@ import {CartItem} from "../../models/cart-item";
 import {ShoppingCartService} from "../../services/shopping-cart.service";
 import {ProductsService} from "../../services/products.service";
 import {DeliveryOptionsService} from "../../services/delivery-options.service";
+import {Router} from "@angular/router";
 
 interface ICartItemWithProduct extends CartItem {
   product: Product;
@@ -30,14 +31,15 @@ export class CheckoutComponent implements OnInit, OnDestroy {
 
   constructor(private productsService: ProductsService,
               private deliveryOptionService: DeliveryOptionsService,
-              private shoppingCartService: ShoppingCartService) { }
+              private shoppingCartService: ShoppingCartService,
+              private router: Router) { }
 
   ngOnInit() {
     this.deliveryOptions = this.deliveryOptionService.all();
     this.cart = this.shoppingCartService.get();
     this.cartSubscription = this.cart.subscribe((cart) => {
       this.itemCount = cart.items.map((x) => x.quantity).reduce((p, n) => p + n, 0);
-      this.productsService.all().subscribe((products) => {
+      this.productsService.all("").subscribe((products) => {
         this.products = products.items;
         this.cartItems = cart.items
           .map((item) => {
@@ -55,6 +57,10 @@ export class CheckoutComponent implements OnInit, OnDestroy {
       if (this.cartSubscription) {
       this.cartSubscription.unsubscribe();
     }
+  }
+
+  confirmedCart(){
+    this.router.navigate(['/confirmed'], { replaceUrl: true });
   }
 
   emptyCart(): void {

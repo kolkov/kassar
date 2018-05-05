@@ -13,6 +13,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {HomeNewsComponent} from './home/home-news/home-news.component';
 import {ServiceCenterModule} from "./service-center/service-center.module";
 import {CartModule} from "./cart/cart.module";
+import { BreadcrumbsComponent } from './breadcrubs/breadcrumbs.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import {CartModule} from "./cart/cart.module";
     HomeComponent,
     NewsComponent,
     HomeNewsComponent,
+    BreadcrumbsComponent,
   ],
   imports: [
     BrowserModule,

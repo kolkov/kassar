@@ -16,7 +16,7 @@
         *ngIf="(cart | async).deliveryOptionId === undefined">Проверьте свой заказ и выберите способ доставки...</h5>
     <a class="choice-confirmation"
        *ngIf="(cart | async).deliveryOptionId !== undefined"
-       routerLink="/confirmed">Подтвердить заказ</a>
+       (click)="confirmedCart()">Подтвердить заказ</a><!--routerLink="/confirmed"-->
   </div>
   <hr/>
 </div>

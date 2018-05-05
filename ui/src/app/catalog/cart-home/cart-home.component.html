@@ -1,0 +1,8 @@
+<ng-container *ngIf="pageDescription$ | async as pageDescription">
+  <h1>{{pageDescription.heading}}</h1>
+  <p>
+    {{pageDescription.description}}
+  </p>
+</ng-container>
+
+<app-store-front [category]="id"></app-store-front>

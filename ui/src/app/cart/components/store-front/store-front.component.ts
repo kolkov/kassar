@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
 import {Product, ProductList} from "../../models/product";
 import {Observable} from "rxjs/internal/Observable";
 import {ShoppingCartService} from "../../services/shopping-cart.service";
@@ -15,13 +15,16 @@ import {filter, map, tap} from "rxjs/operators";
 export class StoreFrontComponent implements OnInit {
   public products: Observable<Product[]>;
 
+  @Input() category: string;
+
   constructor(private productsService: ProductsService,
               private shoppingCartService: ShoppingCartService) { }
 
   ngOnInit() {
-    this.products = this.productsService.all().pipe(
+    this.shoppingCartService.category = this.category;
+    this.products = this.productsService.all(this.category).pipe(
       tap(x => console.log('Tap activated!')),
-      filter(x => x.total_count > 1),
+      //filter(x => x.total_count > 1),
       map(x => x.items)
     );
   }

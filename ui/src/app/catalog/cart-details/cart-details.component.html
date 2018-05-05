@@ -1,12 +1,9 @@
 <div class="row">
   <div class="">
-    <app-shopping-cart [category]="category"></app-shopping-cart>
-    <h3>Выберите товары...</h3>
     <div class="product-list">
-      <div *ngFor="let product of (products | async)"
-           class="product-container">
-
-        <div id="kassatka-7" class="media" itemscope itemtype="http://schema.org/Product">
+      <div *ngIf="product$ | async as product" class="product-container">
+        <h1>{{product.name}}</h1>
+        <div class="media" itemscope itemtype="http://schema.org/Product">
           <div class="img">
             <img itemprop="image" src="./assets/img/{{product.img}}" alt="{{product.name}}">
           </div>
@@ -38,6 +35,7 @@
           </button>
         </div>
       </div>
+      <!--<ng-template #loading let-product>Waiting... (product is {{product|json}})</ng-template>-->
     </div>
   </div>
 </div>
