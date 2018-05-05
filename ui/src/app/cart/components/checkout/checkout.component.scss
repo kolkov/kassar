@@ -7,6 +7,12 @@
 .conf-row {
   margin: 15px 0;
 }
+
+button[disabled]{
+  opacity: .25;
+  cursor: not-allowed;
+}
+
 .choice-confirmation {
   border-radius: 4px;
   background-color: #5d8b00;
@@ -17,6 +23,23 @@
 .choice-confirmation:hover{
   background-color: #22bb5b;
 }
+
+.empty-cart {
+  padding: 0.5rem 1.5rem;
+  background-color: #767676;
+  color: #fefefe;
+  cursor: pointer;
+  border-radius: 4px;
+  //display: block;
+  /*width: 100%;
+  margin-right: 0;
+  margin-left: 0;*/
+}
+.empty-cart:hover{
+  background-color: #5e5e5e;
+  color: #fefefe;
+}
+
 .continue-shopping {
   background-color: #ffae00;
 

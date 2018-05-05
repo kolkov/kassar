@@ -14,9 +14,13 @@
   <div class="conf-row">
     <h5 class="choice-delivery"
         *ngIf="(cart | async).deliveryOptionId === undefined">Проверьте свой заказ и выберите способ доставки...</h5>
-    <a class="choice-confirmation"
+    <button class="choice-confirmation"
        *ngIf="(cart | async).deliveryOptionId !== undefined"
-       (click)="confirmedCart()">Подтвердить заказ</a><!--routerLink="/confirmed"-->
+       (click)="confirmedCart()">Подтвердить заказ</button><!--routerLink="/confirmed"-->
+    <button type="button"
+            class="empty-cart"
+            (click)="emptyCart()"
+            [attr.disabled]="itemCount === 0 ? true : null">Очистить корзину</button>
   </div>
   <hr/>
 </div>

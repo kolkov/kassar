@@ -1,24 +1,24 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 
-import { CatalogRoutingModule } from './catalog-routing.module';
-import { CatalogHomeComponent } from './catalog-home/catalog-home.component';
-import {StoreFrontComponent} from "../cart/components/store-front/store-front.component";
-import {ShoppingCartComponent} from "../cart/components/shopping-cart/shopping-cart.component";
-import { CartHomeComponent } from './cart-home/cart-home.component';
-import { CartDetailsComponent } from './cart-details/cart-details.component';
+import {CatalogRoutingModule} from './catalog-routing.module';
+import {CatalogHomeComponent} from './catalog-home/catalog-home.component';
+import {CartHomeComponent} from './cart-home/cart-home.component';
+import {CartDetailsComponent} from './cart-details/cart-details.component';
 import {CatalogComponent} from "./catalog.component";
+import {SharedModule} from "../shared/shared.module";
 
 @NgModule({
   imports: [
     CommonModule,
-    CatalogRoutingModule
+    CatalogRoutingModule,
+    SharedModule
   ],
   declarations: [
     CatalogComponent,
     CatalogHomeComponent,
-    StoreFrontComponent,
-    ShoppingCartComponent,
+//    StoreFrontComponent,
+//    ShoppingCartComponent,
     CartHomeComponent,
     CartDetailsComponent
   ]

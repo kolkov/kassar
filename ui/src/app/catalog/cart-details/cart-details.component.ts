@@ -5,6 +5,8 @@ import {Product} from "../../cart/models/product";
 import {Observable} from "rxjs/internal/Observable";
 import {Observer} from "rxjs/internal/types";
 import {ShoppingCartService} from "../../cart/services/shopping-cart.service";
+import {SEOService} from "../../seo.service";
+import {tap} from "rxjs/operators";
 
 @Component({
   //changeDetection: ChangeDetectionStrategy.OnPush,
@@ -19,13 +21,18 @@ export class CartDetailsComponent implements OnInit, AfterViewInit {
   constructor(
     private activateRoute: ActivatedRoute,
     private productService: ProductsService,
-    private shoppingCartService: ShoppingCartService) { }
+    private shoppingCartService: ShoppingCartService,
+    private seoService: SEOService) { }
 
   ngOnInit() {
     //this.shoppingCartService.category = this.activateRoute.parent.toString();
     this.activateRoute.params.subscribe(x => {
       this.id = this.activateRoute.snapshot.params['id'];
-      this.product$= this.productService.one1(this.id);    });
+      this.product$= this.productService.one1(this.id).pipe(
+        tap(p => this.seoService.setSeoData(p.name, {}))
+      );
+
+    });
 
     //this.product$= this.productService.one1(this.id);
   }

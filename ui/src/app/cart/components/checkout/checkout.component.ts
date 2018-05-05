@@ -53,6 +53,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
       });
     });
   }
+
   ngOnDestroy(): void {
       if (this.cartSubscription) {
       this.cartSubscription.unsubscribe();

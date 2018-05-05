@@ -28,10 +28,6 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
               private router: Router) { }
 
   ngOnInit() {
-    /*this.productsService.category$.subscribe(val => {
-      console.log(val);
-      this.id = val;
-    });*/
     this.products = this.productsService.all("");
     this.cart = this.shoppingCartService.get();
     this.cartSubscription = this.cart.subscribe((cart) => {
@@ -44,10 +40,6 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
       this.cartSubscription.unsubscribe();
     }
   }
-
-  /*checkoutCart(){
-    this.router.navigate(['/checkout'], { replaceUrl: true });
-  }*/
 
   emptyCart(): void {
     this.shoppingCartService.empty();
