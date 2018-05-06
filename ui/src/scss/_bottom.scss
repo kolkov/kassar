@@ -1,7 +1,7 @@
 .bottom {
   background-color: #222628;
   color: #acacac;
-  padding: 50px 15px 50px 15px;
+  padding: 20px 15px 20px 15px;
 
   h2 {
     margin-top: 15px;
@@ -45,7 +45,7 @@
   }
   @media (min-width: $grid-breakpoints-sm) {
     .bottom {
-      padding: 50px 50px 50px 70px;
+      padding: 20px 50px 20px 70px;
       //display: grid;
       grid-column-gap: 20px;
       grid-template-columns: 1fr 1fr;
@@ -57,7 +57,7 @@
 
   @media (min-width: $grid-breakpoints-md) {
     .bottom {
-      padding: 50px 50px 50px 70px;
+      padding: 20px 50px 20px 70px;
       display: grid;
       grid-column-gap: 20px;
       grid-template-columns: 1fr 1fr 1fr 1fr;

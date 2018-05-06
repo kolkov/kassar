@@ -35,7 +35,7 @@ const routes: Routes = [
           title: 'Прайслист',
           metatags: {
             description: 'Наши цены',
-            keywords: ''
+            keywords: 'цены, стоимость услуг'
           }
         }
       },

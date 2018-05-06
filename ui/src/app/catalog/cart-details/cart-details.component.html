@@ -2,7 +2,7 @@
   <div class="">
     <div class="product-list">
       <div *ngIf="product$ | async as product" class="product-container">
-        <h1>{{product.name}}</h1>
+        <h1>{{product.name}} <span *ngIf="product.product_type"> - </span>{{product.product_type}}</h1>
         <div class="media" itemscope itemtype="http://schema.org/Product">
           <div class="img">
             <img itemprop="image" src="./assets/img/{{product.img}}" alt="{{product.name}}">
@@ -13,7 +13,6 @@
             <ul>
               <li *ngFor="let property of product.properties ">{{property.name}}<p *ngIf="property.value !=''"> -
                 {{property.value}}</p></li>
-              <li><a routerLink="{{product.url}}">Подробнее...</a></li>
             </ul>
             <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
               <meta itemprop="priceCurrency" content="RUB"/>

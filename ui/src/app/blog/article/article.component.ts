@@ -1,17 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {Article} from "../article";
 import {ActivatedRoute} from "@angular/router";
 import {ArticleService} from "../article.service";
 import {HttpErrorResponse} from "@angular/common/http";
 import {SEOService} from "../../seo.service";
+import {Observable} from "rxjs/internal/Observable";
+import {tap} from "rxjs/operators";
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-article',
   templateUrl: './article.component.html',
   styleUrls: ['./article.component.scss']
 })
 export class ArticleComponent implements OnInit {
-  article: Article = new Article();
+  article$: Observable<Article>;
   id: string;
   error: HttpErrorResponse;
 
@@ -23,8 +26,19 @@ export class ArticleComponent implements OnInit {
 
   ngOnInit() {
     this.id = this.activateRoute.snapshot.params['id'];
-    this.blogService.get(this.id)
-      .subscribe((data: Article) => {
+    this.article$ = this.blogService.get(this.id).pipe(
+      tap(x => {
+        let tags = {
+          description: x.description,
+          keywords: x.keywords,
+        };
+        this.seoService.setSeoData(x.title, tags);
+      })
+    )
+
+
+
+      /*.subscribe((data: Article) => {
         this.article = data;
         let tags = {
           description: data.description,
@@ -37,7 +51,7 @@ export class ArticleComponent implements OnInit {
           this.article.title = "Ошибка";
           this.article.body = "Статья с такоим URL не найдена на сервере"
         }
-      )
+      )*/
   }
 
 }

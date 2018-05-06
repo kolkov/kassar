@@ -19,7 +19,10 @@ const routes: Routes = [
     children: [
       {
         path: ':id/:id',
-        component: CartDetailsComponent
+        component: CartDetailsComponent,
+        /*resolve: {
+          details: CatalogResolver
+        }*/
       },
       {
         path:':id',
@@ -27,7 +30,14 @@ const routes: Routes = [
       },
       {
         path: '',
-        component: CatalogHomeComponent
+        component: CatalogHomeComponent,
+        data: {
+          title: 'Каталог оборудования',
+          metatags: {
+            description: 'Предлагаемое оборудование и программное обеспечение. Онлайн кассы, банковские терминалы, сканеры трих кодов.',
+            keywords: 'ккт, онлайн кассы, оборудование, прогаммы, каталог'
+          }
+        },
       }
     ]
   }

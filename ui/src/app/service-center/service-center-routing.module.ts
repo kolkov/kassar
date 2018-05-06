@@ -11,10 +11,6 @@ const routes: Routes = [
 
     },
     children: [
-      /*{
-        path: ':id',
-        component: ArticleComponent
-      },*/
       {
         path: '',
         component: ServiceCenterHomeComponent,

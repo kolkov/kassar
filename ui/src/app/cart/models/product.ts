@@ -3,8 +3,11 @@ import {Properties} from "./properties";
 export class Product {
   id: number;
   name: string;
+  product_type: string;
   description: string;
   price: number;
+  tag_description: string;
+  keywords: string;
   img: string;
   url: string;
   properties: Properties[];

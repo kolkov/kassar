@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {NavigationEnd, Router} from '@angular/router';
 import {environment} from "../environments/environment";
+
 declare var gtag: Function;
 
 @Injectable({
@@ -9,26 +10,27 @@ declare var gtag: Function;
 export class GoogleAnalyticsService {
 
   constructor(public router: Router) {
-    this.router.events.subscribe(event => {
-      try {
-        if (typeof gtag === 'function') {
-          if (event instanceof NavigationEnd) {
-            gtag('config', environment.googleAnalyticsKey, {'page_path': event.urlAfterRedirects});
-            //gtag('event', 'page_view', { 'send_to': environment.googleAnalyticsKey });
-            console.log('%%% Google Analytics page view event %%%');
-            /*gtag('config', 'GA_TRACKING_ID', {
-              'page_title': 'homepage',
-              'page_location': 'http://foo.com/home',
-              'page_path': '/home'
-            });*/
+    if (environment.googleAnalyticsKey !=''){
+      this.router.events.subscribe(event => {
+        try {
+          if (typeof gtag === 'function') {
+            if (event instanceof NavigationEnd) {
+              gtag('config', environment.googleAnalyticsKey, {'page_path': event.urlAfterRedirects});
+              //gtag('event', 'page_view', { 'send_to': environment.googleAnalyticsKey });
+              console.log('%%% Google Analytics page view event %%%');
+              /*gtag('config', 'GA_TRACKING_ID', {
+                'page_title': 'homepage',
+                'page_location': 'http://foo.com/home',
+                'page_path': '/home'
+              });*/
+            }
           }
+        } catch (e) {
+          console.log(e);
         }
-      } catch (e) {
-        console.log(e);
-      }
-    });
+      });
+    }
   }
-
 
   /**
    * Emit google analytics event

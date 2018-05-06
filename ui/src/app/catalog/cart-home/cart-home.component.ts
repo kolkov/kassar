@@ -3,7 +3,7 @@ import {ActivatedRoute} from "@angular/router";
 import {Observable} from "rxjs/internal/Observable";
 import {CartHomeService, PageDescription} from "../cart-home.service";
 import {SEOService} from "../../seo.service";
-import {map, tap} from "rxjs/operators";
+import {tap} from "rxjs/operators";
 
 @Component({
   selector: 'app-cart-home',
@@ -22,7 +22,7 @@ export class CartHomeComponent implements OnInit {
     this.id = this.activateRoute.snapshot.params['id'];
     this.pageDescription$ = this.cartHomeService.getPageDescription(this.id)
       .pipe(
-        tap(page => this.seoService.setSeoData(page.heading, {}))
+        tap(page => this.seoService.setSeoData(page.heading, page.tags))
       )
   }
 

@@ -14,7 +14,7 @@ const routes: Routes = [
       title: 'О нас',
       metatags: {
         description: 'Все о нашей компании',
-        keywords: 'some, keywords, here, separated, by, a comma'
+        keywords: 'о компании, кассар, все о компании, ооо кассар'
       },
       breadcrumb: 'О нас'
     },
@@ -25,8 +25,8 @@ const routes: Routes = [
         data: {
           title: 'О нас',
           metatags: {
-            description: 'Все о нашей компании',
-            keywords: 'some, keywords, here, separated, by, a comma'
+            description: 'Данные о компании Кассар',
+            keywords: 'кассар, about, о нас, о компании, компания, историякомпании'
           },
           breadcrumb: 'О компании'
         }
@@ -49,7 +49,7 @@ const routes: Routes = [
           title: 'Новости',
           metatags: {
             description: 'Новости нашей компании',
-            keywords: 'some, keywords, here, separated, by, a comma'
+            keywords: 'новости, новости компании, наши новости, последние новости, новости кассар'
           }
         }
       },

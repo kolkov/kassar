@@ -4,9 +4,8 @@
 package models
 
 type News struct {
-	Id int `json:"id"`
-	Date string `json:"date"`
+	Id      int    `json:"id"`
+	Date    string `json:"date"`
 	Heading string `json:"heading"`
-	Body string `json:"body"`
+	Body    string `json:"body"`
 }
-

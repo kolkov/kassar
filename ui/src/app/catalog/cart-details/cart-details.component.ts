@@ -1,4 +1,4 @@
-import {AfterViewInit, ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {ProductsService} from "../../cart/services/products.service";
 import {Product} from "../../cart/models/product";
@@ -14,27 +14,34 @@ import {tap} from "rxjs/operators";
   templateUrl: './cart-details.component.html',
   styleUrls: ['./cart-details.component.scss']
 })
-export class CartDetailsComponent implements OnInit, AfterViewInit {
-  id: string;
+export class CartDetailsComponent implements OnInit {
   product$: Observable<Product>;
+  private id: string;
 
   constructor(
     private activateRoute: ActivatedRoute,
     private productService: ProductsService,
     private shoppingCartService: ShoppingCartService,
-    private seoService: SEOService) { }
+    private seoService: SEOService
+  ) {
+  }
 
   ngOnInit() {
-    //this.shoppingCartService.category = this.activateRoute.parent.toString();
+    /*this.product$ = this.activateRoute.snapshot.data['details'];
+
     this.activateRoute.params.subscribe(x => {
       this.id = this.activateRoute.snapshot.params['id'];
-      this.product$= this.productService.one1(this.id).pipe(
+      this.product$= this.activateRoute.snapshot.data['details'].pipe()(
         tap(p => this.seoService.setSeoData(p.name, {}))
       );
+    });*/
 
+    this.activateRoute.params.subscribe(() => {
+      this.id = this.activateRoute.snapshot.params['id'];
+      this.product$ = this.productService.one(this.id).pipe(
+        tap(p => this.seoService.setSeoData(p.name, {description: p.tag_description, keywords: p.keywords}))
+      );
     });
-
-    //this.product$= this.productService.one1(this.id);
   }
 
   public addProductToCart(product: Product): void {
@@ -55,9 +62,5 @@ export class CartDetailsComponent implements OnInit, AfterViewInit {
         });
       sub.unsubscribe();
     });
-  }
-
-  ngAfterViewInit(){
-    console.log("TEST!!!!!")
   }
 }

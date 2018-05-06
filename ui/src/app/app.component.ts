@@ -3,6 +3,7 @@ import {NavigationEnd, Router} from "@angular/router";
 import {SEOService} from "./seo.service";
 import {GoogleAnalyticsService} from "./google-analytics.service";
 import { environment } from '../environments/environment';
+import {YandexMetrikaService} from "./yandex-metrika.service";
 
 declare var gtag:Function;
 
@@ -16,35 +17,75 @@ export class AppComponent implements OnInit {
 
   constructor(private router: Router,
               seoService: SEOService,
-              private googleAnalyticsService: GoogleAnalyticsService
+              private googleAnalyticsService: GoogleAnalyticsService,
+              private yandexMetrikaService: YandexMetrikaService
               ){
     seoService.addSeoData();
-    this.appendGaTrackingCode();
+    if (environment.googleAnalyticsKey != ''){
+      this.appendGaTrackingCode();
+    }
+   if (environment.yandexMetrikaKey != ''){
+     this.appendYmTrackingCode();
+   }
   }
 
   private appendGaTrackingCode() {
     try {
-      //const script1 = document.createElement('script');
-      //script1.innerHTML = ` async src="https://www.googletagmanager.com/gtag/js?id=` + environment.googleAnalyticsKey + `">`;
-      //document.head.appendChild(script1);
-      const script2 = document.createElement('script');
-      script2.innerHTML = `
+      const script = document.createElement('script');
+      script.innerHTML = `
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
       gtag('config', '` + environment.googleAnalyticsKey + `');
            `;
-      document.head.appendChild(script2);
+      document.head.appendChild(script);
     } catch (ex) {
-      console.error('Error appending google analytics');
+      console.error('Error appending Google analytics');
       console.error(ex);
     }
   }
 
+  private appendYmTrackingCode() {
+    try {
+      const script = document.createElement('script');
+      script.innerHTML = `
+      (function (d, w, c) {
+      (w[c] = w[c] || []).push(function() {
+        try {
+          w.yaCounter`+environment.yandexMetrikaKey+` = new Ya.Metrika2({
+            id:`+environment.yandexMetrikaKey+`,
+            clickmap:true,
+            trackLinks:true,
+            accurateTrackBounce:true,
+            webvisor:true,            
+          });
+        } catch(e) { }
+      });
+
+      const n = d.getElementsByTagName("script")[0],
+        s = d.createElement("script"),
+        f = function () { n.parentNode.insertBefore(s, n); };
+      s.type = "text/javascript";
+      s.async = true;
+      s.src = "https://mc.yandex.ru/metrika/tag.js";
+
+      if (w.opera == "[object Opera]") {
+        d.addEventListener("DOMContentLoaded", f, false);
+      } else { f(); }
+    })(document, window, "yandex_metrika_callbacks2");
+     `;
+      document.head.appendChild(script);
+    } catch (ex) {
+      console.error('Error appending Yandex metrika');
+      console.error(ex);
+    }
+  }
+
+
   ngOnInit() {
     // Somewhere else we can emit a new ga event
-    this.googleAnalyticsService.emitEvent("eventName","testCategory", "testAction", "testLabel", 10);
+    //this.googleAnalyticsService.emitEvent("eventName","testCategory", "testAction", "testLabel", 10);
     this.router.events.subscribe((evt) => {
       if (!(evt instanceof NavigationEnd)) {
         return;

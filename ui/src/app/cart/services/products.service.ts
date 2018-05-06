@@ -28,7 +28,7 @@ export class ProductsService {
     );
   }
 
-  public one1(id: string): Observable<Product> {
+  public one(id: string): Observable<Product> {
     console.log(id);
     return this.http.get<Product>('v1/products/' + id).pipe(
       tap(x => console.log(id)),

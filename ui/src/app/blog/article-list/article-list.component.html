@@ -1,4 +1,4 @@
-<div *ngFor="let article of articles.items">
+<div *ngFor="let article of articles$ | async">
   <h2>{{ article.title }}</h2>
   <p>Дата: {{article.date}}</p>
   <p>{{article.introduction}}</p>
