@@ -14,8 +14,8 @@ import {HomeNewsComponent} from './home/home-news/home-news.component';
 import {ServiceCenterModule} from "./service-center/service-center.module";
 import {CartModule} from "./cart/cart.module";
 import { BreadcrumbsComponent } from './breadcrubs/breadcrumbs.component';
-import {MetrikaModule} from "ng-yandex-metrika";
 import {environment} from "../environments/environment";
+import {NgxMetrikaModule} from "../../projects/ngx-metrika/src/lib/ngx-metrika.module";
 
 @NgModule({
   declarations: [
@@ -29,11 +29,7 @@ import {environment} from "../environments/environment";
   imports: [
     BrowserModule,
     HttpClientModule,
-    /*MetrikaModule.forRoot(
-      {id: environment.yandexMetrikaKey, webvisor: true}, // CounterConfig | CounterConfig[]
-      // Можно задать ид счетчика, либо порядковый номер в массиве, необязательный параметрб по умолчанию первый попавшийся.
-      0 // number | string
-    ),*/
+    NgxMetrikaModule.forRoot({id: environment.yandexMetrikaKey, trackPageViews: true}),
     CompanyModule,
     CatalogModule,
     ServicesModule,

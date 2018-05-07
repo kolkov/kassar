@@ -7,7 +7,7 @@ export const environment = {
   production: false,
   enableTracing: true,
   googleAnalyticsKey: '',
-  yandexMetrikaKey: ''
+  yandexMetrikaKey: '48759095'
 };
 
 /*

@@ -23,8 +23,6 @@ export class StoreFrontComponent implements OnInit {
   ngOnInit() {
     this.shoppingCartService.category = this.category;
     this.products = this.productsService.all(this.category).pipe(
-      tap(x => console.log('Tap activated!')),
-      //filter(x => x.total_count > 1),
       map(x => x.items)
     );
   }

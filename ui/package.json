@@ -6,7 +6,7 @@
     "ng": "ng",
     "start": "ng serve --proxy-config proxy.conf.json",
     "build": "ng build",
-    "prod": "ng build --prod",
+    "build prod kassar": "ng build kassar --prod",
     "prod-with-lib":"ng build ngx-metrika --prod",
     "test": "ng test",
     "lint": "ng lint",
@@ -26,7 +26,6 @@
     "@types/googlemaps": "^3.30.8",
     "core-js": "^2.5.4",
     "font-awesome": "4.7.0",
-    "ng-yandex-metrika": "^2.0.1",
     "ng2-breadcrumb": "^0.5.14",
     "rxjs": "6.1.0",
     "zone.js": "^0.8.24"

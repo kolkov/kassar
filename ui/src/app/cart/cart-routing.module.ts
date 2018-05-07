@@ -5,6 +5,7 @@ import {PopulatedCartGuard} from "./guards/populated-cart.guard";
 import {CheckoutComponent} from "./components/checkout/checkout.component";
 import {OrderConfirmationComponent} from "./components/order-confirmation/order-confirmation.component";
 
+
 const routes: Routes = [
   {
     path: 'checkout',
@@ -26,6 +27,6 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class CartRoutingModule { }

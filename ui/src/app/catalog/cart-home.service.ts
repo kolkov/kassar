@@ -34,7 +34,7 @@ export class CartHomeService {
         keywords: 'сканнеры штрих кодов, сканеры, сканеры для ккт'
       }
     },
-    "prochee": {
+    "other": {
       heading: "Прочее",
       description: "Каталог прочего оборудования и материалов.",
       tags: {

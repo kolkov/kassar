@@ -12,7 +12,7 @@ export class ProductsService {
   categorys = {
     "kontrolno-kassovaya-tekhnika": 1,
     "skanery-shtrikh-kodov": 2,
-    "prochee": 3
+    "other": 3
   };
   path:string;
 

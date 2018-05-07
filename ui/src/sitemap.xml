@@ -12,7 +12,7 @@
   </url>
   <url>
     <loc>https://kassar.ru/company/news</loc>
-    <lastmod>2018-05-03</lastmod>
+    <lastmod>2018-05-07</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
@@ -21,27 +21,52 @@
   </url>
   <url>
     <loc>https://kassar.ru/catalog</loc>
-    <lastmod>2018-05-03</lastmod>
+    <lastmod>2018-05-07</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://kassar.ru/catalog/kontrolno-kassovaya-tekhnika</loc>
-    <lastmod>2018-05-03</lastmod>
+    <lastmod>2018-05-07</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://kassar.ru/catalog/kontrolno-kassovaya-tekhnika/kassatka-7</loc>
-    <lastmod>2018-05-03</lastmod>
+    <lastmod>2018-05-07</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://kassar.ru/catalog/kontrolno-kassovaya-tekhnika/kassatka-mini</loc>
-    <lastmod>2018-05-03</lastmod>
+    <lastmod>2018-05-07</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://kassar.ru/catalog/kontrolno-kassovaya-tekhnika/equipment/kassatka-10</loc>
-    <lastmod>2018-05-03</lastmod>
+    <loc>https://kassar.ru/catalog/kontrolno-kassovaya-tekhnika/kassatka-10</loc>
+    <lastmod>2018-05-07</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://kassar.ru/catalog/skanery-shtrikh-kodov</loc>
+    <lastmod>2018-05-07</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://kassar.ru/catalog/skanery-shtrikh-kodov/skaner1d</loc>
+    <lastmod>2018-05-07</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://kassar.ru/catalog/skanery-shtrikh-kodov/skaner2d</loc>
+    <lastmod>2018-05-07</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://kassar.ru/catalog/other</loc>
+    <lastmod>2018-05-07</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://kassar.ru/catalog/other/moneybox</loc>
+    <lastmod>2018-05-07</lastmod>
     <priority>0.8</priority>
   </url>
   <url>

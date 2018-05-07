@@ -3,7 +3,7 @@ import {NavigationEnd, Router} from "@angular/router";
 import {SEOService} from "./seo.service";
 import {GoogleAnalyticsService} from "./google-analytics.service";
 import { environment } from '../environments/environment';
-import {YandexMetrikaService} from "./yandex-metrika.service";
+import {NgxMetrikaService} from "../../projects/ngx-metrika/src/lib/ngx-metrika.service";
 
 declare var gtag:Function;
 
@@ -18,15 +18,13 @@ export class AppComponent implements OnInit {
   constructor(private router: Router,
               seoService: SEOService,
               private googleAnalyticsService: GoogleAnalyticsService,
-              private yandexMetrikaService: YandexMetrikaService
+              private ngxMetricaService: NgxMetrikaService
               ){
     seoService.addSeoData();
+    this.ngxMetricaService.reachGoal('TARGET_NAME', {});
     if (environment.googleAnalyticsKey != ''){
-      this.appendGaTrackingCode();
+     this.appendGaTrackingCode();
     }
-   if (environment.yandexMetrikaKey != ''){
-     this.appendYmTrackingCode();
-   }
   }
 
   private appendGaTrackingCode() {

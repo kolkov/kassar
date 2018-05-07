@@ -4,6 +4,7 @@ import {CatalogComponent} from "./catalog.component";
 import {CatalogHomeComponent} from "./catalog-home/catalog-home.component";
 import {CartHomeComponent} from "./cart-home/cart-home.component";
 import {CartDetailsComponent} from "./cart-details/cart-details.component";
+import {CatalogGuard} from "./catalog.guard";
 
 const routes: Routes = [
   {
@@ -26,7 +27,8 @@ const routes: Routes = [
       },
       {
         path:':id',
-        component: CartHomeComponent
+        component: CartHomeComponent,
+        canActivate: [CatalogGuard]
       },
       {
         path: '',
@@ -45,7 +47,8 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [CatalogGuard]
 })
 export class CatalogRoutingModule {
 }
