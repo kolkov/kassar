@@ -14,7 +14,7 @@ func NewArticleDAO() *ArticleDAO {
 
 func (dao ArticleDAO) GetByPath(rs app.RequestScope, id string) (*models.Article, error){
 	var article models.Article
-	err := rs.Tx().Select().From("article").Where(dbx.Like("path", id)).One(&article)
+	err := rs.Tx().Select().From("article").Where(dbx.HashExp{"path": id}).One(&article)
 	return &article, err
 }
 

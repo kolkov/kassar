@@ -14,7 +14,7 @@ func NewProductDAO() *ProductDAO {
 
 func (dao ProductDAO) GetByPath(rs app.RequestScope, id string) (*models.Product, error) {
 	var product models.Product
-	err := rs.Tx().Select().From("product").Where(dbx.Like("path", id)).One(&product)
+	err := rs.Tx().Select().From("product").Where(dbx.HashExp{"path": id}).One(&product)
 	return &product, err
 }
 
