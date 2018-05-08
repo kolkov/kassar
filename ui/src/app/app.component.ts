@@ -2,10 +2,11 @@ import {Component, OnInit} from '@angular/core';
 import {NavigationEnd, Router} from "@angular/router";
 import {SEOService} from "./seo.service";
 import {GoogleAnalyticsService} from "./google-analytics.service";
-import { environment } from '../environments/environment';
+import {environment} from '../environments/environment';
 import {NgxMetrikaService} from "../../projects/ngx-metrika/src/lib/ngx-metrika.service";
+import {MetrikaGoalEventOptions} from "../../projects/ngx-metrika/src/lib/interfaces";
 
-declare var gtag:Function;
+declare var gtag: Function;
 
 @Component({
   selector: 'app-root',
@@ -13,17 +14,17 @@ declare var gtag:Function;
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  //title = 'app';
 
   constructor(private router: Router,
               seoService: SEOService,
               private googleAnalyticsService: GoogleAnalyticsService,
-              private ngxMetricaService: NgxMetrikaService
-              ){
+              private ngxMetrikaService: NgxMetrikaService
+  ) {
     seoService.addSeoData();
-    this.ngxMetricaService.reachGoal('TARGET_NAME', {});
-    if (environment.googleAnalyticsKey != ''){
-     this.appendGaTrackingCode();
+    let goal: MetrikaGoalEventOptions = {type: 'TARGET_NAME'};
+    this.ngxMetrikaService.reachGoal.emit(goal);
+    if (environment.googleAnalyticsKey != '') {
+      this.appendGaTrackingCode();
     }
   }
 
@@ -51,8 +52,8 @@ export class AppComponent implements OnInit {
       (function (d, w, c) {
       (w[c] = w[c] || []).push(function() {
         try {
-          w.yaCounter`+environment.yandexMetrikaKey+` = new Ya.Metrika2({
-            id:`+environment.yandexMetrikaKey+`,
+          w.yaCounter` + environment.yandexMetrikaKey + ` = new Ya.Metrika2({
+            id:` + environment.yandexMetrikaKey + `,
             clickmap:true,
             trackLinks:true,
             accurateTrackBounce:true,
@@ -88,11 +89,11 @@ export class AppComponent implements OnInit {
       if (!(evt instanceof NavigationEnd)) {
         return;
       }
-      window.scroll(0,0);
+      window.scroll(0, 0);
     });
   }
 
- /* myFunction() {
-    this.getElementById("dropdown-content").classList.toggle("show");
-  }*/
+  /* myFunction() {
+     this.getElementById("dropdown-content").classList.toggle("show");
+   }*/
 }

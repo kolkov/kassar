@@ -38,8 +38,10 @@ func main() {
 	// connect to the database
 	db, err := dbx.MustOpen("mysql", app.Config.DSN)
 	if err != nil {
+		fmt.Println("Нет соединения с базой данных!")
 		panic(err)
 	}
+	fmt.Println("Соединение с базой данных успешно установлено!")
 	db.LogFunc = logger.Infof
 
 	// wire up API routing
