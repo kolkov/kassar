@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	//"kassar/apis"
 	"kassar/app"
 	"kassar/errors"
 	"net/http"
@@ -38,10 +37,10 @@ func main() {
 	// connect to the database
 	db, err := dbx.MustOpen("mysql", app.Config.DSN)
 	if err != nil {
-		fmt.Println("Нет соединения с базой данных!")
+		fmt.Println("No sql connection!")
 		panic(err)
 	}
-	fmt.Println("Соединение с базой данных успешно установлено!")
+	fmt.Println("Sql connected successfuly!")
 	db.LogFunc = logger.Infof
 
 	// wire up API routing
