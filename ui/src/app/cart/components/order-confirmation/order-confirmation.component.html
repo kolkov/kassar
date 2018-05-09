@@ -1,15 +1,22 @@
-<div class="row">
-  <div class="">
-    <h1>Спасибо за ваш заказ, он будет обработан в самое кратчайшее время! </h1>
+<ng-container *ngIf="id$ | async as id; else loading">
+  <div class="row">
+    <div>
+      <h1>Спасибо за ваш заказ, он будет обработан в самое кратчайшее время! </h1>
+      <h3>Номер вашего заказа: {{id}}</h3>
+      <h3>Мы отправили Вам email, проверьте свой почтовый ящик</h3>
+    </div>
   </div>
-</div>
-<br/>
-<br/>
-<div class="row">
-  <div class="">
-    <a  (click)="gotoCart()" class="continue-shopping-success">Продолжить покупки!</a><!--routerLink="/cart"-->
+  <br/>
+  <br/>
+  <div class="row">
+    <div class="">
+      <a  (click)="gotoCart()" class="continue-shopping-success">Продолжить покупки!</a>
+    </div>
   </div>
-</div>
+</ng-container>
+<ng-template #loading>
+  <h2>Подождите, идет обработка заказа...</h2>
+</ng-template>
   <br>
   <br>
 <br>

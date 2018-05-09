@@ -29,7 +29,7 @@ import {NgxMetrikaModule} from "../../projects/ngx-metrika/src/lib/ngx-metrika.m
   imports: [
     BrowserModule,
     HttpClientModule,
-    NgxMetrikaModule.forRoot({id: environment.yandexMetrikaKey, trackPageViews: true}),
+    NgxMetrikaModule.forRoot({id: environment.yaCounterId, trackPageViews: true}),
     CompanyModule,
     CatalogModule,
     ServicesModule,

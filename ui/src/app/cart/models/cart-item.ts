@@ -1,4 +1,4 @@
 export class CartItem {
-  productId: number;
+  product_id: number;
   quantity: number = 0;
 }

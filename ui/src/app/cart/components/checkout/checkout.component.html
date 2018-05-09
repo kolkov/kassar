@@ -8,7 +8,7 @@
   <div class="">
   <h4>
     Всего в заказе
-  <span class="">{{(cart | async).grossTotal | currency:'RUB':true}}</span>
+  <span class="">{{(cart | async).grossTotal | currency:'RUB':'symbol'}}</span>
   </h4>
   </div>
   <div class="conf-row">
@@ -39,10 +39,10 @@
       <p class="">{{item.product.description}}</p>
       </div>
       <div class="">
-      <p class="js-product-costs">{{item.quantity}} x {{item.product.price | currency:'RUB':true}}</p>
+      <p class="js-product-costs">{{item.quantity}} x {{item.product.price | currency:'RUB':'symbol'}}</p>
       </div>
       <div class="">
-      <p class="js-product-total">{{item.totalCost | currency:'RUB':true}}</p>
+      <p class="js-product-total">{{item.totalCost | currency:'RUB':'symbol'}}</p>
       </div>
     </div>
   </div>
@@ -62,7 +62,7 @@
       <label class="js-option-name" for="{{option.name}}" (click)="setDeliveryOption(option)">{{option.name}}</label>
     </div>
     <div class="">
-    <p class="js-option-price">{{option.price | currency:'RUB':true}}</p>
+    <p class="js-option-price">{{option.price | currency:'RUB':'symbol'}}</p>
     </div>
     <div class="">
     <p>{{option.description}}</p>

@@ -52,8 +52,8 @@ export class AppComponent implements OnInit {
       (function (d, w, c) {
       (w[c] = w[c] || []).push(function() {
         try {
-          w.yaCounter` + environment.yandexMetrikaKey + ` = new Ya.Metrika2({
-            id:` + environment.yandexMetrikaKey + `,
+          w.yaCounter` + environment.yaCounterId + ` = new Ya.Metrika2({
+            id:` + environment.yaCounterId + `,
             clickmap:true,
             trackLinks:true,
             accurateTrackBounce:true,
