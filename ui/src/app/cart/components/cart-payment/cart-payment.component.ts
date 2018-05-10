@@ -32,6 +32,6 @@ export class CartPaymentComponent implements OnInit {
   }
 
   confirmedCart(){
-    this.router.navigate(['/order/confirm'], { replaceUrl: true });
+    this.router.navigate(['/order/confirm'], { replaceUrl: false });
   }
 }

@@ -87,3 +87,12 @@ img {
   animation-duration: 15s;
   opacity: 100;
 }
+
+
+.basket {
+  margin-right: 5px;
+  @media screen and (min-width: $grid-breakpoints-md) {
+    display: none;
+
+  }
+}

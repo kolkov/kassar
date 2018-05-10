@@ -17,7 +17,7 @@ export class CartDeliveryComponent implements OnInit {
   public cart: Observable<ShoppingCart>;
   /*public first_name: string;
   public last_name: string;*/
-  model: Customer = new Customer("Андрей","Колков", "+79166805930", "a.kolkov@gmail.com");
+  model: Customer = new Customer("","", "", "");
 
   constructor(private shoppingCartService: ShoppingCartService,
               private deliveryOptionService: DeliveryOptionsService,
@@ -34,6 +34,6 @@ export class CartDeliveryComponent implements OnInit {
 
   confirmedCart(){
     this.shoppingCartService.setCustomerRequisites(this.model);
-    this.router.navigate(['/order/payment'], { replaceUrl: true });
+    this.router.navigate(['/order/payment'], { replaceUrl: false });
   }
 }

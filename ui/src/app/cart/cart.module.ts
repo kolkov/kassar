@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { CartRoutingModule } from './cart-routing.module';
 import { CheckoutComponent } from './components/checkout/checkout.component';
-import { OrderConfirmationComponent } from './components/order-confirmation/order-confirmation.component';
+import { OrderCompleteComponent } from './components/order-complete/order-complete.component';
 
 import {LocalStorageService} from "./services/storage.service";
 import {ShoppingCartService} from "./services/shopping-cart.service";
@@ -25,7 +25,7 @@ import {FormsModule} from "@angular/forms";
     FormsModule,
     CartRoutingModule
   ],
-  declarations: [StoreFrontComponent, ShoppingCartComponent, CheckoutComponent, OrderConfirmationComponent, CartComponent, CartServicesComponent, CartDeliveryComponent, CartPaymentComponent, CartConfirmComponent],
+  declarations: [StoreFrontComponent, ShoppingCartComponent, CheckoutComponent, OrderCompleteComponent, CartComponent, CartServicesComponent, CartDeliveryComponent, CartPaymentComponent, CartConfirmComponent],
   exports: [StoreFrontComponent, ShoppingCartComponent],
   providers: [PopulatedCartGuard, LocalStorageService, ShoppingCartService, ProductsService, DeliveryOptionsService]
 })

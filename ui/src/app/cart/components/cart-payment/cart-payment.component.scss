@@ -1,9 +1,77 @@
+input[type=checkbox], input[type=radio] {
+  vertical-align: middle;
+  position: relative;
+  bottom: 1px;
+}
+
+input[type=radio] {
+ bottom: 2px;
+}
+
+label, .input {
+  display: block;
+}
+
+@media screen and (min-width: 360px) {
+  .option{
+    display: grid;
+    margin-bottom: 10px;
+    grid-template-columns: 50px 1fr 100px;
+    .table-row {
+      .radio-div {
+      }
+      .label-div {
+      }
+      .price-div {
+      }
+    }
+    .description-div {
+      grid-column-start: 2;
+      grid-column-end: 4;
+    }
+  }
+
+  .form {
+    .form-group {
+      display: grid;
+      grid-template-columns: 100px 200px;
+      margin-bottom: 10px;
+      label{
+
+      }
+      .input {
+
+      }
+      .alert {
+
+      }
+      .alert-danger {
+        grid-column-start: 2;
+        grid-column-end: 3;
+        padding: 5px;
+        color: #8d0000;
+        background-color: rgba(229, 37, 60, 0.29);
+      }
+    }
+  }
+}
+
+
 .product_image {
   width: 150px;
 }
+
 .choice-delivery {
+}
+
+.danger {
   color: #b12704;
 }
+
+.success {
+  color: #5d8b00;
+}
+
 .conf-row {
   margin: 15px 0;
 }

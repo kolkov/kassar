@@ -62,7 +62,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   }
 
   confirmedCart(){
-    this.router.navigate(['/order/services'], { replaceUrl: true });
+    this.router.navigate(['/order/services'], { replaceUrl: false });
   }
 
   emptyCart(): void {

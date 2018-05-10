@@ -30,6 +30,6 @@ export class CartServicesComponent implements OnInit {
   }
 
   confirmedCart(){
-    this.router.navigate(['/order/delivery'], { replaceUrl: true });
+    this.router.navigate(['/order/delivery'], { replaceUrl: false });
   }
 }

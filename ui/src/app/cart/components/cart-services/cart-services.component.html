@@ -1,9 +1,9 @@
 <div class="">
   <h2>Дополнительные сервисы и услуги</h2>
   <div class="conf-row">
-    <h5 class="choice-delivery"
+    <h5 class="choice-delivery danger"
         *ngIf="(cart | async).additionalOptionId === undefined">Выберите дополнительные опции заказа...</h5>
-    <h5 class="choice-delivery"
+    <h5 class="choice-delivery success"
         *ngIf="(cart | async).additionalOptionId !== undefined">Дополнительные опции выбраны.</h5>
     <button class="choice-confirmation"
             [attr.disabled]="(cart | async).additionalOptionId !== undefined ? null : true"
@@ -14,26 +14,30 @@
             [attr.disabled]="itemCount === 0 ? true : null">Очистить корзину</button>-->
   </div>
   <hr>
-  <div class="delivery-option"
-       *ngFor="let option of additionalOptions | async">
-    <div class="">
-      <input type="radio"
-             name="delivery_option"
-             id="{{option.name}}"
-             [checked]="option.id === (cart | async).additionalOptionId"
-             (click)="setAdditionalOption(option)">
-    </div>
-    <div class="">
-      <label class="js-option-name" for="{{option.name}}" (click)="setAdditionalOption(option)">{{option.name}}</label>
-    </div>
-    <div class="">
-      <p class="js-option-price">{{option.price | currency:'RUB':'symbol'}}</p>
-    </div>
-    <div class="">
-      <p>{{option.description}}</p>
+  <div class="table">
+    <div class="option" *ngFor="let option of additionalOptions | async">
+      <!-- <div class="table-row">-->
+       <div class="radio-div">
+          <input type="radio"
+                 name="delivery_option"
+                 id="{{option.name}}"
+                 [checked]="option.id === (cart | async).additionalOptionId"
+                 (click)="setAdditionalOption(option)">
+        </div>
+        <div class="label-div">
+          <label class="js-option-name" for="{{option.name}}" (click)="setAdditionalOption(option)">{{option.name}}</label>
+        </div>
+        <div class="price-div">
+          {{option.price | currency:'RUB':'symbol'}}
+        </div>
+    <!--  </div>-->
+      <div class="description-div">
+       {{option.description}}
+      </div>
     </div>
 
   </div>
+
   <br>
   <button class="choice-confirmation"
           [attr.disabled]="(cart | async).additionalOptionId !== undefined ? null : true"

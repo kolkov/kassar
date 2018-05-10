@@ -1,5 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
+import {LOCALE_ID, NgModule} from '@angular/core';
 import {AppComponent} from './app.component';
 import {AppRoutingModule} from "./app-routing.module";
 import {NotFoundComponent} from './notfound/not-found.component';
@@ -16,6 +16,11 @@ import {CartModule} from "./cart/cart.module";
 import { BreadcrumbsComponent } from './breadcrubs/breadcrumbs.component';
 import {environment} from "../environments/environment";
 import {NgxMetrikaModule} from "../../projects/ngx-metrika/src/lib/ngx-metrika.module";
+
+import { registerLocaleData } from '@angular/common';
+import localeRu from '@angular/common/locales/ru';
+
+registerLocaleData(localeRu, 'ru');
 
 @NgModule({
   declarations: [
@@ -37,6 +42,12 @@ import {NgxMetrikaModule} from "../../projects/ngx-metrika/src/lib/ngx-metrika.m
     BlogModule,
     CartModule,
     AppRoutingModule,
+  ],
+  providers: [
+    {
+      provide: LOCALE_ID,
+      useValue: 'ru'
+    }
   ],
   bootstrap: [AppComponent]
 })

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {PopulatedCartGuard} from "./guards/populated-cart.guard";
-import {OrderConfirmationComponent} from "./components/order-confirmation/order-confirmation.component";
+import {OrderCompleteComponent} from "./components/order-complete/order-complete.component";
 import {CartComponent} from "./components/cart/cart.component";
 import {CartServicesComponent} from "./components/cart-services/cart-services.component";
 import {CheckoutComponent} from "./components/checkout/checkout.component";
@@ -17,23 +17,27 @@ const routes: Routes = [
     children: [
       {
         path: 'services',
-        component: CartServicesComponent
+        component: CartServicesComponent,
+        canActivate: [PopulatedCartGuard]
       },
       {
         path: 'delivery',
-        component: CartDeliveryComponent
+        component: CartDeliveryComponent,
+        canActivate: [PopulatedCartGuard]
       },
       {
         path: 'payment',
-        component: CartPaymentComponent
+        component: CartPaymentComponent,
+        canActivate: [PopulatedCartGuard]
       },
       {
         path: 'confirm',
-        component: CartConfirmComponent
+        component: CartConfirmComponent,
+        canActivate: [PopulatedCartGuard]
       },
       {
         path: 'complete',
-        component: OrderConfirmationComponent,
+        component: OrderCompleteComponent,
         canActivate: [PopulatedCartGuard]
       },
       {

@@ -1,12 +1,77 @@
-.product_image {
-  width: 150px;
+input[type=checkbox], input[type=radio] {
+  vertical-align: middle;
+  position: relative;
+  bottom: 1px;
 }
+
+input[type=radio] {
+  bottom: 2px;
+}
+
+.checkout-row {
+  .product-img-div {
+    max-width: 70%;
+  }
+}
+
+@media screen and (min-width: 754px) {
+  .checkout-row {
+    display: grid;
+    margin-bottom: 20px;
+    grid-template-columns: 150px 1fr auto auto;
+    .product-img-div {
+      //display: table-cell;
+      .product_image {
+        max-width: 150px;
+      }
+    }
+    .product {
+      //display: table-cell;
+      //vertical-align: top;
+      //width:400px;
+      padding: 0 10px;
+      .product-name {
+        font-style: italic;
+      }
+    }
+    .product-costs-div {
+      //display: table-cell;
+      // vertical-align: top;
+      padding: 0 10px;
+      //margin-top: 0;
+      color: #8d0000;
+    }
+
+    .product-total-div {
+      //display: table-cell;
+      //vertical-align: top;
+      padding: 0 10px;
+      color: #8d0000;
+    }
+    /*.choice-delivery {
+      color: #b12704;
+    }*/
+    .conf-row {
+      margin: 15px 0;
+    }
+  }
+}
+
+
+
 .choice-delivery {
+
+}
+
+.danger {
   color: #b12704;
 }
-.conf-row {
-  margin: 15px 0;
+
+.success {
+  color: #5d8b00;
 }
+
+
 
 button[disabled]{
   opacity: .25;

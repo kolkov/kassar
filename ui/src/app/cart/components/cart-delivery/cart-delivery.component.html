@@ -1,43 +1,45 @@
 <div class="">
   <h2>Способ и адерс доставки</h2>
   <div class="conf-row">
-    <h5 class="choice-delivery"
+    <h5 class="choice-delivery danger"
         *ngIf="(cart | async).deliveryOptionId === undefined">Проверьте свой заказ и выберите способ доставки...</h5>
-    <h5 class="choice-delivery"
+    <h5 class="choice-delivery success"
         *ngIf="(cart | async).deliveryOptionId !== undefined">Способ доставки выбран...</h5>
     <button class="choice-confirmation"
-            [attr.disabled]="(cart | async).deliveryOptionId !== undefined ? null : true"
-            (click)="confirmedCart()">Оплатить</button><!--routerLink="/confirmed"-->
+            [attr.disabled]="(cart | async).deliveryOptionId !== undefined && heroForm.form.valid ? null : true"
+            (click)="confirmedCart()">Оплатить
+    </button><!--routerLink="/confirmed"-->
     <!--<button type="button"
             class="empty-cart"
             (click)="emptyCart()"
             [attr.disabled]="itemCount === 0 ? true : null">Очистить корзину</button>-->
   </div>
   <hr/>
-  <div class="delivery-option"
+  <div class="option"
        *ngFor="let option of deliveryOptions | async">
-    <div class="">
+    <div class="radio-div">
       <input type="radio"
              name="delivery_option"
              id="{{option.name}}"
              [checked]="option.id === (cart | async).deliveryOptionId"
              (click)="setDeliveryOption(option)">
     </div>
-    <div class="">
+    <div class="label-div">
       <label class="js-option-name" for="{{option.name}}" (click)="setDeliveryOption(option)">{{option.name}}</label>
     </div>
-    <div class="">
-      <p class="js-option-price">{{option.price | currency:'RUB':'symbol'}}</p>
+    <div class="price-div">
+      {{option.price | currency:'RUB':'symbol'}}
     </div>
-    <div class="">
-      <p>{{option.description}}</p>
+    <div class="description-div">
+      {{option.description}}
     </div>
   </div>
   <h3>Кто заберет товары</h3>
-  <form #heroForm="ngForm">
+  <form class="form" #heroForm="ngForm">
     <div class="form-group">
       <label for="lastname">Фамилия</label>
-      <input id="lastname" type="text" placeholder="Фамилия" [(ngModel)]="model.last_name" name="lastname" #lastname="ngModel" required>
+      <input class="input" id="lastname" type="text" placeholder="Фамилия" [(ngModel)]="model.last_name" name="lastname"
+             #lastname="ngModel" minlength="3" pattern="[а-яА-Я ]*" required>
       <div [hidden]="lastname.valid || lastname.pristine"
            class="alert alert-danger">
         Фамилия обязательна
@@ -45,7 +47,8 @@
     </div>
     <div class="form-group">
       <label for="firstname">Имя</label>
-      <input id="firstname" type="text" placeholder="Имя" [(ngModel)]="model.first_name" name="firstname" #firstname="ngModel" required>
+      <input id="firstname" type="text" placeholder="Имя" [(ngModel)]="model.first_name" name="firstname"
+             #firstname="ngModel" minlength="3" pattern="[а-яА-Я ]*" required>
       <div [hidden]="firstname.valid || firstname.pristine"
            class="alert alert-danger">
         Имя обязательно
@@ -53,7 +56,8 @@
     </div>
     <div class="form-group">
       <label for="phone">Телефон</label>
-      <input id="phone" type="tel" placeholder="+79161234567" [(ngModel)]="model.phone" name="phone" #phone="ngModel" required>
+      <input id="phone" type="tel" placeholder="+79161234567" [(ngModel)]="model.phone" name="phone" #phone="ngModel"
+             pattern="^((\+7|7|8)+([0-9]){10})$" required>
       <div [hidden]="phone.valid || phone.pristine"
            class="alert alert-danger">
         Телефон обязателен
@@ -61,15 +65,17 @@
     </div>
     <div class="form-group">
       <label for="email">Email</label>
-      <input id="email" type="email" value="" placeholder="info@example.ru" [(ngModel)]="model.email" name="email" #email="ngModel" required>
+      <input id="email" type="email" value="" placeholder="info@example.ru" [(ngModel)]="model.email" name="email"
+             #email="ngModel" email="true" required>
       <div [hidden]="email.valid || email.pristine"
            class="alert alert-danger">
-       Email обязателен
+        Email обязателен
       </div>
     </div>
   </form>
   <br>
   <button class="choice-confirmation"
-          [attr.disabled]="(cart | async).deliveryOptionId !== undefined ? null : true"
-          (click)="confirmedCart()">Оплатить</button>
+          [attr.disabled]="(cart | async).deliveryOptionId !== undefined && heroForm.form.valid ? null : true"
+          (click)="confirmedCart()">Оплатить
+  </button>
 </div>

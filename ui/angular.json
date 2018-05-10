@@ -73,6 +73,14 @@
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true
+            },
+            "ru": {
+              "aot": true,
+              "outputPath": "dist/kassar",
+
+              "i18nFormat": "xlf",
+              "i18nLocale": "ru",
+              "i18nMissingTranslation": "error"
             }
           }
         },
@@ -84,6 +92,9 @@
           "configurations": {
             "production": {
               "browserTarget": "kassar:build:production"
+            },
+            "ru": {
+              "browserTarget": "kassar:build:ru"
             }
           }
         },

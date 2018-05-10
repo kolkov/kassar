@@ -1,8 +1,8 @@
 <h2>Выбор способа оплаты заказа</h2>
 <div class="conf-row">
-  <h5 class="choice-delivery"
+  <h5 class="choice-delivery danger"
       *ngIf="(cart | async).paymentOptionId === undefined">Выберите способ оплаты заказа...</h5>
-  <h5 class="choice-delivery"
+  <h5 class="choice-delivery success"
       *ngIf="(cart | async).paymentOptionId !== undefined">Способ оплаты выбран.</h5>
   <button class="choice-confirmation"
           [attr.disabled]="(cart | async).paymentOptionId !== undefined ? null : true"
@@ -12,23 +12,23 @@
            (click)="emptyCart()"
            [attr.disabled]="itemCount === 0 ? true : null">Очистить корзину</button>-->
 </div>
-<div class="delivery-option"
+<div class="option"
      *ngFor="let option of paymentOptions | async">
-  <div class="">
+  <div class="radio-div">
     <input type="radio"
            name="delivery_option"
            id="{{option.name}}"
            [checked]="option.id === (cart | async).paymentOptionId"
            (click)="setPaymentOption(option)">
   </div>
-  <div class="">
+  <div class="label-div">
     <label class="js-option-name" for="{{option.name}}" (click)="setPaymentOption(option)">{{option.name}}</label>
   </div>
-  <div class="">
-    <p class="js-option-price">{{option.price | currency:'RUB':'symbol'}}</p>
+  <div class="price-div">
+    {{option.price | currency:'RUB':'symbol'}}
   </div>
-  <div class="">
-    <p>{{option.description}}</p>
+  <div class="description-div">
+    {{option.description}}
   </div>
 </div>
 <br>

@@ -2,12 +2,10 @@ import {Component, OnInit} from '@angular/core';
 import {ShoppingCartService} from "../../services/shopping-cart.service";
 import {Router} from "@angular/router";
 import {CartOrderService} from "../../services/cart-order.service";
-import {map, tap} from "rxjs/operators";
+import {map} from "rxjs/operators";
 import {Observable} from "rxjs/internal/Observable";
-import {Subscription} from "rxjs/internal/Subscription";
 
 export interface CartInputItem {
-  //order_id: number,
   product_id: number,
   quantity: number,
 }
@@ -20,11 +18,11 @@ export interface CartInput {
 }
 
 @Component({
-  selector: 'app-order-confirmation',
-  templateUrl: './order-confirmation.component.html',
-  styleUrls: ['./order-confirmation.component.scss']
+  selector: 'app-order-complete',
+  templateUrl: './order-complete.component.html',
+  styleUrls: ['./order-complete.component.scss']
 })
-export class OrderConfirmationComponent implements OnInit {
+export class OrderCompleteComponent implements OnInit {
   cart: CartInput;
   id$: Observable<number>;
 
@@ -51,7 +49,7 @@ export class OrderConfirmationComponent implements OnInit {
   }
 
   gotoCart() {
-    this.router.navigate(['/catalog'], {replaceUrl: true});
+    this.router.navigate(['/catalog'], {replaceUrl: false});
   }
 
 }
