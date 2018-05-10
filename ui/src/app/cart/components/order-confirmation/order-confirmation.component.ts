@@ -34,7 +34,6 @@ export class OrderConfirmationComponent implements OnInit {
   }
 
   ngOnInit() {
-    //let cart;
     this.shoppingCartService.get().pipe(
       map(x => {
           this.cart = {

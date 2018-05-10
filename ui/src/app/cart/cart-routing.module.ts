@@ -1,28 +1,48 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {StoreFrontComponent} from "./components/store-front/store-front.component";
 import {PopulatedCartGuard} from "./guards/populated-cart.guard";
-import {CheckoutComponent} from "./components/checkout/checkout.component";
 import {OrderConfirmationComponent} from "./components/order-confirmation/order-confirmation.component";
+import {CartComponent} from "./components/cart/cart.component";
+import {CartServicesComponent} from "./components/cart-services/cart-services.component";
+import {CheckoutComponent} from "./components/checkout/checkout.component";
+import {CartDeliveryComponent} from "./components/cart-delivery/cart-delivery.component";
+import {CartPaymentComponent} from "./components/cart-payment/cart-payment.component";
+import {CartConfirmComponent} from "./components/cart-confirm/cart-confirm.component";
 
 
 const routes: Routes = [
   {
-    path: 'checkout',
-    component: CheckoutComponent,
-    canActivate: [PopulatedCartGuard],
-
+    path: 'order',
+    component: CartComponent,
+    children: [
+      {
+        path: 'services',
+        component: CartServicesComponent
+      },
+      {
+        path: 'delivery',
+        component: CartDeliveryComponent
+      },
+      {
+        path: 'payment',
+        component: CartPaymentComponent
+      },
+      {
+        path: 'confirm',
+        component: CartConfirmComponent
+      },
+      {
+        path: 'complete',
+        component: OrderConfirmationComponent,
+        canActivate: [PopulatedCartGuard]
+      },
+      {
+        path: '',
+        component: CheckoutComponent,
+        canActivate: [PopulatedCartGuard],
+      },
+    ]
   },
-  {
-    path: 'confirmed',
-    component: OrderConfirmationComponent,
-    canActivate: [PopulatedCartGuard]
-  },
-  {
-    path: 'cart',
-    component: StoreFrontComponent,
-    canActivate: [PopulatedCartGuard],
-  }
 ];
 
 @NgModule({

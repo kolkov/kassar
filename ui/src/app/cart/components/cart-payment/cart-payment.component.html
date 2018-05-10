@@ -1,0 +1,37 @@
+<h2>Выбор способа оплаты заказа</h2>
+<div class="conf-row">
+  <h5 class="choice-delivery"
+      *ngIf="(cart | async).paymentOptionId === undefined">Выберите способ оплаты заказа...</h5>
+  <h5 class="choice-delivery"
+      *ngIf="(cart | async).paymentOptionId !== undefined">Способ оплаты выбран.</h5>
+  <button class="choice-confirmation"
+          [attr.disabled]="(cart | async).paymentOptionId !== undefined ? null : true"
+          (click)="confirmedCart()">Подтвердить</button><!--routerLink="/confirmed"-->
+  <!-- <button type="button"
+           class="empty-cart"
+           (click)="emptyCart()"
+           [attr.disabled]="itemCount === 0 ? true : null">Очистить корзину</button>-->
+</div>
+<div class="delivery-option"
+     *ngFor="let option of paymentOptions | async">
+  <div class="">
+    <input type="radio"
+           name="delivery_option"
+           id="{{option.name}}"
+           [checked]="option.id === (cart | async).paymentOptionId"
+           (click)="setPaymentOption(option)">
+  </div>
+  <div class="">
+    <label class="js-option-name" for="{{option.name}}" (click)="setPaymentOption(option)">{{option.name}}</label>
+  </div>
+  <div class="">
+    <p class="js-option-price">{{option.price | currency:'RUB':'symbol'}}</p>
+  </div>
+  <div class="">
+    <p>{{option.description}}</p>
+  </div>
+</div>
+<br>
+<button class="choice-confirmation"
+        [attr.disabled]="(cart | async).paymentOptionId !== undefined ? null : true"
+        (click)="confirmedCart()">Подтвердить</button>

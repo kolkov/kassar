@@ -4,7 +4,6 @@ import (
 	"kassar/models"
 	"kassar/app"
 	"github.com/go-ozzo/ozzo-routing"
-	"kassar/services"
 )
 
 type (
@@ -38,7 +37,7 @@ func (r *cartOrderResource) create(c *routing.Context) error {
 		return err
 	}
 	r.itemService.CreateItems(app.GetRequestScope(c), response.Id, model.Items)
-	services.SendEmail(response)
-	services.SendEmail2(response)
+	//services.SendEmail(response)
+	//services.SendEmail2(response)
 	return c.Write(response)
 }

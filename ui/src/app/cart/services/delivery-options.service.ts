@@ -13,6 +13,5 @@ export class DeliveryOptionsService {
 
   public all(): Observable<DeliveryOption[]> {
     return this.http.get<DeliveryOption[]>('assets/delivery-options.json');
-
   }
 }

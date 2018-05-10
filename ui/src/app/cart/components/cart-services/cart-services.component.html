@@ -1,0 +1,42 @@
+<div class="">
+  <h2>Дополнительные сервисы и услуги</h2>
+  <div class="conf-row">
+    <h5 class="choice-delivery"
+        *ngIf="(cart | async).additionalOptionId === undefined">Выберите дополнительные опции заказа...</h5>
+    <h5 class="choice-delivery"
+        *ngIf="(cart | async).additionalOptionId !== undefined">Дополнительные опции выбраны.</h5>
+    <button class="choice-confirmation"
+            [attr.disabled]="(cart | async).additionalOptionId !== undefined ? null : true"
+            (click)="confirmedCart()">Продолжить</button><!--routerLink="/confirmed"-->
+   <!-- <button type="button"
+            class="empty-cart"
+            (click)="emptyCart()"
+            [attr.disabled]="itemCount === 0 ? true : null">Очистить корзину</button>-->
+  </div>
+  <hr>
+  <div class="delivery-option"
+       *ngFor="let option of additionalOptions | async">
+    <div class="">
+      <input type="radio"
+             name="delivery_option"
+             id="{{option.name}}"
+             [checked]="option.id === (cart | async).additionalOptionId"
+             (click)="setAdditionalOption(option)">
+    </div>
+    <div class="">
+      <label class="js-option-name" for="{{option.name}}" (click)="setAdditionalOption(option)">{{option.name}}</label>
+    </div>
+    <div class="">
+      <p class="js-option-price">{{option.price | currency:'RUB':'symbol'}}</p>
+    </div>
+    <div class="">
+      <p>{{option.description}}</p>
+    </div>
+
+  </div>
+  <br>
+  <button class="choice-confirmation"
+          [attr.disabled]="(cart | async).additionalOptionId !== undefined ? null : true"
+          (click)="confirmedCart()">Продолжить</button>
+  <br>
+</div>

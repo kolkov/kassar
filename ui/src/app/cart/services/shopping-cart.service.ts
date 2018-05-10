@@ -8,6 +8,8 @@ import {DeliveryOptionsService} from "./delivery-options.service";
 import {ProductsService} from "./products.service";
 import {CartItem} from "../models/cart-item";
 import {LocalStorageService} from "./storage.service";
+import {PaymentOption} from "../models/payment-option";
+import {Customer} from "../models/customer";
 
 const CART_KEY = "cart";
 
@@ -68,9 +70,40 @@ export class ShoppingCartService {
     this.dispatch(newCart);
   }
 
+  public setConfirmation(value: boolean): void{
+    const cart = this.retrieve();
+    cart.confirmed = value;
+    this.save(cart);
+    this.dispatch(cart);
+  }
+
+  public setAdditionalOption(additionalOption: DeliveryOption): void {
+    const cart = this.retrieve();
+    cart.additionalOptionId = additionalOption.id;
+    this.calculateCart(cart);
+    this.save(cart);
+    this.dispatch(cart);
+  }
+
   public setDeliveryOption(deliveryOption: DeliveryOption): void {
     const cart = this.retrieve();
     cart.deliveryOptionId = deliveryOption.id;
+    this.calculateCart(cart);
+    this.save(cart);
+    this.dispatch(cart);
+  }
+
+  public setPaymentOption(paymentOption: PaymentOption): void {
+    const cart = this.retrieve();
+    cart.paymentOptionId = paymentOption.id;
+    this.calculateCart(cart);
+    this.save(cart);
+    this.dispatch(cart);
+  }
+
+  public setCustomerRequisites(model: Customer): void{
+    const cart = this.retrieve();
+    cart.customerOptions = model;
     this.calculateCart(cart);
     this.save(cart);
     this.dispatch(cart);

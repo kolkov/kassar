@@ -21,10 +21,11 @@ interface ICartItemWithProduct extends CartItem {
   styleUrls: ['./checkout.component.scss']
 })
 export class CheckoutComponent implements OnInit, OnDestroy {
-  public deliveryOptions: Observable<DeliveryOption[]>;
+  //public deliveryOptions: Observable<DeliveryOption[]>;
   public cart: Observable<ShoppingCart>;
   public cartItems: ICartItemWithProduct[];
   public itemCount: number;
+  //public confirmed1: boolean;
 
   private products: Product[];
   private cartSubscription: Subscription;
@@ -35,7 +36,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
               private router: Router) { }
 
   ngOnInit() {
-    this.deliveryOptions = this.deliveryOptionService.all();
+    //this.deliveryOptions = this.deliveryOptionService.all();
     this.cart = this.shoppingCartService.get();
     this.cartSubscription = this.cart.subscribe((cart) => {
       this.itemCount = cart.items.map((x) => x.quantity).reduce((p, n) => p + n, 0);
@@ -61,14 +62,18 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   }
 
   confirmedCart(){
-    this.router.navigate(['/confirmed'], { replaceUrl: true });
+    this.router.navigate(['/order/services'], { replaceUrl: true });
   }
 
   emptyCart(): void {
     this.shoppingCartService.empty();
   }
 
-  setDeliveryOption(option: DeliveryOption): void {
-    this.shoppingCartService.setDeliveryOption(option);
+  setConfirmation(value: boolean): void {
+    this.shoppingCartService.setConfirmation(value);
   }
+
+  /*setDeliveryOption(option: DeliveryOption): void {
+    this.shoppingCartService.setDeliveryOption(option);
+  }*/
 }

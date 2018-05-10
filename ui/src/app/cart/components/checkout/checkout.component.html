@@ -13,10 +13,12 @@
   </div>
   <div class="conf-row">
     <h5 class="choice-delivery"
-        *ngIf="(cart | async).deliveryOptionId === undefined">Проверьте свой заказ и выберите способ доставки...</h5>
+        *ngIf="(cart | async).confirmed === false">Проверьте свой заказ и подтвердите...</h5>
+    <h5 class="choice-delivery"
+        *ngIf="(cart | async).confirmed !== false">Заказ подтвержден.</h5>
     <button class="choice-confirmation"
-       *ngIf="(cart | async).deliveryOptionId !== undefined"
-       (click)="confirmedCart()">Подтвердить заказ</button><!--routerLink="/confirmed"-->
+            [attr.disabled]="(cart | async).confirmed ? null : true"
+            (click)="confirmedCart()">Начать оформление</button><!--routerLink="/confirmed"-->
     <button type="button"
             class="empty-cart"
             (click)="emptyCart()"
@@ -46,34 +48,21 @@
       </div>
     </div>
   </div>
-  <div class="">
-    <h4>Способ доставки</h4>
-
-    <div class="delivery-option"
-         *ngFor="let option of deliveryOptions | async">
-    <div class="">
-      <input type="radio"
-             name="delivery_option"
-      id="{{option.name}}"
-             [checked]="option.id === (cart | async).deliveryOptionId"
-             (click)="setDeliveryOption(option)">
-    </div>
-    <div class="">
-      <label class="js-option-name" for="{{option.name}}" (click)="setDeliveryOption(option)">{{option.name}}</label>
-    </div>
-    <div class="">
-    <p class="js-option-price">{{option.price | currency:'RUB':'symbol'}}</p>
-    </div>
-    <div class="">
-    <p>{{option.description}}</p>
-    </div>
-    </div>
-  </div>
-
+  <label for="conf"> Согласен с перечнем заказа</label>
+  <input #conf id="conf" type="checkbox" (change)="setConfirmation(conf.checked)">
+<br><br>
+  <button class="choice-confirmation"
+          [attr.disabled]="(cart | async).confirmed ? null : true"
+          (click)="confirmedCart()">Начать оформление</button><!--routerLink="/confirmed"-->
+  <button type="button"
+          class="empty-cart"
+          (click)="emptyCart()"
+          [attr.disabled]="itemCount === 0 ? true : null">Очистить корзину</button>
+  <br><br>
   <div class="row">
     <div class="small">
       <a class="continue-shopping"
-         routerLink="/cart">Продолжить покупки</a>
+         routerLink="/catalog">Продолжить покупки</a>
     </div>
   </div>
 </div>
