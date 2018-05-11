@@ -1,20 +1,47 @@
-<h2>Подтверждение заказа</h2>
+<h2>Последняя проверка вашего заказа</h2>
 <div class="conf-row">
  <!-- <h5 class="choice-delivery"
       *ngIf="(cart | async).paymentOptionId === undefined">Выберите способ оплаты заказа...</h5>
   <h5 class="choice-delivery"
       *ngIf="(cart | async).paymentOptionId !== undefined">Способ оплыт выбран.</h5>-->
   <button class="choice-confirmation"
-          (click)="confirmedCart()">Оформить заказ</button><!--routerLink="/confirmed"-->
+          (click)="confirmedCart()">Отправить заказ</button><!--routerLink="/confirmed"-->
   <!-- <button type="button"
            class="empty-cart"
            (click)="emptyCart()"
            [attr.disabled]="itemCount === 0 ? true : null">Очистить корзину</button>-->
 </div>
-<h3>Позиции заказа</h3>
-<p>1. Кассатка 7</p>
-<p>2. Сканер штрих кодов</p>
-<h4>Всего позиции 2, стоимость 36000 руб.</h4>
+<div class="">
+  <h4>
+    Позиции заказа {{itemCount}} шт.
+    <span class="right">К оплате: <span class="gross-total">{{(cart | async).grossTotal | currency:'RUB':'symbol'}}</span></span>
+  </h4>
+</div>
+<hr>
+<div class="row checkout-row"
+     *ngFor="let item of cartItems">
+  <div class="product-img-div">
+    <img src="./assets/img/{{item.product.img}}"
+         class="product_image"/>
+  </div>
+  <div class="product">
+    <span class="product-name">{{item.product.name}}</span>
+    <p class="product-description">{{item.product.description}}</p>
+  </div>
+  <div class="product-costs-div">
+    {{item.quantity}} x {{item.product.price | currency:'RUB':'symbol'}}
+  </div>
+  <div class="product-total-div">
+    {{item.totalCost | currency:'RUB':'symbol'}}
+  </div>
+</div>
+<hr>
+<div class="">
+  <h4>
+    Всего в заказе на:
+    <span class="gross-total">{{(cart | async).grossTotal | currency:'RUB':'symbol'}}</span>
+  </h4>
+</div>
 <h3>Самовывоз</h3>
 <p>Внимание! Окончательная стоимость и состав заказа, если в нем присутствуют товары и/или услуги, участвующие в акции, будет подтверждена после обработки заказа.</p>
 <h3>Опции заказа</h3>
@@ -27,9 +54,9 @@
   <h3>Комментарии к заказу</h3>
   <label for="text">Дополнительные пожелания</label>
 </div>
-<textarea id="text" class="textarea" rows="10" cols="70" [(ngModel)]="text" name="text"></textarea>
+<textarea id="text" class="textarea" [(ngModel)]="text" name="text"></textarea>
 <h3>Вы выбрали способ получения товара - «самовывоз».
   После нажатия на кнопку «Оформить заказ», товар автоматически зарезервируется и будет готов к получению 11 мая после 18:00</h3>
 <br>
 <button class="choice-confirmation"
-        (click)="confirmedCart()">Оформить заказ</button>
+        (click)="confirmedCart()">Отправить заказ</button>

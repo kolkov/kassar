@@ -31,7 +31,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   private cartSubscription: Subscription;
 
   constructor(private productsService: ProductsService,
-              private deliveryOptionService: DeliveryOptionsService,
+              //private deliveryOptionService: DeliveryOptionsService,
               private shoppingCartService: ShoppingCartService,
               private router: Router) { }
 

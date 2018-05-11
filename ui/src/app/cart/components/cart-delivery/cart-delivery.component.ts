@@ -6,6 +6,7 @@ import {ShoppingCartService} from "../../services/shopping-cart.service";
 import {ShoppingCart} from "../../models/shopping-cart";
 import {Router} from "@angular/router";
 import {Customer} from "../../models/customer";
+import {tap} from "rxjs/operators";
 
 @Component({
   selector: 'app-cart-delivery',
@@ -17,7 +18,7 @@ export class CartDeliveryComponent implements OnInit {
   public cart: Observable<ShoppingCart>;
   /*public firstName: string;
   public lastName: string;*/
-  model: Customer = new Customer("","", "", "");
+  model: Customer; // = new Customer("","", "", "");
 
   constructor(private shoppingCartService: ShoppingCartService,
               private deliveryOptionService: DeliveryOptionsService,
@@ -25,7 +26,9 @@ export class CartDeliveryComponent implements OnInit {
 
   ngOnInit() {
     this.deliveryOptions = this.deliveryOptionService.all();
-    this.cart = this.shoppingCartService.get();
+    this.cart = this.shoppingCartService.get().pipe(tap(
+      x => this.model = x.customer
+    ));
   }
 
   setDeliveryOption(option: DeliveryOption): void {

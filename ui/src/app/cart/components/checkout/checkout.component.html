@@ -49,8 +49,8 @@
     </div>
   </div>
   <label for="conf"> Согласен с перечнем заказа</label>
-  <input #conf id="conf" type="checkbox" (change)="setConfirmation(conf.checked)">
-<br><br>
+  <input #conf id="conf" [checked]="(cart | async).confirmed" type="checkbox" (change)="setConfirmation(conf.checked)">
+<br><br><hr/>
   <button class="choice-confirmation"
           [attr.disabled]="(cart | async).confirmed ? null : true"
           (click)="confirmedCart()">Начать оформление</button><!--routerLink="/confirmed"-->

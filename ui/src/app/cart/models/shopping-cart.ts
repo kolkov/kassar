@@ -6,7 +6,7 @@ export class ShoppingCart {
   deliveryOptionId: number;
   additionalOptionId: number;
   paymentOptionId: number;
-  customer: Customer;
+  customer: Customer = <Customer>{};//new Customer("","", "", "");
   confirmed: boolean = false;
   grossTotal: number = 0;
   deliveryTotal: number = 0;

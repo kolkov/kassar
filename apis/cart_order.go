@@ -52,7 +52,7 @@ func (r *cartOrderResource) create(c *routing.Context) error {
 	if err != nil {
 		return err
 	}
-	services.SendEmail(cartOrder, cartOrderCustomer)
+	services.SendEmail(cartOrder, cartOrderCustomer, emailItems)
 	services.SendEmail2(cartOrder, cartOrderCustomer, emailItems)
 	return c.Write(cartOrder)
 }

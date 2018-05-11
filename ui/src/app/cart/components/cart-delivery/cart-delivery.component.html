@@ -73,6 +73,9 @@
       </div>
     </div>
   </form>
+
+  <br>
+  <hr/>
   <br>
   <button class="choice-confirmation"
           [attr.disabled]="(cart | async).deliveryOptionId !== undefined && heroForm.form.valid ? null : true"

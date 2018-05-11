@@ -47,7 +47,7 @@ func (s *CartOrderService) GetEmail(rs app.RequestScope, id int) (*[]models.Cart
 
 
 
-func SendEmail(cart *models.CartOrder, customer *models.CartOrderCustomer){
+func SendEmail(cart *models.CartOrder, customer *models.CartOrderCustomer, items *[]models.CartOrderItemEmail){
 	e := email.NewEmail()
 	e.From = "Kassar.ru <info@kassar.ru>"
 	e.To = []string{customer.Email}
@@ -57,6 +57,13 @@ func SendEmail(cart *models.CartOrder, customer *models.CartOrderCustomer){
 	//e.Text = []byte("Text Body is, of course, supported!")
 	message := fmt.Sprintf("<h1>Поздравляем, %s, Вы сделали заказ на нашем сайте Кассар!</h1>", customer.FirstName)
 	message += fmt.Sprintf("<p>Ваш номер заказа: %d </p>", cart.Id)
+	message += fmt.Sprintf("<p>Данные клиента: %s %s </p>", customer.FirstName, customer.LastName)
+	message += fmt.Sprintf("<p>телефон: %s, email: %s </p>", customer.Phone, customer.Email)
+	for i, j := range *items {
+		message += fmt.Sprintf("<p>%d. Модель: %s, количество: %d </p>", i+1, j.Name, j.Quantity)
+	}
+	message += fmt.Sprintf("<p>Всего по оборудованию: %6.2f </p>", cart.Total)
+	message += fmt.Sprintf("<p>Общая сумма заказа: %6.2f </p>", cart.GrossTotal)
 	message += "<p>Наши менеджеры связутся с вами в самое ближайшее время.</p>"
 	message += "<p>Любим вас!</p>"
 	e.HTML = []byte(message)
