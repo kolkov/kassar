@@ -85,6 +85,7 @@ func buildRouter(logger *logrus.Logger, db *dbx.DB) *routing.Router {
 	propertiesDAO := daos.NewProductPropertiesDAO()
 	cartOrderDAO := daos.NewCartOrderDAO()
 	cartItemDAO := daos.NewCartOrderItemDAO()
+	cartOrderCustomerDAO := daos.NewCartOrderCustomerDAO()
 
 	// Initialize all used Services
 	articleService := services.NewArticleService(articleDAO)
@@ -93,6 +94,7 @@ func buildRouter(logger *logrus.Logger, db *dbx.DB) *routing.Router {
 	propertiesService := services.NewProductPropertiesService(propertiesDAO)
 	cartOrderService := services.NewCartOrderService(cartOrderDAO)
 	cartOrderItemService := services.NewCartOrderItemService(cartItemDAO)
+	cartOrderCustomerService := services.NewCartOrderCustomerService(cartOrderCustomerDAO)
 
 	//rg.Post("/auth", apis.Auth(app.Config.JWTSigningKey))
 	//rg.Post("/user/signup", apis.Signup())
@@ -107,7 +109,7 @@ func buildRouter(logger *logrus.Logger, db *dbx.DB) *routing.Router {
 	apis.ServArticleResource(rg, articleService)
 	apis.ServeNewsResource(rg, newsService)
 	apis.ServProductResource(rg, productService, propertiesService)
-	apis.ServCartOrderResource(rg, cartOrderService, cartOrderItemService)
+	apis.ServCartOrderResource(rg, cartOrderService, cartOrderItemService, cartOrderCustomerService)
 
 	logger.Info("Start Serving static files on " + app.Config.StaticPath)
 

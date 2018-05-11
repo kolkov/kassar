@@ -4,11 +4,13 @@ import (
 	"kassar/models"
 	"kassar/app"
 	"github.com/go-ozzo/ozzo-routing"
+	"kassar/services"
 )
 
 type (
 	cartOrderService interface {
 		Create(rs app.RequestScope, model *models.CartOrder) (*models.CartOrder, error)
+		GetEmail(rs app.RequestScope, id int) (*[]models.CartOrderItemEmail, error)
 		/*Query(rs app.RequestScope, offset, limit, id int) ([]models.CartOrder, error)
 		Count(rs app.RequestScope, id int) (int, error)
 		GetByPath(rs app.RequestScope, id string) (*models.CartOrder, error)*/
@@ -17,11 +19,12 @@ type (
 	cartOrderResource struct {
 		service     cartOrderService
 		itemService cartOrderItemService
+		customerService cartOrderCustomerService
 	}
 )
 
-func ServCartOrderResource(rg *routing.RouteGroup, service cartOrderService, itemService cartOrderItemService){
-	r := &cartOrderResource{service, itemService}
+func ServCartOrderResource(rg *routing.RouteGroup, service cartOrderService, itemService cartOrderItemService, customerService cartOrderCustomerService){
+	r := &cartOrderResource{service, itemService, customerService}
 	rg.Post("/orders", r.create)
 	/*rg.Get("/orders/<id>", r.getByPath)
 	rg.Get("/orders", r.query)*/
@@ -32,12 +35,24 @@ func (r *cartOrderResource) create(c *routing.Context) error {
 	if err := c.Read(&model); err != nil {
 		return err
 	}
-	response, err := r.service.Create(app.GetRequestScope(c), &model.CartOrder)
+	rs := app.GetRequestScope(c)
+	cartOrder, err := r.service.Create(rs, &model.CartOrder)
 	if err != nil {
 		return err
 	}
-	r.itemService.CreateItems(app.GetRequestScope(c), response.Id, model.Items)
-	//services.SendEmail(response)
-	//services.SendEmail2(response)
-	return c.Write(response)
+	r.itemService.CreateItems(app.GetRequestScope(c), cartOrder.Id, model.Items)
+	model.Customer.OrderId = cartOrder.Id
+	cartOrderCustomer, err := r.customerService.Create(rs, model.Customer)
+	if err != nil {
+		return err
+	}
+	_ = cartOrderCustomer
+
+	emailItems, err := r.service.GetEmail(rs, cartOrder.Id)
+	if err != nil {
+		return err
+	}
+	services.SendEmail(cartOrder, cartOrderCustomer)
+	services.SendEmail2(cartOrder, cartOrderCustomer, emailItems)
+	return c.Write(cartOrder)
 }

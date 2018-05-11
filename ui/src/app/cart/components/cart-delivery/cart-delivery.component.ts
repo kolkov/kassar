@@ -15,8 +15,8 @@ import {Customer} from "../../models/customer";
 export class CartDeliveryComponent implements OnInit {
   public deliveryOptions: Observable<DeliveryOption[]>;
   public cart: Observable<ShoppingCart>;
-  /*public first_name: string;
-  public last_name: string;*/
+  /*public firstName: string;
+  public lastName: string;*/
   model: Customer = new Customer("","", "", "");
 
   constructor(private shoppingCartService: ShoppingCartService,

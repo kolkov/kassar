@@ -38,7 +38,7 @@
   <form class="form" #heroForm="ngForm">
     <div class="form-group">
       <label for="lastname">Фамилия</label>
-      <input class="input" id="lastname" type="text" placeholder="Фамилия" [(ngModel)]="model.last_name" name="lastname"
+      <input class="input" id="lastname" type="text" placeholder="Фамилия" [(ngModel)]="model.lastName" name="lastname"
              #lastname="ngModel" minlength="3" pattern="[а-яА-Я ]*" required>
       <div [hidden]="lastname.valid || lastname.pristine"
            class="alert alert-danger">
@@ -47,7 +47,7 @@
     </div>
     <div class="form-group">
       <label for="firstname">Имя</label>
-      <input id="firstname" type="text" placeholder="Имя" [(ngModel)]="model.first_name" name="firstname"
+      <input id="firstname" type="text" placeholder="Имя" [(ngModel)]="model.firstName" name="firstname"
              #firstname="ngModel" minlength="3" pattern="[а-яА-Я ]*" required>
       <div [hidden]="firstname.valid || firstname.pristine"
            class="alert alert-danger">

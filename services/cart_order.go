@@ -11,6 +11,7 @@ import (
 type cartOrderDAO interface {
 	Get(rs app.RequestScope, id int) (*models.CartOrder, error)
 	Create(rs app.RequestScope, artist *models.CartOrder) error
+	GetEmail(rs app.RequestScope, id int) (*[]models.CartOrderItemEmail, error)
 	/*GetByPath(scope app.RequestScope, id string) (*models.CartOrder,error)
 	// Count returns the number of artists.
 	Count(rs app.RequestScope, id int) (int, error)
@@ -40,15 +41,21 @@ func (s *CartOrderService) Create(rs app.RequestScope, model *models.CartOrder) 
 	return s.dao.Get(rs, model.Id)
 }
 
-func SendEmail(cart *models.CartOrder){
+func (s *CartOrderService) GetEmail(rs app.RequestScope, id int) (*[]models.CartOrderItemEmail, error) {
+	return s.dao.GetEmail(rs, id)
+}
+
+
+
+func SendEmail(cart *models.CartOrder, customer *models.CartOrderCustomer){
 	e := email.NewEmail()
 	e.From = "Kassar.ru <info@kassar.ru>"
-	e.To = []string{"a.kolkov@gmail.com"}
+	e.To = []string{customer.Email}
 	//e.Bcc = []string{"a.kolkov@gmail.com"}
 	//e.Cc = []string{"info@kassar.ru"}
 	e.Subject = "Новый заказ в магазине"
 	//e.Text = []byte("Text Body is, of course, supported!")
-	message := "<h1>Поздравляем, вы сделали заказ на нашем сайте Кассар!</h1>"
+	message := fmt.Sprintf("<h1>Поздравляем, %s, Вы сделали заказ на нашем сайте Кассар!</h1>", customer.FirstName)
 	message += fmt.Sprintf("<p>Ваш номер заказа: %d </p>", cart.Id)
 	message += "<p>Наши менеджеры связутся с вами в самое ближайшее время.</p>"
 	message += "<p>Любим вас!</p>"
@@ -59,7 +66,7 @@ func SendEmail(cart *models.CartOrder){
 	}
 }
 
-func SendEmail2(cart *models.CartOrder){
+func SendEmail2(cart *models.CartOrder, customer *models.CartOrderCustomer, items *[]models.CartOrderItemEmail){
 	e := email.NewEmail()
 	e.From = "Kassar.ru <info@kassar.ru>"
 	e.To = []string{"Edya161@gmail.com "}
@@ -69,6 +76,13 @@ func SendEmail2(cart *models.CartOrder){
 	//e.Text = []byte("Text Body is, of course, supported!")
 	message := "<h1>Поздравляем, у нас сделали заказ!</h1>"
 	message += fmt.Sprintf("<p>Номер заказа: %d </p>", cart.Id)
+	message += fmt.Sprintf("<p>Данные клиента: %s %s </p>", customer.FirstName, customer.LastName)
+	message += fmt.Sprintf("<p>телефон: %s, email: %s </p>", customer.Phone, customer.Email)
+	for i, j := range *items {
+		message += fmt.Sprintf("<p>%d. Модель: %s, количество: %d </p>", i+1, j.Name, j.Quantity)
+	}
+	message += fmt.Sprintf("<p>Всего по оборудованию: %6.2f </p>", cart.Total)
+	message += fmt.Sprintf("<p>Общая сумма заказа: %6.2f </p>", cart.GrossTotal)
 	message += "<p>Нам нужно связатся с покупателем в самое ближайшее время.</p>"
 	message += "<p>Мы любим его!</p>"
 	e.HTML = []byte(message)

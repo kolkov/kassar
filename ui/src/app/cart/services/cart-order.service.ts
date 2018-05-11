@@ -2,7 +2,8 @@ import {Injectable} from "@angular/core";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs/internal/Observable";
 import {CartItem} from "../models/cart-item";
-import {CartInput} from "../components/order-complete/order-complete.component";
+import {CartOutput} from "../components/order-complete/order-complete.component";
+import {ShoppingCart} from "../models/shopping-cart";
 
 
 @Injectable({
@@ -13,7 +14,7 @@ export class CartOrderService {
   constructor(private http: HttpClient) {
   }
 
-  save(data: any): Observable<any> {
+  save(data: ShoppingCart): Observable<any> {
     let headers = new HttpHeaders({'Content-Type': 'application/json'});
     const body = JSON.stringify(data);
     /*const body = JSON.stringify({

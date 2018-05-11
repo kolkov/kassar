@@ -103,7 +103,7 @@ export class ShoppingCartService {
 
   public setCustomerRequisites(model: Customer): void{
     const cart = this.retrieve();
-    cart.customerOptions = model;
+    cart.customer = model;
     this.calculateCart(cart);
     this.save(cart);
     this.dispatch(cart);
