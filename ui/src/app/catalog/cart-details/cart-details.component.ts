@@ -1,12 +1,12 @@
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {ProductsService} from "../../cart/services/products.service";
 import {Product} from "../../cart/models/product";
 import {Observable} from "rxjs/internal/Observable";
 import {Observer} from "rxjs/internal/types";
 import {ShoppingCartService} from "../../cart/services/shopping-cart.service";
 import {SEOService} from "../../seo.service";
-import {tap} from "rxjs/operators";
+import {catchError, tap} from "rxjs/operators";
 
 @Component({
   //changeDetection: ChangeDetectionStrategy.OnPush,
@@ -22,7 +22,8 @@ export class CartDetailsComponent implements OnInit {
     private activateRoute: ActivatedRoute,
     private productService: ProductsService,
     private shoppingCartService: ShoppingCartService,
-    private seoService: SEOService
+    private seoService: SEOService,
+    private router: Router
   ) {
   }
 
@@ -39,7 +40,15 @@ export class CartDetailsComponent implements OnInit {
     this.activateRoute.params.subscribe(() => {
       this.id = this.activateRoute.snapshot.params['id'];
       this.product$ = this.productService.one(this.id).pipe(
-        tap(p => this.seoService.setSeoData(p.name, {description: p.tag_description, keywords: p.keywords}))
+        tap(
+          p => {
+            this.seoService.setSeoData(p.name, {description: p.tag_description, keywords: p.keywords})
+          }
+        ),
+        catchError((err, caught) => {
+          this.router.navigate(['/404']);
+          return caught;
+        })
       );
     });
   }

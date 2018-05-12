@@ -1,11 +1,11 @@
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {Article} from "../article";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {ArticleService} from "../article.service";
 import {HttpErrorResponse} from "@angular/common/http";
 import {SEOService} from "../../seo.service";
 import {Observable} from "rxjs/internal/Observable";
-import {tap} from "rxjs/operators";
+import {catchError, tap} from "rxjs/operators";
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -21,7 +21,8 @@ export class ArticleComponent implements OnInit {
   constructor(
     private activateRoute: ActivatedRoute,
     private blogService: ArticleService,
-    private seoService: SEOService
+    private seoService: SEOService,
+    private router: Router
     ) { }
 
   ngOnInit() {
@@ -33,6 +34,10 @@ export class ArticleComponent implements OnInit {
           keywords: x.keywords,
         };
         this.seoService.setSeoData(x.title, tags);
+      }),
+      catchError((err, caught) => {
+        this.router.navigate(['/404']);
+        return caught;
       })
     )
 
