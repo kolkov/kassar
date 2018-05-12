@@ -1,0 +1,26 @@
+.catalog {
+  width: 100%;
+  display: grid;
+  grid-gap: 10px;
+  @media screen and (min-width: 500px) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+.catalog-module {
+  display: grid;
+  cursor: pointer;
+  border: 1px;
+  padding: 10px;
+  background-color: rgba(223, 223, 223, 0.18);
+  grid-template-rows: minmax(50px, auto) 150px auto;
+  //grid-auto-rows: 1fr 1fr 1fr;
+}
+
+.catalog-img {
+  max-width: 150px;
+}
+
+.catalog-footer {
+  font-size: 10px;
+}

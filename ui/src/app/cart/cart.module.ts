@@ -18,6 +18,7 @@ import { CartConfirmComponent } from './components/cart-confirm/cart-confirm.com
 import {StoreFrontComponent} from "./components/store-front/store-front.component";
 import {ShoppingCartComponent} from "./components/shopping-cart/shopping-cart.component";
 import {FormsModule} from "@angular/forms";
+import { StoreCatalogComponent } from './components/store-catalog/store-catalog.component';
 
 @NgModule({
   imports: [
@@ -25,8 +26,8 @@ import {FormsModule} from "@angular/forms";
     FormsModule,
     CartRoutingModule
   ],
-  declarations: [StoreFrontComponent, ShoppingCartComponent, CheckoutComponent, OrderCompleteComponent, CartComponent, CartServicesComponent, CartDeliveryComponent, CartPaymentComponent, CartConfirmComponent],
-  exports: [StoreFrontComponent, ShoppingCartComponent],
+  declarations: [StoreFrontComponent, ShoppingCartComponent, CheckoutComponent, OrderCompleteComponent, CartComponent, CartServicesComponent, CartDeliveryComponent, CartPaymentComponent, CartConfirmComponent, StoreCatalogComponent],
+  exports: [StoreFrontComponent, ShoppingCartComponent, StoreCatalogComponent],
   providers: [PopulatedCartGuard, LocalStorageService, ShoppingCartService, ProductsService, DeliveryOptionsService]
 })
 export class CartModule { }
