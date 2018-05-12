@@ -1,3 +1,4 @@
 User-agent: *
 Disallow: /cart
+Disallow: /order
 Sitemap: https://kassar.ru/sitemap.xml

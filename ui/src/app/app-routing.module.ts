@@ -19,12 +19,23 @@ const appRoutes: Routes = [
     }
   },
   {
-    path: '**',
+    path: '404',
     component: NotFoundComponent,
     data: {
-      breadcrumb: 'not found'
+      breadcrumb: 'not found',
+      title: '404 - Страница не найдена',
+      metatags: {
+        description: 'Такой страницы на сервене нет',
+        keywords: 'not found, 404, страница не найдена'
+      }
     }
-
+  },
+  {
+    path: '**',
+    redirectTo: '/404',
+    /*data: {
+      breadcrumb: 'not found'
+    }*/
   }
 ];
 
