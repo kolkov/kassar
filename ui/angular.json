@@ -69,23 +69,10 @@
               "sourceMap": false,
               "extractCss": true,
               "namedChunks": false,
-              "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
-              "buildOptimizer": true
-            },
-            "ru": {
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
-                }
-              ],
               "aot": true,
-              "outputPath": "dist/kassar",
-              "i18nFormat": "xlf",
-              "i18nLocale": "ru",
-              "i18nMissingTranslation": "error"
+              "buildOptimizer": true
             }
           }
         },
@@ -97,9 +84,6 @@
           "configurations": {
             "production": {
               "browserTarget": "kassar:build:production"
-            },
-            "ru": {
-              "browserTarget": "kassar:build:ru"
             }
           }
         },

@@ -1,6 +1,6 @@
 import { TestBed, async, inject } from '@angular/core/testing';
+import {CatalogGuard} from "./catalog/catalog.guard";
 
-import { CatalogGuard } from './catalog.guard';
 
 describe('CatalogGuard', () => {
   beforeEach(() => {

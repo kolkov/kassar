@@ -3,8 +3,9 @@ import {NavigationEnd, Router} from "@angular/router";
 import {SEOService} from "./seo.service";
 import {GoogleAnalyticsService} from "./google-analytics.service";
 import {environment} from '../environments/environment';
-import {NgxMetrikaService} from "../../projects/ngx-metrika/src/lib/ngx-metrika.service";
 import {MetrikaGoalEventOptions} from "../../projects/ngx-metrika/src/lib/interfaces";
+import {NgxMetrikaService} from "../../projects/ngx-metrika/src/lib/ngx-metrika.service";
+
 
 declare var gtag: Function;
 

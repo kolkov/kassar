@@ -14,11 +14,13 @@ import {HomeNewsComponent} from './home/home-news/home-news.component';
 import {ServiceCenterModule} from "./service-center/service-center.module";
 import {CartModule} from "./cart/cart.module";
 import { BreadcrumbsComponent } from './breadcrubs/breadcrumbs.component';
-import {environment} from "../environments/environment";
-import {NgxMetrikaModule} from "../../projects/ngx-metrika/src/lib/ngx-metrika.module";
+//import {environment} from "../environments/environment";
+//import {NgxMetrikaModule} from "ngx-metrika";
 
 import { registerLocaleData } from '@angular/common';
 import localeRu from '@angular/common/locales/ru';
+import {NgxMetrikaModule} from "../../projects/ngx-metrika/src/lib/ngx-metrika.module";
+//import {NgxMetrikaModule} from "ngx-metrika";
 
 registerLocaleData(localeRu, 'ru');
 
@@ -34,7 +36,7 @@ registerLocaleData(localeRu, 'ru');
   imports: [
     BrowserModule,
     HttpClientModule,
-    NgxMetrikaModule.forRoot({id: environment.yaCounterId, trackPageViews: true}),
+    NgxMetrikaModule.forRoot({id: 48759095, trackPageViews: true}),
     CompanyModule,
     CatalogModule,
     ServicesModule,
