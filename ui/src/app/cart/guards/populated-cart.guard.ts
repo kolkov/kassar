@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {CanActivate, Router} from '@angular/router';
-import { Observable } from 'rxjs';
+import {Observable} from 'rxjs';
 import {ShoppingCartService} from "../services/shopping-cart.service";
 import {Observer} from "rxjs/internal/types";
 

@@ -156,38 +156,38 @@
         }
       }
     },
-    "ngx-metrika": {
-      "root": "projects/ngx-metrika",
-      "sourceRoot": "projects/ngx-metrika/src",
+    "@kolkov/ngx-metrika": {
+      "root": "projects/kolkov/ngx-metrika",
+      "sourceRoot": "projects/kolkov/ngx-metrika/src",
       "projectType": "library",
       "prefix": "lib",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
           "options": {
-            "tsConfig": "projects/ngx-metrika/tsconfig.lib.json",
-            "project": "projects/ngx-metrika/ng-package.json"
+            "tsConfig": "projects/kolkov/ngx-metrika/tsconfig.lib.json",
+            "project": "projects/kolkov/ngx-metrika/ng-package.json"
           },
           "configurations": {
             "production": {
-              "project": "projects/ngx-metrika/ng-package.prod.json"
+              "project": "projects/kolkov/ngx-metrika/ng-package.prod.json"
             }
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/ngx-metrika/src/test.ts",
-            "tsConfig": "projects/ngx-metrika/tsconfig.spec.json",
-            "karmaConfig": "projects/ngx-metrika/karma.conf.js"
+            "main": "projects/kolkov/ngx-metrika/src/test.ts",
+            "tsConfig": "projects/kolkov/ngx-metrika/tsconfig.spec.json",
+            "karmaConfig": "projects/kolkov/ngx-metrika/karma.conf.js"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "projects/ngx-metrika/tsconfig.lib.json",
-              "projects/ngx-metrika/tsconfig.spec.json"
+              "projects/kolkov/ngx-metrika/tsconfig.lib.json",
+              "projects/kolkov/ngx-metrika/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"

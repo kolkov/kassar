@@ -3,11 +3,9 @@ import {Subscription} from "rxjs/internal/Subscription";
 import {Product} from "../../models/product";
 import {ShoppingCart} from "../../models/shopping-cart";
 import {Observable} from "rxjs/internal/Observable";
-import {DeliveryOption} from "../../models/dilivery-option";
 import {CartItem} from "../../models/cart-item";
 import {ShoppingCartService} from "../../services/shopping-cart.service";
 import {ProductsService} from "../../services/products.service";
-import {DeliveryOptionsService} from "../../services/delivery-options.service";
 import {Router} from "@angular/router";
 
 interface ICartItemWithProduct extends CartItem {

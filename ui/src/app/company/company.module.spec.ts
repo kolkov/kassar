@@ -1,4 +1,4 @@
-import { CompanyModule } from './company.module';
+import {CompanyModule} from './company.module';
 
 describe('CompanyModule', () => {
   let companyModule: CompanyModule;

@@ -2,7 +2,7 @@ import {ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit} from '@ang
 import {Subscription} from "rxjs/internal/Subscription";
 import {ShoppingCart} from "../../models/shopping-cart";
 import {Observable} from "rxjs/internal/Observable";
-import {Product, ProductList} from "../../models/product";
+import {ProductList} from "../../models/product";
 import {ShoppingCartService} from "../../services/shopping-cart.service";
 import {ProductsService} from "../../services/products.service";
 import {Router} from "@angular/router";

@@ -7,7 +7,6 @@ import {CartHomeComponent} from './cart-home/cart-home.component';
 import {CartDetailsComponent} from './cart-details/cart-details.component';
 import {CatalogComponent} from "./catalog.component";
 import {SharedModule} from "../shared/shared.module";
-import {CartModule} from "../cart/cart.module";
 
 @NgModule({
   imports: [

@@ -1,4 +1,4 @@
-import { CatalogModule } from './catalog.module';
+import {CatalogModule} from './catalog.module';
 
 describe('CatalogModule', () => {
   let catalogModule: CatalogModule;

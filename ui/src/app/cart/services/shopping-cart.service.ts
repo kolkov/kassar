@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {DeliveryOption} from "../models/dilivery-option";
 import {Product} from "../models/product";
 import {ShoppingCart} from "../models/shopping-cart";

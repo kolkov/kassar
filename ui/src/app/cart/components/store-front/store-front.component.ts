@@ -1,10 +1,10 @@
 import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
-import {Product, ProductList} from "../../models/product";
+import {Product} from "../../models/product";
 import {Observable} from "rxjs/internal/Observable";
 import {ShoppingCartService} from "../../services/shopping-cart.service";
 import {ProductsService} from "../../services/products.service";
 import {Observer} from "rxjs/internal/types";
-import {filter, map, tap} from "rxjs/operators";
+import {map} from "rxjs/operators";
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,

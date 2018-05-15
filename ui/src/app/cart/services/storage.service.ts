@@ -1,12 +1,12 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 
-/*@Injectable({
+@Injectable({
   providedIn: 'root'
 })
 export abstract class StorageService {
   public abstract get(): Storage;
 
-}*/
+}
 
 @Injectable({
   providedIn: 'root'

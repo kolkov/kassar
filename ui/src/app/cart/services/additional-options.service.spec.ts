@@ -1,6 +1,6 @@
-import { TestBed, inject } from '@angular/core/testing';
+import {inject, TestBed} from '@angular/core/testing';
 
-import { AdditionalOptionsService } from './additional-options.service';
+import {AdditionalOptionsService} from './additional-options.service';
 
 describe('AdditionalOptionsService', () => {
   beforeEach(() => {

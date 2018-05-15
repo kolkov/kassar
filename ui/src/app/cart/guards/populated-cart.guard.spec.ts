@@ -1,6 +1,6 @@
-import { TestBed, async, inject } from '@angular/core/testing';
+import {inject, TestBed} from '@angular/core/testing';
 
-import { PopulatedCartGuard } from './populated-cart.guard';
+import {PopulatedCartGuard} from './populated-cart.guard';
 
 describe('PopulatedCartGuard', () => {
   beforeEach(() => {

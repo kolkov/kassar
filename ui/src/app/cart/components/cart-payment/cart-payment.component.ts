@@ -1,7 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import {AdditionalOptionsService} from "../../services/additional-options.service";
-import {DeliveryOption} from "../../models/dilivery-option";
-import {AdditionalOption} from "../../models/additional-option";
+import {Component, OnInit} from '@angular/core';
 import {ShoppingCart} from "../../models/shopping-cart";
 import {Observable} from "rxjs/internal/Observable";
 import {Router} from "@angular/router";

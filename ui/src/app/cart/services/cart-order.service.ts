@@ -1,8 +1,6 @@
 import {Injectable} from "@angular/core";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs/internal/Observable";
-import {CartItem} from "../models/cart-item";
-import {CartOutput} from "../components/order-complete/order-complete.component";
 import {ShoppingCart} from "../models/shopping-cart";
 
 

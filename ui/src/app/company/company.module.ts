@@ -1,7 +1,7 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 
-import { CompanyRoutingModule } from './company-routing.module';
+import {CompanyRoutingModule} from './company-routing.module';
 import {CompanyHomeComponent} from "./company-home/company-home.component";
 import {CompanyComponent} from "./company.component";
 import {AboutComponent} from "./about/about.component";

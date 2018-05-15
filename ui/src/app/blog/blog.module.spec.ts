@@ -1,4 +1,4 @@
-import { BlogModule } from './blog.module';
+import {BlogModule} from './blog.module';
 
 describe('BlogModule', () => {
   let blogModule: BlogModule;

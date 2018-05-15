@@ -3,9 +3,8 @@ import {NavigationEnd, Router} from "@angular/router";
 import {SEOService} from "./seo.service";
 import {GoogleAnalyticsService} from "./google-analytics.service";
 import {environment} from '../environments/environment';
-import {MetrikaGoalEventOptions} from "../../projects/ngx-metrika/src/lib/interfaces";
-import {NgxMetrikaService} from "../../projects/ngx-metrika/src/lib/ngx-metrika.service";
-
+import {MetrikaGoalEventOptions} from "@kolkov/ngx-metrika";
+import {NgxMetrikaService} from "@kolkov/ngx-metrika";
 
 declare var gtag: Function;
 
@@ -23,7 +22,7 @@ export class AppComponent implements OnInit {
   ) {
     seoService.addSeoData();
     let goal: MetrikaGoalEventOptions = {type: 'TARGET_NAME'};
-    this.ngxMetrikaService.reachGoal.emit(goal);
+    this.ngxMetrikaService.reachGoal.next(goal);
     if (environment.googleAnalyticsKey != '') {
       this.appendGaTrackingCode();
     }

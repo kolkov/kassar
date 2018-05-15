@@ -1,4 +1,4 @@
-import { ServiceCenterModule } from './service-center.module';
+import {ServiceCenterModule} from './service-center.module';
 
 describe('ServiceCenterModule', () => {
   let serviceCenterModule: ServiceCenterModule;

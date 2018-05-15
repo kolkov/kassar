@@ -13,14 +13,12 @@ import {HttpClientModule} from "@angular/common/http";
 import {HomeNewsComponent} from './home/home-news/home-news.component';
 import {ServiceCenterModule} from "./service-center/service-center.module";
 import {CartModule} from "./cart/cart.module";
-import { BreadcrumbsComponent } from './breadcrubs/breadcrumbs.component';
-//import {environment} from "../environments/environment";
-//import {NgxMetrikaModule} from "ngx-metrika";
-
-import { registerLocaleData } from '@angular/common';
+import {BreadcrumbsComponent} from './breadcrubs/breadcrumbs.component';
+import {registerLocaleData} from '@angular/common';
 import localeRu from '@angular/common/locales/ru';
-import {NgxMetrikaModule} from "../../projects/ngx-metrika/src/lib/ngx-metrika.module";
-//import {NgxMetrikaModule} from "ngx-metrika";
+import {NgxMetrikaModule} from "@kolkov/ngx-metrika";
+//import {environment} from "../environments/environment";
+
 
 registerLocaleData(localeRu, 'ru');
 

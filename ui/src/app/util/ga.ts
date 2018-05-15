@@ -1,8 +1,6 @@
 /** Google analytics */
 /* tslint:disable */
 
-import {NavigationEnd} from "@angular/router";
-
 export function initAnalytics() {
   (<any>(function (i, s, o, g, r, a, m) {
     i['GoogleAnalyticsObject'] = r;

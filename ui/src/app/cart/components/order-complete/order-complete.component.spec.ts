@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { OrderCompleteComponent } from './order-complete.component';
+import {OrderCompleteComponent} from './order-complete.component';
 
 describe('OrderCompleteComponent', () => {
   let component: OrderCompleteComponent;

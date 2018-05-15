@@ -17,8 +17,8 @@
       "dom"
     ],
     "paths": {
-      "ngx-metrika": [
-        "dist/ngx-metrika"
+      "@kolkov/ngx-metrika": [
+        "dist/@kolkov/ngx-metrika"
       ]
     }
   }

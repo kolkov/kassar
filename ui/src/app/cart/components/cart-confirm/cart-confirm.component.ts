@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {Observable} from "rxjs/internal/Observable";
 import {ShoppingCart} from "../../models/shopping-cart";

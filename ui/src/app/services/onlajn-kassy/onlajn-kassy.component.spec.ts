@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { OnlajnKassyComponent } from './onlajn-kassy.component';
+import {OnlajnKassyComponent} from './onlajn-kassy.component';
 
 describe('OnlajnKassyComponent', () => {
   let component: OnlajnKassyComponent;

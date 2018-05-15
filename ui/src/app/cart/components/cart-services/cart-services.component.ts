@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {DeliveryOption} from "../../models/dilivery-option";
 import {Observable} from "rxjs/internal/Observable";
 import {ShoppingCartService} from "../../services/shopping-cart.service";

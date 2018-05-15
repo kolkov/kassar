@@ -1,6 +1,6 @@
-import { TestBed, inject } from '@angular/core/testing';
+import {inject, TestBed} from '@angular/core/testing';
 
-import { CartOrderService } from './cart-order.service';
+import {CartOrderService} from './cart-order.service';
 
 describe('CartOrderService', () => {
   beforeEach(() => {

@@ -1,6 +1,6 @@
-import { TestBed, inject } from '@angular/core/testing';
+import {inject, TestBed} from '@angular/core/testing';
 
-import { CatalogResolver } from './catalog-resolver.service';
+import {CatalogResolver} from './catalog-resolver.service';
 
 describe('CatalogResolver', () => {
   beforeEach(() => {

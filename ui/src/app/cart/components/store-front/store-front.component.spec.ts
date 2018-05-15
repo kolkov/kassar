@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { StoreFrontComponent } from './store-front.component';
+import {StoreFrontComponent} from './store-front.component';
 
 describe('StoreFrontComponent', () => {
   let component: StoreFrontComponent;
