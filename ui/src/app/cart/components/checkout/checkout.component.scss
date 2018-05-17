@@ -1,3 +1,26 @@
+.add-to-cart {
+  background-color: #5d8b00;
+  padding: 0.5rem 1.5rem;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 4px;
+}
+.add-to-cart:hover {
+  background-color: #22bb5b;
+}
+
+.remove-from-cart {
+  padding: 0.5rem 1.5rem;
+  cursor: pointer;
+  background-color: #1779ba;
+  color: #fefefe;
+  border-radius: 4px;
+}
+.remove-from-cart:hover {
+  background-color: #14679e;
+  color: #fefefe;
+}
+
 input[type=checkbox], input[type=radio] {
   vertical-align: middle;
   position: relative;

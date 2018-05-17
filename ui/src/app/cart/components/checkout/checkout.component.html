@@ -6,23 +6,25 @@
     </h2>
   </div>
   <div class="">
-  <h4>
-    Всего в заказе
-  <span class="">{{(cart | async).grossTotal | currency:'RUB':'symbol'}}</span>
-  </h4>
+    <h4>
+      Всего в заказе
+      <span class="">{{(cart | async).grossTotal | currency:'RUB':'symbol'}}</span>
+    </h4>
   </div>
   <div class="conf-row">
     <h5 class="choice-delivery danger"
-        *ngIf="(cart | async).confirmed === false">Проверьте свой заказ и подтвердите...</h5>
+        *ngIf="(cart | async).confirmed === false">Проверьте свой заказ и поставьте галочку...</h5>
     <h5 class="choice-delivery success"
         *ngIf="(cart | async).confirmed !== false">Заказ подтвержден.</h5>
     <button class="choice-confirmation"
             [attr.disabled]="(cart | async).confirmed ? null : true"
-            (click)="confirmedCart()">Начать оформление</button><!--routerLink="/confirmed"-->
+            (click)="confirmedCart()">Начать оформление
+    </button><!--routerLink="/confirmed"-->
     <button type="button"
             class="empty-cart"
             (click)="emptyCart()"
-            [attr.disabled]="itemCount === 0 ? true : null">Очистить корзину</button>
+            [attr.disabled]="itemCount === 0 ? true : null">Очистить корзину
+    </button>
   </div>
   <hr/>
 </div>
@@ -31,33 +33,53 @@
     <h4>Страницы 1 из 1</h4>
     <!--<small>Доставка по России....</small>-->
     <div class="row checkout-row"
-       *ngFor="let item of cartItems">
+         *ngFor="let item of cartItems">
       <div class="product-img-div">
         <img src="./assets/img/{{item.product.img}}"
-        class="product_image"/>
+             class="product_image"/>
       </div>
       <div class="product">
         <span class="product-name">{{item.product.name}}</span>
         <p class="product-description">{{item.product.description}}</p>
       </div>
       <div class="product-costs-div">
-       {{item.quantity}} x {{item.product.price | currency:'RUB':'symbol'}}
+        {{item.quantity}} x {{item.product.price | currency:'RUB':'symbol'}}
       </div>
       <div class="product-total-div">
         {{item.totalCost | currency:'RUB':'symbol'}}
       </div>
+      <div>
+        <button type="button"
+                class="add-to-cart"
+                [attr.disabled]="!(cart | async).confirmed ? null : true"
+                (click)="addProductToCart(item.product)">+
+        </button>
+        <button type="button"
+                class="remove-from-cart"
+                [attr.disabled]="!(cart | async).confirmed ? null : true"
+                *ngIf="productInCart(item.product) | async"
+                (click)="removeProductFromCart(item.product)">-
+        </button>
+      </div>
     </div>
   </div>
-  <label for="conf"> Согласен с перечнем заказа</label>
-  <input #conf id="conf" [checked]="(cart | async).confirmed" type="checkbox" (change)="setConfirmation(conf.checked)">
-<br><br><hr/>
+  <br>
+  <div *ngIf="itemCount !== 0">
+    <label for="conf"> Согласен с перечнем заказа</label>
+    <input #conf id="conf" [checked]="(cart | async).confirmed" type="checkbox" (change)="setConfirmation(conf.checked)">
+  </div>
+  <div *ngIf="itemCount === 0">Корзина пуста</div>
+  <br>
+  <hr/>
   <button class="choice-confirmation"
           [attr.disabled]="(cart | async).confirmed ? null : true"
-          (click)="confirmedCart()">Начать оформление</button><!--routerLink="/confirmed"-->
+          (click)="confirmedCart()">Начать оформление
+  </button><!--routerLink="/confirmed"-->
   <button type="button"
           class="empty-cart"
           (click)="emptyCart()"
-          [attr.disabled]="itemCount === 0 ? true : null">Очистить корзину</button>
+          [attr.disabled]="itemCount === 0 ? true : null">Очистить корзину
+  </button>
   <br><br>
   <div class="row">
     <div class="small">

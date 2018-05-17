@@ -7,6 +7,7 @@ import {CartItem} from "../../models/cart-item";
 import {ShoppingCartService} from "../../services/shopping-cart.service";
 import {ProductsService} from "../../services/products.service";
 import {Router} from "@angular/router";
+import {Observer} from "rxjs/internal/types";
 
 interface ICartItemWithProduct extends CartItem {
   product: Product;
@@ -71,7 +72,23 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     this.shoppingCartService.setConfirmation(value);
   }
 
-  /*setDeliveryOption(option: DeliveryOption): void {
-    this.shoppingCartService.setDeliveryOption(option);
-  }*/
+  public addProductToCart(product: Product): void {
+    this.shoppingCartService.addItem(product, 1);
+  }
+
+  public removeProductFromCart(product: Product): void {
+    this.shoppingCartService.addItem(product, -1);
+  }
+
+  public productInCart(product: Product): boolean {
+    return Observable.create((obs: Observer<boolean>) => {
+      const sub = this.shoppingCartService
+        .get()
+        .subscribe((cart) => {
+          obs.next(cart.items.some((i) => i.product_id === product.id));
+          obs.complete();
+        });
+      sub.unsubscribe();
+    });
+  }
 }

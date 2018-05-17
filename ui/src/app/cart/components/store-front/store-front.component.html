@@ -20,7 +20,7 @@
             </ul>
             <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
               <meta itemprop="priceCurrency" content="RUB"/>
-              Цена: <span itemprop="price" content="">{{product.price | currency:'RUB':'symbol'}}</span>
+              Цена: <span itemprop="price" [attr.content]="product.price">{{product.price | currency:'RUB':'symbol'}}</span>
               <span itemprop="seller">, Кассар</span>
               <link itemprop="itemCondition" href="http://schema.org/NewCondition"/>
               <link itemprop="availability" href="https://schema.org/InStock">
@@ -29,12 +29,18 @@
           <div itemprop="description" class="media-footer">{{product.description}}</div>
           <button type="button"
                   class="add-to-cart"
-                  (click)="addProductToCart(product, 1)">В корзину
+                  *ngIf="!(productInCart(product) | async)"
+                  (click)="addProductToCart(product)">В корзину
+          </button>
+          <button type="button"
+                  class="in-cart"
+                  *ngIf="productInCart(product) | async"
+                  routerLink="/order">В корзине
           </button>
           <button type="button"
                   class="remove-from-cart"
                   *ngIf="productInCart(product) | async"
-                  (click)="removeProductFromCart(product, 1)">Удалить из корзины
+                  (click)="removeProductFromCart(product)">Удалить из корзины
           </button>
         </div>
       </div>
