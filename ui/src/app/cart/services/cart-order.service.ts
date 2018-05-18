@@ -15,18 +15,6 @@ export class CartOrderService {
   save(data: ShoppingCart): Observable<any> {
     let headers = new HttpHeaders({'Content-Type': 'application/json'});
     const body = JSON.stringify(data);
-    /*const body = JSON.stringify({
-      customer_id: 1,
-      registered: true,
-      payment_type: 1,
-      items: [
-        {
-          order_id: 1,
-          product_id: 1,
-          quantity: 2,
-        }
-      ]
-    });*/
     return this.http.post<any>('v1/orders', body, {headers: headers});
   }
 

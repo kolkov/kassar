@@ -8,7 +8,6 @@ import (
 
 	_ "github.com/go-sql-driver/mysql"
 
-	"github.com/Sirupsen/logrus"
 	"github.com/go-ozzo/ozzo-dbx"
 	"github.com/go-ozzo/ozzo-routing"
 	"github.com/go-ozzo/ozzo-routing/content"
@@ -18,6 +17,7 @@ import (
 	"kassar/daos"
 	"kassar/services"
 	"kassar/apis"
+	"github.com/Sirupsen/logrus"
 )
 
 func main() {
@@ -86,6 +86,7 @@ func buildRouter(logger *logrus.Logger, db *dbx.DB) *routing.Router {
 	cartOrderDAO := daos.NewCartOrderDAO()
 	cartItemDAO := daos.NewCartOrderItemDAO()
 	cartOrderCustomerDAO := daos.NewCartOrderCustomerDAO()
+	paymentOptionDAO:= daos.NewPaymentOptionDAO()
 
 	// Initialize all used Services
 	articleService := services.NewArticleService(articleDAO)
@@ -95,6 +96,7 @@ func buildRouter(logger *logrus.Logger, db *dbx.DB) *routing.Router {
 	cartOrderService := services.NewCartOrderService(cartOrderDAO)
 	cartOrderItemService := services.NewCartOrderItemService(cartItemDAO)
 	cartOrderCustomerService := services.NewCartOrderCustomerService(cartOrderCustomerDAO)
+	paymentOptionService := services.NewPaymentOptionService(paymentOptionDAO)
 
 	//rg.Post("/auth", apis.Auth(app.Config.JWTSigningKey))
 	//rg.Post("/user/signup", apis.Signup())
@@ -110,6 +112,7 @@ func buildRouter(logger *logrus.Logger, db *dbx.DB) *routing.Router {
 	apis.ServeNewsResource(rg, newsService)
 	apis.ServProductResource(rg, productService, propertiesService)
 	apis.ServCartOrderResource(rg, cartOrderService, cartOrderItemService, cartOrderCustomerService)
+	apis.ServPaymentOptionResource(rg, paymentOptionService)
 
 	logger.Info("Start Serving static files on " + app.Config.StaticPath)
 

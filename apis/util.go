@@ -6,7 +6,7 @@ package apis
 import (
 	"github.com/go-ozzo/ozzo-routing"
 	"strconv"
-	"med/util"
+	"kassar/util"
 )
 
 const (

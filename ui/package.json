@@ -5,7 +5,6 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --proxy-config proxy.conf.json",
-    "start ru": "ng serve --configuration=ru --proxy-config proxy.conf.json",
     "build kassar": "ng build kassar",
     "build prod kassar": "ng build kassar --prod",
     "prod-with-lib": "ng build @kolkov/ngx-metrika --prod",

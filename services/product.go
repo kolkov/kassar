@@ -25,13 +25,11 @@ func (s *ProductService) GetByPath(rs app.RequestScope, id string) (*models.Prod
 	return s.dao.GetByPath(rs, id)
 }
 
-// Count returns the number of artists.
 func (s *ProductService) Count(rs app.RequestScope, id int) (int, error) {
 	return s.dao.Count(rs, id)
 }
 
 
-// Query returns the artists with the specified offset and limit.
 func (s *ProductService) Query(rs app.RequestScope, offset, limit, id int) ([]models.Product, error) {
 	return s.dao.Query(rs, offset, limit, id)
 }

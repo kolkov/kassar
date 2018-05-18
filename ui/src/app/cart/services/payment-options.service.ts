@@ -10,6 +10,6 @@ export class PaymentOptionsService {
   constructor(private http: HttpClient) { }
 
   public all(): Observable<PaymentOption[]> {
-    return this.http.get<PaymentOption[]>('assets/payment-options.json');
+    return this.http.get<PaymentOption[]>('v1/payment-options');
   }
 }
