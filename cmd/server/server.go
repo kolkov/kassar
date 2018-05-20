@@ -18,6 +18,7 @@ import (
 	"kassar/services"
 	"kassar/apis"
 	"github.com/Sirupsen/logrus"
+	"github.com/go-ozzo/ozzo-routing/auth"
 )
 
 func main() {
@@ -98,14 +99,14 @@ func buildRouter(logger *logrus.Logger, db *dbx.DB) *routing.Router {
 	cartOrderCustomerService := services.NewCartOrderCustomerService(cartOrderCustomerDAO)
 	paymentOptionService := services.NewPaymentOptionService(paymentOptionDAO)
 
-	//rg.Post("/auth", apis.Auth(app.Config.JWTSigningKey))
+	rg.Post("/auth", apis.Auth(app.Config.JWTSigningKey))
 	//rg.Post("/user/signup", apis.Signup())
 	//rg.Put("/user/email/confirm/<token>", apis.ConfirmEmail())
-	/*rg.GetByPath("/slogin", apis.HandleFacebookCallback(app.Config.JWTSigningKey))
+	/*rg.GetByPath("/slogin", apis.HandleFacebookCallback(app.Config.JWTSigningKey))*/
 	rg.Use(auth.JWT(app.Config.JWTVerificationKey, auth.JWTOptions{
 		SigningMethod: app.Config.JWTSigningMethod,
 		TokenHandler:  apis.JWTHandler,
-	}))*/
+	}))
 
 	// Initialize all used APIs
 	apis.ServArticleResource(rg, articleService)

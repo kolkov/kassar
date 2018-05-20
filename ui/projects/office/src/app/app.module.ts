@@ -14,6 +14,10 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { LoginComponent } from './login/login.component';
 import {HomeComponent} from "./home/home.component";
 import {ReactiveFormsModule} from "@angular/forms";
+import {JWT_OPTIONS, JwtModule} from "@auth0/angular-jwt";
+import {jwtOptionsFactory} from "./app-jwt.factory";
+import {TokenService} from "./auth/token.service";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -23,6 +27,7 @@ import {ReactiveFormsModule} from "@angular/forms";
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatToolbarModule,
@@ -33,6 +38,13 @@ import {ReactiveFormsModule} from "@angular/forms";
     MatListModule,
     MatCardModule,
     MatInputModule,
+    JwtModule.forRoot({
+      jwtOptionsProvider: {
+        provide: JWT_OPTIONS,
+        useFactory: jwtOptionsFactory,
+        deps: [TokenService]
+      }
+    }),
     AppRoutingModule
   ],
   providers: [],
