@@ -1,0 +1,31 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div class="main-container" [class.example-is-mobile]="mobileQuery.matches">
+  <mat-toolbar color="primary" class="example-toolbar" *ngIf="(isLoggedIn$ | async) as isLoggedIn">
+    <button mat-icon-button (click)="snav.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <h1 class="example-app-name">Kassar Office</h1>
+    <span class="spacer"></span>
+
+    <span class="example-app-name">v0.1.0</span>
+    <!--<button mat-button routerLink="login" *ngIf="!isLoggedIn; else notLoggedIn">Login</button>
+    <ng-template #notLoggedIn>
+      <button mat-button (click)="onLogout()">Logout</button>
+    </ng-template>-->
+    <button mat-button (click)="onLogout()" *ngIf="isLoggedIn">Logout</button>
+  </mat-toolbar>
+  <mat-sidenav-container class="sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+    <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
+                 [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
+      <mat-nav-list>
+        <a mat-list-item routerLink="." *ngFor="let nav of fillerNav">{{nav}}</a>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+
+</div>
+
+
