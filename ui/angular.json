@@ -1,12 +1,14 @@
 {
-  "$schema": "./node_modules/@angular-devkit/core/src/workspace/workspace-schema.json",
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
     "kassar": {
       "root": "",
+      "sourceRoot": "src",
       "projectType": "application",
       "prefix": "app",
+      "schematics": {},
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -195,11 +197,125 @@
           }
         }
       }
+    },
+    "office": {
+      "root": "projects/office/",
+      "sourceRoot": "projects/office/src",
+      "projectType": "application",
+      "prefix": "app",
+      "schematics": {
+        "@schematics/angular:component": {
+          "styleext": "scss"
+        }
+      },
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/office",
+            "index": "projects/office/src/index.html",
+            "main": "projects/office/src/main.ts",
+            "polyfills": "projects/office/src/polyfills.ts",
+            "tsConfig": "projects/office/tsconfig.app.json",
+            "assets": [
+              "projects/office/src/favicon.ico",
+              "projects/office/src/assets"
+            ],
+            "styles": [
+              "projects/office/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/office/src/environments/environment.ts",
+                  "with": "projects/office/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "office:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "office:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "office:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/office/src/test.ts",
+            "polyfills": "projects/office/src/polyfills.ts",
+            "tsConfig": "projects/office/tsconfig.spec.json",
+            "karmaConfig": "projects/office/karma.conf.js",
+            "styles": [
+              "projects/office/src/styles.scss"
+            ],
+            "scripts": [],
+            "assets": [
+              "projects/office/src/favicon.ico",
+              "projects/office/src/assets"
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/office/tsconfig.app.json",
+              "projects/office/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "office-e2e": {
+      "root": "projects/office-e2e/",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/office-e2e/protractor.conf.js",
+            "devServerTarget": "office:serve"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "projects/office-e2e/tsconfig.e2e.json",
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
-  "schematics": {
-    "@schematics/angular:component": {
-      "styleext": "scss"
-    }
-  }
+  "defaultProject": "kassar"
 }
