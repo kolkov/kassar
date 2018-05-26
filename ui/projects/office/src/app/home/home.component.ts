@@ -3,7 +3,9 @@ import {AuthService} from "../auth/auth.service";
 
 @Component({
   selector: 'app-home',
-  template: '<p>Круто! {{userName}}, Вы с нами!</p>',
+  template: `
+    <h1 class="mat-h1">Главная страница</h1>
+    <p>Круто! {{userName}}, Вы с нами!</p>`,
   styles: []
 })
 export class HomeComponent implements OnInit{
