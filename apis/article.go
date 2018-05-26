@@ -11,6 +11,7 @@ type (
 		Query(rs app.RequestScope, offset, limit int) ([]models.Article, error)
 		Count(rs app.RequestScope) (int, error)
 		GetByPath(rs app.RequestScope, id string) (*models.Article, error)
+		Create(rs app.RequestScope, model *models.Article) (*models.Article, error)
 	}
 
 	articleResource struct {
@@ -20,8 +21,10 @@ type (
 
 func ServArticleResource(rg *routing.RouteGroup, service articleService){
 	r := &articleResource{service}
+	rg.Post("/articles", r.create)
 	rg.Get("/articles/<id>", r.getByPath)
 	rg.Get("/articles", r.query)
+
 }
 
 func (r *articleResource) getByPath(c *routing.Context) error {
@@ -48,5 +51,19 @@ func (r *articleResource) query(c *routing.Context) error {
 	}
 	paginatedList.Items = items
 	return c.Write(paginatedList)
+}
+
+func (r *articleResource) create(c *routing.Context) error {
+	var model models.Article
+	if err := c.Read(&model); err != nil {
+		return err
+	}
+	model.Date = app.GetRequestScope(c).Now().String()
+	response, err := r.service.Create(app.GetRequestScope(c), &model)
+	if err != nil {
+		return err
+	}
+
+	return c.Write(response)
 }
 

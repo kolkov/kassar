@@ -1,0 +1,12 @@
+.article-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.article-container > * {
+  width: 100%;
+}
+
+.full-width-input {
+  width: 100%;
+}

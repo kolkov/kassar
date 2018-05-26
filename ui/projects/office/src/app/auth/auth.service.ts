@@ -19,11 +19,7 @@ export class AuthService {
   public userId: string;
   public firstLogin: string;
 
-  private loggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-
-  get isLoggedIn() {
-    return this.loggedIn.asObservable();
-  }
+  private loggedIn: BehaviorSubject<boolean>;
 
   constructor(
     private router: Router,
@@ -31,7 +27,11 @@ export class AuthService {
     public jwtHelper: JwtHelperService
   ) {
     this.getToken();
-  }
+    if (this.isAuthenticated()) {
+      this.loggedIn = new BehaviorSubject<boolean>(true);
+    } else {
+      this.loggedIn = new BehaviorSubject<boolean>(false);
+    }  }
 
   login(user: User) {
     let body = JSON.stringify({username: user.userName, password: user.password});
@@ -57,6 +57,10 @@ export class AuthService {
     localStorage.removeItem('currentUser');
     this.loggedIn.next(false);
     this.router.navigate(['/login']);
+  }
+
+  get isLoggedIn() {
+    return this.loggedIn.asObservable();
   }
 
   isAuthenticated(): boolean {

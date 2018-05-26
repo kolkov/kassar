@@ -30,8 +30,8 @@ export class ArticleComponent implements OnInit {
     this.article$ = this.blogService.get(this.id).pipe(
       tap(x => {
         let tags = {
-          description: x.description,
-          keywords: x.keywords,
+          description: x.metaDescription,
+          keywords: x.metaKeywords,
         };
         this.seoService.setSeoData(x.title, tags);
       }),
@@ -46,8 +46,8 @@ export class ArticleComponent implements OnInit {
       /*.subscribe((data: Article) => {
         this.article = data;
         let tags = {
-          description: data.description,
-          keywords: data.keywords,
+          metaDescription: data.metaDescription,
+          metaKeywords: data.metaKeywords,
         };
         this.seoService.setSeoData(data.title, tags);
       },

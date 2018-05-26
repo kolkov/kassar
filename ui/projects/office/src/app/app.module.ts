@@ -5,9 +5,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {
   MatButtonModule,
-  MatButtonToggleModule, MatCardModule,
+  MatButtonToggleModule, MatCardModule, MatFormFieldModule,
   MatIconModule, MatInputModule,
-  MatListModule,
+  MatListModule, MatSelectModule,
   MatSidenavModule, MatToolbarModule
 } from "@angular/material";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
@@ -18,12 +18,18 @@ import {JWT_OPTIONS, JwtModule} from "@auth0/angular-jwt";
 import {jwtOptionsFactory} from "./app-jwt.factory";
 import {TokenService} from "./auth/token.service";
 import {HttpClientModule} from "@angular/common/http";
+import { ArticlesComponent } from './articles/articles.component';
+import { PublicComponent } from './layout/public/public.component';
+import { PrivateComponent } from './layout/private/private.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    ArticlesComponent,
+    PublicComponent,
+    PrivateComponent
   ],
   imports: [
     BrowserModule,
@@ -38,6 +44,8 @@ import {HttpClientModule} from "@angular/common/http";
     MatListModule,
     MatCardModule,
     MatInputModule,
+    MatFormFieldModule,
+    MatSelectModule,
     JwtModule.forRoot({
       jwtOptionsProvider: {
         provide: JWT_OPTIONS,

@@ -12,6 +12,12 @@ func NewArticleDAO() *ArticleDAO {
 	return &ArticleDAO{}
 }
 
+func (dao *ArticleDAO) Get(rs app.RequestScope, id int) (*models.Article, error) {
+	var user models.Article
+	err := rs.Tx().Select().Model(id, &user)
+	return &user, err
+}
+
 func (dao ArticleDAO) GetByPath(rs app.RequestScope, id string) (*models.Article, error){
 	var article models.Article
 	err := rs.Tx().Select().From("article").Where(dbx.HashExp{"path": id}).One(&article)
@@ -30,5 +36,11 @@ func (dao *ArticleDAO) Query(rs app.RequestScope, offset, limit int) ([]models.A
 	artists := []models.Article{}
 	err := rs.Tx().Select().OrderBy("id").Offset(int64(offset)).Limit(int64(limit)).OrderBy("id DESC").All(&artists)
 	return artists, err
+}
+
+
+func (dao *ArticleDAO) Create(rs app.RequestScope, article *models.Article) error {
+	article.Id = 0
+	return rs.Tx().Model(article).Insert()
 }
 

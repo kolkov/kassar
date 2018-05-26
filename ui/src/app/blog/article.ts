@@ -4,8 +4,8 @@ export class Article {
   date: string;
   title: string;
   introduction: string;
-  description: string;
-  keywords: string;
+  metaDescription: string;
+  metaKeywords: string;
   body: string;
 }
 
