@@ -19,6 +19,9 @@
     "paths": {
       "@kolkov/ngx-metrika": [
         "dist/@kolkov/ngx-metrika"
+      ],
+      "@kolkov/angular-editor": [
+        "dist/kolkov/angular-editor"
       ]
     }
   }

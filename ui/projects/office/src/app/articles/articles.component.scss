@@ -10,3 +10,12 @@
 .full-width-input {
   width: 100%;
 }
+
+.half-width-input {
+  width: 50%;
+}
+
+mat-form-field textarea {
+  min-height: 250px;
+
+}

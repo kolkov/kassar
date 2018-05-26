@@ -9,12 +9,14 @@
       </mat-error>
     </mat-form-field>
 
-    <mat-form-field class="full-width-input">
+    <!--<mat-form-field class="full-width-input">
       <textarea matInput placeholder="Текст" formControlName="body"></textarea>
       <mat-error *ngIf="isFieldInvalid('body')">
         Введите тело статьи
       </mat-error>
-    </mat-form-field>
+    </mat-form-field>-->
+
+    <lib-angular-editor formControlName="body"></lib-angular-editor>
 
     <mat-form-field class="full-width-input">
       <input matInput placeholder="Введение в статью" formControlName="introduction">

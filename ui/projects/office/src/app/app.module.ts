@@ -22,6 +22,7 @@ import { ArticlesComponent } from './articles/articles.component';
 import { PublicComponent } from './layout/public/public.component';
 import { PrivateComponent } from './layout/private/private.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import {AngularEditorModule} from "../../../kolkov/angular-editor/src/lib/angular-editor.module";
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
         deps: [TokenService]
       }
     }),
+    AngularEditorModule,
     AppRoutingModule
   ],
   providers: [],
