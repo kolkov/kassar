@@ -21,6 +21,7 @@ import {HttpClientModule} from "@angular/common/http";
 import { ArticlesComponent } from './articles/articles.component';
 import { PublicComponent } from './layout/public/public.component';
 import { PrivateComponent } from './layout/private/private.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { PrivateComponent } from './layout/private/private.component';
     LoginComponent,
     ArticlesComponent,
     PublicComponent,
-    PrivateComponent
+    PrivateComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
