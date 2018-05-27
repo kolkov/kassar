@@ -7,6 +7,7 @@ import {ArticlesComponent} from "./articles/articles.component";
 import {PrivateComponent} from "./layout/private/private.component";
 import {PublicComponent} from "./layout/public/public.component";
 import {NotFoundComponent} from "./not-found/not-found.component";
+import {ArticleDetailsComponent} from "./articles/article-details/article-details.component";
 
 const routes: Routes = [
   {
@@ -19,6 +20,10 @@ const routes: Routes = [
         path: '',
         component: HomeComponent,
         pathMatch: 'full',
+      },
+      {
+        path: 'articles/:id',
+        component: ArticleDetailsComponent
       },
       {
         path: 'articles',

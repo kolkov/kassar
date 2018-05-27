@@ -8,12 +8,12 @@ import {
   MatButtonToggleModule, MatCardModule, MatFormFieldModule,
   MatIconModule, MatInputModule,
   MatListModule, MatSelectModule,
-  MatSidenavModule, MatToolbarModule
+  MatSidenavModule, MatTableModule, MatToolbarModule
 } from "@angular/material";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { LoginComponent } from './login/login.component';
 import {HomeComponent} from "./home/home.component";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {JWT_OPTIONS, JwtModule} from "@auth0/angular-jwt";
 import {jwtOptionsFactory} from "./app-jwt.factory";
 import {TokenService} from "./auth/token.service";
@@ -23,6 +23,7 @@ import { PublicComponent } from './layout/public/public.component';
 import { PrivateComponent } from './layout/private/private.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import {AngularEditorModule} from "../../../kolkov/angular-editor/src/lib/angular-editor.module";
+import { ArticleDetailsComponent } from './articles/article-details/article-details.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import {AngularEditorModule} from "../../../kolkov/angular-editor/src/lib/angula
     ArticlesComponent,
     PublicComponent,
     PrivateComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    ArticleDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -48,6 +50,7 @@ import {AngularEditorModule} from "../../../kolkov/angular-editor/src/lib/angula
     MatCardModule,
     MatInputModule,
     MatFormFieldModule,
+    MatTableModule,
     MatSelectModule,
     JwtModule.forRoot({
       jwtOptionsProvider: {
@@ -57,6 +60,7 @@ import {AngularEditorModule} from "../../../kolkov/angular-editor/src/lib/angula
       }
     }),
     AngularEditorModule,
+    FormsModule,
     AppRoutingModule
   ],
   providers: [],

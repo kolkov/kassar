@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {Observable} from "rxjs/internal/Observable";
+import {Article, ArticleList} from "../../../../../src/app/blog/article";
 
 @Injectable({
   providedIn: 'root'
@@ -8,9 +10,22 @@ export class ArticlesService {
 
   constructor(private http: HttpClient) { }
 
+  getList(): Observable<ArticleList> {
+    return this.http.get<ArticleList>("v1/articles");
+  }
+
+  getOne(id: string): Observable<Article> {
+    return this.http.get<Article>("v1/articles/" + id);
+  }
+
   save(article){
     let body = JSON.stringify(article);
     let headers = new HttpHeaders().set('Content-Type', 'application/json');
-    return this.http.post('v1/articles', body, {headers});
+    if (article.id != 0) {
+      return this.http.patch('v1/articles/' + article.id, body, {headers});
+    } else {
+
+      return this.http.post('v1/articles', body, {headers});
+    }
   }
 }

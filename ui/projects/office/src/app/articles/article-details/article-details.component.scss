@@ -1,0 +1,25 @@
+.article-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.article-container > * {
+  width: 100%;
+}
+
+.full-width-input {
+  width: 100%;
+}
+
+.half-width-input {
+  width: 50%;
+}
+
+mat-form-field textarea {
+  min-height: 250px;
+
+}
+
+button {
+  margin-right: 10px;
+}

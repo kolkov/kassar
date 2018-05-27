@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {Component, OnInit} from '@angular/core';
 import {ArticlesService} from "./articles.service";
+import {Router} from "@angular/router";
+import {Article, ArticleList, ArticleListItem} from "../../../../../src/app/blog/article";
 
 @Component({
   selector: 'app-articles',
@@ -8,34 +9,22 @@ import {ArticlesService} from "./articles.service";
   styleUrls: ['./articles.component.scss']
 })
 export class ArticlesComponent implements OnInit {
-  form: FormGroup;
-  private formSubmitAttempt: boolean;
 
-  constructor(private fb: FormBuilder,
-              private articleService: ArticlesService) { }
+  articles: ArticleListItem[];
+
+  displayedColumns = ['id', 'title'];
+
+  constructor(private articleService: ArticlesService,
+              private router: Router) { }
 
   ngOnInit() {
-    this.form = this.fb.group({
-      title: ['', Validators.required],
-      body: ['', Validators.required],
-      introduction: ['', Validators.required],
-      path: ['', Validators.required],
-      metaDescription: ['', Validators.required],
-      metaKeywords: ['', Validators.required],
-    });
+    this.getArticles();
   }
 
-  isFieldInvalid(field: string) {
-    return (
-      (!this.form.get(field).valid && this.form.get(field).touched) ||
-      (this.form.get(field).untouched && this.formSubmitAttempt)
+  getArticles(){
+    this.articleService.getList().subscribe(
+      (data: ArticleList) => this.articles = data.items
     );
   }
 
-  onSubmit() {
-    if (this.form.valid) {
-      this.articleService.save(this.form.value).subscribe();
-    }
-    this.formSubmitAttempt = true;
-  }
 }

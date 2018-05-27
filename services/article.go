@@ -14,7 +14,9 @@ type articleDAO interface {
 	// Query returns the list of artists with the given offset and limit.
 	Query(rs app.RequestScope, offset, limit int) ([]models.Article, error)
 
-	Create(rs app.RequestScope, user *models.Article) error
+	Create(rs app.RequestScope, article *models.Article) error
+
+	Update(rs app.RequestScope, id int, article *models.Article) error
 }
 
 type ArticleService struct {
@@ -23,6 +25,10 @@ type ArticleService struct {
 
 func NewArticleService(dao articleDAO) *ArticleService{
 	return &ArticleService{dao}
+}
+
+func (s *ArticleService) Get(rs app.RequestScope, id int) (*models.Article, error) {
+	return s.dao.Get(rs, id)
 }
 
 func (s *ArticleService) GetByPath(rs app.RequestScope, id string) (*models.Article, error) {
@@ -47,4 +53,14 @@ func (s *ArticleService) Create(rs app.RequestScope, model *models.Article) (*mo
 		return nil, err
 	}
 	return s.dao.Get(rs, model.Id)
+}
+
+func (s *ArticleService) Update(rs app.RequestScope, id int, model *models.Article) (*models.Article, error) {
+	if err := model.Validate(); err != nil {
+		return nil, err
+	}
+	if err := s.dao.Update(rs, id, model); err != nil {
+		return nil, err
+	}
+	return s.dao.Get(rs, id)
 }

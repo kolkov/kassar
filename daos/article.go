@@ -44,3 +44,11 @@ func (dao *ArticleDAO) Create(rs app.RequestScope, article *models.Article) erro
 	return rs.Tx().Model(article).Insert()
 }
 
+func (dao *ArticleDAO) Update(rs app.RequestScope, id int, article *models.Article) error {
+	if _, err := dao.Get(rs, id); err != nil {
+		return err
+	}
+	article.Id = id
+	return rs.Tx().Model(article).Exclude("Id").Update()
+}
+
