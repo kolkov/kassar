@@ -22,18 +22,11 @@ export class ArticleDataSource implements DataSource<ArticleListItem> {
 
   }
 
-  get paginator(): MatPaginator | null { return this._paginator; }
-  set paginator(paginator: MatPaginator|null) {
-    this._paginator = paginator;
-    //this._updateChangeSubscription();
-  }
-  private _paginator: MatPaginator|null;
-
   loadArticles(categoryId:number,
-              filter:string,
-              sortDirection:string,
-              pageIndex:number,
-              pageSize:number) {
+               filter:string,
+               sortDirection:string,
+               pageIndex:number,
+               pageSize:number) {
 
     this.loadingSubject.next(true);
 
@@ -47,6 +40,13 @@ export class ArticleDataSource implements DataSource<ArticleListItem> {
         this._updatePaginator(articlesList.total_count)
       });
   }
+
+  get paginator(): MatPaginator | null { return this._paginator; }
+  set paginator(paginator: MatPaginator|null) {
+    this._paginator = paginator;
+    //this._updateChangeSubscription();
+  }
+  private _paginator: MatPaginator|null;
 
   _updatePaginator(filteredDataLength: number) {
     Promise.resolve().then(() => {
