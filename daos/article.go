@@ -25,17 +25,30 @@ func (dao ArticleDAO) GetByPath(rs app.RequestScope, id string) (*models.Article
 }
 
 // Count returns the number of the artist records in the database.
-func (dao *ArticleDAO) Count(rs app.RequestScope) (int, error) {
+func (dao *ArticleDAO) Count(rs app.RequestScope, filter string) (int, error) {
 	var count int
-	err := rs.Tx().Select("COUNT(*)").From("article").Row(&count)
+	q := rs.Tx().Select("COUNT(*)").From("article")
+	if filter != "" {
+		q.Where(dbx.Like("title", filter))
+	}
+	err := q.Row(&count)
 	return count, err
 }
 
 // Query retrieves the artist records with the specified offset and limit from the database.
-func (dao *ArticleDAO) Query(rs app.RequestScope, offset, limit int) ([]models.Article, error) {
-	artists := []models.Article{}
-	err := rs.Tx().Select().OrderBy("id").Offset(int64(offset)).Limit(int64(limit)).OrderBy("id DESC").All(&artists)
-	return artists, err
+func (dao *ArticleDAO) Query(rs app.RequestScope, offset, limit int, sorting, filter string) ([]models.Article, error) {
+	articles := []models.Article{}
+	q := rs.Tx().Select().OrderBy("id").Offset(int64(offset)).Limit(int64(limit))
+	if sorting == "asc" {
+		q.OrderBy("id ASC")
+	} else {
+		q.OrderBy("id DESC")
+	}
+	if filter != "" {
+		q.Where(dbx.Like("title", filter))
+	}
+	err := q.All(&articles)
+	return articles, err
 }
 
 

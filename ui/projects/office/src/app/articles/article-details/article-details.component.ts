@@ -21,6 +21,15 @@ export class ArticleDetailsComponent implements OnInit {
 
   body: string;
 
+  editorConfig = {
+    editable: true,
+    spellcheck: true,
+    height: '25rem',
+    minHeight: '5rem',
+    //placeholder: 'Type something. Test the Editor... ヽ(^。^)丿',
+    translate: 'no'
+  };
+
   constructor(private fb: FormBuilder,
               private articleService: ArticlesService,
               private route: ActivatedRoute,

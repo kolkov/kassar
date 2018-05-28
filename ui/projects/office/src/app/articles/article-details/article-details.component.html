@@ -9,7 +9,9 @@
       </mat-error>
     </mat-form-field>
 
-    <lib-angular-editor formControlName="body"></lib-angular-editor>
+    <div class="editor">
+      <lib-angular-editor formControlName="body" [config]="editorConfig"></lib-angular-editor>
+    </div>
 
     <mat-form-field class="full-width-input">
       <input matInput placeholder="Введение в статью" formControlName="introduction">

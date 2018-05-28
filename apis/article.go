@@ -9,8 +9,8 @@ import (
 
 type (
 	articleService interface {
-		Query(rs app.RequestScope, offset, limit int) ([]models.Article, error)
-		Count(rs app.RequestScope) (int, error)
+		Query(rs app.RequestScope, offset, limit int, sorting, filter string) ([]models.Article, error)
+		Count(rs app.RequestScope, filter string) (int, error)
 		Get(rs app.RequestScope, id int) (*models.Article, error)
 		GetByPath(rs app.RequestScope, id string) (*models.Article, error)
 		Create(rs app.RequestScope, model *models.Article) (*models.Article, error)
@@ -58,12 +58,20 @@ func (r *articleResource) getByPath(c *routing.Context) error {
 
 func (r *articleResource) query(c *routing.Context) error {
 	rs := app.GetRequestScope(c)
-	count, err := r.service.Count(rs)
+	filter := c.Query("filter")
+
+	count, err := r.service.Count(rs, filter)
 	if err != nil {
 		return err
 	}
+
+	sorting := c.Query("sortOrder")
+	if sorting == "" {
+		sorting = "asc"
+	}
+
 	paginatedList := getPaginatedListFromRequest(c, count)
-	items, err := r.service.Query(app.GetRequestScope(c), paginatedList.Offset(), paginatedList.Limit())
+	items, err := r.service.Query(app.GetRequestScope(c), paginatedList.Offset(), paginatedList.Limit(), sorting, filter)
 	if err != nil {
 		return err
 	}
