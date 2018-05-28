@@ -4,7 +4,7 @@ import {Router} from "@angular/router";
 import {ArticleListItem} from "../../../../../src/app/blog/article";
 import {MatPaginator, MatSort} from "@angular/material";
 import {ArticleDataSource} from "./articles.datasource";
-import {debounceTime, distinctUntilChanged, tap} from "rxjs/operators";
+import {debounceTime, distinctUntilChanged, filter, tap} from "rxjs/operators";
 import {fromEvent} from "rxjs/internal/observable/fromEvent";
 import {merge} from "rxjs/internal/observable/merge";
 
@@ -43,7 +43,7 @@ export class ArticlesComponent implements OnInit, AfterViewInit {
 
     fromEvent(this.input.nativeElement,'keyup')
       .pipe(
-        debounceTime(150),
+        debounceTime(350),
         distinctUntilChanged(),
         tap(() => {
           this.paginator.pageIndex = 0;
