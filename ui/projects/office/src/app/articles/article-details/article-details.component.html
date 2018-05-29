@@ -3,7 +3,7 @@
 <div class="article-container">
   <form [formGroup]="form" (ngSubmit)="onSubmit()" *ngIf="showForm">
     <mat-form-field class="full-width-input">
-      <input matInput placeholder="Заголовок" formControlName="title">
+      <input matInput placeholder="Заголовок" formControlName="title" (blur)="updatePath()">
       <mat-error *ngIf="isFieldInvalid('title')">
         Введите заголовок статьи
       </mat-error>

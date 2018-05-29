@@ -5,6 +5,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {Article} from "../../../../../../src/app/blog/article";
 import {tap} from "rxjs/operators";
 import {Category} from "../../../../../../src/app/catalog/cart-home.service";
+import {translit} from "../translit";
 
 /*export interface Category {
   id: number;
@@ -108,5 +109,14 @@ export class ArticleDetailsComponent implements OnInit {
     this.form.reset();
     this.formSubmitAttempt = false;
     return false;
+  }
+
+  updatePath(){
+    const pathValue = this.form.get("path").value;
+    if (pathValue == ''){
+      const value = this.form.get("title").value;
+      const translitValue = translit(value);
+      this.form.patchValue({"path": translitValue})
+    }
   }
 }
