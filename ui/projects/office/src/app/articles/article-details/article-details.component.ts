@@ -34,6 +34,8 @@ export class ArticleDetailsComponent implements OnInit {
 
   body: string;
 
+  pathInit;
+
   editorConfig = {
     editable: true,
     spellcheck: true,
@@ -53,13 +55,14 @@ export class ArticleDetailsComponent implements OnInit {
     this.articleService.getCategories()
       .subscribe((x: Category[]) => this.categories = x );
     this.id = this.route.snapshot.params['id'];
-    this.articleService.getOne(this.id).pipe(
-      tap((x: Article) => {
-        this.article = x;
-        this.form.patchValue(this.article);
-      })
-    ).subscribe();
-
+    if (this.id != 0) {
+      this.articleService.getOne(this.id).pipe(
+        tap((x: Article) => {
+          this.article = x;
+          this.form.patchValue(this.article);
+        })
+      ).subscribe();
+    }
 
     this.form = this.fb.group({
       id: 0,
@@ -71,6 +74,7 @@ export class ArticleDetailsComponent implements OnInit {
       metaKeywords: ['', Validators.required],
       categoryId: 0
     });
+    this.pathInit = this.form.get("path").value;
   }
 
   isFieldInvalid(field: string) {
@@ -81,6 +85,10 @@ export class ArticleDetailsComponent implements OnInit {
   }
 
   onSubmit() {
+    if (this.pathInit != this.form.get("path").value && this.pathInit != '') {
+      const result = confirm("Путь статьи изменился, продолжить?");
+      if (!result) return;
+    }
     if (this.form.valid) {
       this.showForm = false;
       this.articleService.save(this.form.value).subscribe(
