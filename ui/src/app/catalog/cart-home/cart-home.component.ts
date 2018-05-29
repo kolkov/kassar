@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {Observable} from "rxjs/internal/Observable";
-import {CartHomeService, PageDescription} from "../cart-home.service";
+import {CartHomeService, Category, PageDescription} from "../cart-home.service";
 import {SEOService} from "../../seo.service";
 import {tap} from "rxjs/operators";
 
@@ -13,6 +13,7 @@ import {tap} from "rxjs/operators";
 export class CartHomeComponent implements OnInit {
   id: string;
   pageDescription$: Observable<PageDescription>;
+  test;
 
   constructor(private activateRoute: ActivatedRoute,
               private cartHomeService: CartHomeService,

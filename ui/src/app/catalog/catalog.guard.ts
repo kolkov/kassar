@@ -1,22 +1,27 @@
 import {Injectable} from '@angular/core';
-import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from '@angular/router';
+import {ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot} from '@angular/router';
 import {Observable} from 'rxjs';
-import {ProductsService} from "../cart/services/products.service";
+import {CartHomeService} from "./cart-home.service";
 
 @Injectable()
 export class CatalogGuard implements CanActivate {
 
-  constructor(private productService: ProductsService, private router: Router){}
+  constructor(private cartHomeService: CartHomeService){}
 
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    let result = this.productService.categorys[next.params['id']] !== undefined;
+    const path = next.params['id'];
+    return this.checkPath(path);
+  }
+
+  checkPath(path: string){
+    let result = this.cartHomeService.checkPath(path);
 
     if (result) {
-      return result;
+      return true;
     }else{
-      this.router.navigate(['catalog'])
+      return this.cartHomeService.getByPath(path)
     }
   }
 }

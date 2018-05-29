@@ -1,4 +1,6 @@
 import {Component, OnInit} from '@angular/core';
+import {Category} from "./cart-home.service";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-catalog',
@@ -7,9 +9,16 @@ import {Component, OnInit} from '@angular/core';
 })
 export class CatalogComponent implements OnInit {
 
-  constructor() { }
+  test;
+
+  constructor(/*private activateRoute: ActivatedRoute*/) { }
 
   ngOnInit() {
+    /*this.activateRoute.data
+      .subscribe((data: { categories: Category }) => {
+        this.test = data.categories.path;
+
+      });*/
   }
 
 }

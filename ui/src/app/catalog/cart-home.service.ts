@@ -1,5 +1,9 @@
 import {Injectable} from '@angular/core';
 import {Observable} from "rxjs/internal/Observable";
+import {HttpClient, HttpErrorResponse} from "@angular/common/http";
+import {catchError, map, tap} from "rxjs/operators";
+import {Router} from "@angular/router";
+import {of} from "rxjs/internal/observable/of";
 
 export interface PageDescription {
   heading: string;
@@ -10,6 +14,19 @@ export interface PageDescription {
 export interface TagItem {
   description: string;
   keywords: string;
+}
+
+export interface Category {
+  id: number;
+  path: string;
+}
+
+export interface CategoryList {
+  items: Category[];
+  page: number;
+  page_count: number;
+  per_page:number;
+  total_count: number;
 }
 
 @Injectable({
@@ -44,7 +61,33 @@ export class CartHomeService {
     }
   };
 
-  constructor() { }
+  categories: Category[] = [];
+
+  constructor(private http: HttpClient, private router: Router) { this.getList()}
+
+  getList(){
+    return this.http.get<CategoryList>("v1/public/product-categories").pipe(
+      tap(x => this.categories = x.items)
+    );
+  }
+
+  getById(id: number){
+    return this.http.get("v1/public/product-categories/" + id)
+  }
+
+  getByPath(path: string){
+    return this.http.get<Category>("v1/public/product-category/" + path)
+      .pipe(
+        map(x => x.path === path),
+        catchError((e: HttpErrorResponse) => {
+          this.router.navigate(['404']);
+          return of(e.status == 404)
+        }))
+  }
+
+  checkPath(path: string) {
+    return this.categories.find(x => x.path === path)
+  }
 
   getPageDescription(id: string): Observable<PageDescription>{
     return new Observable<PageDescription>((observer) => {

@@ -1,4 +1,6 @@
 import {Component, OnInit} from '@angular/core';
+import {CartHomeService} from "../../../catalog/cart-home.service";
+import {map} from "rxjs/operators";
 
 @Component({
   selector: 'app-store-catalog',
@@ -6,10 +8,14 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./store-catalog.component.scss']
 })
 export class StoreCatalogComponent implements OnInit {
+  categories$;
 
-  constructor() { }
+  constructor(private catalogService: CartHomeService) { }
 
   ngOnInit() {
+    this.categories$ = this.catalogService.getList().pipe(
+      map(x => x.items)
+    );
   }
 
 }

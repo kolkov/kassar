@@ -10,6 +10,9 @@ const routes: Routes = [
   {
     path: 'catalog',
     component: CatalogComponent,
+    /*resolve: {
+      categories: CategoryResolverService
+    },*/
     data: {
       title: 'Каталог оборудования',
       metatags: {
@@ -21,14 +24,12 @@ const routes: Routes = [
       {
         path: ':id/:id',
         component: CartDetailsComponent,
-        /*resolve: {
-          details: CatalogResolver
-        }*/
+
       },
       {
         path:':id',
         component: CartHomeComponent,
-        canActivate: [CatalogGuard]
+        canActivate: [CatalogGuard],
       },
       {
         path: '',
