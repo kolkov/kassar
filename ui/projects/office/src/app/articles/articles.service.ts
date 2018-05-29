@@ -1,8 +1,9 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs/internal/Observable";
-import {Article, ArticleList, ArticleListItem} from "../../../../../src/app/blog/article";
+import {Article, ArticleList} from "../../../../../src/app/blog/article";
 import {map} from "rxjs/operators";
+import {Category, CategoryList} from "../../../../../src/app/catalog/cart-home.service";
 
 @Injectable({
   providedIn: 'root'
@@ -44,5 +45,11 @@ export class ArticlesService {
     })/*.pipe(
       map(res =>  res["items"])
     );*/
+  }
+
+  getCategories(): Observable<Category[]>{
+    return this.http.get<CategoryList>("v1/public/article-categories")
+      .pipe(
+        map( (x: CategoryList) => x.items))
   }
 }

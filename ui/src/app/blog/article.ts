@@ -24,3 +24,4 @@ export class ArticleList {
   per_page:number;
   total_count: number;
 }
+

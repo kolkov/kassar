@@ -12,7 +12,7 @@ type articleDAO interface {
 	// Count returns the number of artists.
 	Count(rs app.RequestScope, filter string) (int, error)
 	// Query returns the list of artists with the given offset and limit.
-	Query(rs app.RequestScope, offset, limit int, sorting, filter string) ([]models.Article, error)
+	Query(rs app.RequestScope, offset, limit, categoryId int, sorting, filter string) ([]models.Article, error)
 
 	Create(rs app.RequestScope, article *models.Article) error
 
@@ -41,8 +41,8 @@ func (s *ArticleService) Count(rs app.RequestScope, filter string) (int, error) 
 }
 
 // Query returns the artists with the specified offset and limit.
-func (s *ArticleService) Query(rs app.RequestScope, offset, limit int, sorting, filter string) ([]models.Article, error) {
-	return s.dao.Query(rs, offset, limit, sorting, filter)
+func (s *ArticleService) Query(rs app.RequestScope, offset, limit, categoryId int, sorting, filter string) ([]models.Article, error) {
+	return s.dao.Query(rs, offset, limit, categoryId, sorting, filter)
 }
 
 func (s *ArticleService) Create(rs app.RequestScope, model *models.Article) (*models.Article, error) {

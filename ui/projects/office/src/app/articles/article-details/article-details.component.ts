@@ -3,7 +3,17 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ArticlesService} from "../articles.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Article} from "../../../../../../src/app/blog/article";
-import {map, switchMap, tap} from "rxjs/operators";
+import {tap} from "rxjs/operators";
+import {Category} from "../../../../../../src/app/catalog/cart-home.service";
+
+/*export interface Category {
+  id: number;
+  name: string;
+}
+
+export interface CategoryList {
+  items: Category[]
+}*/
 
 @Component({
   selector: 'app-article-details',
@@ -14,6 +24,8 @@ export class ArticleDetailsComponent implements OnInit {
   article: Article;
 
   id;
+
+  categories: Category[];// = [{id: 1, name: "Онлайн кассы"}, {id: 2, name: "Законы"}];
 
   form: FormGroup;
   showForm: boolean = true;
@@ -37,6 +49,8 @@ export class ArticleDetailsComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.articleService.getCategories()
+      .subscribe((x: Category[]) => this.categories = x );
     this.id = this.route.snapshot.params['id'];
     this.articleService.getOne(this.id).pipe(
       tap((x: Article) => {
@@ -54,6 +68,7 @@ export class ArticleDetailsComponent implements OnInit {
       path: ['', Validators.required],
       metaDescription: ['', Validators.required],
       metaKeywords: ['', Validators.required],
+      categoryId: 0
     });
   }
 
@@ -70,7 +85,7 @@ export class ArticleDetailsComponent implements OnInit {
       this.articleService.save(this.form.value).subscribe(
         () => {
           this.showForm = false;
-          alert("Успешно добавлено");
+          alert("Завершено успешно");
         },
         () => {
           alert("Не успешно");

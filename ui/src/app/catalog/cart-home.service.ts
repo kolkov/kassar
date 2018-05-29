@@ -18,6 +18,10 @@ export interface TagItem {
 
 export interface Category {
   id: number;
+  name: string;
+  nickname: string;
+  description: string;
+  image: string;
   path: string;
 }
 

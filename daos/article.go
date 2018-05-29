@@ -36,21 +36,23 @@ func (dao *ArticleDAO) Count(rs app.RequestScope, filter string) (int, error) {
 }
 
 // Query retrieves the artist records with the specified offset and limit from the database.
-func (dao *ArticleDAO) Query(rs app.RequestScope, offset, limit int, sorting, filter string) ([]models.Article, error) {
+func (dao *ArticleDAO) Query(rs app.RequestScope, offset, limit, categoryId int, sorting, filter string) ([]models.Article, error) {
 	articles := []models.Article{}
-	q := rs.Tx().Select().OrderBy("id").Offset(int64(offset)).Limit(int64(limit))
+	q := rs.Tx().Select().OrderBy("id")
+	if categoryId != 0 {
+		q.Where(dbx.HashExp{"category_id": categoryId})
+	}
+	if filter != "" {
+		q.AndWhere(dbx.Like("title", filter))
+	}
 	if sorting == "asc" {
 		q.OrderBy("id ASC")
 	} else {
 		q.OrderBy("id DESC")
 	}
-	if filter != "" {
-		q.Where(dbx.Like("title", filter))
-	}
-	err := q.All(&articles)
+	err := q.Offset(int64(offset)).Limit(int64(limit)).All(&articles)
 	return articles, err
 }
-
 
 func (dao *ArticleDAO) Create(rs app.RequestScope, article *models.Article) error {
 	article.Id = 0

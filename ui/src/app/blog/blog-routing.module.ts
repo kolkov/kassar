@@ -3,6 +3,8 @@ import {RouterModule, Routes} from '@angular/router';
 import {BlogComponent} from "./blog.component";
 import {BlogHomeComponent} from "./blog-home/blog-home.component";
 import {ArticleComponent} from "./article/article.component";
+import {ArticleListComponent} from "./article-list/article-list.component";
+import {CategoryGuard} from "./category.guard";
 
 const routes: Routes = [
   {
@@ -13,8 +15,13 @@ const routes: Routes = [
     },
     children: [
       {
-        path: ':id',
+        path: ':id/:id',
         component: ArticleComponent
+      },
+      {
+        path: ':id',
+        component: ArticleListComponent,
+        canActivate: [CategoryGuard],
       },
       {
         path: '',

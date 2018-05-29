@@ -9,7 +9,7 @@ import (
 
 type (
 	articleService interface {
-		Query(rs app.RequestScope, offset, limit int, sorting, filter string) ([]models.Article, error)
+		Query(rs app.RequestScope, offset, limit, categoryId int, sorting, filter string) ([]models.Article, error)
 		Count(rs app.RequestScope, filter string) (int, error)
 		Get(rs app.RequestScope, id int) (*models.Article, error)
 		GetByPath(rs app.RequestScope, id string) (*models.Article, error)
@@ -70,8 +70,13 @@ func (r *articleResource) query(c *routing.Context) error {
 		sorting = "asc"
 	}
 
+	categoryId, err := strconv.Atoi(c.Query("category_id"))
+	if err != nil {
+		categoryId = 0
+	}
+
 	paginatedList := getPaginatedListFromRequest(c, count)
-	items, err := r.service.Query(app.GetRequestScope(c), paginatedList.Offset(), paginatedList.Limit(), sorting, filter)
+	items, err := r.service.Query(app.GetRequestScope(c), paginatedList.Offset(), paginatedList.Limit(), categoryId, sorting, filter)
 	if err != nil {
 		return err
 	}

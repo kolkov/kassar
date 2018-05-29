@@ -6,6 +6,7 @@ import (
 
 type Article struct {
 	Id              int    `json:"id"`
+	CategoryId      int    `json:"categoryId"`
 	Path            string `json:"path"`
 	Date            string `json:"date"`
 	Title           string `json:"title"`

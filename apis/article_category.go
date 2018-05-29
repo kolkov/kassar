@@ -8,22 +8,22 @@ import (
 )
 
 type (
-	productCategoryService interface {
-		Get(rs app.RequestScope, id int) (*models.ProductCategory, error)
-		GetByPath(rs app.RequestScope, id string) (*models.ProductCategory, error)
-		/*Create(rs app.RequestScope, model *models.ProductCategory) (*models.ProductCategory, error)
-		Update(rs app.RequestScope, id int, model *models.ProductCategory) (*models.ProductCategory, error)*/
-		Query(rs app.RequestScope, offset, limit int) ([]models.ProductCategory, error)
+	articleCategoryService interface {
+		Get(rs app.RequestScope, id int) (*models.ArticleCategory, error)
+		GetByPath(rs app.RequestScope, id string) (*models.ArticleCategory, error)
+		/*Create(rs app.RequestScope, model *models.ArticleCategory) (*models.ArticleCategory, error)
+		Update(rs app.RequestScope, id int, model *models.ArticleCategory) (*models.ArticleCategory, error)*/
+		Query(rs app.RequestScope, offset, limit int) ([]models.ArticleCategory, error)
 		Count(rs app.RequestScope) (int, error)
 	}
 
-	productCategoryResource struct {
-		service productCategoryService
+	articleCategoryResource struct {
+		service articleCategoryService
 	}
 )
 
-func ServProductCategoryResource(rg *routing.RouteGroup, service productCategoryService){
-	r := &productCategoryResource{service}
+func ServArticleCategoryResource(rg *routing.RouteGroup, service articleCategoryService){
+	r := &articleCategoryResource{service}
 	//rg.Post("/articles", r.create)
 	//rg.Patch("/articles/<id>", r.update)
 	rg.Get("/product-category/<id>", r.get)
@@ -31,7 +31,7 @@ func ServProductCategoryResource(rg *routing.RouteGroup, service productCategory
 	rg.Get("/product-category", r.query)
 }
 
-func (r *productCategoryResource) get(c *routing.Context) error {
+func (r *articleCategoryResource) get(c *routing.Context) error {
 	id, err := strconv.Atoi(c.Param("id"))
 	if err != nil {
 		return err
@@ -45,7 +45,7 @@ func (r *productCategoryResource) get(c *routing.Context) error {
 	return c.Write(response)
 }
 
-func (r *productCategoryResource) getByPath(c *routing.Context) error {
+func (r *articleCategoryResource) getByPath(c *routing.Context) error {
 	id := c.Param("id")
 
 	response, err := r.service.GetByPath(app.GetRequestScope(c), id)
@@ -56,7 +56,7 @@ func (r *productCategoryResource) getByPath(c *routing.Context) error {
 	return c.Write(response)
 }
 
-func (r *productCategoryResource) query(c *routing.Context) error {
+func (r *articleCategoryResource) query(c *routing.Context) error {
 
 	/*id, err := strconv.Atoi(c.Request.FormValue("id"))
 	if err != nil {

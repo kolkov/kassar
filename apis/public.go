@@ -15,12 +15,16 @@ func ServPublicResource(rg *routing.RouteGroup,
 	productPropertiesService productPropertiesService,
 	paymentOptionsService paymentOptionService,
 		cartOrderService cartOrderService,
-			cartOrderItemService cartOrderItemService, cartOrderCustomerService cartOrderCustomerService) {
+			cartOrderItemService cartOrderItemService, cartOrderCustomerService cartOrderCustomerService,
+				productCategoryService productCategoryService,
+	articleCategoryService articleCategoryService) {
 		newsResource := &newsResource{newsService}
 		articleResource := &articleResource{articleService}
 		productResource := &productResource{productService, productPropertiesService}
 		paymentOptionsResource := &paymentOptionResource{paymentOptionsService}
 		cartOrderResource := &cartOrderResource{cartOrderService, cartOrderItemService, cartOrderCustomerService}
+		productCategoryResource := &productCategoryResource{productCategoryService}
+		articleCategoryResource := &articleCategoryResource{articleCategoryService}
 
 		rg.Get("/news/<id>", newsResource.get)
 		rg.Get("/news", newsResource.query)
@@ -35,4 +39,12 @@ func ServPublicResource(rg *routing.RouteGroup,
 		rg.Get("/payment-options", paymentOptionsResource.query)
 
 		rg.Post("/orders", cartOrderResource.create)
+
+		rg.Get("/product-categories/<id>", productCategoryResource.get)
+		rg.Get("/product-category/<id>", productCategoryResource.getByPath)
+		rg.Get("/product-categories", productCategoryResource.query)
+
+	rg.Get("/article-categories/<id>", articleCategoryResource.get)
+	rg.Get("/article-category/<id>", articleCategoryResource.getByPath)
+	rg.Get("/article-categories", articleCategoryResource.query)
 }

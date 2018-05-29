@@ -42,9 +42,8 @@
     </mat-form-field>
 
     <mat-form-field class="full-width-input">
-      <mat-select placeholder="Раздел">
-        <mat-option value="option1">Опция1</mat-option>
-        <mat-option value="option2">Опция2</mat-option>
+      <mat-select placeholder="Раздел" formControlName="categoryId">
+        <mat-option *ngFor="let option of categories" [value]="option.id">{{option.nickname}}</mat-option>
       </mat-select>
     </mat-form-field>
     <button mat-raised-button color="primary" type="submit">Сохранить</button>

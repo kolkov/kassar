@@ -83,8 +83,10 @@ func buildRouter(logger *logrus.Logger, db *dbx.DB) *routing.Router {
 
 	// Initialize all used DAOs
 	articleDAO := daos.NewArticleDAO()
+	articleCategoryDAO := daos.NewArticleCategoryDAO()
 	newsDAO := daos.NewNewsDAO()
 	productDAO := daos.NewProductDAO()
+	productCategoryDAO := daos.NewProductCategoryDAO()
 	propertiesDAO := daos.NewProductPropertiesDAO()
 	cartOrderDAO := daos.NewCartOrderDAO()
 	cartItemDAO := daos.NewCartOrderItemDAO()
@@ -94,8 +96,10 @@ func buildRouter(logger *logrus.Logger, db *dbx.DB) *routing.Router {
 
 	// Initialize all used Services
 	articleService := services.NewArticleService(articleDAO)
+	articleCategoryService := services.NewArticleCategoryService(articleCategoryDAO)
 	newsService := services.NewNewsService(newsDAO)
 	productService := services.NewProductService(productDAO)
+	productCategoryService := services.NewProductCategoryService(productCategoryDAO)
 	propertiesService := services.NewProductPropertiesService(propertiesDAO)
 	cartOrderService := services.NewCartOrderService(cartOrderDAO)
 	cartOrderItemService := services.NewCartOrderItemService(cartItemDAO)
@@ -104,7 +108,11 @@ func buildRouter(logger *logrus.Logger, db *dbx.DB) *routing.Router {
 	userService := services.NewUserService(userDAO)
 
 	rg.Post("/auth", apis.Auth(app.Config.JWTSigningKey))
-	apis.ServPublicResource(rgPublic, newsService, articleService, productService, propertiesService, paymentOptionService, cartOrderService, cartOrderItemService, cartOrderCustomerService)
+	apis.ServPublicResource(rgPublic, newsService, articleService,
+		productService, propertiesService, paymentOptionService,
+		cartOrderService, cartOrderItemService, cartOrderCustomerService,
+		productCategoryService, articleCategoryService)
+
 	//rg.Post("/user/signup", apis.Signup())
 	//rg.Put("/user/email/confirm/<token>", apis.ConfirmEmail())
 	/*rg.GetByPath("/slogin", apis.HandleFacebookCallback(app.Config.JWTSigningKey))*/
