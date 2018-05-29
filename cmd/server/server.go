@@ -18,6 +18,7 @@ import (
 	"kassar/services"
 	"kassar/apis"
 	"github.com/Sirupsen/logrus"
+	"github.com/go-ozzo/ozzo-routing/auth"
 )
 
 func main() {
@@ -78,6 +79,8 @@ func buildRouter(logger *logrus.Logger, db *dbx.DB) *routing.Router {
 		app.Transactional(db),
 	)
 
+	rgPublic := rg.Group("/public")
+
 	// Initialize all used DAOs
 	articleDAO := daos.NewArticleDAO()
 	newsDAO := daos.NewNewsDAO()
@@ -86,7 +89,7 @@ func buildRouter(logger *logrus.Logger, db *dbx.DB) *routing.Router {
 	cartOrderDAO := daos.NewCartOrderDAO()
 	cartItemDAO := daos.NewCartOrderItemDAO()
 	cartOrderCustomerDAO := daos.NewCartOrderCustomerDAO()
-	paymentOptionDAO:= daos.NewPaymentOptionDAO()
+	paymentOptionDAO := daos.NewPaymentOptionDAO()
 	userDAO := daos.NewUserDAO()
 
 	// Initialize all used Services
@@ -101,14 +104,15 @@ func buildRouter(logger *logrus.Logger, db *dbx.DB) *routing.Router {
 	userService := services.NewUserService(userDAO)
 
 	rg.Post("/auth", apis.Auth(app.Config.JWTSigningKey))
+	apis.ServPublicResource(rgPublic, newsService, articleService, productService, propertiesService, paymentOptionService, cartOrderService, cartOrderItemService, cartOrderCustomerService)
 	//rg.Post("/user/signup", apis.Signup())
 	//rg.Put("/user/email/confirm/<token>", apis.ConfirmEmail())
 	/*rg.GetByPath("/slogin", apis.HandleFacebookCallback(app.Config.JWTSigningKey))*/
 
-	/*rg.Use(auth.JWT(app.Config.JWTVerificationKey, auth.JWTOptions{
+	rg.Use(auth.JWT(app.Config.JWTVerificationKey, auth.JWTOptions{
 		SigningMethod: app.Config.JWTSigningMethod,
 		TokenHandler:  apis.JWTHandler,
-	}))*/
+	}))
 
 	// Initialize all used APIs
 	apis.ServArticleResource(rg, articleService)

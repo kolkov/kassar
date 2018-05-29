@@ -23,14 +23,14 @@ export class ProductsService {
     const id = this.categorys[categoryName];
     const options = id ?
       { params: new HttpParams().set('id', id) } : {};
-    return this.http.get<ProductList>('v1/products', options).pipe(
+    return this.http.get<ProductList>('v1/public/products', options).pipe(
       catchError(this.handleError)
     );
   }
 
   public one(id: string): Observable<Product> {
     console.log(id);
-    return this.http.get<Product>('v1/products/' + id).pipe(
+    return this.http.get<Product>('v1/public/products/' + id).pipe(
       tap(x => console.log(id)),
       catchError(this.handleError)
     );

@@ -15,7 +15,7 @@ export class CartOrderService {
   save(data: ShoppingCart): Observable<any> {
     let headers = new HttpHeaders({'Content-Type': 'application/json'});
     const body = JSON.stringify(data);
-    return this.http.post<any>('v1/orders', body, {headers: headers});
+    return this.http.post<any>('v1/public/orders', body, {headers: headers});
   }
 
 

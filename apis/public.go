@@ -1,52 +1,38 @@
 package apis
-/*
+
 import (
 	"github.com/go-ozzo/ozzo-routing"
-	"kassar/app"
-	"kassar/models"
 )
 
-type (
-	articleService interface {
-		Query(rs app.RequestScope, offset, limit int) ([]models.Article, error)
-		Count(rs app.RequestScope) (int, error)
-		GetByPath(rs app.RequestScope, id string) (*models.Article, error)
-	}
+/*type publicResource struct {
+	articleService articleService
+}*/
 
-	articleResource struct {
-		service articleService
-	}
-)
+func ServPublicResource(rg *routing.RouteGroup,
+	newsService newsService,
+	articleService articleService,
+	productService productService,
+	productPropertiesService productPropertiesService,
+	paymentOptionsService paymentOptionService,
+		cartOrderService cartOrderService,
+			cartOrderItemService cartOrderItemService, cartOrderCustomerService cartOrderCustomerService) {
+		newsResource := &newsResource{newsService}
+		articleResource := &articleResource{articleService}
+		productResource := &productResource{productService, productPropertiesService}
+		paymentOptionsResource := &paymentOptionResource{paymentOptionsService}
+		cartOrderResource := &cartOrderResource{cartOrderService, cartOrderItemService, cartOrderCustomerService}
 
-func ServArticleResource(rg *routing.RouteGroup, service articleService){
-	r := &articleResource{service}
-	rg.Get("/articles/<id>", r.getByPath)
-	rg.Get("/articles", r.query)
+		rg.Get("/news/<id>", newsResource.get)
+		rg.Get("/news", newsResource.query)
+
+		rg.Get("/articles/<id>", articleResource.get)
+		rg.Get("/article/<id>", articleResource.getByPath)
+		rg.Get("/articles", articleResource.query)
+
+		rg.Get("/products/<id>", productResource.getByPath)
+		rg.Get("/products", productResource.query)
+
+		rg.Get("/payment-options", paymentOptionsResource.query)
+
+		rg.Post("/orders", cartOrderResource.create)
 }
-
-func (r *articleResource) getByPath(c *routing.Context) error {
-	id := c.Param("id")
-
-	response, err := r.service.GetByPath(app.GetRequestScope(c), id)
-	if err != nil {
-		return err
-	}
-
-	return c.Write(response)
-}
-
-func (r *articleResource) query(c *routing.Context) error {
-	rs := app.GetRequestScope(c)
-	count, err := r.service.Count(rs)
-	if err != nil {
-		return err
-	}
-	paginatedList := getPaginatedListFromRequest(c, count)
-	items, err := r.service.Query(app.GetRequestScope(c), paginatedList.Offset(), paginatedList.Limit())
-	if err != nil {
-		return err
-	}
-	paginatedList.Items = items
-	return c.Write(paginatedList)
-}
-*/
