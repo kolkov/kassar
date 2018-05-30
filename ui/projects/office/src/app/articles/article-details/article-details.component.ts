@@ -60,6 +60,7 @@ export class ArticleDetailsComponent implements OnInit {
         tap((x: Article) => {
           this.article = x;
           this.form.patchValue(this.article);
+          this.pathInit = this.form.get("path").value;
         })
       ).subscribe();
     }
@@ -74,7 +75,7 @@ export class ArticleDetailsComponent implements OnInit {
       metaKeywords: ['', Validators.required],
       categoryId: 0
     });
-    this.pathInit = this.form.get("path").value;
+
   }
 
   isFieldInvalid(field: string) {
