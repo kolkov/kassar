@@ -1,5 +1,7 @@
 package models
 
+import "time"
+
 type Product struct {
 	Id             int                 `json:"id"`
 	CategoryId     int                 `json:"-"`
@@ -12,4 +14,5 @@ type Product struct {
 	TagDescription string              `json:"tag_description"`
 	Keywords       string              `json:"keywords"`
 	Properties     []ProductProperties `json:"properties"`
+	UpdatedAt      time.Time           `json:"updatedAt"`
 }

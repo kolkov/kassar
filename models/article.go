@@ -2,18 +2,20 @@ package models
 
 import (
 	"github.com/go-ozzo/ozzo-validation"
+	"time"
 )
 
 type Article struct {
-	Id              int    `json:"id"`
-	CategoryId      int    `json:"categoryId"`
-	Path            string `json:"path"`
-	Date            string `json:"date"`
-	Title           string `json:"title"`
-	MetaDescription string `json:"metaDescription"`
-	MetaKeywords    string `json:"metaKeywords"`
-	Introduction    string `json:"introduction"`
-	Body            string `json:"body"`
+	Id              int       `json:"id"`
+	CategoryId      int       `json:"categoryId"`
+	Path            string    `json:"path"`
+	Date            string    `json:"date"`
+	Title           string    `json:"title"`
+	MetaDescription string    `json:"metaDescription"`
+	MetaKeywords    string    `json:"metaKeywords"`
+	Introduction    string    `json:"introduction"`
+	Body            string    `json:"body"`
+	UpdatedAt       time.Time `json:"updatedAt"`
 }
 
 func (m Article) Validate() error {

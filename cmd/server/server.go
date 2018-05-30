@@ -19,6 +19,8 @@ import (
 	"kassar/apis"
 	"github.com/Sirupsen/logrus"
 	"github.com/go-ozzo/ozzo-routing/auth"
+
+	"time"
 )
 
 func main() {
@@ -54,16 +56,19 @@ func main() {
 }
 
 func buildRouter(logger *logrus.Logger, db *dbx.DB) *routing.Router {
+	timeStart := time.Now()
+
 	router := routing.New()
 
 	router.To("GET,HEAD", "/ping", func(c *routing.Context) error {
 		c.Abort() // skip all other middlewares/handlers
-		return c.Write("OK " + app.Version)
+		return c.Write("OK " + app.Version + ", appPath: " + app.Config.StaticPath + ", started at: " + timeStart.Format(time.RFC3339))
 	})
 
 	router.Use(
 		app.Init(logger),
 		slash.Remover(http.StatusMovedPermanently),
+		app.Transactional(db),
 		//routing.HTTPHandlerFunc(prerender.NewOptions().NewPrerender().PreRenderHandler),
 	)
 
@@ -76,9 +81,9 @@ func buildRouter(logger *logrus.Logger, db *dbx.DB) *routing.Router {
 			AllowHeaders: "*",
 			AllowMethods: "*",
 		}),
-		app.Transactional(db),
 	)
 
+	router.Get("/sitemap.xml", apis.Sitemap(timeStart))
 	rgPublic := rg.Group("/public")
 
 	// Initialize all used DAOs
