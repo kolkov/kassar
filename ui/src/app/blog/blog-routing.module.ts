@@ -15,6 +15,14 @@ const routes: Routes = [
     },
     children: [
       {
+        path: 'kak-perejti-na-onlajn-kassy-poshagovyj-algoritm',
+        redirectTo: 'onlajn-kassy/kak-perejti-na-onlajn-kassy-poshagovyj-algoritm'
+      },
+      {
+        path: 'Onlajn-kassy-v-2018-godu:-kto-imeet-pravo-na-otsrochku-i-nalogovyj-vychet',
+        redirectTo: 'onlajn-kassy/onlajn-kassy-v-2018-godu-kto-imeet-pravo-na-otsrochku-i-nalogovyj-vychet'
+      },
+      {
         path: ':id/:id',
         component: ArticleComponent
       },
