@@ -1,6 +1,6 @@
+<h1>{{category.name}}</h1>
 <div *ngFor="let article of articles$ | async">
-  <h2>{{ article.title }}</h2>
-  <p>Дата: {{article.date | date:'shortDate'}}</p>
-  <p>{{article.introduction}}</p>
-  <a [routerLink]="article.path">читать далее...</a>
+  <a [routerLink]="article.path"><h2>{{ article.title }}</h2></a>
+  <div class="date">Дата публикации: {{article.date | date:'shortDate'}}</div>
+  <a [routerLink]="article.path"><p class="introduction">{{article.introduction}}<span class="read-more">...</span></p></a>
 </div>

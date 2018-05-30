@@ -1,5 +1,5 @@
 <div *ngIf="article$ | async as article " class="article">
   <h1>{{article.title}}</h1>
-  <p>{{article.date | date:'shortDate'}}</p>
+  <div class="date">{{article.date | date:'shortDate'}}</div>
   <div [innerHTML]="article.body"></div>
 </div>
