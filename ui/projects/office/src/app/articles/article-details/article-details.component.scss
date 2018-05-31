@@ -1,6 +1,7 @@
 .article-container {
   display: flex;
   flex-direction: column;
+  margin-bottom: 30px;
 }
 
 .article-container > * {
@@ -15,15 +16,14 @@
   width: 50%;
 }
 
-/*mat-form-field textarea {
-  min-height: 250px;
-
-}*/
-
 button {
   margin-right: 10px;
 }
 
 .editor {
   margin-bottom: 15px;
+}
+
+.textarea {
+  min-height: 40px;
 }

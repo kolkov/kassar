@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ArticlesService} from "../articles.service";
 import {ActivatedRoute, Router} from "@angular/router";
@@ -6,15 +6,7 @@ import {Article} from "../../../../../../src/app/blog/article";
 import {tap} from "rxjs/operators";
 import {Category} from "../../../../../../src/app/catalog/cart-home.service";
 import {translit} from "../translit";
-
-/*export interface Category {
-  id: number;
-  name: string;
-}
-
-export interface CategoryList {
-  items: Category[]
-}*/
+import {AngularEditorComponent} from "../../../../../kolkov/angular-editor/src/lib/angular-editor.component";
 
 @Component({
   selector: 'app-article-details',
@@ -26,7 +18,7 @@ export class ArticleDetailsComponent implements OnInit {
 
   id;
 
-  categories: Category[];// = [{id: 1, name: "Онлайн кассы"}, {id: 2, name: "Законы"}];
+  categories: Category[];
 
   form: FormGroup;
   showForm: boolean = true;
@@ -41,9 +33,11 @@ export class ArticleDetailsComponent implements OnInit {
     spellcheck: true,
     height: '25rem',
     minHeight: '5rem',
-    //placeholder: 'Type something. Test the Editor... ヽ(^。^)丿',
+    placeholder: 'Введите текст статьи...',
     translate: 'no'
   };
+
+  @ViewChild("angularEditor") editor: AngularEditorComponent;
 
   constructor(private fb: FormBuilder,
               private articleService: ArticlesService,
@@ -86,6 +80,9 @@ export class ArticleDetailsComponent implements OnInit {
   }
 
   onSubmit() {
+    if (!this.editor.modeVisual) {
+      this.editor.changeEditorMode(this.editor.modeVisual);
+    }
     if (this.pathInit != this.form.get("path").value && this.pathInit != '') {
       const result = confirm("Путь статьи изменился, продолжить?");
       if (!result) return;
@@ -102,6 +99,7 @@ export class ArticleDetailsComponent implements OnInit {
           this.showForm = true;
         },
         () => {
+          this.router.navigate(["/articles"]);
           this.form.reset();
           this.showForm = true;
           this.formSubmitAttempt = false;

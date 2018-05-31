@@ -3,46 +3,46 @@
 <div class="article-container">
   <form [formGroup]="form" (ngSubmit)="onSubmit()" *ngIf="showForm">
     <mat-form-field class="full-width-input">
-      <input matInput placeholder="Заголовок" formControlName="title" (blur)="updatePath()">
+      <input matInput placeholder="Заголовок (без точки в конце)" formControlName="title" (blur)="updatePath()">
       <mat-error *ngIf="isFieldInvalid('title')">
-        Введите заголовок статьи
+        Введите заголовок статьи (без точки в конце)
       </mat-error>
     </mat-form-field>
 
     <div class="editor">
-      <lib-angular-editor formControlName="body" [config]="editorConfig"></lib-angular-editor>
+      <lib-angular-editor #angularEditor formControlName="body" [config]="editorConfig"></lib-angular-editor>
     </div>
 
     <mat-form-field class="full-width-input">
-      <input matInput placeholder="Введение в статью" formControlName="introduction">
+      <textarea class="textarea" matInput placeholder="Введение в статью (без точки в конце)" formControlName="introduction"></textarea>
       <mat-error *ngIf="isFieldInvalid('introduction')">
-        Введите введение в статью
+        Введите введение в статью (без точки в конце)
       </mat-error>
     </mat-form-field>
 
     <mat-form-field class="full-width-input">
-      <input matInput placeholder="Путь статьи" formControlName="path">
+      <input matInput placeholder="Путь статьи (без точки и тире в конце)" formControlName="path">
       <mat-error *ngIf="isFieldInvalid('path')">
-        Введите путь статьи
+        Введите путь статьи (без точки и тире в конце)
       </mat-error>
     </mat-form-field>
 
     <mat-form-field class="full-width-input">
-      <input matInput placeholder="Метаописание" formControlName="metaDescription">
+      <input matInput placeholder="Метаописание (без точки в конце)" formControlName="metaDescription">
       <mat-error *ngIf="isFieldInvalid('metaDescription')">
-        Введите метаописание статьи
+        Введите метаописание статьи (без точки в конце)
       </mat-error>
     </mat-form-field>
 
     <mat-form-field class="full-width-input">
-      <input matInput placeholder="Ключевые слова или фразы через запятую" formControlName="metaKeywords">
+      <input matInput placeholder="Ключевые слова или фразы (через запятую)" formControlName="metaKeywords">
       <mat-error *ngIf="isFieldInvalid('metaKeywords')">
-        Введите ключевые слова статьи
+        Введите ключевые слова или фразы статьи (через запятую)
       </mat-error>
     </mat-form-field>
 
     <mat-form-field class="full-width-input">
-      <mat-select placeholder="Раздел" formControlName="categoryId">
+      <mat-select placeholder="Раздел для публикации" formControlName="categoryId">
         <mat-option *ngFor="let option of categories" [value]="option.id">{{option.nickname}}</mat-option>
       </mat-select>
     </mat-form-field>
