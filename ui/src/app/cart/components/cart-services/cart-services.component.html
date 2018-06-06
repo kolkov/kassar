@@ -7,16 +7,11 @@
         *ngIf="(cart | async).additionalOptionId !== undefined">Дополнительные опции выбраны.</h5>
     <button class="choice-confirmation"
             [attr.disabled]="(cart | async).additionalOptionId !== undefined ? null : true"
-            (click)="confirmedCart()">Продолжить</button><!--routerLink="/confirmed"-->
-   <!-- <button type="button"
-            class="empty-cart"
-            (click)="emptyCart()"
-            [attr.disabled]="itemCount === 0 ? true : null">Очистить корзину</button>-->
+            (click)="confirmedCart()">Продолжить</button>
   </div>
   <hr>
   <div class="table">
     <div class="option" *ngFor="let option of additionalOptions | async">
-      <!-- <div class="table-row">-->
        <div class="radio-div">
           <input type="radio"
                  name="delivery_option"
@@ -30,7 +25,6 @@
         <div class="price-div">
           {{option.price | currency:'RUB':'symbol'}}
         </div>
-    <!--  </div>-->
       <div class="description-div">
        {{option.description}}
       </div>

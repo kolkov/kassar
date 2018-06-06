@@ -8,11 +8,7 @@
     <button class="choice-confirmation"
             [attr.disabled]="(cart | async).deliveryOptionId !== undefined && heroForm.form.valid ? null : true"
             (click)="confirmedCart()">Оплатить
-    </button><!--routerLink="/confirmed"-->
-    <!--<button type="button"
-            class="empty-cart"
-            (click)="emptyCart()"
-            [attr.disabled]="itemCount === 0 ? true : null">Очистить корзину</button>-->
+    </button>
   </div>
   <hr/>
   <div class="option"
