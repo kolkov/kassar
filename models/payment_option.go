@@ -5,5 +5,5 @@ type PaymentOption struct {
 	Enabled bool `json:"enabled"`
 	Name string `json:"name"`
 	Description string `json:"description"`
-	Price string `json:"price"`
+	Price float64 `json:"price"`
 }

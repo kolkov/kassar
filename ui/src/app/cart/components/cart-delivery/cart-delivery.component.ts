@@ -16,9 +16,7 @@ import {tap} from "rxjs/operators";
 export class CartDeliveryComponent implements OnInit {
   public deliveryOptions: Observable<DeliveryOption[]>;
   public cart: Observable<ShoppingCart>;
-  /*public firstName: string;
-  public lastName: string;*/
-  model: Customer; // = new Customer("","", "", "");
+  model: Customer;
 
   constructor(private shoppingCartService: ShoppingCartService,
               private deliveryOptionService: DeliveryOptionsService,

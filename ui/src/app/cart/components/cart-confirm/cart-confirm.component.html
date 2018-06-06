@@ -1,15 +1,7 @@
 <h2>Последняя проверка вашего заказа</h2>
 <div class="conf-row">
- <!-- <h5 class="choice-delivery"
-      *ngIf="(cart | async).paymentOptionId === undefined">Выберите способ оплаты заказа...</h5>
-  <h5 class="choice-delivery"
-      *ngIf="(cart | async).paymentOptionId !== undefined">Способ оплыт выбран.</h5>-->
   <button class="choice-confirmation"
-          (click)="confirmedCart()">Отправить заказ</button><!--routerLink="/confirmed"-->
-  <!-- <button type="button"
-           class="empty-cart"
-           (click)="emptyCart()"
-           [attr.disabled]="itemCount === 0 ? true : null">Очистить корзину</button>-->
+          (click)="confirmedCart()">Отправить заказ</button>
 </div>
 <div class="">
   <h4>
