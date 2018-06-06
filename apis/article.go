@@ -67,7 +67,7 @@ func (r *articleResource) query(c *routing.Context) error {
 
 	sorting := c.Query("sortOrder")
 	if sorting == "" {
-		sorting = "asc"
+		sorting = "desc"
 	}
 
 	categoryId, err := strconv.Atoi(c.Query("category_id"))
