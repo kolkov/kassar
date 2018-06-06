@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Meta, Title} from "@angular/platform-browser";
 import {NavigationEnd, Router} from "@angular/router";
+import {TagItem} from "./models/category";
 
 @Injectable({
   providedIn: 'root'
@@ -38,7 +39,7 @@ export class SEOService {
     });
   }
 
-  public setSeoData(title: string, tags: any) {
+  public setSeoData(title: string, tags: TagItem) {
     this.titleService.setTitle(title + this.titleEnd);
 
     for (let tag in tags) {

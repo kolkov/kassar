@@ -3,8 +3,9 @@ import {ArticleListItem} from "../article";
 import {ArticleService} from "../article.service";
 import {Observable} from "rxjs/internal/Observable";
 import {map, tap} from "rxjs/operators";
-import {ActivatedRoute} from "@angular/router";
-import {Category} from "../../catalog/cart-home.service";
+import {ActivatedRoute, Router} from "@angular/router";
+import {SEOService} from "../../seo.service";
+import {Category, TagItem} from "../../models/category";
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -14,16 +15,24 @@ import {Category} from "../../catalog/cart-home.service";
 })
 export class ArticleListComponent implements OnInit {
   articles$: Observable<ArticleListItem[]>;
-  category: Category;
+  category: Category = {id: 0, name: ''};
 
-  constructor(private blogService: ArticleService, private route: ActivatedRoute) {
+  constructor(private blogService: ArticleService, private route: ActivatedRoute, private seoService: SEOService, private router: Router) {
   }
 
   ngOnInit() {
     const path = this.route.snapshot.params['id'];
 
     this.articles$ = this.blogService.getList(path).pipe(
-      tap(() => this.category = this.blogService.checkPath(path)),
+      tap(() => {
+        this.category = this.blogService.checkPath(path);
+        if (!this.category) {
+          this.router.navigate(['/404']);
+        } else {
+          const tags: TagItem = {description: this.category.metaDescription, keywords: this.category.metaKeywords};
+          this.seoService.setSeoData(this.category.name, tags);
+        }
+      }),
       map(x => x.items)
     );
   }

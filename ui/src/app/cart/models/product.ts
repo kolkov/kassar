@@ -6,8 +6,8 @@ export class Product {
   product_type: string;
   description: string;
   price: number;
-  tag_description: string;
-  keywords: string;
+  metaDescription: string;
+  metaKeywords: string;
   img: string;
   url: string;
   properties: Properties[];

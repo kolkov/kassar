@@ -1,3 +1,5 @@
+import {SafeHtml} from "@angular/platform-browser";
+
 export class Article {
   id: number;
   path: string;
@@ -7,6 +9,7 @@ export class Article {
   metaDescription: string;
   metaKeywords: string;
   body: string;
+  safeHTML: SafeHtml;
 }
 
 export class ArticleListItem {

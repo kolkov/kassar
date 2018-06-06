@@ -5,7 +5,8 @@ import {ArticleService} from "../article.service";
 import {HttpErrorResponse} from "@angular/common/http";
 import {SEOService} from "../../seo.service";
 import {Observable} from "rxjs/internal/Observable";
-import {catchError, tap} from "rxjs/operators";
+import {catchError, map, tap} from "rxjs/operators";
+import {DomSanitizer} from "@angular/platform-browser";
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -22,12 +23,17 @@ export class ArticleComponent implements OnInit {
     private activateRoute: ActivatedRoute,
     private blogService: ArticleService,
     private seoService: SEOService,
-    private router: Router
+    private router: Router,
+    private sanitizer: DomSanitizer
     ) { }
 
   ngOnInit() {
     this.id = this.activateRoute.snapshot.params['id'];
     this.article$ = this.blogService.get(this.id).pipe(
+      map((x: Article) => {
+        x.safeHTML = this.sanitizer.bypassSecurityTrustHtml(x.body);
+        return x;
+      }),
       tap(x => {
         let tags = {
           description: x.metaDescription,
@@ -58,5 +64,4 @@ export class ArticleComponent implements OnInit {
         }
       )*/
   }
-
 }

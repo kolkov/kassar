@@ -42,7 +42,7 @@ export class CartDetailsComponent implements OnInit {
       this.product$ = this.productService.one(this.id).pipe(
         tap(
           p => {
-            this.seoService.setSeoData(p.name, {description: p.tag_description, keywords: p.keywords})
+            this.seoService.setSeoData(p.name, {description: p.metaDescription, keywords: p.metaKeywords})
           }
         ),
         catchError((err, caught) => {

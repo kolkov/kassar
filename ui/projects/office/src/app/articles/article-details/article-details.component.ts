@@ -7,6 +7,7 @@ import {tap} from "rxjs/operators";
 import {Category} from "../../../../../../src/app/catalog/cart-home.service";
 import {translit} from "../translit";
 import {AngularEditorComponent} from "../../../../../kolkov/angular-editor/src/lib/angular-editor.component";
+import {AngularEditorConfig} from "../../../../../kolkov/angular-editor/src/lib/config";
 
 @Component({
   selector: 'app-article-details',
@@ -28,13 +29,14 @@ export class ArticleDetailsComponent implements OnInit {
 
   pathInit;
 
-  editorConfig = {
+  editorConfig: AngularEditorConfig = {
     editable: true,
     spellcheck: true,
     height: '25rem',
     minHeight: '5rem',
     placeholder: 'Введите текст статьи...',
-    translate: 'no'
+    translate: 'no',
+    defaultFontName: 'Comic Sans MS'
   };
 
   @ViewChild("angularEditor") editor: AngularEditorComponent;
@@ -81,7 +83,7 @@ export class ArticleDetailsComponent implements OnInit {
 
   onSubmit() {
     if (!this.editor.modeVisual) {
-      this.editor.changeEditorMode(this.editor.modeVisual);
+      this.editor.toggleEditorMode(this.editor.modeVisual);
     }
     if (this.pathInit != this.form.get("path").value && this.pathInit != '') {
       const result = confirm("Путь статьи изменился, продолжить?");

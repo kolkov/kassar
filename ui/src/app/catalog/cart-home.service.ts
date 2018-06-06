@@ -4,34 +4,7 @@ import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {catchError, map, tap} from "rxjs/operators";
 import {Router} from "@angular/router";
 import {of} from "rxjs/internal/observable/of";
-
-export interface PageDescription {
-  heading: string;
-  description: string;
-  tags: TagItem;
-}
-
-export interface TagItem {
-  description: string;
-  keywords: string;
-}
-
-export interface Category {
-  id: number;
-  name: string;
-  nickname: string;
-  description: string;
-  image: string;
-  path: string;
-}
-
-export interface CategoryList {
-  items: Category[];
-  page: number;
-  page_count: number;
-  per_page:number;
-  total_count: number;
-}
+import {Category, CategoryList, PageDescription} from "../models/category";
 
 @Injectable({
   providedIn: 'root'

@@ -59,6 +59,7 @@ func (r *newsResource) get(c *routing.Context) error {
 	return c.Write(items)
 }
 
+
 func (r *newsResource) query(c *routing.Context) error {
 	rs := app.GetRequestScope(c)
 	count, err := r.service.Count(rs)

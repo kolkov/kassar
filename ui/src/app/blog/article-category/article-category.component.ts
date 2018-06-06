@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ArticleService} from "../article.service";
 import {Observable} from "rxjs/internal/Observable";
-import {Category} from "../../catalog/cart-home.service";
+import {Category} from "../../models/category";
 
 @Component({
   selector: 'app-article-category',
@@ -17,5 +17,4 @@ export class ArticleCategoryComponent implements OnInit {
   ngOnInit() {
     this.categories$ = this.articleService.getCategories();
   }
-
 }

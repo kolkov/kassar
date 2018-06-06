@@ -2,10 +2,10 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpErrorResponse, HttpHeaders, HttpParams} from "@angular/common/http";
 import {Article, ArticleList} from "./article";
 import {Observable} from "rxjs/internal/Observable";
-import {Category, CategoryList} from "../catalog/cart-home.service";
 import {catchError, map, mergeMap, tap} from "rxjs/operators";
 import {of} from "rxjs/internal/observable/of";
 import {Router} from "@angular/router";
+import {Category, CategoryList} from "../models/category";
 
 
 @Injectable({

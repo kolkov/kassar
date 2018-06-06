@@ -1,9 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {Observable} from "rxjs/internal/Observable";
-import {CartHomeService, Category, PageDescription} from "../cart-home.service";
+import {CartHomeService} from "../cart-home.service";
 import {SEOService} from "../../seo.service";
 import {tap} from "rxjs/operators";
+import {PageDescription} from "../../models/category";
 
 @Component({
   selector: 'app-cart-home',

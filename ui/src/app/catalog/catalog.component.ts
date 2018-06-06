@@ -1,6 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {Category} from "./cart-home.service";
-import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-catalog',
