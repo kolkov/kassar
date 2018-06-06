@@ -7,6 +7,7 @@ type ArticleCategory struct {
 	Name            string    `json:"name"`
 	Nickname        string    `json:"nickname"`
 	Description     string    `json:"description"`
+	Introduction    string    `json:"introduction"`
 	MetaDescription string    `json:"metaDescription"`
 	MetaKeywords    string    `json:"metaKeywords"`
 	Image           string    `json:"image"`

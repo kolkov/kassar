@@ -1,3 +1,4 @@
 <div *ngFor="let category of (categories$ | async)">
-  <a [routerLink]="category.path">{{category.name}}</a>
+  <a [routerLink]="category.path"><h2>{{category.name}}</h2></a>
+  <a [routerLink]="category.path">{{category.introduction}}</a>
 </div>

@@ -6,11 +6,7 @@
       *ngIf="(cart | async).paymentOptionId !== undefined">Способ оплаты выбран.</h5>
   <button class="choice-confirmation"
           [attr.disabled]="(cart | async).paymentOptionId !== undefined ? null : true"
-          (click)="confirmedCart()">Подтвердить</button><!--routerLink="/confirmed"-->
-  <!-- <button type="button"
-           class="empty-cart"
-           (click)="emptyCart()"
-           [attr.disabled]="itemCount === 0 ? true : null">Очистить корзину</button>-->
+          (click)="confirmedCart()">Подтвердить</button>
 </div>
 <hr/>
 <div class="option"
@@ -26,7 +22,7 @@
     <label class="js-option-name" for="{{option.name}}" (click)="setPaymentOption(option)">{{option.name}}</label>
   </div>
   <div class="price-div">
-    {{option.price | currency:'RUB':'symbol'}}
+    {{option.price}}<span>%</span>
   </div>
   <div class="description-div">
     {{option.description}}

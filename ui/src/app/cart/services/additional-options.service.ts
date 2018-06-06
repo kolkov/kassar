@@ -10,6 +10,6 @@ export class AdditionalOptionsService {
   constructor(private http: HttpClient) { }
 
   public all(): Observable<AdditionalOption[]> {
-    return this.http.get<AdditionalOption[]>('assets/additional-options.json');
+    return this.http.get<AdditionalOption[]>('v1/public/additional-options');
   }
 }

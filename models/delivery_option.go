@@ -1,6 +1,6 @@
 package models
 
-type PaymentOption struct {
+type DeliveryOption struct {
 	Id int `json:"id"`
 	Enabled bool `json:"enabled"`
 	Name string `json:"name"`

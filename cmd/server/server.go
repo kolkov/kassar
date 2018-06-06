@@ -97,6 +97,8 @@ func buildRouter(logger *logrus.Logger, db *dbx.DB) *routing.Router {
 	cartItemDAO := daos.NewCartOrderItemDAO()
 	cartOrderCustomerDAO := daos.NewCartOrderCustomerDAO()
 	paymentOptionDAO := daos.NewPaymentOptionDAO()
+	additionalOptionDAO := daos.NewAdditionalOptionDAO()
+	deliveryOptionDAO := daos.NewDeliveryOptionDAO()
 	userDAO := daos.NewUserDAO()
 
 	// Initialize all used Services
@@ -110,13 +112,16 @@ func buildRouter(logger *logrus.Logger, db *dbx.DB) *routing.Router {
 	cartOrderItemService := services.NewCartOrderItemService(cartItemDAO)
 	cartOrderCustomerService := services.NewCartOrderCustomerService(cartOrderCustomerDAO)
 	paymentOptionService := services.NewPaymentOptionService(paymentOptionDAO)
+	additionalService := services.NewAdditionalOptionService(additionalOptionDAO)
+	deliveryOptionService := services.NewDeliveryOptionService(deliveryOptionDAO)
 	userService := services.NewUserService(userDAO)
 
 	rg.Post("/auth", apis.Auth(app.Config.JWTSigningKey))
 	apis.ServPublicResource(rgPublic, newsService, articleService,
 		productService, propertiesService, paymentOptionService,
 		cartOrderService, cartOrderItemService, cartOrderCustomerService,
-		productCategoryService, articleCategoryService)
+		productCategoryService, articleCategoryService,
+		additionalService, deliveryOptionService)
 
 	//rg.Post("/user/signup", apis.Signup())
 	//rg.Put("/user/email/confirm/<token>", apis.ConfirmEmail())

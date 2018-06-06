@@ -4,10 +4,6 @@ import (
 	"github.com/go-ozzo/ozzo-routing"
 )
 
-/*type publicResource struct {
-	articleService articleService
-}*/
-
 func ServPublicResource(rg *routing.RouteGroup,
 	newsService newsService,
 	articleService articleService,
@@ -17,7 +13,9 @@ func ServPublicResource(rg *routing.RouteGroup,
 		cartOrderService cartOrderService,
 			cartOrderItemService cartOrderItemService, cartOrderCustomerService cartOrderCustomerService,
 				productCategoryService productCategoryService,
-	articleCategoryService articleCategoryService) {
+	articleCategoryService articleCategoryService,
+		additionalOptionService additionalOptionService,
+	deliveryOptionService deliveryOptionService) {
 		newsResource := &newsResource{newsService}
 		articleResource := &articleResource{articleService}
 		productResource := &productResource{productService, productPropertiesService}
@@ -25,6 +23,8 @@ func ServPublicResource(rg *routing.RouteGroup,
 		cartOrderResource := &cartOrderResource{cartOrderService, cartOrderItemService, cartOrderCustomerService}
 		productCategoryResource := &productCategoryResource{productCategoryService}
 		articleCategoryResource := &articleCategoryResource{articleCategoryService}
+		additionalOptionsResource := &additionalOptionResource{additionalOptionService}
+	deliveryOptionsResource := &deliveryOptionResource{deliveryOptionService}
 
 		rg.Get("/news/<id>", newsResource.get)
 		rg.Get("/news", newsResource.query)
@@ -37,6 +37,8 @@ func ServPublicResource(rg *routing.RouteGroup,
 		rg.Get("/products", productResource.query)
 
 		rg.Get("/payment-options", paymentOptionsResource.query)
+		rg.Get("/additional-options", additionalOptionsResource.query)
+		rg.Get("/delivery-options", deliveryOptionsResource.query)
 
 		rg.Post("/orders", cartOrderResource.create)
 

@@ -12,6 +12,6 @@ export class DeliveryOptionsService {
   constructor(private http: HttpClient) { }
 
   public all(): Observable<DeliveryOption[]> {
-    return this.http.get<DeliveryOption[]>('assets/delivery-options.json');
+    return this.http.get<DeliveryOption[]>('v1/public/delivery-options');
   }
 }
