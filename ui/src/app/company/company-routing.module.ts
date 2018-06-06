@@ -11,7 +11,7 @@ const routes: Routes = [
     path: 'company',
     component: CompanyComponent,
     data: {
-      title: 'О нас',
+      title: 'Компания',
       metatags: {
         description: 'Все о нашей компании',
         keywords: 'о компании, кассар, все о компании, ооо кассар'
