@@ -17,6 +17,7 @@ import {BreadcrumbsComponent} from './breadcrubs/breadcrumbs.component';
 import {registerLocaleData} from '@angular/common';
 import localeRu from '@angular/common/locales/ru';
 import {NgxMetrikaModule} from "@kolkov/ngx-metrika";
+import {environment} from "../environments/environment";
 
 
 registerLocaleData(localeRu, 'ru');
@@ -33,7 +34,7 @@ registerLocaleData(localeRu, 'ru');
   imports: [
     BrowserModule,
     HttpClientModule,
-    NgxMetrikaModule.forRoot({id: 48759095, trackPageViews: true}),
+    NgxMetrikaModule.forRoot({id: environment.yaCounterId, trackPageViews: environment.enableTracing}),
     CompanyModule,
     CatalogModule,
     ServicesModule,

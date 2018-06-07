@@ -5,9 +5,9 @@
 
 export const environment = {
   production: false,
-  enableTracing: true,
+  enableTracing: false,
   googleAnalyticsKey: '',
-  yaCounterId: 48759095
+  yaCounterId: 0
 };
 
 /*

@@ -19,6 +19,7 @@ import {StoreFrontComponent} from "./components/store-front/store-front.componen
 import {ShoppingCartComponent} from "./components/shopping-cart/shopping-cart.component";
 import {FormsModule} from "@angular/forms";
 import {StoreCatalogComponent} from './components/store-catalog/store-catalog.component';
+import { StoreDetailsComponent } from './components/store-details/store-details.component';
 
 @NgModule({
   imports: [
@@ -26,8 +27,8 @@ import {StoreCatalogComponent} from './components/store-catalog/store-catalog.co
     FormsModule,
     CartRoutingModule
   ],
-  declarations: [StoreFrontComponent, ShoppingCartComponent, CheckoutComponent, OrderCompleteComponent, CartComponent, CartServicesComponent, CartDeliveryComponent, CartPaymentComponent, CartConfirmComponent, StoreCatalogComponent],
-  exports: [StoreFrontComponent, ShoppingCartComponent, StoreCatalogComponent],
+  declarations: [StoreFrontComponent, ShoppingCartComponent, CheckoutComponent, OrderCompleteComponent, CartComponent, CartServicesComponent, CartDeliveryComponent, CartPaymentComponent, CartConfirmComponent, StoreCatalogComponent, StoreDetailsComponent],
+  exports: [StoreFrontComponent, ShoppingCartComponent, StoreCatalogComponent, StoreDetailsComponent],
   providers: [PopulatedCartGuard, LocalStorageService, ShoppingCartService, ProductsService, DeliveryOptionsService]
 })
 export class CartModule {
