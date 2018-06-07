@@ -359,6 +359,46 @@
           }
         }
       }
+    },
+    "@kolkov/ngx-dadata": {
+      "root": "projects/kolkov/ngx-dadata",
+      "sourceRoot": "projects/kolkov/ngx-dadata/src",
+      "projectType": "library",
+      "prefix": "ngx",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/kolkov/ngx-dadata/tsconfig.lib.json",
+            "project": "projects/kolkov/ngx-dadata/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "project": "projects/kolkov/ngx-dadata/ng-package.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/kolkov/ngx-dadata/src/test.ts",
+            "tsConfig": "projects/kolkov/ngx-dadata/tsconfig.spec.json",
+            "karmaConfig": "projects/kolkov/ngx-dadata/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/kolkov/ngx-dadata/tsconfig.lib.json",
+              "projects/kolkov/ngx-dadata/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "kassar",

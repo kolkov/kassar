@@ -22,6 +22,12 @@
       ],
       "@kolkov/angular-editor": [
         "dist/kolkov/angular-editor"
+      ],
+      "@kolkov/ngx-dadata": [
+        "dist/kolkov/ngx-dadata"
+      ],
+      "@kolkov/ngx-dadata/*": [
+        "dist/kolkov/ngx-dadata/*"
       ]
     }
   }
