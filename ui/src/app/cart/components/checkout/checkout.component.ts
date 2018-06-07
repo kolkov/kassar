@@ -32,7 +32,8 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   constructor(private productsService: ProductsService,
               //private deliveryOptionService: DeliveryOptionsService,
               private shoppingCartService: ShoppingCartService,
-              private router: Router) { }
+              private router: Router) {
+  }
 
   ngOnInit() {
     //this.deliveryOptions = this.deliveryOptionService.all();
@@ -55,13 +56,13 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-      if (this.cartSubscription) {
+    if (this.cartSubscription) {
       this.cartSubscription.unsubscribe();
     }
   }
 
-  confirmedCart(){
-    this.router.navigate(['/order/services'], { replaceUrl: false });
+  confirmedCart() {
+    this.router.navigate(['/order/services'], {replaceUrl: false});
   }
 
   emptyCart(): void {

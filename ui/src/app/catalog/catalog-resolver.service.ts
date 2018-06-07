@@ -9,7 +9,8 @@ import {Observable} from "rxjs/internal/Observable";
 })
 export class CatalogResolver implements Resolve<Product> {
 
-  constructor(private productService: ProductsService) { }
+  constructor(private productService: ProductsService) {
+  }
 
   resolve(route: ActivatedRouteSnapshot): Observable<Product> {
     return this.productService.one(route.params['id']);

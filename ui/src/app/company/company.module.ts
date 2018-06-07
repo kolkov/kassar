@@ -19,4 +19,5 @@ import {ContactsComponent} from "./contacts/contacts.component";
     ContactsComponent,
   ]
 })
-export class CompanyModule { }
+export class CompanyModule {
+}

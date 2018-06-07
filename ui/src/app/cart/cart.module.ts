@@ -30,4 +30,5 @@ import {StoreCatalogComponent} from './components/store-catalog/store-catalog.co
   exports: [StoreFrontComponent, ShoppingCartComponent, StoreCatalogComponent],
   providers: [PopulatedCartGuard, LocalStorageService, ShoppingCartService, ProductsService, DeliveryOptionsService]
 })
-export class CartModule { }
+export class CartModule {
+}

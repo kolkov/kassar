@@ -14,13 +14,14 @@ export class SEOService {
     private titleService: Title,
     private metaService: Meta,
     private router: Router
-  ) { }
+  ) {
+  }
 
-  public addSeoData() : void {
+  public addSeoData(): void {
     this.router.events.subscribe(() => {
-    if(!((event: any) => event instanceof NavigationEnd)){
-      return;
-    }
+      if (!((event: any) => event instanceof NavigationEnd)) {
+        return;
+      }
       let root = this.router.routerState.snapshot.root;
       while (root) {
         if (root.children && root.children.length) {
@@ -29,7 +30,7 @@ export class SEOService {
           this.titleService.setTitle(root.data["title"] + this.titleEnd);
           let tags = root.data["metatags"];
           for (let tag in tags) {
-            this.metaService.updateTag({ name: tag, content: tags[tag] });
+            this.metaService.updateTag({name: tag, content: tags[tag]});
           }
           return;
         } else {
@@ -43,7 +44,7 @@ export class SEOService {
     this.titleService.setTitle(title + this.titleEnd);
 
     for (let tag in tags) {
-      this.metaService.updateTag({ name: tag, content: tags[tag] });
+      this.metaService.updateTag({name: tag, content: tags[tag]});
     }
     return;
   }

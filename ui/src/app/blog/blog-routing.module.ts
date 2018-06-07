@@ -10,9 +10,7 @@ const routes: Routes = [
   {
     path: 'articles',
     component: BlogComponent,
-    data: {
-
-    },
+    data: {},
     children: [
       {
         path: 'kak-perejti-na-onlajn-kassy-poshagovyj-algoritm',
@@ -50,4 +48,5 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class BlogRoutingModule { }
+export class BlogRoutingModule {
+}

@@ -9,7 +9,9 @@ import { } from '@types/googlemaps';
 export class ContactsComponent implements OnInit {
   @ViewChild('gmap') gmapElement: any;
   map: google.maps.Map;
-  constructor() { }
+
+  constructor() {
+  }
 
   ngOnInit() {
     //const uluru: google.maps.LatLngLiteral = {lat: 55.760346, lng: 37.622449};

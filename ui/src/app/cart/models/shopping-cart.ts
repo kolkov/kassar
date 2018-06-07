@@ -12,7 +12,7 @@ export class ShoppingCart {
   deliveryTotal: number = 0;
   itemsTotal: number = 0;
 
-  updateFrom(src: ShoppingCart){
+  updateFrom(src: ShoppingCart) {
     this.items = src.items;
     this.deliveryOptionId = src.deliveryOptionId;
     this.additionalOptionId = src.additionalOptionId;

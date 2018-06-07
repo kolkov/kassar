@@ -28,7 +28,8 @@ export class CartConfirmComponent implements OnInit {
 
   constructor(private router: Router,
               private shoppingCartService: ShoppingCartService,
-              private productsService: ProductsService,) { }
+              private productsService: ProductsService,) {
+  }
 
   ngOnInit() {
     this.cart = this.shoppingCartService.get();
@@ -49,7 +50,7 @@ export class CartConfirmComponent implements OnInit {
     });
   }
 
-  confirmedCart( ){
-    this.router.navigate(['/order/complete'], { replaceUrl: false });
+  confirmedCart() {
+    this.router.navigate(['/order/complete'], {replaceUrl: false});
   }
 }

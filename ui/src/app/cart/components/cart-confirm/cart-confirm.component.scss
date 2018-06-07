@@ -22,10 +22,10 @@
 }
 
 .gross-total {
-    //float: right;
-    //margin-right: 10px;
+  //float: right;
+  //margin-right: 10px;
   margin-left: 10px;
-    color: #8d0000;
+  color: #8d0000;
 }
 
 .product-costs-div, .product-total-div {
@@ -120,7 +120,7 @@ input[type=radio] {
   margin: 15px 0;
 }
 
-button[disabled]{
+button[disabled] {
   opacity: .25;
   cursor: not-allowed;
 }
@@ -132,7 +132,8 @@ button[disabled]{
   color: #fff;
   cursor: pointer;
 }
-.choice-confirmation:hover{
+
+.choice-confirmation:hover {
   background-color: #22bb5b;
 }
 
@@ -147,7 +148,8 @@ button[disabled]{
   margin-right: 0;
   margin-left: 0;*/
 }
-.empty-cart:hover{
+
+.empty-cart:hover {
   background-color: #5e5e5e;
   color: #fefefe;
 }
@@ -168,10 +170,12 @@ button[disabled]{
   cursor: pointer;
   padding: .85em 1em;
 }
+
 .continue-shopping:hover {
   background-color: #cc8b00;
 }
-.small{
+
+.small {
   width: 83.33333%;
   //margin-right: auto;
   //margin-left: auto;

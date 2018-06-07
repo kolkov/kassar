@@ -1,4 +1,4 @@
-<ng-container *ngIf="pageDescription$ | async as pageDescription">
+<ng-container *ngIf="category$ | async as pageDescription">
   <h1>{{pageDescription.heading}}</h1>
   <p>
     {{pageDescription.description}}

@@ -35,15 +35,15 @@ export class OrderCompleteComponent implements OnInit {
   ngOnInit() {
     this.shoppingCartService.get().pipe(
       tap(x => this.cart = x
-    /*{
-           {
-            customer_id: 1,
-            registered: false,
-            payment_type: x.paymentOptionId,
-            delivery_option_id: x.deliveryOptionId,
-            items: x.items,
-          };
-        }*/
+        /*{
+               {
+                customer_id: 1,
+                registered: false,
+                payment_type: x.paymentOptionId,
+                delivery_option_id: x.deliveryOptionId,
+                items: x.items,
+              };
+            }*/
       )).subscribe();
     this.id$ = this.cartOrderService.save(this.cart).pipe(
       map(x => x.id

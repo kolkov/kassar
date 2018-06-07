@@ -7,7 +7,8 @@ import {AdditionalOption} from "../models/additional-option";
   providedIn: 'root'
 })
 export class AdditionalOptionsService {
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   public all(): Observable<AdditionalOption[]> {
     return this.http.get<AdditionalOption[]>('v1/public/additional-options');

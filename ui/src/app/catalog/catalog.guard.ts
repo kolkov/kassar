@@ -6,7 +6,8 @@ import {CartHomeService} from "./cart-home.service";
 @Injectable()
 export class CatalogGuard implements CanActivate {
 
-  constructor(private cartHomeService: CartHomeService){}
+  constructor(private cartHomeService: CartHomeService) {
+  }
 
   canActivate(
     next: ActivatedRouteSnapshot,
@@ -15,12 +16,12 @@ export class CatalogGuard implements CanActivate {
     return this.checkPath(path);
   }
 
-  checkPath(path: string){
+  checkPath(path: string) {
     let result = this.cartHomeService.checkPath(path);
 
     if (result) {
       return true;
-    }else{
+    } else {
       return this.cartHomeService.getByPath(path)
     }
   }

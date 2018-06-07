@@ -27,7 +27,7 @@ const routes: Routes = [
 
       },
       {
-        path:':id',
+        path: ':id',
         component: CartHomeComponent,
         canActivate: [CatalogGuard],
       },

@@ -8,9 +8,9 @@ describe('StoreFrontComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ StoreFrontComponent ]
+      declarations: [StoreFrontComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

@@ -7,9 +7,7 @@ const routes: Routes = [
   {
     path: 'service-center',
     component: ServiceCenterComponent,
-    data: {
-
-    },
+    data: {},
     children: [
       {
         path: '',
@@ -30,4 +28,5 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class ServiceCenterRoutingModule { }
+export class ServiceCenterRoutingModule {
+}

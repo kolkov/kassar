@@ -6,7 +6,8 @@
       *ngIf="(cart | async).paymentOptionId !== undefined">Способ оплаты выбран.</h5>
   <button class="choice-confirmation"
           [attr.disabled]="(cart | async).paymentOptionId !== undefined ? null : true"
-          (click)="confirmedCart()">Подтвердить</button>
+          (click)="confirmedCart()">Подтвердить
+  </button>
 </div>
 <hr/>
 <div class="option"
@@ -32,4 +33,5 @@
 <br>
 <button class="choice-confirmation"
         [attr.disabled]="(cart | async).paymentOptionId !== undefined ? null : true"
-        (click)="confirmedCart()">Подтвердить</button>
+        (click)="confirmedCart()">Подтвердить
+</button>

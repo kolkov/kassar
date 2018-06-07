@@ -22,4 +22,5 @@ import {SharedModule} from "../shared/shared.module";
     CartDetailsComponent
   ]
 })
-export class CatalogModule { }
+export class CatalogModule {
+}

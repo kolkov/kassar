@@ -24,7 +24,7 @@ export class ArticleList {
   items: ArticleListItem[];
   page: number;
   page_count: number;
-  per_page:number;
+  per_page: number;
   total_count: number;
 }
 

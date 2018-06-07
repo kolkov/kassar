@@ -2,5 +2,6 @@
 <div *ngFor="let article of articles$ | async">
   <a [routerLink]="article.path"><h2>{{ article.title }}</h2></a>
   <div class="date">Дата публикации: {{article.date | date:'shortDate'}}</div>
-  <a [routerLink]="article.path"><p class="introduction">{{article.introduction}}<span class="read-more">...</span></p></a>
+  <a [routerLink]="article.path"><p class="introduction">{{article.introduction}}<span class="read-more">...</span></p>
+  </a>
 </div>

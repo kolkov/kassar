@@ -13,9 +13,10 @@ import {Category, CategoryList} from "../models/category";
 })
 export class ArticleService {
 
-  categories: Category[] =[];
+  categories: Category[] = [];
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router) {
+  }
 
   get(id: string): Observable<Article> {
     const headers = new HttpHeaders();
@@ -26,19 +27,19 @@ export class ArticleService {
   getList(categoryPath: string): Observable<ArticleList> {
     if (this.categories.length == 0) return this.getCategories()
       .pipe(
-        mergeMap(()=> this.doList(categoryPath))
+        mergeMap(() => this.doList(categoryPath))
       );
     else return this.doList(categoryPath)
   }
 
-  doList(categoryPath: string): Observable<ArticleList>{
+  doList(categoryPath: string): Observable<ArticleList> {
     const category = this.categories.find(x => x.path == categoryPath);
     const options = category.id ?
-      { params: new HttpParams().set('category_id', category.id.toString()) } : {};
+      {params: new HttpParams().set('category_id', category.id.toString())} : {};
     return this.http.get<ArticleList>('v1/public/articles', options);
   }
 
-  getCategories(): Observable<Category[]>{
+  getCategories(): Observable<Category[]> {
     return this.http.get<CategoryList>("v1/public/article-categories")
       .pipe(
         tap(x => this.categories = x.items),
@@ -46,7 +47,7 @@ export class ArticleService {
       )
   }
 
-  getByPath(path: string){
+  getByPath(path: string) {
     return this.http.get<Category>("v1/public/article-category/" + path)
       .pipe(
         map(x => x.path === path),

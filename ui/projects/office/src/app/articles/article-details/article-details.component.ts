@@ -4,10 +4,10 @@ import {ArticlesService} from "../articles.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Article} from "../../../../../../src/app/blog/article";
 import {tap} from "rxjs/operators";
-import {Category} from "../../../../../../src/app/catalog/cart-home.service";
 import {translit} from "../translit";
 import {AngularEditorComponent} from "../../../../../kolkov/angular-editor/src/lib/angular-editor.component";
 import {AngularEditorConfig} from "../../../../../kolkov/angular-editor/src/lib/config";
+import {Category} from "../../../../../../src/app/models/category";
 
 @Component({
   selector: 'app-article-details',
@@ -127,5 +127,9 @@ export class ArticleDetailsComponent implements OnInit {
       const translitValue = translit(value);
       this.form.patchValue({"path": translitValue})
     }
+  }
+
+  onChange(e: Event){
+    console.log(e);
   }
 }

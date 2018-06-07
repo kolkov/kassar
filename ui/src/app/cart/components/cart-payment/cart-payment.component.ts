@@ -17,7 +17,8 @@ export class CartPaymentComponent implements OnInit {
 
   constructor(private shoppingCartService: ShoppingCartService,
               private paymentOptionService: PaymentOptionsService,
-              private router: Router) { }
+              private router: Router) {
+  }
 
   ngOnInit() {
     this.paymentOptions = this.paymentOptionService.all();
@@ -28,7 +29,7 @@ export class CartPaymentComponent implements OnInit {
     this.shoppingCartService.setPaymentOption(option);
   }
 
-  confirmedCart(){
-    this.router.navigate(['/order/confirm'], { replaceUrl: false });
+  confirmedCart() {
+    this.router.navigate(['/order/confirm'], {replaceUrl: false});
   }
 }

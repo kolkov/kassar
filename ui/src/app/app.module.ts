@@ -50,4 +50,5 @@ registerLocaleData(localeRu, 'ru');
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

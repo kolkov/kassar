@@ -8,7 +8,8 @@ import {Observer} from "rxjs/internal/types";
 export class PopulatedCartGuard implements CanActivate {
 
   public constructor(private router: Router,
-                     private shoppingCartService: ShoppingCartService) { }
+                     private shoppingCartService: ShoppingCartService) {
+  }
 
   public canActivate(): Observable<boolean> {
     return new Observable<boolean>((observer: Observer<boolean>) => {

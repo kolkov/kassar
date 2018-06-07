@@ -9,7 +9,8 @@ import {HttpClient} from "@angular/common/http";
 export class DeliveryOptionsService {
   //private deliveryOptions: Observable<DeliveryOption[]>;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   public all(): Observable<DeliveryOption[]> {
     return this.http.get<DeliveryOption[]>('v1/public/delivery-options');

@@ -4,7 +4,7 @@ import {Observable} from "rxjs/internal/Observable";
 import {CartHomeService} from "../cart-home.service";
 import {SEOService} from "../../seo.service";
 import {tap} from "rxjs/operators";
-import {PageDescription} from "../../models/category";
+import {Category} from "../../models/category";
 
 @Component({
   selector: 'app-cart-home',
@@ -13,23 +13,26 @@ import {PageDescription} from "../../models/category";
 })
 export class CartHomeComponent implements OnInit {
   id: string;
-  pageDescription$: Observable<PageDescription>;
+  category$: Observable<Category>;
   test;
 
   constructor(private activateRoute: ActivatedRoute,
               private cartHomeService: CartHomeService,
               private seoService: SEOService,
-              private router: Router) { }
+              private router: Router) {
+  }
 
   ngOnInit() {
     this.id = this.activateRoute.snapshot.params['id'];
-    this.pageDescription$ = this.cartHomeService.getPageDescription(this.id)
+    this.category$ = this.cartHomeService.getPageDescription(this.id)
       .pipe(
-        tap(page => {
-          if (!page) this.router.navigate(['/404']);
-          this.seoService.setSeoData(page.heading, page.tags);
+        tap((category: Category) => {
+          if (!category) this.router.navigate(['/404']);
+          this.seoService.setSeoData(category.name, {
+            description: category.metaDescription,
+            keywords: category.metaKeywords
+          });
         }),
-      )
+      );
   }
-
 }

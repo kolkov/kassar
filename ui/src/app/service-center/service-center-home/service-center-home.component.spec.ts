@@ -8,9 +8,9 @@ describe('ServiceCenterHomeComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ServiceCenterHomeComponent ]
+      declarations: [ServiceCenterHomeComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

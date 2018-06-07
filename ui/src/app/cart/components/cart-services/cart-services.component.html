@@ -7,26 +7,28 @@
         *ngIf="(cart | async).additionalOptionId !== undefined">Дополнительные опции выбраны.</h5>
     <button class="choice-confirmation"
             [attr.disabled]="(cart | async).additionalOptionId !== undefined ? null : true"
-            (click)="confirmedCart()">Продолжить</button>
+            (click)="confirmedCart()">Продолжить
+    </button>
   </div>
   <hr>
   <div class="table">
     <div class="option" *ngFor="let option of additionalOptions | async">
-       <div class="radio-div">
-          <input type="radio"
-                 name="delivery_option"
-                 id="{{option.name}}"
-                 [checked]="option.id === (cart | async).additionalOptionId"
-                 (click)="setAdditionalOption(option)">
-        </div>
-        <div class="label-div">
-          <label class="js-option-name" for="{{option.name}}" (click)="setAdditionalOption(option)">{{option.name}}</label>
-        </div>
-        <div class="price-div">
-          {{option.price | currency:'RUB':'symbol'}}
-        </div>
+      <div class="radio-div">
+        <input type="radio"
+               name="delivery_option"
+               id="{{option.name}}"
+               [checked]="option.id === (cart | async).additionalOptionId"
+               (click)="setAdditionalOption(option)">
+      </div>
+      <div class="label-div">
+        <label class="js-option-name" for="{{option.name}}"
+               (click)="setAdditionalOption(option)">{{option.name}}</label>
+      </div>
+      <div class="price-div">
+        {{option.price | currency:'RUB':'symbol'}}
+      </div>
       <div class="description-div">
-       {{option.description}}
+        {{option.description}}
       </div>
     </div>
   </div>
@@ -34,6 +36,7 @@
   <br>
   <button class="choice-confirmation"
           [attr.disabled]="(cart | async).additionalOptionId !== undefined ? null : true"
-          (click)="confirmedCart()">Продолжить</button>
+          (click)="confirmedCart()">Продолжить
+  </button>
   <br>
 </div>

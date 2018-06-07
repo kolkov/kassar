@@ -10,7 +10,8 @@ import {NewsList} from "../../home/news";
 export class NewsComponent implements OnInit {
   news: NewsList = new NewsList();
 
-  constructor(private newsService: NewsService) { }
+  constructor(private newsService: NewsService) {
+  }
 
   ngOnInit() {
     this.newsService.getNews()

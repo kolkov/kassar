@@ -70,7 +70,7 @@ export class ShoppingCartService {
     this.dispatch(newCart);
   }
 
-  public setConfirmation(value: boolean): void{
+  public setConfirmation(value: boolean): void {
     const cart = this.retrieve();
     cart.confirmed = value;
     this.save(cart);
@@ -101,7 +101,7 @@ export class ShoppingCartService {
     this.dispatch(cart);
   }
 
-  public setCustomerRequisites(model: Customer): void{
+  public setCustomerRequisites(model: Customer): void {
     const cart = this.retrieve();
     cart.customer = model;
     this.calculateCart(cart);

@@ -25,7 +25,8 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
 
   constructor(private productsService: ProductsService,
               private shoppingCartService: ShoppingCartService,
-              private router: Router) { }
+              private router: Router) {
+  }
 
   ngOnInit() {
     this.products = this.productsService.all("");
@@ -35,7 +36,7 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     if (this.cartSubscription) {
       this.cartSubscription.unsubscribe();
     }

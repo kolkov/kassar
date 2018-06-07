@@ -6,7 +6,8 @@ import {Router} from "@angular/router";
 })
 export class RouteTransformerDirective {
 
-  constructor(private el: ElementRef, private router: Router) { }
+  constructor(private el: ElementRef, private router: Router) {
+  }
 
   @HostListener('click', ['$event'])
   public onClick(event) {

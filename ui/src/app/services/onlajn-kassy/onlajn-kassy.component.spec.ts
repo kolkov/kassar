@@ -8,9 +8,9 @@ describe('OnlajnKassyComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ OnlajnKassyComponent ]
+      declarations: [OnlajnKassyComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

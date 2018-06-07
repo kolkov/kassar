@@ -13,4 +13,5 @@ import {CartModule} from "../cart/cart.module";
   exports: [CommonModule, FormsModule, CartModule/*StoreFrontComponent, ShoppingCartComponent*/],
   declarations: [/*StoreFrontComponent, ShoppingCartComponent*/]
 })
-export class SharedModule { }
+export class SharedModule {
+}

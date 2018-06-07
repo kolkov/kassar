@@ -1,4 +1,5 @@
 /** Google analytics */
+
 /* tslint:disable */
 
 export function initAnalytics() {
@@ -20,7 +21,6 @@ export function initAnalytics() {
   ga('set', 'forceSSL', true);
   ga('send', 'pageview');
 }
-
 
 
 /*export function googleAnalyticsHook() {

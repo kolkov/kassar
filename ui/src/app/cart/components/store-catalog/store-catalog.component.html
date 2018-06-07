@@ -1,5 +1,5 @@
 <div class="catalog">
-  <div  *ngFor="let category of (categories$ | async)" [routerLink]="category.path" class="catalog-module">
+  <div *ngFor="let category of (categories$ | async)" [routerLink]="category.path" class="catalog-module">
     <div class="catalog-header">{{category.name}}</div>
     <div class="catalog-body">
       <div class="catalog-img">

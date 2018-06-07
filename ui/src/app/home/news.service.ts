@@ -8,9 +8,10 @@ import {Observable} from "rxjs/internal/Observable";
 })
 export class NewsService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
-  getNews(): Observable<NewsList>{
+  getNews(): Observable<NewsList> {
     return this.http.get<NewsList>("v1/public/news")
   }
 }

@@ -1,4 +1,4 @@
-import { RouteTransformerDirective } from './route-transformer.directive';
+import {RouteTransformerDirective} from './route-transformer.directive';
 
 describe('RouteTransformerDirective', () => {
   it('should create an instance', () => {

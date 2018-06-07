@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
-import { Observable } from 'rxjs';
+import {Injectable} from '@angular/core';
+import {ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot} from '@angular/router';
+import {Observable} from 'rxjs';
 import {ArticleService} from "./article.service";
 
 @Injectable({
@@ -8,7 +8,8 @@ import {ArticleService} from "./article.service";
 })
 export class CategoryGuard implements CanActivate {
 
-  constructor(private articleService: ArticleService){}
+  constructor(private articleService: ArticleService) {
+  }
 
   canActivate(
     next: ActivatedRouteSnapshot,
@@ -17,12 +18,12 @@ export class CategoryGuard implements CanActivate {
     return this.checkPath(path);
   }
 
-  checkPath(path: string){
+  checkPath(path: string) {
     let result = this.articleService.checkPath(path);
 
     if (result) {
       return true;
-    }else{
+    } else {
       return this.articleService.getByPath(path)
     }
   }

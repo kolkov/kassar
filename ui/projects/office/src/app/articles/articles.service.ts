@@ -3,7 +3,7 @@ import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs/internal/Observable";
 import {Article, ArticleList} from "../../../../../src/app/blog/article";
 import {map} from "rxjs/operators";
-import {Category, CategoryList} from "../../../../../src/app/catalog/cart-home.service";
+import {Category, CategoryList} from "../../../../../src/app/models/category";
 
 @Injectable({
   providedIn: 'root'

@@ -20,7 +20,8 @@
             </ul>
             <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
               <meta itemprop="priceCurrency" content="RUB"/>
-              Цена: <span itemprop="price" [attr.content]="product.price">{{product.price | currency:'RUB':'symbol'}}</span>
+              Цена: <span itemprop="price"
+                          [attr.content]="product.price">{{product.price | currency:'RUB':'symbol'}}</span>
               <span itemprop="seller">, Кассар</span>
               <link itemprop="itemCondition" href="http://schema.org/NewCondition"/>
               <link itemprop="availability" href="https://schema.org/InStock">

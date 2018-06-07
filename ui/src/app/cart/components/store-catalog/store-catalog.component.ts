@@ -10,7 +10,8 @@ import {map} from "rxjs/operators";
 export class StoreCatalogComponent implements OnInit {
   categories$;
 
-  constructor(private catalogService: CartHomeService) { }
+  constructor(private catalogService: CartHomeService) {
+  }
 
   ngOnInit() {
     this.categories$ = this.catalogService.getList().pipe(

@@ -18,7 +18,8 @@ export class StoreFrontComponent implements OnInit {
   @Input() category: string;
 
   constructor(private productsService: ProductsService,
-              private shoppingCartService: ShoppingCartService) { }
+              private shoppingCartService: ShoppingCartService) {
+  }
 
   ngOnInit() {
     this.shoppingCartService.category = this.category;

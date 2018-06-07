@@ -18,7 +18,8 @@ export class CartServicesComponent implements OnInit {
 
   constructor(private shoppingCartService: ShoppingCartService,
               private additionalOptionService: AdditionalOptionsService,
-              private router: Router) { }
+              private router: Router) {
+  }
 
   ngOnInit() {
     this.additionalOptions = this.additionalOptionService.all();
@@ -29,7 +30,7 @@ export class CartServicesComponent implements OnInit {
     this.shoppingCartService.setAdditionalOption(option);
   }
 
-  confirmedCart(){
-    this.router.navigate(['/order/delivery'], { replaceUrl: false });
+  confirmedCart() {
+    this.router.navigate(['/order/delivery'], {replaceUrl: false});
   }
 }

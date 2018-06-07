@@ -7,7 +7,8 @@ import {Component, OnInit} from '@angular/core';
 })
 export class OnlajnKassyComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }

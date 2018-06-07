@@ -7,7 +7,8 @@ import {PaymentOption} from "../models/payment-option";
   providedIn: 'root'
 })
 export class PaymentOptionsService {
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   public all(): Observable<PaymentOption[]> {
     return this.http.get<PaymentOption[]>('v1/public/payment-options');

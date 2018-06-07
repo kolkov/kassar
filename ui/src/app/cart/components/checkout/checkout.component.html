@@ -66,7 +66,8 @@
   <br>
   <div *ngIf="itemCount !== 0">
     <label for="conf"> Согласен с перечнем заказа</label>
-    <input #conf id="conf" [checked]="(cart | async).confirmed" type="checkbox" (change)="setConfirmation(conf.checked)">
+    <input #conf id="conf" [checked]="(cart | async).confirmed" type="checkbox"
+           (change)="setConfirmation(conf.checked)">
   </div>
   <div *ngIf="itemCount === 0">Корзина пуста</div>
   <br>

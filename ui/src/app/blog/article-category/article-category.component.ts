@@ -12,7 +12,8 @@ export class ArticleCategoryComponent implements OnInit {
 
   categories$: Observable<Category[]>;
 
-  constructor(private articleService: ArticleService) { }
+  constructor(private articleService: ArticleService) {
+  }
 
   ngOnInit() {
     this.categories$ = this.articleService.getCategories();

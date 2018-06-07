@@ -8,9 +8,9 @@ describe('CartConfirmComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CartConfirmComponent ]
+      declarations: [CartConfirmComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

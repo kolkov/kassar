@@ -9,7 +9,8 @@ export class CatalogComponent implements OnInit {
 
   test;
 
-  constructor(/*private activateRoute: ActivatedRoute*/) { }
+  constructor(/*private activateRoute: ActivatedRoute*/) {
+  }
 
   ngOnInit() {
     /*this.activateRoute.data

@@ -25,7 +25,8 @@ export class ArticleComponent implements OnInit {
     private seoService: SEOService,
     private router: Router,
     private sanitizer: DomSanitizer
-    ) { }
+  ) {
+  }
 
   ngOnInit() {
     this.id = this.activateRoute.snapshot.params['id'];
@@ -48,20 +49,19 @@ export class ArticleComponent implements OnInit {
     )
 
 
-
-      /*.subscribe((data: Article) => {
-        this.article = data;
-        let tags = {
-          metaDescription: data.metaDescription,
-          metaKeywords: data.metaKeywords,
-        };
-        this.seoService.setSeoData(data.title, tags);
-      },
-        error => {
-        this.error = error;
-          this.article.title = "Ошибка";
-          this.article.body = "Статья с такоим URL не найдена на сервере"
-        }
-      )*/
+    /*.subscribe((data: Article) => {
+      this.article = data;
+      let tags = {
+        metaDescription: data.metaDescription,
+        metaKeywords: data.metaKeywords,
+      };
+      this.seoService.setSeoData(data.title, tags);
+    },
+      error => {
+      this.error = error;
+        this.article.title = "Ошибка";
+        this.article.body = "Статья с такоим URL не найдена на сервере"
+      }
+    )*/
   }
 }

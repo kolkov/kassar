@@ -19,4 +19,5 @@ import {OnlajnKassyComponent} from './onlajn-kassy/onlajn-kassy.component';
     OnlajnKassyComponent
   ]
 })
-export class ServicesModule { }
+export class ServicesModule {
+}

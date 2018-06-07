@@ -12,4 +12,5 @@ import {ServiceCenterHomeComponent} from './service-center-home/service-center-h
   ],
   declarations: [ServiceCenterComponent, ServiceCenterHomeComponent]
 })
-export class ServiceCenterModule { }
+export class ServiceCenterModule {
+}

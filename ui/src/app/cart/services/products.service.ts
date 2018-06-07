@@ -14,15 +14,16 @@ export class ProductsService {
     "skanery-shtrikh-kodov": 2,
     "other": 3
   };
-  path:string;
+  path: string;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   public all(categoryName: string): Observable<ProductList> {
     this.path = categoryName;
     const id = this.categorys[categoryName];
     const options = id ?
-      { params: new HttpParams().set('id', id) } : {};
+      {params: new HttpParams().set('id', id)} : {};
     return this.http.get<ProductList>('v1/public/products', options).pipe(
       catchError(this.handleError)
     );
