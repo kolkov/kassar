@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {CartHomeService} from "../../../catalog/cart-home.service";
 import {map} from "rxjs/operators";
 
@@ -9,6 +9,8 @@ import {map} from "rxjs/operators";
 })
 export class StoreCatalogComponent implements OnInit {
   categories$;
+
+  @Input() baseUrl = '';
 
   constructor(private catalogService: CartHomeService) {
   }

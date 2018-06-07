@@ -6,7 +6,7 @@
     <h5 class="choice-delivery success"
         *ngIf="(cart | async).deliveryOptionId !== undefined">Способ доставки выбран...</h5>
     <button class="choice-confirmation"
-            [attr.disabled]="(cart | async).deliveryOptionId !== undefined && heroForm.form.valid ? null : true"
+            [attr.disabled]="(cart | async).deliveryOptionId !== undefined && customerForm.form.valid ? null : true"
             (click)="confirmedCart()">Оплатить
     </button>
   </div>
@@ -31,7 +31,7 @@
     </div>
   </div>
   <h3>Кто заберет товары</h3>
-  <form class="form" #heroForm="ngForm">
+  <form class="form" #customerForm="ngForm">
     <div class="form-group">
       <label for="lastname">Фамилия</label>
       <input class="input" id="lastname" type="text" placeholder="Фамилия" [(ngModel)]="model.lastName" name="lastname"
@@ -68,13 +68,42 @@
         Email обязателен
       </div>
     </div>
+    <div *ngIf="(cart | async).deliveryOptionId == 2">
+      <h3>Адрес доставки</h3>
+      <div class="form-group">
+        <label for="city">Город</label>
+        <input class="input" id="city" type="text" placeholder="Город" [(ngModel)]="model.address.city" name="city"
+               #city="ngModel" minlength="3" pattern="[а-яА-Я ]*" required>
+        <div [hidden]="city.valid || city.pristine"
+             class="alert alert-danger">
+          Город обязателен
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="street">Улица</label>
+        <input class="input" id="street" type="text" placeholder="Улица" [(ngModel)]="model.address.street" name="street"
+               #street="ngModel" minlength="3" pattern="[а-яА-Я ]*" required>
+        <div [hidden]="street.valid || street.pristine"
+             class="alert alert-danger">
+          Улица обязательна
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="building">Дом.корпус</label>
+        <input class="input" id="building" type="text" placeholder="Дом.кормус.строение" [(ngModel)]="model.address.building" name="building"
+               #building="ngModel" minlength="3" pattern="[а-яА-Я0-9\.\, ]*" required>
+        <div [hidden]="building.valid || building.pristine"
+             class="alert alert-danger">
+          Здание обязательно
+        </div>
+      </div>
+    </div>
   </form>
-
   <br>
   <hr/>
   <br>
   <button class="choice-confirmation"
-          [attr.disabled]="(cart | async).deliveryOptionId !== undefined && heroForm.form.valid ? null : true"
+          [attr.disabled]="(cart | async).deliveryOptionId !== undefined && customerForm.form.valid ? null : true"
           (click)="confirmedCart()">Оплатить
   </button>
 </div>

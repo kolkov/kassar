@@ -9,7 +9,7 @@ import {catchError, tap} from "rxjs/operators";
   providedIn: 'root'
 })
 export class ProductsService {
-  
+
   path: string;
 
   constructor(private http: HttpClient) {
@@ -32,9 +32,7 @@ export class ProductsService {
 
 
   public one(id: string): Observable<Product> {
-    console.log(id);
     return this.http.get<Product>('v1/public/products/' + id).pipe(
-      tap(x => console.log(id)),
       catchError(this.handleError)
     );
   }

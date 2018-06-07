@@ -9,7 +9,7 @@ import {ProductsService} from "./products.service";
 import {CartItem} from "../models/cart-item";
 import {LocalStorageService} from "./storage.service";
 import {PaymentOption} from "../models/payment-option";
-import {Customer} from "../models/customer";
+import {ICustomer} from "../models/customer";
 
 const CART_KEY = "cart";
 
@@ -19,6 +19,7 @@ const CART_KEY = "cart";
 export class ShoppingCartService {
   private storage: Storage;
   private subscriptionObservable: Observable<ShoppingCart>;
+  //private subscribers: Observer<ShoppingCart>[] = Observer<ShoppingCart>[]();
   private subscribers: Array<Observer<ShoppingCart>> = new Array<Observer<ShoppingCart>>();
   private products: Product[];
   private deliveryOptions: DeliveryOption[];
@@ -101,9 +102,10 @@ export class ShoppingCartService {
     this.dispatch(cart);
   }
 
-  public setCustomerRequisites(model: Customer): void {
+  public setCustomerRequisites(model: ICustomer): void {
     const cart = this.retrieve();
     cart.customer = model;
+    //cart.address = address;
     this.calculateCart(cart);
     this.save(cart);
     this.dispatch(cart);

@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ProductsService} from "../../services/products.service";
 import {Observer} from "rxjs/internal/types";
 import {Product} from "../../models/product";
@@ -8,6 +8,7 @@ import {ShoppingCartService} from "../../services/shopping-cart.service";
 import {Observable} from "rxjs/internal/Observable";
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-store-details',
   templateUrl: './store-details.component.html',
   styleUrls: ['./store-details.component.scss']

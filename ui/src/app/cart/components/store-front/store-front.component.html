@@ -8,41 +8,39 @@
 
         <div id="kassatka-7" class="media" itemscope itemtype="http://schema.org/Product">
           <div class="img">
-            <img itemprop="image" src="./assets/img/{{product.img}}" alt="{{product.name}}">
+            <a [routerLink]="product.url"><img itemprop="image" src="./assets/img/{{product.img}}" alt="{{product.name}}"></a>
           </div>
-          <h2 class="title"><span itemprop="name">{{product.name}}</span></h2>
+          <a [routerLink]="product.url"><h2 class="title"><span itemprop="name">{{product.name}}</span></h2></a>
+          <br>
           <div class="content">
-            <p>Краткие характеристики:</p>
-            <ul>
-              <li *ngFor="let property of product.properties ">{{property.name}}<p *ngIf="property.value !=''"> -
-                {{property.value}}</p></li>
-              <li><a routerLink="{{product.url}}">Подробнее...</a></li>
-            </ul>
             <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
               <meta itemprop="priceCurrency" content="RUB"/>
-              Цена: <span itemprop="price"
-                          [attr.content]="product.price">{{product.price | currency:'RUB':'symbol'}}</span>
-              <span itemprop="seller">, Кассар</span>
+              <p>Цена: <span itemprop="price"
+                             [attr.content]="product.price">{{product.price | currency:'RUB':'symbol'}}</span></p>
               <link itemprop="itemCondition" href="http://schema.org/NewCondition"/>
               <link itemprop="availability" href="https://schema.org/InStock">
+
             </div>
+            <a [routerLink]="product.url"><p>Подробнее...</p></a>
           </div>
           <div itemprop="description" class="media-footer">{{product.description}}</div>
-          <button type="button"
-                  class="add-to-cart"
-                  *ngIf="!(productInCart(product) | async)"
-                  (click)="addProductToCart(product)">В корзину
-          </button>
-          <button type="button"
-                  class="in-cart"
-                  *ngIf="productInCart(product) | async"
-                  routerLink="/order">В корзине
-          </button>
-          <button type="button"
-                  class="remove-from-cart"
-                  *ngIf="productInCart(product) | async"
-                  (click)="removeProductFromCart(product)">Удалить из корзины
-          </button>
+          <div>
+            <button type="button"
+                    class="add-to-cart"
+                    *ngIf="!(productInCart(product) | async)"
+                    (click)="addProductToCart(product)">В корзину
+            </button>
+            <button type="button"
+                    class="in-cart"
+                    *ngIf="productInCart(product) | async"
+                    routerLink="/order">В корзине
+            </button>
+            <button type="button"
+                    class="remove-from-cart"
+                    *ngIf="productInCart(product) | async"
+                    (click)="removeProductFromCart(product)">Удалить из корзины
+            </button>
+          </div>
         </div>
       </div>
     </div>

@@ -1,12 +1,23 @@
 import {CartItem} from "./cart-item";
-import {Customer} from "./customer";
+import {ICustomer} from "./customer";
 
 export class ShoppingCart {
-  items: CartItem[] = new Array<CartItem>();
+  items: CartItem[] = [];//new Array<CartItem>();
   deliveryOptionId: number;
   additionalOptionId: number;
   paymentOptionId: number;
-  customer: Customer = <Customer>{};//new Customer("","", "", "");
+  customer: ICustomer = <ICustomer>{
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    address: {
+      city: '',
+      street: '',
+      building: ''
+  }
+  };
+  //address: CustomerAddress = <CustomerAddress>{};
   confirmed: boolean = false;
   grossTotal: number = 0;
   deliveryTotal: number = 0;
