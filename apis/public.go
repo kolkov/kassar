@@ -18,7 +18,7 @@ func ServPublicResource(rg *routing.RouteGroup,
 	deliveryOptionService deliveryOptionService) {
 		newsResource := &newsResource{newsService}
 		articleResource := &articleResource{articleService}
-		productResource := &productResource{productService, productPropertiesService}
+		productResource := &productResource{productService, productPropertiesService, productCategoryService}
 		paymentOptionsResource := &paymentOptionResource{paymentOptionsService}
 		cartOrderResource := &cartOrderResource{cartOrderService, cartOrderItemService, cartOrderCustomerService}
 		productCategoryResource := &productCategoryResource{productCategoryService}
@@ -35,6 +35,7 @@ func ServPublicResource(rg *routing.RouteGroup,
 
 		rg.Get("/products/<id>", productResource.getByPath)
 		rg.Get("/products", productResource.query)
+		rg.Get("/products-by-path", productResource.queryByPath)
 
 		rg.Get("/payment-options", paymentOptionsResource.query)
 		rg.Get("/additional-options", additionalOptionsResource.query)

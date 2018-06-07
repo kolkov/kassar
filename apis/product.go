@@ -17,13 +17,15 @@ type (
 	productResource struct {
 		service productService
 		propertiesService productPropertiesService
+		productCategoryService productCategoryService
 	}
 )
 
-func ServProductResource(rg *routing.RouteGroup, service productService, propertiesService productPropertiesService){
-	r := &productResource{service, propertiesService}
+func ServProductResource(rg *routing.RouteGroup, service productService, propertiesService productPropertiesService, productCategoryService productCategoryService){
+	r := &productResource{service, propertiesService, productCategoryService}
 	rg.Get("/products/<id>", r.getByPath)
 	rg.Get("/products", r.query)
+	rg.Get("/products-by-path", r.queryByPath)
 }
 
 func (r *productResource) getByPath(c *routing.Context) error {
@@ -54,6 +56,29 @@ func (r *productResource) query(c *routing.Context) error {
 	}
 	paginatedList := getPaginatedListFromRequest(c, count)
 	items, err := r.service.Query(rs, paginatedList.Offset(), paginatedList.Limit(), id)
+	if err != nil {
+		return err
+	}
+	paginatedList.Items = items
+	return c.Write(paginatedList)
+}
+
+func (r *productResource) queryByPath(c *routing.Context) error {
+	path := c.Request.FormValue("path")
+
+	rs := app.GetRequestScope(c)
+
+	category, err := r.productCategoryService.GetByPath(rs, path)
+	if err != nil {
+		return err
+	}
+
+	count, err := r.service.Count(rs, category.Id)
+	if err != nil {
+		return err
+	}
+	paginatedList := getPaginatedListFromRequest(c, count)
+	items, err := r.service.Query(rs, paginatedList.Offset(), paginatedList.Limit(), category.Id)
 	if err != nil {
 		return err
 	}

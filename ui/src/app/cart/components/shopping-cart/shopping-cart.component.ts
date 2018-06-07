@@ -29,7 +29,7 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.products = this.productsService.all("");
+    this.products = this.productsService.all();
     this.cart = this.shoppingCartService.get();
     this.cartSubscription = this.cart.subscribe((cart) => {
       this.itemCount = cart.items.map((x) => x.quantity).reduce((p, n) => p + n, 0);

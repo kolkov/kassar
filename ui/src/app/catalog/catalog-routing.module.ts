@@ -10,9 +10,6 @@ const routes: Routes = [
   {
     path: 'catalog',
     component: CatalogComponent,
-    /*resolve: {
-      categories: CategoryResolverService
-    },*/
     data: {
       title: 'Каталог оборудования',
       metatags: {

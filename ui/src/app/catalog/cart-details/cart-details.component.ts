@@ -11,7 +11,7 @@ import {SEOService} from "../../seo.service";
 })
 export class CartDetailsComponent implements OnInit {
   product: EventEmitter<Product>;
-  private id: string;
+  id: string;
 
   constructor(
     private activateRoute: ActivatedRoute,

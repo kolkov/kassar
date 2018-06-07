@@ -9,25 +9,27 @@ import {catchError, tap} from "rxjs/operators";
   providedIn: 'root'
 })
 export class ProductsService {
-  categorys = {
-    "kontrolno-kassovaya-tekhnika": 1,
-    "skanery-shtrikh-kodov": 2,
-    "other": 3
-  };
+  
   path: string;
 
   constructor(private http: HttpClient) {
   }
 
-  public all(categoryName: string): Observable<ProductList> {
-    this.path = categoryName;
-    const id = this.categorys[categoryName];
-    const options = id ?
-      {params: new HttpParams().set('id', id)} : {};
-    return this.http.get<ProductList>('v1/public/products', options).pipe(
+  public all(): Observable<ProductList> {
+    return this.http.get<ProductList>('v1/public/products').pipe(
       catchError(this.handleError)
     );
   }
+
+  public allByPath(categoryName: string): Observable<ProductList> {
+    this.path = categoryName;
+    const options = categoryName ?
+      {params: new HttpParams().set('path', categoryName)} : {};
+    return this.http.get<ProductList>('v1/public/products-by-path', options).pipe(
+      catchError(this.handleError)
+    );
+  }
+
 
   public one(id: string): Observable<Product> {
     console.log(id);

@@ -135,7 +135,7 @@ func buildRouter(logger *logrus.Logger, db *dbx.DB) *routing.Router {
 	// Initialize all used APIs
 	apis.ServArticleResource(rg, articleService)
 	apis.ServeNewsResource(rg, newsService)
-	apis.ServProductResource(rg, productService, propertiesService)
+	apis.ServProductResource(rg, productService, propertiesService, productCategoryService)
 	apis.ServCartOrderResource(rg, cartOrderService, cartOrderItemService, cartOrderCustomerService)
 	apis.ServPaymentOptionResource(rg, paymentOptionService)
 	apis.ServeUserResource(rg, userService)

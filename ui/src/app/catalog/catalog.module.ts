@@ -13,7 +13,6 @@ import {SharedModule} from "../shared/shared.module";
     CommonModule,
     CatalogRoutingModule,
     SharedModule,
-    //CartModule
   ],
   declarations: [
     CatalogComponent,

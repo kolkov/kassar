@@ -23,7 +23,7 @@ export class StoreFrontComponent implements OnInit {
 
   ngOnInit() {
     this.shoppingCartService.category = this.category;
-    this.products = this.productsService.all(this.category).pipe(
+    this.products = this.productsService.allByPath(this.category).pipe(
       map(x => x.items)
     );
   }
