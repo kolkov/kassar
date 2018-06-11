@@ -20,11 +20,14 @@ import {ShoppingCartComponent} from "./components/shopping-cart/shopping-cart.co
 import {FormsModule} from "@angular/forms";
 import {StoreCatalogComponent} from './components/store-catalog/store-catalog.component';
 import { StoreDetailsComponent } from './components/store-details/store-details.component';
+import {NgxDaDataModule} from "../../../projects/kolkov/ngx-dadata/src/lib/ngx-da-data.module";
+
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
+    NgxDaDataModule,
     CartRoutingModule
   ],
   declarations: [StoreFrontComponent, ShoppingCartComponent, CheckoutComponent, OrderCompleteComponent, CartComponent, CartServicesComponent, CartDeliveryComponent, CartPaymentComponent, CartConfirmComponent, StoreCatalogComponent, StoreDetailsComponent],

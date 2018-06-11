@@ -2,26 +2,29 @@ import {CartItem} from "./cart-item";
 import {ICustomer} from "./customer";
 
 export class ShoppingCart {
-  items: CartItem[] = [];//new Array<CartItem>();
+  items: CartItem[] = [];
   deliveryOptionId: number;
   additionalOptionId: number;
   paymentOptionId: number;
   customer: ICustomer = <ICustomer>{
+    fio: '',
     firstName: '',
     lastName: '',
+    gender: '',
     email: '',
     phone: '',
     address: {
+      full: '',
       city: '',
       street: '',
       building: ''
   }
   };
-  //address: CustomerAddress = <CustomerAddress>{};
-  confirmed: boolean = false;
-  grossTotal: number = 0;
-  deliveryTotal: number = 0;
-  itemsTotal: number = 0;
+  // address: CustomerAddress = <CustomerAddress>{};
+  confirmed = false;
+  grossTotal = 0;
+  deliveryTotal = 0;
+  itemsTotal = 0;
 
   updateFrom(src: ShoppingCart) {
     this.items = src.items;

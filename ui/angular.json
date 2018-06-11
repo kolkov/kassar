@@ -364,7 +364,7 @@
       "root": "projects/kolkov/ngx-dadata",
       "sourceRoot": "projects/kolkov/ngx-dadata/src",
       "projectType": "library",
-      "prefix": "ngx",
+      "prefix": "",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",

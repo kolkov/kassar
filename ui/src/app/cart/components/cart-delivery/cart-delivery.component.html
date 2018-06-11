@@ -33,6 +33,10 @@
   <h3>Кто заберет товары</h3>
   <form class="form" #customerForm="ngForm">
     <div class="form-group">
+      <label for="fio">Введите ФИО:</label>
+      <ngx-da-data id="fio" placeholder="Как к вам обращаться" [config]="configFio" [(ngModel)]="model.fio" (selected)="onFioSelected($event)" name="fio"></ngx-da-data>
+    </div>
+    <!--<div class="form-group">
       <label for="lastname">Фамилия</label>
       <input class="input" id="lastname" type="text" placeholder="Фамилия" [(ngModel)]="model.lastName" name="lastname"
              #lastname="ngModel" minlength="3" pattern="[а-яА-Я ]*" required>
@@ -49,9 +53,9 @@
            class="alert alert-danger">
         Имя обязательно
       </div>
-    </div>
+    </div>-->
     <div class="form-group">
-      <label for="phone">Телефон</label>
+      <label for="phone">Телефон:</label>
       <input id="phone" type="tel" placeholder="+79161234567" [(ngModel)]="model.phone" name="phone" #phone="ngModel"
              pattern="^((\+7|7|8)+([0-9]){10})$" required>
       <div [hidden]="phone.valid || phone.pristine"
@@ -60,7 +64,7 @@
       </div>
     </div>
     <div class="form-group">
-      <label for="email">Email</label>
+      <label for="email">Email:</label>
       <input id="email" type="email" value="" placeholder="info@example.ru" [(ngModel)]="model.email" name="email"
              #email="ngModel" email="true" required>
       <div [hidden]="email.valid || email.pristine"
@@ -71,39 +75,51 @@
     <div *ngIf="(cart | async).deliveryOptionId == 2">
       <h3>Адрес доставки</h3>
       <div class="form-group">
-        <label for="city">Город</label>
-        <input class="input" id="city" type="text" placeholder="Город" [(ngModel)]="model.address.city" name="city"
-               #city="ngModel" minlength="3" pattern="[а-яА-Я ]*" required>
+        <label for="address">Адрес:</label>
+        <ngx-da-data id="address" placeholder="Ведите точный адрес" [config]="configAddress" [(ngModel)]="model.address.full" (selectedString)="onChange($event)" name="address"></ngx-da-data>
+      </div>
+      <div class="form-group">
+        <label for="city">Подъезд:</label>
+        <input class="input" id="city" type="text" placeholder="Введите подъезд" [(ngModel)]="model.address.city" name="city"
+               #city="ngModel" minlength="3" pattern="[а-яА-Я ]*">
         <div [hidden]="city.valid || city.pristine"
              class="alert alert-danger">
           Город обязателен
         </div>
       </div>
       <div class="form-group">
-        <label for="street">Улица</label>
-        <input class="input" id="street" type="text" placeholder="Улица" [(ngModel)]="model.address.street" name="street"
-               #street="ngModel" minlength="3" pattern="[а-яА-Я ]*" required>
+        <label for="street">Этаж:</label>
+        <input class="input" id="street" type="text" placeholder="Введите этаж" [(ngModel)]="model.address.street"
+               name="street"
+               #street="ngModel" minlength="3" pattern="[а-яА-Я ]*">
         <div [hidden]="street.valid || street.pristine"
              class="alert alert-danger">
           Улица обязательна
         </div>
       </div>
       <div class="form-group">
-        <label for="building">Дом.корпус</label>
-        <input class="input" id="building" type="text" placeholder="Дом.кормус.строение" [(ngModel)]="model.address.building" name="building"
-               #building="ngModel" minlength="3" pattern="[а-яА-Я0-9\.\, ]*" required>
-        <div [hidden]="building.valid || building.pristine"
+        <label for="building">Код домофона:</label>
+        <input class="input" id="building" type="text" placeholder="Введите код домофона"
+               [(ngModel)]="model.address.building" name="building"
+               #building="ngModel" minlength="3">
+        <!--<div [hidden]="building.valid || building.pristine"
              class="alert alert-danger">
           Здание обязательно
-        </div>
+        </div>-->
       </div>
+
     </div>
   </form>
   <br>
+<!--  <div #gmap style="width:100%;height:400px"></div>-->
+  <div [hidden]="(cart | async).deliveryOptionId != 2" #ymap id="map" style="width:100%; height: 400px"></div>
   <hr/>
   <br>
   <button class="choice-confirmation"
-          [attr.disabled]="(cart | async).deliveryOptionId !== undefined && customerForm.form.valid ? null : true"
+          [disabled]="(cart | async).deliveryOptionId !== undefined && customerForm.form.valid ? null : true"
           (click)="confirmedCart()">Оплатить
   </button>
 </div>
+
+
+
