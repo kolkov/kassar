@@ -180,8 +180,16 @@ button[disabled] {
   //margin-right: auto;
   //margin-left: auto;
 }
+.textarea-label {
+  display: block;
+  //width: 180px;
+  //display: inline-block;
+  //text-align:right;
+  //vertical-align: top;
+}
 
-textarea {
+.textarea {
+  display: block;
   width: 100%;
   max-width: 500px;
   height: 200px;

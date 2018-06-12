@@ -11,7 +11,7 @@ import {LocalStorageService} from "./storage.service";
 import {PaymentOption} from "../models/payment-option";
 import {ICustomer} from "../models/customer";
 
-const CART_KEY = "cart";
+const CART_KEY = "cart$";
 
 @Injectable({
   providedIn: 'root'
@@ -98,6 +98,29 @@ export class ShoppingCartService {
     const cart = this.retrieve();
     cart.paymentOptionId = paymentOption.id;
     this.calculateCart(cart);
+    this.save(cart);
+    this.dispatch(cart);
+  }
+
+  public setSMSOption(option: boolean): void {
+    const cart = this.retrieve();
+    cart.smsOption = option;
+    //this.calculateCart(cart);
+    this.save(cart);
+    this.dispatch(cart);
+  }
+
+  public setCallOption(option: boolean): void {
+    const cart = this.retrieve();
+    cart.callOption = option;
+    //this.calculateCart(cart);
+    this.save(cart);
+    this.dispatch(cart);
+  }
+
+  saveNote(note: string){
+    const cart = this.retrieve();
+    cart.note = note;
     this.save(cart);
     this.dispatch(cart);
   }

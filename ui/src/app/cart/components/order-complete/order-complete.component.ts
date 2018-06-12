@@ -2,13 +2,11 @@ import {Component, OnInit} from '@angular/core';
 import {ShoppingCartService} from "../../services/shopping-cart.service";
 import {Router} from "@angular/router";
 import {CartOrderService} from "../../services/cart-order.service";
-import {catchError, map, tap} from "rxjs/operators";
+import {map, tap} from "rxjs/operators";
 import {Observable} from "rxjs/internal/Observable";
 import {ShoppingCart} from "../../models/shopping-cart";
-import {HttpErrorResponse} from "@angular/common/http";
-import {throwError} from "rxjs";
 import {Location} from "@angular/common";
-
+/*
 export interface CartInputItem {
   product_id: number,
   quantity: number,
@@ -19,7 +17,7 @@ export interface CartOutput {
   registered: boolean,
   payment_type: number,
   items: CartInputItem[]
-}
+}*/
 
 @Component({
   selector: 'app-order-complete',
@@ -45,18 +43,12 @@ export class OrderCompleteComponent implements OnInit {
         err => {
           alert(err.toString());
           this._location.back();
-        } ),
+        }),
       map(x => x.id),
-      // catchError(this.errorFn)
-      );
+    );
   }
 
   gotoCart() {
     this.router.navigate(['/catalog'], {replaceUrl: false});
   }
-
-  /*errorFn(e: HttpErrorResponse){
-    alert("Ошибка оформления заказа! :( Попробуйте позже или позвоните нам.");
-    return throwError('Ошибка оформления заказа! :( Попробуйте позже или позвоните нам.');
-  }*/
 }

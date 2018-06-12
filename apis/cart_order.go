@@ -36,7 +36,10 @@ func (r *cartOrderResource) create(c *routing.Context) error {
 		return err
 	}
 	rs := app.GetRequestScope(c)
-	cartOrder, err := r.service.Create(rs, &model.CartOrder)
+
+	model.Date = rs.Now()
+
+		cartOrder, err := r.service.Create(rs, &model.CartOrder)
 	if err != nil {
 		return err
 	}

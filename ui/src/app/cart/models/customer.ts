@@ -1,18 +1,18 @@
 export interface ICustomerAddress {
   full?: string;
   city?: string;
-  city_fias_id?: string;
+  cityFiasId?: string;
   street?: string;
-  street_fias_id?: string;
-  street_type?: string;
-  street_type_full?: string;
+  streetFiasId?: string;
+  streetType?: string;
+  streetTypeFull?: string;
   house?: string;
-  house_fias_id?: string;
-  house_type?: string;
-  house_type_full?: string;
-  postal_code?: string;
+  houseFiasId?: string;
+  houseType?: string;
+  houseTypeFull?: string;
+  postalCode?: string;
   block?: string;
-  block_type?: string;
+  blockType?: string;
   room?: string;
   entrance?: string
   floor?: string;

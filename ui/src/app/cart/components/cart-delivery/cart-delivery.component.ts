@@ -78,6 +78,7 @@ export class CartDeliveryComponent implements OnInit {
   }
 
   setDeliveryOption(option: DeliveryOption): void {
+    // ToDo Сделать возможность возврат карты в состояние Самовывоз при выборе опции.
     this.shoppingCartService.setDeliveryOption(option);
   }
 
@@ -85,11 +86,6 @@ export class CartDeliveryComponent implements OnInit {
     this.shoppingCartService.setCustomerRequisites(this.model);
     this.router.navigate(['/order/payment'], {replaceUrl: false});
   }
-
-  /*onSelected(e: DaDataSuggestion){
-    const fio: DaDataFIO = <DaDataFIO>e.data;
-    console.log(fio);
-  }*/
 
   onFioSelected(e: DaDataSuggestion) {
     const fio: DaDataFIO = <DaDataFIO>e.data;
@@ -101,30 +97,27 @@ export class CartDeliveryComponent implements OnInit {
 
   onSuggestionSelected(e: DaDataSuggestion) {
     const address = <DaDataAddress>e.data;
-    // console.log('onSuggestionSelected!!!');
     console.log(address);
     this.model.address = <ICustomerAddress>{
       full: e.value,
       city: address.city_with_type,
       street: address.street_with_type,
       house: address.house,
-      postal_code: address.postal_code,
+      postalCode: address.postal_code,
       block: address.block,
-      block_type: address.block_type,
+      blockType: address.block_type,
     };
     if (address.flat) this.model.address.room = address.flat;
     this.geocode(e.value);
   }
 
   geocode(request: string) {
-    // console.log(request);
     ymaps.geocode(request).then((res) => {
       const obj = res.geoObjects.get(0);
       let error, hint;
 
       if (obj) {
         const s = obj.properties.get('metaDataProperty.GeocoderMetaData.precision').toString();
-        // console.log(s);
         switch (s) {
           case 'exact':
           case 'number':
@@ -151,13 +144,11 @@ export class CartDeliveryComponent implements OnInit {
       // Если геокодер возвращает пустой массив или неточный результат, то показываем ошибку.
       if (error) {
         console.info(error);
-        // showError(error);
         console.log(hint);
       } else {
 
       }
       this.showResult(obj);
-      // console.log(obj);
     }, function (e) {
       console.log(e);
     });
@@ -203,8 +194,11 @@ export class CartDeliveryComponent implements OnInit {
       // Задержка между перемещениями.
       delay: 1500
     }).then(x => {
+      if (this.model.address.room) state.zoom = 17;
       this.map.setZoom(state.zoom, {duration: 300});
     });
   }
 
 }
+
+// ToDo Сделать валидацию формы

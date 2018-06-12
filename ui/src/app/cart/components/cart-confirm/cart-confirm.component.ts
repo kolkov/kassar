@@ -7,6 +7,8 @@ import {Subscription} from "rxjs/internal/Subscription";
 import {Product} from "../../models/product";
 import {ProductsService} from "../../services/products.service";
 import {CartItem} from "../../models/cart-item";
+import {DeliveryOption} from "../../models/dilivery-option";
+import {tap} from "rxjs/operators";
 
 interface ICartItemWithProduct extends CartItem {
   product: Product;
@@ -19,10 +21,10 @@ interface ICartItemWithProduct extends CartItem {
   styleUrls: ['./cart-confirm.component.scss']
 })
 export class CartConfirmComponent implements OnInit {
-  text: string;
-  public cart: Observable<ShoppingCart>;
+  cart: ShoppingCart;
+
   public cartItems: ICartItemWithProduct[];
-  private cartSubscription: Subscription;
+
   public itemCount: number;
   private products: Product[];
 
@@ -32,8 +34,9 @@ export class CartConfirmComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.cart = this.shoppingCartService.get();
-    this.cartSubscription = this.cart.subscribe((cart) => {
+    this.shoppingCartService.get().subscribe((cart) => {
+      this.cart = cart;
+      //console.dir(this.cart);
       this.itemCount = cart.items.map((x) => x.quantity).reduce((p, n) => p + n, 0);
       this.productsService.all().subscribe((products) => {
         this.products = products.items;
@@ -48,6 +51,18 @@ export class CartConfirmComponent implements OnInit {
           });
       });
     });
+  }
+
+  setSMSOption(option: boolean): void {
+    this.shoppingCartService.setSMSOption(option);
+  }
+
+  setCallOption(option: boolean): void {
+    this.shoppingCartService.setCallOption(option);
+  }
+
+  saveNote(note: string){
+    this.shoppingCartService.saveNote(note);
   }
 
   confirmedCart() {

@@ -7,7 +7,7 @@
         *ngIf="(cart | async).deliveryOptionId !== undefined">Способ доставки выбран...</h5>
     <button class="choice-confirmation"
             [attr.disabled]="(cart | async).deliveryOptionId !== undefined && customerForm.form.valid ? null : true"
-            (click)="confirmedCart()">Оплатить
+            (click)="confirmedCart()">К оплате
     </button>
   </div>
   <hr/>
@@ -107,9 +107,6 @@
   <br>
   <button class="choice-confirmation"
           [disabled]="(cart | async).deliveryOptionId !== undefined && customerForm.form.valid ? null : true"
-          (click)="confirmedCart()">Оплатить
+          (click)="confirmedCart()">К оплате
   </button>
 </div>
-
-
-

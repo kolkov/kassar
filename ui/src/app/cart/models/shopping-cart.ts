@@ -22,12 +22,15 @@ export class ShoppingCart {
       code: '',
       floor: '',
       entrance: '',
-  }
+    }
   };
   confirmed = false;
   grossTotal = 0;
   deliveryTotal = 0;
   itemsTotal = 0;
+  smsOption = false;
+  callOption = false;
+  note = '';
 
   updateFrom(src: ShoppingCart) {
     this.items = src.items;
@@ -39,5 +42,8 @@ export class ShoppingCart {
     this.grossTotal = src.grossTotal;
     this.deliveryTotal = src.deliveryTotal;
     this.itemsTotal = src.itemsTotal;
+    this.smsOption = src.smsOption;
+    this.callOption = src.callOption;
+    this.note = src.note;
   }
 }
