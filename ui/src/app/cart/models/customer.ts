@@ -13,6 +13,7 @@ export interface ICustomerAddress {
   postal_code?: string;
   block?: string;
   block_type?: string;
+  room?: string;
   entrance?: string
   floor?: string;
   code?: string;

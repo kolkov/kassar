@@ -6,9 +6,11 @@ import {ShoppingCartService} from '../../services/shopping-cart.service';
 import {ShoppingCart} from '../../models/shopping-cart';
 import {Router} from '@angular/router';
 import {tap} from 'rxjs/operators';
-import {ICustomer} from '../../models/customer';
+import {ICustomer, ICustomerAddress} from '../../models/customer';
 import {DaDataType} from "../../../../../projects/kolkov/ngx-dadata/src/lib/ngx-da-data.service";
 import {DaDataConfig} from "../../../../../projects/kolkov/ngx-dadata/src/lib/da-data-config";
+import {DaDataAddress, DaDataFIO} from "../../../../../projects/kolkov/ngx-dadata/src/lib/models/data";
+import {DaDataSuggestion} from "../../../../../projects/kolkov/ngx-dadata/src/lib/models/suggestion";
 
 @Component({
   selector: 'app-cart-delivery',
@@ -84,26 +86,45 @@ export class CartDeliveryComponent implements OnInit {
     this.router.navigate(['/order/payment'], {replaceUrl: false});
   }
 
-  onFioSelected(e) {
-    console.log('onFioSelected!!!');
-    console.log(e);
+  /*onSelected(e: DaDataSuggestion){
+    const fio: DaDataFIO = <DaDataFIO>e.data;
+    console.log(fio);
+  }*/
+
+  onFioSelected(e: DaDataSuggestion) {
+    const fio: DaDataFIO = <DaDataFIO>e.data;
+    this.model.gender = fio.gender;
+    this.model.firstName = fio.name;
+    this.model.lastName = fio.surname;
+    this.model.patronymic = fio.patronymic;
   }
 
-  onSuggestionSelected(e) {
-    console.log('onSuggestionSelected!!!');
-    console.log(e);
-    this.geocode(e);
+  onSuggestionSelected(e: DaDataSuggestion) {
+    const address = <DaDataAddress>e.data;
+    // console.log('onSuggestionSelected!!!');
+    console.log(address);
+    this.model.address = <ICustomerAddress>{
+      full: e.value,
+      city: address.city_with_type,
+      street: address.street_with_type,
+      house: address.house,
+      postal_code: address.postal_code,
+      block: address.block,
+      block_type: address.block_type,
+    };
+    if (address.flat) this.model.address.room = address.flat;
+    this.geocode(e.value);
   }
 
   geocode(request: string) {
-    console.log(request);
+    // console.log(request);
     ymaps.geocode(request).then((res) => {
       const obj = res.geoObjects.get(0);
       let error, hint;
 
       if (obj) {
         const s = obj.properties.get('metaDataProperty.GeocoderMetaData.precision').toString();
-        console.log(s);
+        // console.log(s);
         switch (s) {
           case 'exact':
           case 'number':
@@ -131,12 +152,12 @@ export class CartDeliveryComponent implements OnInit {
       if (error) {
         console.info(error);
         // showError(error);
-        // showMessage(hint);
+        console.log(hint);
       } else {
 
       }
       this.showResult(obj);
-      console.log(obj);
+      // console.log(obj);
     }, function (e) {
       console.log(e);
     });

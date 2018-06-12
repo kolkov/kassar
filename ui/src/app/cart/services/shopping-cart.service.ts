@@ -105,7 +105,6 @@ export class ShoppingCartService {
   public setCustomerRequisites(model: ICustomer): void {
     const cart = this.retrieve();
     cart.customer = model;
-    //cart.address = address;
     this.calculateCart(cart);
     this.save(cart);
     this.dispatch(cart);

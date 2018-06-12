@@ -58,7 +58,16 @@
       <h3>Адрес доставки</h3>
       <div class="form-group">
         <label for="full">Адрес:</label>
-        <ngx-da-data id="full" name="full" placeholder="Ведите точный адрес" [config]="configAddress" [(ngModel)]="model.address.full" (selectedString)="onSuggestionSelected($event)" ></ngx-da-data>
+        <ngx-da-data id="full" name="full" placeholder="Ведите точный адрес" [config]="configAddress" [(ngModel)]="model.address.full" (selected)="onSuggestionSelected($event)" ></ngx-da-data>
+      </div>
+      <div class="form-group">
+        <label for="room">Квартира:</label>
+        <input class="input" id="room" type="text" placeholder="Номер квартиры/помещения" [(ngModel)]="model.address.room" name="room"
+               #entrance="ngModel" />
+        <div [hidden]="entrance.valid || entrance.pristine"
+             class="alert alert-danger">
+          Город обязателен
+        </div>
       </div>
       <div class="form-group">
         <label for="entrance">Подъезд:</label>

@@ -18,12 +18,12 @@ export class ShoppingCart {
       city: '',
       street: '',
       building: '',
+      room: '',
       code: '',
       floor: '',
       entrance: '',
   }
   };
-  // address: CustomerAddress = <CustomerAddress>{};
   confirmed = false;
   grossTotal = 0;
   deliveryTotal = 0;
