@@ -55,11 +55,12 @@ export class CartDeliveryComponent implements OnInit {
         this.map.behaviors.disable(['drag', 'scrollZoom']);
       }
 
-      const caption = 'Наша фирма';
+      const caption = 'Наша компания, самовывоз';
+      const balloon = 'Театральный проезд, д.3, с.4';
       const placemark = new ymaps.Placemark(
         this.map.getCenter(), {
           iconCaption: caption,
-          balloonContent: caption
+          balloonContent: balloon
         }, {
           preset: 'islands#redDotIconWithCaption'
         });
