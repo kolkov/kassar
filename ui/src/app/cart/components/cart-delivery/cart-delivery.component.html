@@ -34,30 +34,12 @@
   <form class="form" #customerForm="ngForm">
     <div class="form-group">
       <label for="fio">Введите ФИО:</label>
-      <ngx-da-data id="fio" placeholder="Как к вам обращаться" [config]="configFio" [(ngModel)]="model.fio" (selected)="onFioSelected($event)" name="fio"></ngx-da-data>
+      <ngx-da-data id="fio" name="fio" placeholder="Как к вам обращаться" [config]="configFio" [(ngModel)]="model.fio" (selected)="onFioSelected($event)"></ngx-da-data>
     </div>
-    <!--<div class="form-group">
-      <label for="lastname">Фамилия</label>
-      <input class="input" id="lastname" type="text" placeholder="Фамилия" [(ngModel)]="model.lastName" name="lastname"
-             #lastname="ngModel" minlength="3" pattern="[а-яА-Я ]*" required>
-      <div [hidden]="lastname.valid || lastname.pristine"
-           class="alert alert-danger">
-        Фамилия обязательна
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="firstname">Имя</label>
-      <input id="firstname" type="text" placeholder="Имя" [(ngModel)]="model.firstName" name="firstname"
-             #firstname="ngModel" minlength="3" pattern="[а-яА-Я ]*" required>
-      <div [hidden]="firstname.valid || firstname.pristine"
-           class="alert alert-danger">
-        Имя обязательно
-      </div>
-    </div>-->
     <div class="form-group">
       <label for="phone">Телефон:</label>
-      <input id="phone" type="tel" placeholder="+79161234567" [(ngModel)]="model.phone" name="phone" #phone="ngModel"
-             pattern="^((\+7|7|8)+([0-9]){10})$" required>
+      <input type="tel" id="phone" name="phone" placeholder="+79161234567" [(ngModel)]="model.phone" #phone="ngModel"
+             pattern="^((\+7|7|8)+([0-9]){10})$" autocomplete="tel" required />
       <div [hidden]="phone.valid || phone.pristine"
            class="alert alert-danger">
         Телефон обязателен
@@ -65,8 +47,8 @@
     </div>
     <div class="form-group">
       <label for="email">Email:</label>
-      <input id="email" type="email" value="" placeholder="info@example.ru" [(ngModel)]="model.email" name="email"
-             #email="ngModel" email="true" required>
+      <input type="email" id="email" name="email" value="" placeholder="info@example.ru" [(ngModel)]="model.email"
+             #email="ngModel" email="true" autocomplete="email" required />
       <div [hidden]="email.valid || email.pristine"
            class="alert alert-danger">
         Email обязателен
@@ -75,33 +57,33 @@
     <div *ngIf="(cart | async).deliveryOptionId == 2">
       <h3>Адрес доставки</h3>
       <div class="form-group">
-        <label for="address">Адрес:</label>
-        <ngx-da-data id="address" placeholder="Ведите точный адрес" [config]="configAddress" [(ngModel)]="model.address.full" (selectedString)="onChange($event)" name="address"></ngx-da-data>
+        <label for="full">Адрес:</label>
+        <ngx-da-data id="full" name="full" placeholder="Ведите точный адрес" [config]="configAddress" [(ngModel)]="model.address.full" (selectedString)="onSuggestionSelected($event)" ></ngx-da-data>
       </div>
       <div class="form-group">
-        <label for="city">Подъезд:</label>
-        <input class="input" id="city" type="text" placeholder="Введите подъезд" [(ngModel)]="model.address.city" name="city"
-               #city="ngModel" minlength="3" pattern="[а-яА-Я ]*">
-        <div [hidden]="city.valid || city.pristine"
+        <label for="entrance">Подъезд:</label>
+        <input class="input" id="entrance" type="text" placeholder="Введите подъезд" [(ngModel)]="model.address.entrance" name="entrance"
+               #entrance="ngModel" />
+        <div [hidden]="entrance.valid || entrance.pristine"
              class="alert alert-danger">
           Город обязателен
         </div>
       </div>
       <div class="form-group">
-        <label for="street">Этаж:</label>
-        <input class="input" id="street" type="text" placeholder="Введите этаж" [(ngModel)]="model.address.street"
-               name="street"
-               #street="ngModel" minlength="3" pattern="[а-яА-Я ]*">
-        <div [hidden]="street.valid || street.pristine"
+        <label for="floor">Этаж:</label>
+        <input class="input" id="floor" type="text" placeholder="Введите этаж" [(ngModel)]="model.address.floor"
+               name="floor"
+               #floor="ngModel" />
+        <div [hidden]="floor.valid || floor.pristine"
              class="alert alert-danger">
           Улица обязательна
         </div>
       </div>
       <div class="form-group">
-        <label for="building">Код домофона:</label>
-        <input class="input" id="building" type="text" placeholder="Введите код домофона"
-               [(ngModel)]="model.address.building" name="building"
-               #building="ngModel" minlength="3">
+        <label for="code">Код домофона:</label>
+        <input class="input" id="code" type="text" placeholder="Введите код домофона"
+               [(ngModel)]="model.address.code" name="code"
+               #code="ngModel" minlength="3">
         <!--<div [hidden]="building.valid || building.pristine"
              class="alert alert-danger">
           Здание обязательно
@@ -111,7 +93,6 @@
     </div>
   </form>
   <br>
-<!--  <div #gmap style="width:100%;height:400px"></div>-->
   <div [hidden]="(cart | async).deliveryOptionId != 2" #ymap id="map" style="width:100%; height: 400px"></div>
   <hr/>
   <br>

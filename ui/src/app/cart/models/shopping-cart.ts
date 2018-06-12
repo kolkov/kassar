@@ -17,7 +17,10 @@ export class ShoppingCart {
       full: '',
       city: '',
       street: '',
-      building: ''
+      building: '',
+      code: '',
+      floor: '',
+      entrance: '',
   }
   };
   // address: CustomerAddress = <CustomerAddress>{};

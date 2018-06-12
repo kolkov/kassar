@@ -9,11 +9,6 @@ import {tap} from 'rxjs/operators';
 import {ICustomer} from '../../models/customer';
 import {DaDataType} from "../../../../../projects/kolkov/ngx-dadata/src/lib/ngx-da-data.service";
 import {DaDataConfig} from "../../../../../projects/kolkov/ngx-dadata/src/lib/da-data-config";
-import {DaDataAddress} from "../../../../../projects/kolkov/ngx-dadata/src/lib/models/data";
-
-declare var ymaps: any;
-
-// import StreetViewPanorama = google.maps.../../../../local-types/yandex-mapsStreetViewPanorama;
 
 @Component({
   selector: 'app-cart-delivery',
@@ -25,21 +20,15 @@ export class CartDeliveryComponent implements OnInit {
   public cart: Observable<ShoppingCart>;
   model: ICustomer;
 
-  /*@ViewChild('gmap') gmapElement: any;
-  map: google.maps.Map;
-  marker: google.maps.Marker;*/
-
   @ViewChild('ymap') ymapElement: any;
   map: ymaps.Map;
   placemark: any;
 
-  // currentFio = '';
   configFio: DaDataConfig = {
     apiKey: '2e51c5fbc1a60bd48face95951108560bf03f7d9',
     type: DaDataType.fio,
   };
 
-  // currentAddress = '';
   configAddress: DaDataConfig = {
     apiKey: '2e51c5fbc1a60bd48face95951108560bf03f7d9',
     type: DaDataType.address,
@@ -59,15 +48,13 @@ export class CartDeliveryComponent implements OnInit {
         //controls: ['smallMapDefaultSet'],
         zoom: 15
       });
-      //const control = this.map.controls.get('fullscreenControl');
-      //control.disable
+
       this.map.controls.remove("fullscreenControl");
-      // this.map.controls.remove("zoomControl");
+
       if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|mobile|CriOS/i.test(ua)){
         this.map.behaviors.disable(['drag', 'scrollZoom']);
       }
 
-      // ymaps.behavior.Drag.disable();
       const caption = 'Наша фирма';
       const placemark = new ymaps.Placemark(
         this.map.getCenter(), {
@@ -101,23 +88,11 @@ export class CartDeliveryComponent implements OnInit {
     console.log(e);
   }
 
-  onChange(e) {
-    console.log('onChange!!!');
+  onSuggestionSelected(e) {
+    console.log('onSuggestionSelected!!!');
     console.log(e);
     this.geocode(e);
   }
-
-  onAddressSelected(e: DaDataAddress) {
-    console.log('onAddressSelected!!!');
-    console.log(e);
-    // this.geocode();
-    if (e.geo_lat && e.geo_lon) {
-      const lat = parseFloat(e.geo_lat);
-      const lon = parseFloat(e.geo_lon);
-      //this.displayPoint({lat, lon}, "test");
-    }
-  }
-
 
   geocode(request: string) {
     console.log(request);
@@ -126,16 +101,12 @@ export class CartDeliveryComponent implements OnInit {
       let error, hint;
 
       if (obj) {
-        // Об оценке точности ответа геокодера можно прочитать тут:
-        // https://tech.yandex.ru/maps/doc/geocoder/desc/reference/precision-docpage/
-
         const s = obj.properties.get('metaDataProperty.GeocoderMetaData.precision').toString();
         console.log(s);
         switch (s) {
           case 'exact':
           case 'number':
             break;
-
           case 'near':
           case 'range':
             error = 'Неточный адрес, требуется уточнение';
@@ -171,20 +142,20 @@ export class CartDeliveryComponent implements OnInit {
   }
 
   showResult(obj) {
-    let mapContainer = this.map;
     const bounds = obj.properties.get('boundedBy');
+
     // Рассчитываем видимую область для текущего положения пользователя.
     const mapState = ymaps.util.bounds.getCenterAndZoom(
       bounds,
       [this.ymapElement.nativeElement.offsetWidth, this.ymapElement.nativeElement.offsetHeight]
     );
+
     // Сохраняем полный адрес для сообщения под картой.
     const address = [obj.getCountry(), obj.getAddressLine()].join(', ');
+
     // Сохраняем укороченный адрес для подписи метки.
     const shortAddress = [obj.getThoroughfare(), obj.getPremiseNumber(), obj.getPremise()].join(' ');
-    // Убираем контролы с карты.
-   // debugger;
-    // this.map.controls = [];
+
     // Создаём карту.
     this.displayPoint(mapState, shortAddress);
     // Выводим сообщение под картой.
@@ -192,8 +163,6 @@ export class CartDeliveryComponent implements OnInit {
   }
 
   displayPoint(state, caption) {
-    // console.log("displayPoint");
-    // const caption = 'Место доставки';
     if (!this.placemark) {
       this.placemark = new ymaps.Placemark(
         state.center, {
