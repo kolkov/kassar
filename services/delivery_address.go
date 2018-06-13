@@ -7,6 +7,7 @@ import (
 
 type deliveryAddressDAO interface {
 	Get(rs app.RequestScope, id int) (*models.DeliveryAddress, error)
+	GetByFiasId(rs app.RequestScope, id string) (*models.DeliveryAddress, error)
 	Create(rs app.RequestScope, deliveryAddress *models.DeliveryAddress) error
 }
 
@@ -20,6 +21,10 @@ func NewDeliveryAddressService(dao deliveryAddressDAO) *DeliveryAddressService{
 
 func (s *DeliveryAddressService) Get(rs app.RequestScope, id int) (*models.DeliveryAddress, error) {
 	return s.dao.Get(rs, id)
+}
+
+func (s *DeliveryAddressService) GetByFiasId(rs app.RequestScope, id string) (*models.DeliveryAddress, error) {
+	return s.dao.GetByFiasId(rs, id)
 }
 
 func (s *DeliveryAddressService) Create(rs app.RequestScope, model *models.DeliveryAddress) (*models.DeliveryAddress, error) {

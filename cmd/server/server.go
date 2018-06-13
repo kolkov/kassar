@@ -102,6 +102,7 @@ func buildRouter(logger *logrus.Logger, db *dbx.DB) *routing.Router {
 	addressDAO := daos.NewAddressDAO()
 	deliveryAddressDAO := daos.NewDeliveryAddressDAO()
 	orderCustomerMapDAO := daos.NewOrderCustomerMapDAO()
+	countryDAO := daos.NewCountryDAO()
 	userDAO := daos.NewUserDAO()
 
 	// Initialize all used Services
@@ -120,6 +121,7 @@ func buildRouter(logger *logrus.Logger, db *dbx.DB) *routing.Router {
 	addressService := services.NewAddressService(addressDAO)
 	deliveryAddressService := services.NewDeliveryAddressService(deliveryAddressDAO)
 	orderCustomerMapService := services.NewOrderCustomerMapService(orderCustomerMapDAO)
+	countryService := services.NewCountryService(countryDAO)
 	userService := services.NewUserService(userDAO)
 
 	rg.Post("/auth", apis.Auth(app.Config.JWTSigningKey))
@@ -127,7 +129,7 @@ func buildRouter(logger *logrus.Logger, db *dbx.DB) *routing.Router {
 		productService, propertiesService, paymentOptionService,
 		cartOrderService, cartOrderItemService, cartOrderCustomerService,
 		productCategoryService, articleCategoryService,
-		additionalService, deliveryOptionService, addressService, deliveryAddressService, orderCustomerMapService)
+		additionalService, deliveryOptionService, addressService, deliveryAddressService, orderCustomerMapService, countryService)
 
 	//rg.Post("/user/signup", apis.Signup())
 	//rg.Put("/user/email/confirm/<token>", apis.ConfirmEmail())
@@ -142,8 +144,8 @@ func buildRouter(logger *logrus.Logger, db *dbx.DB) *routing.Router {
 	apis.ServArticleResource(rg, articleService)
 	apis.ServeNewsResource(rg, newsService)
 	apis.ServProductResource(rg, productService, propertiesService, productCategoryService)
-	apis.ServCartOrderResource(rg, cartOrderService, cartOrderItemService, cartOrderCustomerService,
-		addressService, deliveryAddressService, orderCustomerMapService)
+	apis.ServOrderResource(rg, cartOrderService, cartOrderItemService, cartOrderCustomerService,
+		addressService, deliveryAddressService, orderCustomerMapService, countryService)
 	apis.ServPaymentOptionResource(rg, paymentOptionService)
 	apis.ServeUserResource(rg, userService)
 

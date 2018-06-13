@@ -10,18 +10,19 @@ func ServPublicResource(rg *routing.RouteGroup,
 	productService productService,
 	productPropertiesService productPropertiesService,
 	paymentOptionsService paymentOptionService,
-		cartOrderService cartOrderService,
-			cartOrderItemService cartOrderItemService, cartOrderCustomerService cartOrderCustomerService,
+		cartOrderService orderService,
+			cartOrderItemService cartOrderItemService, cartOrderCustomerService customerService,
 				productCategoryService productCategoryService,
 	articleCategoryService articleCategoryService,
 		additionalOptionService additionalOptionService,
-	deliveryOptionService deliveryOptionService, service addressService, service2 deliveryAddressService, mapService orderCustomerMapService) {
+	deliveryOptionService deliveryOptionService, service addressService, service2 deliveryAddressService, mapService orderCustomerMapService,
+		service3 countryService) {
 		newsResource := &newsResource{newsService}
 		articleResource := &articleResource{articleService}
 		productResource := &productResource{productService, productPropertiesService, productCategoryService}
 		paymentOptionsResource := &paymentOptionResource{paymentOptionsService}
-		cartOrderResource := &cartOrderResource{cartOrderService, cartOrderItemService, cartOrderCustomerService,
-			service, service2, mapService}
+		cartOrderResource := &orderResource{cartOrderService, cartOrderItemService, cartOrderCustomerService,
+			service, service2, mapService, service3}
 		productCategoryResource := &productCategoryResource{productCategoryService}
 		articleCategoryResource := &articleCategoryResource{articleCategoryService}
 		additionalOptionsResource := &additionalOptionResource{additionalOptionService}

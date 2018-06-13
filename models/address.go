@@ -9,7 +9,7 @@ type Address struct {
 	Full               string `json:"full"`
 	UnrestrictedValue  string `json:"unrestricted_value"`
 	Country            string `json:"country"`
-	CountryId          string `json:"country_id"`
+	CountryId          int    `json:"-"`
 	Region             string `json:"region"`
 	RegionFiasId       string `json:"region_fias_id"`
 	RegionType         string `json:"region_type"`

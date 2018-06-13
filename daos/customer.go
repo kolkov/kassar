@@ -3,6 +3,7 @@ package daos
 import (
 	"kassar/app"
 	"kassar/models"
+	"github.com/go-ozzo/ozzo-dbx"
 )
 
 type CustomerDAO struct{}
@@ -14,6 +15,12 @@ func NewCustomerDAO() *CustomerDAO {
 func (dao *CustomerDAO) Get(rs app.RequestScope, id int) (*models.Customer, error) {
 	var customer models.Customer
 	err := rs.Tx().Select().Model(id, &customer)
+	return &customer, err
+}
+
+func (dao *CustomerDAO) GetByEmail(rs app.RequestScope, email string) (*models.Customer, error) {
+	var customer models.Customer
+	err := rs.Tx().Select().Where(dbx.HashExp{"email": email}).One(&customer)
 	return &customer, err
 }
 

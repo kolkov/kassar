@@ -3,6 +3,7 @@ package daos
 import (
 	"kassar/app"
 	"kassar/models"
+	"github.com/go-ozzo/ozzo-dbx"
 )
 
 type AddressDAO struct{}
@@ -19,7 +20,7 @@ func (dao *AddressDAO) Get(rs app.RequestScope, id int) (*models.Address, error)
 
 func (dao *AddressDAO) GetByFiasId(rs app.RequestScope, id string) (*models.Address, error) {
 	var model models.Address
-	err := rs.Tx().Select().Model(id, &model)
+	err := rs.Tx().Select().Where(dbx.HashExp{"fias_id": id}).One(&model)
 	return &model, err
 }
 

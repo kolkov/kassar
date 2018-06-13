@@ -7,6 +7,7 @@ import (
 
 type customerDAO interface {
 	Get(rs app.RequestScope, id int) (*models.Customer, error)
+	GetByEmail(rs app.RequestScope, email string) (*models.Customer, error)
 	Create(rs app.RequestScope, customer *models.Customer) error
 }
 
@@ -20,6 +21,10 @@ func NewCustomerService(dao customerDAO) *CustomerService {
 
 func (s *CustomerService) Get(rs app.RequestScope, id int) (*models.Customer, error) {
 	return s.dao.Get(rs, id)
+}
+
+func (s *CustomerService) GetByEmail(rs app.RequestScope, email string) (*models.Customer, error) {
+	return s.dao.GetByEmail(rs, email)
 }
 
 func (s *CustomerService) Create(rs app.RequestScope, model *models.Customer) (*models.Customer, error) {

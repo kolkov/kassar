@@ -8,6 +8,8 @@ import (
 
 type (
 	deliveryAddressService interface {
+		Get(rs app.RequestScope, id int) (*models.DeliveryAddress, error)
+		GetByFiasId(rs app.RequestScope, id string) (*models.DeliveryAddress, error)
 		Create(rs app.RequestScope, model *models.DeliveryAddress) (*models.DeliveryAddress, error)
 		/*Query(rs app.RequestScope, offset, limit, id int) ([]models.DeliveryAddress, error)
 		Count(rs app.RequestScope, id int) (int, error)
