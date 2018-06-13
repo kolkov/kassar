@@ -13,7 +13,7 @@ default: run
 
 
 build:
-	go build ${LDFLAGS} -o server ./cmd/server
+	vgo build ${LDFLAGS} -o server ./cmd/server
 
 clean:
 	del server

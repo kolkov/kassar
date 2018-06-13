@@ -6,6 +6,10 @@ import (
 	"github.com/go-ozzo/ozzo-routing"
 )
 
+// Transactional returns a handler that encloses the nested handlers with a DB transaction.
+// If a nested handler returns an error or a panic happens, it will rollback the transaction.
+// Otherwise it will commit the transaction after the nested handlers finish execution.
+// By calling app.Context.SetRollback(true), you may also explicitly request to rollback the transaction.
 func Transactional(db *dbx.DB) routing.Handler {
 	return func(c *routing.Context) error {
 		tx, err := db.Begin()
@@ -19,6 +23,7 @@ func Transactional(db *dbx.DB) routing.Handler {
 
 		var e error
 		if err != nil || rs.Rollback() {
+			// rollback if a handler returns an error or rollback is explicitly requested
 			if err.Error() == "NO_CONTENT" {
 				e = tx.Commit()
 			}else{
@@ -30,6 +35,7 @@ func Transactional(db *dbx.DB) routing.Handler {
 
 		if e != nil {
 			if err == nil {
+				// the error will be logged by an error handler
 				return e
 			}
 			rs.Error(e)

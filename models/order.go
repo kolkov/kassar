@@ -8,6 +8,7 @@ import (
 type Order struct {
 	Id                 int       `json:"id"`
 	CustomerId         int       `json:"customerId"`
+	DeliveryId         int       `json:"deliveryId"`
 	Fio                string    `json:"fio"`
 	Registered         bool      `json:"registered"`
 	AdditionalOptionId int       `json:"additionalOptionId"`

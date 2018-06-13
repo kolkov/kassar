@@ -11,6 +11,7 @@ type (
 		Get(rs app.RequestScope, id int) (*models.Customer, error)
 		GetByEmail(rs app.RequestScope, email string) (*models.Customer, error)
 		Create(rs app.RequestScope, model *models.Customer) (*models.Customer, error)
+		Update(rs app.RequestScope, id int, model *models.Customer) (*models.Customer, error)
 		/*Query(rs app.RequestScope, offset, limit, id int) ([]models.Customer, error)
 		Count(rs app.RequestScope, id int) (int, error)
 		GetByPath(rs app.RequestScope, id string) (*models.Customer, error)*/

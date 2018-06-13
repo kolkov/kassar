@@ -6,7 +6,7 @@ import (
 )
 
 type orderCustomerMapDAO interface {
-	Get(rs app.RequestScope, orderId, customerId int) (*models.OrderCustomerMap, error)
+	Get(rs app.RequestScope, orderId, customerId, deliveryId int) (*models.OrderCustomerMap, error)
 	Create(rs app.RequestScope, model *models.OrderCustomerMap,) error
 }
 
@@ -18,8 +18,8 @@ func NewOrderCustomerMapService(dao orderCustomerMapDAO) *OrderCustomerMapServic
 	return &OrderCustomerMapService{dao}
 }
 
-func (s *OrderCustomerMapService) Get(rs app.RequestScope, orderId, customerId int) (*models.OrderCustomerMap, error) {
-	return s.dao.Get(rs, orderId, customerId)
+func (s *OrderCustomerMapService) Get(rs app.RequestScope, orderId, customerId, deliveryId int) (*models.OrderCustomerMap, error) {
+	return s.dao.Get(rs, orderId, customerId, deliveryId)
 }
 
 func (s *OrderCustomerMapService) Create(rs app.RequestScope, model *models.OrderCustomerMap) (*models.OrderCustomerMap, error) {
@@ -29,5 +29,5 @@ func (s *OrderCustomerMapService) Create(rs app.RequestScope, model *models.Orde
 	if err := s.dao.Create(rs, model); err != nil {
 		return nil, err
 	}
-	return s.dao.Get(rs, model.OrderId, model.CustomerId)
+	return s.dao.Get(rs, model.OrderId, model.CustomerId, model.DeliveryId)
 }

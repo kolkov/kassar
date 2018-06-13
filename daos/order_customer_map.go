@@ -12,9 +12,9 @@ func NewOrderCustomerMapDAO() *OrderCustomerMapDAO {
 	return &OrderCustomerMapDAO{}
 }
 
-func (dao *OrderCustomerMapDAO) Get(rs app.RequestScope, orderId, customerId int) (*models.OrderCustomerMap, error) {
+func (dao *OrderCustomerMapDAO) Get(rs app.RequestScope, orderId, customerId, deliveryId int) (*models.OrderCustomerMap, error) {
 	var model models.OrderCustomerMap
-	err := rs.Tx().Select().Where(dbx.HashExp{"order_id": orderId, "customer_id": customerId}).One(&model)
+	err := rs.Tx().Select().Where(dbx.HashExp{"order_id": orderId, "customer_id": customerId, "delivery_id": deliveryId}).One(&model)
 	return &model, err
 }
 

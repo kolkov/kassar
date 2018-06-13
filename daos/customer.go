@@ -28,3 +28,11 @@ func (dao *CustomerDAO) Create(rs app.RequestScope, customer *models.Customer) e
 	customer.Id = 0
 	return rs.Tx().Model(customer).Insert()
 }
+
+func (dao *CustomerDAO) Update(rs app.RequestScope, id int, user *models.Customer) error {
+	if _, err := dao.Get(rs, id); err != nil {
+		return err
+	}
+	user.Id = id
+	return rs.Tx().Model(user).Exclude("Id").Update()
+}

@@ -17,10 +17,11 @@ import (
 	"kassar/daos"
 	"kassar/services"
 	"kassar/apis"
-	"github.com/Sirupsen/logrus"
+	log "github.com/Sirupsen/logrus"
 	"github.com/go-ozzo/ozzo-routing/auth"
 
 	"time"
+	"os"
 )
 
 func main() {
@@ -35,7 +36,9 @@ func main() {
 	}
 
 	// create the logger
-	logger := logrus.New()
+	logger := log.New()
+	log.SetFormatter(&log.JSONFormatter{})
+	log.SetOutput(os.Stdout)
 
 	// connect to the database
 	db, err := dbx.MustOpen("mysql", app.Config.DSN)
@@ -55,7 +58,7 @@ func main() {
 	panic(http.ListenAndServe(address, nil))
 }
 
-func buildRouter(logger *logrus.Logger, db *dbx.DB) *routing.Router {
+func buildRouter(logger *log.Logger, db *dbx.DB) *routing.Router {
 	timeStart := time.Now()
 
 	router := routing.New()

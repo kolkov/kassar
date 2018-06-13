@@ -5,6 +5,7 @@ import (
 	"kassar/app"
 	"github.com/go-ozzo/ozzo-routing"
 	"kassar/services"
+	"fmt"
 )
 
 type (
@@ -63,38 +64,51 @@ func (r *orderResource) create(c *routing.Context) error {
 			return err
 		}
 	}
+	if (customer.LastName == "" && model.Customer.LastName != "") || (customer.Patronymic == "" && model.Customer.Patronymic != "") {
+		customer, err = r.customerService.Update(rs, customer.Id, model.Customer)
+		if err != nil {
+			return err
+		}
+	}
+
+	if model.DeliveryOptionId > 1 {
+		address, err := r.addressService.GetByFiasId(rs, model.Customer.FiasAddress.FiasId)
+		if address.Id == 0 {
+			country, _ := r.countryService.GetByName(rs, model.Customer.FiasAddress.Country)
+			address = model.Customer.FiasAddress
+			address.Full = model.Customer.Address.Full
+			address.CountryId = country.Id
+			address, err = r.addressService.Create(rs, address)
+			if err != nil {
+				return err
+			}
+		}
+
+		deliveryAddress, err := r.deliveryAddressService.GetByFiasId(rs, model.Customer.FiasAddress.FiasId)
+
+		if deliveryAddress.Id == 0 {
+			deliveryAddress = &model.Customer.Address
+			deliveryAddress.FiasId = model.Customer.FiasAddress.FiasId
+			deliveryAddress.AddressId = address.Id
+			deliveryAddress, err = r.deliveryAddressService.Create(rs, deliveryAddress)
+			if err != nil {
+				return err
+			}
+		}
+		model.DeliveryId = deliveryAddress.Id
+		fmt.Println(model.DeliveryId)
+	}
 
 	model.Order.CustomerId = customer.Id
 	model.Fio = model.Customer.Fio
+
 	cartOrder, err := r.service.Create(rs, &model.Order)
 	if err != nil {
 		return err
 	}
 	r.itemService.CreateItems(rs, cartOrder.Id, model.Items)
 
-
-
-	address, err := r.addressService.GetByFiasId(rs, model.Customer.FiasAddress.FiasId)
-	if address.Id == 0 {
-		country, _ := r.countryService.GetByName(rs, model.Customer.FiasAddress.Country)
-		address.Full = model.Customer.Address.Full
-		address.CountryId = country.Id
-		address, err = r.addressService.Create(rs, model.Customer.FiasAddress)
-		if err != nil {
-			return err
-		}
-	}
-
-	deliveryAddress, _ := r.deliveryAddressService.GetByFiasId(rs, model.Customer.FiasAddress.FiasId)
-	if deliveryAddress.Id == 0 {
-		deliveryAddress = &model.Customer.Address
-		deliveryAddress.FiasId = model.Customer.FiasAddress.FiasId
-		deliveryAddress.AddressId = address.Id
-		r.deliveryAddressService.Create(rs, deliveryAddress)
-
-	}
-
-	orderCustomerMap := &models.OrderCustomerMap{cartOrder.Id, customer.Id}
+	orderCustomerMap := &models.OrderCustomerMap{cartOrder.Id, customer.Id, model.DeliveryId}
 	r.orderCustomerMapService.Create(rs, orderCustomerMap)
 
 	emailItems, err := r.service.GetEmail(rs, cartOrder.Id)

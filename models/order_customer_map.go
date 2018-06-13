@@ -1,6 +1,7 @@
 package models
 
 type OrderCustomerMap struct {
-	OrderId int
+	OrderId    int
 	CustomerId int
+	DeliveryId int
 }
