@@ -9,11 +9,11 @@ import (
 
 type (
 	cartOrderService interface {
-		Create(rs app.RequestScope, model *models.CartOrder) (*models.CartOrder, error)
+		Create(rs app.RequestScope, model *models.Order) (*models.Order, error)
 		GetEmail(rs app.RequestScope, id int) (*[]models.CartOrderItemEmail, error)
-		/*Query(rs app.RequestScope, offset, limit, id int) ([]models.CartOrder, error)
+		/*Query(rs app.RequestScope, offset, limit, id int) ([]models.Order, error)
 		Count(rs app.RequestScope, id int) (int, error)
-		GetByPath(rs app.RequestScope, id string) (*models.CartOrder, error)*/
+		GetByPath(rs app.RequestScope, id string) (*models.Order, error)*/
 	}
 
 	cartOrderResource struct {
@@ -39,7 +39,7 @@ func (r *cartOrderResource) create(c *routing.Context) error {
 
 	model.Date = rs.Now()
 
-		cartOrder, err := r.service.Create(rs, &model.CartOrder)
+		cartOrder, err := r.service.Create(rs, &model.Order)
 	if err != nil {
 		return err
 	}

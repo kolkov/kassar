@@ -10,13 +10,13 @@ export interface ICustomerAddress {
   houseFiasId?: string;
   houseType?: string;
   houseTypeFull?: string;
-  postalCode?: string;
   block?: string;
   blockType?: string;
   room?: string;
   entrance?: string
   floor?: string;
   code?: string;
+  postalCode?: string;
 }
 
 export interface ICustomer {

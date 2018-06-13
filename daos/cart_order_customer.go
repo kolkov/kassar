@@ -11,13 +11,13 @@ func NewCartOrderCustomerDAO() *CartOrderCustomerDAO {
 	return &CartOrderCustomerDAO{}
 }
 
-func (dao *CartOrderCustomerDAO) Get(rs app.RequestScope, id int) (*models.CartOrderCustomer, error) {
-	var customer models.CartOrderCustomer
+func (dao *CartOrderCustomerDAO) Get(rs app.RequestScope, id int) (*models.Customer, error) {
+	var customer models.Customer
 	err := rs.Tx().Select().Model(id, &customer)
 	return &customer, err
 }
 
-func (dao *CartOrderCustomerDAO) Create(rs app.RequestScope, customer *models.CartOrderCustomer) error {
+func (dao *CartOrderCustomerDAO) Create(rs app.RequestScope, customer *models.Customer) error {
 	customer.Id = 0
 	return rs.Tx().Model(customer).Insert()
 }

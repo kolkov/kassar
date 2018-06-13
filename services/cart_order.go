@@ -9,14 +9,14 @@ import (
 )
 
 type cartOrderDAO interface {
-	Get(rs app.RequestScope, id int) (*models.CartOrder, error)
-	Create(rs app.RequestScope, artist *models.CartOrder) error
+	Get(rs app.RequestScope, id int) (*models.Order, error)
+	Create(rs app.RequestScope, artist *models.Order) error
 	GetEmail(rs app.RequestScope, id int) (*[]models.CartOrderItemEmail, error)
-	/*GetByPath(scope app.RequestScope, id string) (*models.CartOrder,error)
+	/*GetByPath(scope app.RequestScope, id string) (*models.Order,error)
 	// Count returns the number of artists.
 	Count(rs app.RequestScope, id int) (int, error)
 	// Query returns the list of artists with the given offset and limit.
-	Query(rs app.RequestScope, offset, limit, id int) ([]models.CartOrder, error)*/
+	Query(rs app.RequestScope, offset, limit, id int) ([]models.Order, error)*/
 }
 
 type CartOrderService struct {
@@ -27,11 +27,11 @@ func NewCartOrderService(dao cartOrderDAO) *CartOrderService{
 	return &CartOrderService{dao}
 }
 
-func (s *CartOrderService) Get(rs app.RequestScope, id int) (*models.CartOrder, error) {
+func (s *CartOrderService) Get(rs app.RequestScope, id int) (*models.Order, error) {
 	return s.dao.Get(rs, id)
 }
 
-func (s *CartOrderService) Create(rs app.RequestScope, model *models.CartOrder) (*models.CartOrder, error) {
+func (s *CartOrderService) Create(rs app.RequestScope, model *models.Order) (*models.Order, error) {
 	if err := model.Validate(); err != nil {
 		return nil, err
 	}
@@ -47,7 +47,7 @@ func (s *CartOrderService) GetEmail(rs app.RequestScope, id int) (*[]models.Cart
 
 
 
-func SendEmail(cart *models.CartOrder, customer *models.CartOrderCustomer, items *[]models.CartOrderItemEmail){
+func SendEmail(cart *models.Order, customer *models.Customer, items *[]models.CartOrderItemEmail){
 	e := email.NewEmail()
 	e.From = "Kassar.ru <info@kassar.ru>"
 	e.To = []string{customer.Email}
@@ -73,7 +73,7 @@ func SendEmail(cart *models.CartOrder, customer *models.CartOrderCustomer, items
 	}
 }
 
-func SendEmail2(cart *models.CartOrder, customer *models.CartOrderCustomer, items *[]models.CartOrderItemEmail){
+func SendEmail2(cart *models.Order, customer *models.Customer, items *[]models.CartOrderItemEmail){
 	e := email.NewEmail()
 	e.From = "Kassar.ru <info@kassar.ru>"
 	e.To = []string{"Edya161@gmail.com "}

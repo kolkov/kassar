@@ -5,7 +5,7 @@ import (
 	"github.com/go-ozzo/ozzo-validation"
 )
 
-type CartOrder struct {
+type Order struct {
 	Id                 int       `json:"id"`
 	CustomerId         int       `json:"customerId"`
 	Registered         bool      `json:"registered"`
@@ -18,7 +18,7 @@ type CartOrder struct {
 	GrossTotal float64          `json:"grossTotal"`
 }
 
-func (m CartOrder) Validate() error {
+func (m Order) Validate() error {
 	return validation.ValidateStruct(&m,
 		//validation.Field(&m.CustomerId, validation.Required, ),
 		//validation.Field(&m.Registered, validation.Required),
@@ -27,9 +27,9 @@ func (m CartOrder) Validate() error {
 }
 
 type CartOrderInput struct {
-	CartOrder
-	Items      []*CartOrderItem `json:"items"`
-	Customer   *CartOrderCustomer`json:"customer"`
+	Order
+	Items      []*OrderItem `json:"items"`
+	Customer   *Customer    `json:"customer"`
 }
 
 type CartOrderItemEmail struct {

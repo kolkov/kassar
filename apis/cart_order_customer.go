@@ -8,10 +8,10 @@ import (
 
 type (
 	cartOrderCustomerService interface {
-		Create(rs app.RequestScope, model *models.CartOrderCustomer) (*models.CartOrderCustomer, error)
-		/*Query(rs app.RequestScope, offset, limit, id int) ([]models.CartOrderCustomer, error)
+		Create(rs app.RequestScope, model *models.Customer) (*models.Customer, error)
+		/*Query(rs app.RequestScope, offset, limit, id int) ([]models.Customer, error)
 		Count(rs app.RequestScope, id int) (int, error)
-		GetByPath(rs app.RequestScope, id string) (*models.CartOrderCustomer, error)*/
+		GetByPath(rs app.RequestScope, id string) (*models.Customer, error)*/
 	}
 
 	cartOrderCustomerResource struct {
@@ -27,11 +27,11 @@ func ServCartOrderCustomerResource(rg *routing.RouteGroup, service cartOrderCust
 }
 
 /*func (r *cartOrderCustomerResource) create(c *routing.Context) error {
-	var model models.CartOrderCustomer
+	var model models.Customer
 	if err := c.Read(&model); err != nil {
 		return err
 	}
-	response, err := r.service.Create(app.GetRequestScope(c), &model.CartOrderCustomer)
+	response, err := r.service.Create(app.GetRequestScope(c), &model.Customer)
 	if err != nil {
 		return err
 	}

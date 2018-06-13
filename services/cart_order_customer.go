@@ -6,13 +6,13 @@ import (
 )
 
 type cartOrderCustomerDAO interface {
-	Get(rs app.RequestScope, id int) (*models.CartOrderCustomer, error)
-	Create(rs app.RequestScope, customer *models.CartOrderCustomer) error
-	/*GetByPath(scope app.RequestScope, id string) (*models.CartOrderCustomer,error)
+	Get(rs app.RequestScope, id int) (*models.Customer, error)
+	Create(rs app.RequestScope, customer *models.Customer) error
+	/*GetByPath(scope app.RequestScope, id string) (*models.Customer,error)
 	// Count returns the number of artists.
 	Count(rs app.RequestScope, id int) (int, error)
 	// Query returns the list of artists with the given offset and limit.
-	Query(rs app.RequestScope, offset, limit, id int) ([]models.CartOrderCustomer, error)*/
+	Query(rs app.RequestScope, offset, limit, id int) ([]models.Customer, error)*/
 }
 
 type CartOrderCustomerService struct {
@@ -23,11 +23,11 @@ func NewCartOrderCustomerService(dao cartOrderCustomerDAO) *CartOrderCustomerSer
 	return &CartOrderCustomerService{dao}
 }
 
-func (s *CartOrderCustomerService) Get(rs app.RequestScope, id int) (*models.CartOrderCustomer, error) {
+func (s *CartOrderCustomerService) Get(rs app.RequestScope, id int) (*models.Customer, error) {
 	return s.dao.Get(rs, id)
 }
 
-func (s *CartOrderCustomerService) Create(rs app.RequestScope, model *models.CartOrderCustomer) (*models.CartOrderCustomer, error) {
+func (s *CartOrderCustomerService) Create(rs app.RequestScope, model *models.Customer) (*models.Customer, error) {
 	if err := model.Validate(); err != nil {
 		return nil, err
 	}
