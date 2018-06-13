@@ -107,6 +107,7 @@ export class CartDeliveryComponent implements OnInit {
       block: address.block,
       blockType: address.block_type,
     };
+    this.model.fiasAddress = address;
     if (address.flat) this.model.address.room = address.flat;
     this.geocode(e.value);
   }

@@ -46,7 +46,8 @@ export class CartConfirmComponent implements OnInit {
             return {
               ...item,
               product,
-              totalCost: product.price * item.quantity
+              totalCost: product.price * item.quantity,
+
             };
           });
       });

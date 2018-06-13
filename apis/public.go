@@ -15,12 +15,13 @@ func ServPublicResource(rg *routing.RouteGroup,
 				productCategoryService productCategoryService,
 	articleCategoryService articleCategoryService,
 		additionalOptionService additionalOptionService,
-	deliveryOptionService deliveryOptionService) {
+	deliveryOptionService deliveryOptionService, service addressService, service2 deliveryAddressService, mapService orderCustomerMapService) {
 		newsResource := &newsResource{newsService}
 		articleResource := &articleResource{articleService}
 		productResource := &productResource{productService, productPropertiesService, productCategoryService}
 		paymentOptionsResource := &paymentOptionResource{paymentOptionsService}
-		cartOrderResource := &cartOrderResource{cartOrderService, cartOrderItemService, cartOrderCustomerService}
+		cartOrderResource := &cartOrderResource{cartOrderService, cartOrderItemService, cartOrderCustomerService,
+			service, service2, mapService}
 		productCategoryResource := &productCategoryResource{productCategoryService}
 		articleCategoryResource := &articleCategoryResource{articleCategoryService}
 		additionalOptionsResource := &additionalOptionResource{additionalOptionService}

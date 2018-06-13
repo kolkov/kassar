@@ -93,12 +93,15 @@ func buildRouter(logger *logrus.Logger, db *dbx.DB) *routing.Router {
 	productDAO := daos.NewProductDAO()
 	productCategoryDAO := daos.NewProductCategoryDAO()
 	propertiesDAO := daos.NewProductPropertiesDAO()
-	cartOrderDAO := daos.NewCartOrderDAO()
-	cartItemDAO := daos.NewCartOrderItemDAO()
-	cartOrderCustomerDAO := daos.NewCartOrderCustomerDAO()
+	cartOrderDAO := daos.NewOrderDAO()
+	cartItemDAO := daos.NewOrderItemDAO()
+	cartOrderCustomerDAO := daos.NewCustomerDAO()
 	paymentOptionDAO := daos.NewPaymentOptionDAO()
 	additionalOptionDAO := daos.NewAdditionalOptionDAO()
 	deliveryOptionDAO := daos.NewDeliveryOptionDAO()
+	addressDAO := daos.NewAddressDAO()
+	deliveryAddressDAO := daos.NewDeliveryAddressDAO()
+	orderCustomerMapDAO := daos.NewOrderCustomerMapDAO()
 	userDAO := daos.NewUserDAO()
 
 	// Initialize all used Services
@@ -108,12 +111,15 @@ func buildRouter(logger *logrus.Logger, db *dbx.DB) *routing.Router {
 	productService := services.NewProductService(productDAO)
 	productCategoryService := services.NewProductCategoryService(productCategoryDAO)
 	propertiesService := services.NewProductPropertiesService(propertiesDAO)
-	cartOrderService := services.NewCartOrderService(cartOrderDAO)
-	cartOrderItemService := services.NewCartOrderItemService(cartItemDAO)
-	cartOrderCustomerService := services.NewCartOrderCustomerService(cartOrderCustomerDAO)
+	cartOrderService := services.NewOrderService(cartOrderDAO)
+	cartOrderItemService := services.NewOrderItemService(cartItemDAO)
+	cartOrderCustomerService := services.NewCustomerService(cartOrderCustomerDAO)
 	paymentOptionService := services.NewPaymentOptionService(paymentOptionDAO)
 	additionalService := services.NewAdditionalOptionService(additionalOptionDAO)
 	deliveryOptionService := services.NewDeliveryOptionService(deliveryOptionDAO)
+	addressService := services.NewAddressService(addressDAO)
+	deliveryAddressService := services.NewDeliveryAddressService(deliveryAddressDAO)
+	orderCustomerMapService := services.NewOrderCustomerMapService(orderCustomerMapDAO)
 	userService := services.NewUserService(userDAO)
 
 	rg.Post("/auth", apis.Auth(app.Config.JWTSigningKey))
@@ -121,7 +127,7 @@ func buildRouter(logger *logrus.Logger, db *dbx.DB) *routing.Router {
 		productService, propertiesService, paymentOptionService,
 		cartOrderService, cartOrderItemService, cartOrderCustomerService,
 		productCategoryService, articleCategoryService,
-		additionalService, deliveryOptionService)
+		additionalService, deliveryOptionService, addressService, deliveryAddressService, orderCustomerMapService)
 
 	//rg.Post("/user/signup", apis.Signup())
 	//rg.Put("/user/email/confirm/<token>", apis.ConfirmEmail())
@@ -136,7 +142,8 @@ func buildRouter(logger *logrus.Logger, db *dbx.DB) *routing.Router {
 	apis.ServArticleResource(rg, articleService)
 	apis.ServeNewsResource(rg, newsService)
 	apis.ServProductResource(rg, productService, propertiesService, productCategoryService)
-	apis.ServCartOrderResource(rg, cartOrderService, cartOrderItemService, cartOrderCustomerService)
+	apis.ServCartOrderResource(rg, cartOrderService, cartOrderItemService, cartOrderCustomerService,
+		addressService, deliveryAddressService, orderCustomerMapService)
 	apis.ServPaymentOptionResource(rg, paymentOptionService)
 	apis.ServeUserResource(rg, userService)
 

@@ -1,3 +1,5 @@
+import {DaDataAddress} from "../../../../projects/kolkov/ngx-dadata/src/lib/models/data";
+
 export interface ICustomerAddress {
   full?: string;
   city?: string;
@@ -28,6 +30,7 @@ export interface ICustomer {
   phone: string;
   email: string;
   address: ICustomerAddress;
+  fiasAddress: DaDataAddress;
 }
 
 /*export class CustomerAddress implements ICustomerAddress {

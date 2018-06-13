@@ -1,5 +1,6 @@
 import {CartItem} from "./cart-item";
-import {ICustomer} from "./customer";
+import {ICustomer, ICustomerAddress} from "./customer";
+import {DaDataAddress} from "../../../../projects/kolkov/ngx-dadata/src/lib/models/data";
 
 export class ShoppingCart {
   items: CartItem[] = [];
@@ -13,7 +14,9 @@ export class ShoppingCart {
     gender: '',
     email: '',
     phone: '',
-    address: {
+    fiasAddress: <DaDataAddress>{},
+    address: <ICustomerAddress>{}
+    /*address: {
       full: '',
       city: '',
       street: '',
@@ -22,7 +25,7 @@ export class ShoppingCart {
       code: '',
       floor: '',
       entrance: '',
-    }
+    }*/
   };
   confirmed = false;
   grossTotal = 0;

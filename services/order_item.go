@@ -5,7 +5,7 @@ import (
 	"kassar/models"
 )
 
-type cartOrderItemDAO interface {
+type orderItemDAO interface {
 	Get(rs app.RequestScope, id int) (*models.OrderItem, error)
 	Create(rs app.RequestScope, items *models.OrderItem) error
 	/*GetByPath(scope app.RequestScope, id string) (*models.OrderItem,error)
@@ -15,19 +15,19 @@ type cartOrderItemDAO interface {
 	Query(rs app.RequestScope, offset, limit, id int) ([]models.OrderItem, error)*/
 }
 
-type CartOrderItemService struct {
-	dao cartOrderItemDAO
+type OrderItemService struct {
+	dao orderItemDAO
 }
 
-func NewCartOrderItemService(dao cartOrderItemDAO) *CartOrderItemService{
-	return &CartOrderItemService{dao}
+func NewOrderItemService(dao orderItemDAO) *OrderItemService {
+	return &OrderItemService{dao}
 }
 
-func (s *CartOrderItemService) Get(rs app.RequestScope, id int) (*models.OrderItem, error) {
+func (s *OrderItemService) Get(rs app.RequestScope, id int) (*models.OrderItem, error) {
 	return s.dao.Get(rs, id)
 }
 
-func (s *CartOrderItemService) Create(rs app.RequestScope, model *models.OrderItem) (*models.OrderItem, error) {
+func (s *OrderItemService) Create(rs app.RequestScope, model *models.OrderItem) (*models.OrderItem, error) {
 	if err := model.Validate(); err != nil {
 		return nil, err
 	}
@@ -37,7 +37,7 @@ func (s *CartOrderItemService) Create(rs app.RequestScope, model *models.OrderIt
 	return s.dao.Get(rs, model.Id)
 }
 
-func (s *CartOrderItemService) CreateItems(rs app.RequestScope, id int, items []*models.OrderItem) {
+func (s *OrderItemService) CreateItems(rs app.RequestScope, id int, items []*models.OrderItem) {
 	for _, item := range items{
 		item.OrderId = id;
 		s.Create(rs, item)
