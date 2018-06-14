@@ -83,6 +83,10 @@ export class CartDeliveryComponent implements OnInit {
   }
 
   confirmedCart() {
+    if (!this.model.firstName) {
+      alert('Выберите хотя бы Ваше имя!');
+      return;
+    }
     this.shoppingCartService.setCustomerRequisites(this.model);
     this.router.navigate(['/order/payment'], {replaceUrl: false});
   }
