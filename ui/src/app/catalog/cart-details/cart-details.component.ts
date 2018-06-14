@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, EventEmitter, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {Product} from "../../cart/models/product";
 import {SEOService} from "../../seo.service";
@@ -16,12 +16,14 @@ export class CartDetailsComponent implements OnInit {
   constructor(
     private activateRoute: ActivatedRoute,
     private seoService: SEOService,
+    private changeDetectorRef: ChangeDetectorRef
   ) {
   }
 
   ngOnInit() {
     this.activateRoute.params.subscribe(() => {
       this.id = this.activateRoute.snapshot.params['id'];
+      this.changeDetectorRef.detectChanges();
     });
   }
 

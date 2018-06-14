@@ -1,4 +1,13 @@
-import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  SimpleChanges
+} from '@angular/core';
 import {ProductsService} from "../../services/products.service";
 import {Observer} from "rxjs/internal/types";
 import {Product} from "../../models/product";
@@ -13,9 +22,13 @@ import {Observable} from "rxjs/internal/Observable";
   templateUrl: './store-details.component.html',
   styleUrls: ['./store-details.component.scss']
 })
-export class StoreDetailsComponent implements OnInit {
+export class StoreDetailsComponent implements OnInit/*, OnChanges*/ {
   product$: Observable<Product>;
-  @Input() id: string;
+  private _categoryId: string;
+  @Input("id")  set  categoryId(value: string){
+    this._categoryId = value;
+    this.getProduct()
+  }
   @Output('product') product = new EventEmitter<Product>();
 
   constructor(
@@ -25,18 +38,24 @@ export class StoreDetailsComponent implements OnInit {
     private router: Router) {
   }
 
-  ngOnInit() {
-      this.product$ = this.productService.one(this.id).pipe(
-        tap(
-          p => {
-           this.product.emit(p)
-          }
-        ),
-        catchError((err, caught) => {
-          this.router.navigate(['/404']);
-          return caught;
-        })
-       );
+  ngOnInit() {}
+
+  /*ngOnChanges(changes: SimpleChanges): void {
+    this.getProduct();
+  }*/
+
+  getProduct(){
+    this.product$ = this.productService.one(this._categoryId).pipe(
+      tap(
+        p => {
+          this.product.emit(p)
+        }
+      ),
+      catchError((err, caught) => {
+        this.router.navigate(['/404']);
+        return caught;
+      })
+    );
   }
 
   public addProductToCart(product: Product): void {
