@@ -89,8 +89,10 @@ func (r *articleResource) create(c *routing.Context) error {
 	if err := c.Read(&model); err != nil {
 		return err
 	}
-	model.Date = app.GetRequestScope(c).Now().String()
-	response, err := r.service.Create(app.GetRequestScope(c), &model)
+	rs := app.GetRequestScope(c)
+	model.Date = rs.Now().String()
+	model.UpdatedAt = rs.Now()
+	response, err := r.service.Create(rs, &model)
 	if err != nil {
 		return err
 	}
@@ -115,7 +117,7 @@ func (r *articleResource) update(c *routing.Context) error {
 		return err
 	}
 
-	//model.Date = rs.Now().String()
+	model.UpdatedAt = rs.Now()
 
 	response, err := r.service.Update(rs, id, model)
 	if err != nil {
