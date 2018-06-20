@@ -84,7 +84,7 @@ export class CartDeliveryComponent implements OnInit {
 
   confirmedCart() {
     if (!this.model.firstName) {
-      alert('Выберите хотя бы Ваше имя!');
+      alert('Выберите хотя бы ваше имя!');
       return;
     }
     this.shoppingCartService.setCustomerRequisites(this.model);
