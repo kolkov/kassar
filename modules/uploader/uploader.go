@@ -7,24 +7,25 @@ import (
 	"fmt"
 	"io"
 	"mime/multipart"
-	"inframe/app"
+	"kassar/app"
 )
 
 func SaveFile(path, fileName string, file multipart.File) (string, string, int64) {
-	dataPath := "." + app.Config.DataPath
-	if _, err := os.Stat(dataPath + path); err != nil {
+	fullPath := "./" + app.Config.DataPath + "/" + path
+	if _, err := os.Stat(fullPath); err != nil {
 		if os.IsNotExist(err) {
 			// file does not exist
-			os.MkdirAll(dataPath + path, 0777)
+			os.MkdirAll(fullPath, 0777)
 		} else {
 			// other error
+			fmt.Println(err)
 		}
 	}
 
 	ext := filepath.Ext(fileName)
 	newFileName := uuid.NewV4().String()
 
-	f, err := os.OpenFile(dataPath + path + newFileName + ext, os.O_WRONLY|os.O_CREATE, 0666)
+	f, err := os.OpenFile(fullPath + newFileName + ext, os.O_WRONLY|os.O_CREATE, 0666)
 	if err != nil {
 		fmt.Println(err)
 		return "", "", 0

@@ -35,7 +35,7 @@ type appConfig struct {
 	// Href
 	HttpHref string `mapstructure:"http_href"`
 	// Href
-	HttpDataImage string `mapstructure:"http_data_image"`
+	DataImageUrl string `mapstructure:"data_image_url"`
 	// SMTP
 	SMTP util.Smtp `mapstructure:"smtp"`
 	// Facebook redirect url
@@ -62,12 +62,13 @@ func LoadConfig(configPaths ...string) error {
 	v.SetDefault("error_file", "config/errors.yaml")
 	v.SetDefault("server_port", 8080)
 	v.SetDefault("jwt_signing_method", "HS256")
-	v.SetDefault("data_path", "/data/")
-	v.SetDefault("image_path", "./data/img/")
+	v.SetDefault("data_path", "data")
+	v.SetDefault("image_path", "img")
+	//v.SetDefault("image_path", )
 	v.SetDefault("static_path", "./ui/")
 	v.SetDefault("http_index", "index.html")
 	v.SetDefault("http_href", "/")
-	v.SetDefault("http_data_image", "/data/img/")
+	v.SetDefault("data_image_url", v.GetString("data_path") + "/" +  v.GetString("image_path"))
 	v.SetDefault("smtp", util.Smtp{"localhost", "", "", 25})
 
 	for _, path := range configPaths {

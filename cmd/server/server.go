@@ -151,6 +151,7 @@ func buildRouter(logger *log.Logger, db *dbx.DB) *routing.Router {
 		addressService, deliveryAddressService, orderCustomerMapService, countryService)
 	apis.ServPaymentOptionResource(rg, paymentOptionService)
 	apis.ServeUserResource(rg, userService)
+	apis.ServeImageResource(rg)
 
 	logger.Info("Start Serving static files on " + app.Config.StaticPath)
 
@@ -163,7 +164,7 @@ func buildRouter(logger *log.Logger, db *dbx.DB) *routing.Router {
 	serverOptions.CatchAllFile = indexFile
 	router.Get("/*", file.Server(file.PathMap{
 		app.Config.HttpHref:      app.Config.StaticPath,
-		app.Config.HttpDataImage: app.Config.ImagePath,
+		app.Config.DataImageUrl: app.Config.ImagePath,
 	},
 		serverOptions,
 	))

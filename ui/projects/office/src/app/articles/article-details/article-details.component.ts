@@ -36,7 +36,8 @@ export class ArticleDetailsComponent implements OnInit {
     minHeight: '5rem',
     placeholder: 'Введите текст статьи...',
     translate: 'no',
-    defaultFontName: 'Comic Sans MS'
+    defaultFontName: 'Comic Sans MS',
+    uploadUrl: 'v1/images'
   };
 
   @ViewChild("angularEditor") editor: AngularEditorComponent;
