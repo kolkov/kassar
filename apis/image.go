@@ -41,6 +41,7 @@ func (r *imageResource) uploadImage(c *routing.Context) error {
 	type uploaderAnswer struct {
 		Status        bool   `json:"status"`
 		OriginalName  string `json:"originalName"`
+		Extension     string `json:"extension"`
 		GeneratedName string `json:"generatedName"`
 		Msg           string `json:"msg"`
 		ImageUrl      string `json:"imageUrl"`
@@ -52,6 +53,7 @@ func (r *imageResource) uploadImage(c *routing.Context) error {
 	} else {
 		a.GeneratedName = newFileName
 		a.OriginalName = fileName
+		a.Extension = ext
 		a.Status = true
 		a.ImageUrl = imagePath
 		a.Msg = "Image upload successful"
