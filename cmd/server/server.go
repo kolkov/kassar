@@ -164,7 +164,7 @@ func buildRouter(logger *log.Logger, db *dbx.DB) *routing.Router {
 	serverOptions.CatchAllFile = indexFile
 	router.Get("/*", file.Server(file.PathMap{
 		app.Config.HttpHref:      app.Config.StaticPath,
-		app.Config.DataImageUrl: app.Config.ImagePath,
+		"/" + app.Config.DataImageUrl + "/": "./" + app.Config.DataPath + "/" + app.Config.ImagePath + "/",
 	},
 		serverOptions,
 	))
