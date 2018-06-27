@@ -5,6 +5,8 @@ import {ShoppingCartService} from "../../services/shopping-cart.service";
 import {ProductsService} from "../../services/products.service";
 import {Observer} from "rxjs/internal/types";
 import {map} from "rxjs/operators";
+import {NgxMetrikaService} from "../../../../../projects/kolkov/ngx-metrika/src/lib/ngx-metrika.service";
+import {CommonOptions} from "../../../../../projects/kolkov/ngx-metrika/src/lib/interfaces";
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -18,7 +20,8 @@ export class StoreFrontComponent implements OnInit {
   @Input() category: string;
 
   constructor(private productsService: ProductsService,
-              private shoppingCartService: ShoppingCartService) {
+              private shoppingCartService: ShoppingCartService,
+              private ym: NgxMetrikaService) {
   }
 
   ngOnInit() {
@@ -29,6 +32,17 @@ export class StoreFrontComponent implements OnInit {
   }
 
   public addProductToCart(product: Product): void {
+    function goalCallback() {
+      console.log("request to Metrika sent successfully");
+    }
+    const options: CommonOptions = {
+      params: {
+        productId: product.id,
+        productName: product.name
+      },
+      callback: goalCallback
+    };
+    this.ym.reachGoal.next({target: "ADD_TO_CART", options});
     this.shoppingCartService.addItem(product, 1);
   }
 

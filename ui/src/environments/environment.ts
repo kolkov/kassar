@@ -7,7 +7,8 @@ export const environment = {
   production: false,
   enableTracing: false,
   googleAnalyticsKey: '',
-  yaCounterId: 0
+  yaCounterId: 0,
+  yaCounterTracking: false,
 };
 
 /*

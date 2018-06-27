@@ -3,7 +3,10 @@ import {NavigationEnd, Router} from "@angular/router";
 import {SEOService} from "./seo.service";
 import {GoogleAnalyticsService} from "./google-analytics.service";
 import {environment} from '../environments/environment';
-import {MetrikaGoalEventOptions, NgxMetrikaService} from "@kolkov/ngx-metrika";
+// import {MetrikaGoalEventOptions} from "../../projects/kolkov/ngx-metrika/src/lib/interfaces";
+import {NgxMetrikaService} from "../../projects/kolkov/ngx-metrika/src/lib/ngx-metrika.service";
+// import {MetrikaGoalEventOptions, NgxMetrikaService} from "@kolkov/ngx-metrika";
+import {CommonOptions, MetrikaGoalEventOptions} from "../../projects/kolkov/ngx-metrika/src/lib/interfaces";
 
 declare var gtag: Function;
 
@@ -20,9 +23,9 @@ export class AppComponent implements OnInit {
               private ngxMetrikaService: NgxMetrikaService
   ) {
     seoService.addSeoData();
-    let goal: MetrikaGoalEventOptions = {type: 'TARGET_NAME'};
-    this.ngxMetrikaService.reachGoal.next(goal);
-    if (environment.googleAnalyticsKey != '') {
+    const goalOptions: CommonOptions = {};
+    this.ngxMetrikaService.reachGoal.next({target: 'TARGET_INIT', options: goalOptions});
+    if (environment.googleAnalyticsKey !== '') {
       this.appendGaTrackingCode();
     }
   }
@@ -83,7 +86,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     // Somewhere else we can emit a new ga event
-    //this.googleAnalyticsService.emitEvent("eventName","testCategory", "testAction", "testLabel", 10);
+    // this.googleAnalyticsService.emitEvent("eventName","testCategory", "testAction", "testLabel", 10);
     this.router.events.subscribe((evt) => {
       if (!(evt instanceof NavigationEnd)) {
         return;

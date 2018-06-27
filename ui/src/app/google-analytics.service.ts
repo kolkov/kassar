@@ -10,7 +10,7 @@ declare var gtag: Function;
 export class GoogleAnalyticsService {
 
   constructor(public router: Router) {
-    if (environment.googleAnalyticsKey != '') {
+    if (environment.googleAnalyticsKey !== '') {
       this.router.events.subscribe(event => {
         try {
           if (typeof gtag === 'function') {

@@ -1,7 +1,7 @@
 <div class="img">
-  <img src="./assets/onlinekassa2-1024x512.png" alt="Кассатка 7"/>
+  <img src="./assets/onlinekassa2-1024x512.png" (load)="onLoad()" alt="Кассатка 7"/>
   <h2>
-    <span>
+    <span *ngIf="loaded">
       Онлайн кассы -
       <!--<span class="spacer"></span> -->
       <br/>

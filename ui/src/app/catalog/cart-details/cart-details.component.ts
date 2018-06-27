@@ -27,7 +27,7 @@ export class CartDetailsComponent implements OnInit {
     });
   }
 
-  myProduct(p: Product){
+  myProduct(p: Product) {
     this.seoService.setSeoData(p.name, {description: p.metaDescription, keywords: p.metaKeywords})
   }
 }

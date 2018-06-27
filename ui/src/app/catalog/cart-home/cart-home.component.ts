@@ -27,7 +27,9 @@ export class CartHomeComponent implements OnInit {
     this.category$ = this.cartHomeService.getPageDescription(this.id)
       .pipe(
         tap((category: Category) => {
-          if (!category) this.router.navigate(['/404']);
+          if (!category) {
+            this.router.navigate(['/404']);
+          }
           this.seoService.setSeoData(category.name, {
             description: category.metaDescription,
             keywords: category.metaKeywords

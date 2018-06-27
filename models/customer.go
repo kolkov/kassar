@@ -18,7 +18,7 @@ type Customer struct {
 func (m Customer) Validate() error {
 	return validation.ValidateStruct(&m,
 		validation.Field(&m.Fio, validation.Required),
-		validation.Field(&m.FirstName, validation.Required),
+		// validation.Field(&m.FirstName, validation.Required),
 		/*validation.Field(&m.LastName, validation.Required),*/
 		validation.Field(&m.Phone, validation.Required),
 		validation.Field(&m.Email, validation.Required),
