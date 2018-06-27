@@ -13,10 +13,17 @@ const routes: Routes = [
     component: PrivateComponent,
     canActivate: [AuthGuard],
     children: [
-      /*...ArticlesModule,*/
       {
         path: 'articles',
         loadChildren: './articles/articles.module#ArticlesModule'
+      },
+      {
+        path: 'cart',
+        loadChildren: './cart/cart.module#CartModule'
+      },
+      {
+        path: 'orders',
+        loadChildren: './orders/orders.module#OrdersModule'
       },
       {
         path: '',
