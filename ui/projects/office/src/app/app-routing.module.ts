@@ -1,39 +1,33 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 import {LoginComponent} from "./login/login.component";
 import {AuthGuard} from "./auth/auth.guard";
 import {HomeComponent} from "./home/home.component";
-import {ArticlesComponent} from "./articles/articles.component";
 import {PrivateComponent} from "./layout/private/private.component";
 import {PublicComponent} from "./layout/public/public.component";
 import {NotFoundComponent} from "./not-found/not-found.component";
-import {ArticleDetailsComponent} from "./articles/article-details/article-details.component";
 
 const routes: Routes = [
   {
     path: '',
     component: PrivateComponent,
     canActivate: [AuthGuard],
-    //pathMatch: 'full',
     children: [
+      /*...ArticlesModule,*/
+      {
+        path: 'articles',
+        loadChildren: './articles/articles.module#ArticlesModule'
+      },
       {
         path: '',
         component: HomeComponent,
         pathMatch: 'full',
       },
       {
-        path: 'articles/:id',
-        component: ArticleDetailsComponent
-      },
-      {
-        path: 'articles',
-        component: ArticlesComponent,
-      },
-      {
         path: '404',
         component: NotFoundComponent
       }
-    ]
+    ],
   },
   {
     path: '',

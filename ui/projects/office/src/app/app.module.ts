@@ -27,43 +27,31 @@ import {JWT_OPTIONS, JwtModule} from "@auth0/angular-jwt";
 import {jwtOptionsFactory} from "./app-jwt.factory";
 import {TokenService} from "./auth/token.service";
 import {HttpClientModule} from "@angular/common/http";
-import {ArticlesComponent} from './articles/articles.component';
 import {PublicComponent} from './layout/public/public.component';
 import {PrivateComponent} from './layout/private/private.component';
 import {NotFoundComponent} from './not-found/not-found.component';
 import {AngularEditorModule} from "../../../kolkov/angular-editor/src/lib/angular-editor.module";
-import {ArticleDetailsComponent} from './articles/article-details/article-details.component';
+import {ArticlesModule} from "./articles/articles.module";
+import {RootModule} from "./root/root.module";
+import {MatModule} from "./root/mat/mat.module";
+import {SharedModule} from "./shared/shared.module";
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     LoginComponent,
-    ArticlesComponent,
     PublicComponent,
     PrivateComponent,
     NotFoundComponent,
-    ArticleDetailsComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    ReactiveFormsModule,
     BrowserAnimationsModule,
-    MatToolbarModule,
-    MatSidenavModule,
-    MatButtonModule,
-    MatButtonToggleModule,
-    MatIconModule,
-    MatListModule,
-    MatCardModule,
-    MatInputModule,
-    MatFormFieldModule,
-    MatTableModule,
-    MatSortModule,
-    MatPaginatorModule,
-    MatProgressSpinnerModule,
-    MatSelectModule,
+    RootModule,
+    SharedModule,
+    MatModule,
     JwtModule.forRoot({
       jwtOptionsProvider: {
         provide: JWT_OPTIONS,
@@ -72,7 +60,7 @@ import {ArticleDetailsComponent} from './articles/article-details/article-detail
       }
     }),
     AngularEditorModule,
-    FormsModule,
+    // ArticlesModule,
     AppRoutingModule
   ],
   providers: [],

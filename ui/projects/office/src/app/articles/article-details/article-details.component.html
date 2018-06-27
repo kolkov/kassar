@@ -13,10 +13,6 @@
       <angular-editor id="e1" #angularEditor formControlName="body" [config]="editorConfig"></angular-editor>
     </div>
 
-    <div class="editor">
-      <angular-editor id="e2" #angularEditor2  [config]="editorConfig"></angular-editor>
-    </div>
-
     <mat-form-field class="full-width-input">
       <textarea class="textarea" matInput placeholder="Введение в статью (без точки в конце)" formControlName="introduction"></textarea>
       <mat-error *ngIf="isFieldInvalid('introduction')">
