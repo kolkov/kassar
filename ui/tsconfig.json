@@ -28,6 +28,12 @@
       ],
       "@kolkov/ngx-dadata/*": [
         "dist/kolkov/ngx-dadata/*"
+      ],
+      "@kolkov/translit": [
+        "dist/kolkov/translit"
+      ],
+      "@kolkov/translit/*": [
+        "dist/kolkov/translit/*"
       ]
     }
   }

@@ -1,0 +1,30 @@
+.product-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px;
+  max-width: 1000px;
+}
+
+.product-container > * {
+  width: 100%;
+}
+
+.full-width-input {
+  width: 100%;
+}
+
+.half-width-input {
+  width: 50%;
+}
+
+button {
+  margin-right: 10px;
+}
+
+.editor {
+  margin-bottom: 15px;
+}
+
+.textarea {
+  min-height: 40px;
+}

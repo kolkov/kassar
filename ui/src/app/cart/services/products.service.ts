@@ -31,8 +31,8 @@ export class ProductsService {
   }
 
 
-  public one(id: string): Observable<Product> {
-    return this.http.get<Product>('v1/public/products/' + id).pipe(
+  public one(path: string): Observable<Product> {
+    return this.http.get<Product>('v1/public/product/' + path).pipe(
       catchError(this.handleError)
     );
   }
