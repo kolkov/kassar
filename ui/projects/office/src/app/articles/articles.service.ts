@@ -20,10 +20,10 @@ export class ArticlesService {
     return this.http.get<Article>("v1/articles/" + id);
   }
 
-  save(article){
-    let body = JSON.stringify(article);
-    let headers = new HttpHeaders().set('Content-Type', 'application/json');
-    if (article.id != 0) {
+  save(article) {
+    const body = JSON.stringify(article);
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    if (article.id !== 0) {
       return this.http.patch('v1/articles/' + article.id, body, {headers});
     } else {
 
@@ -31,8 +31,8 @@ export class ArticlesService {
     }
   }
 
-  findArticles(
-    categoryId:number, filter = '', sortOrder = 'asc',
+  findProducts(
+    categoryId: number, filter = '', sortOrder = 'asc',
     pageNumber = 0, pageSize = 3):  Observable<ArticleList> {
 
     return this.http.get<ArticleList>('v1/articles', {
@@ -42,9 +42,7 @@ export class ArticlesService {
         .set('sortOrder', sortOrder)
         .set('page', pageNumber.toString())
         .set('per_page', pageSize.toString())
-    })/*.pipe(
-      map(res =>  res["items"])
-    );*/
+    });
   }
 
   getCategories(): Observable<Category[]>{

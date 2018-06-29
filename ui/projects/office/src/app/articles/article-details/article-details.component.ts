@@ -22,7 +22,7 @@ export class ArticleDetailsComponent implements OnInit {
   categories: Category[];
 
   form: FormGroup;
-  showForm: boolean = true;
+  showForm = true;
   private formSubmitAttempt: boolean;
 
   body: string;
@@ -52,7 +52,7 @@ export class ArticleDetailsComponent implements OnInit {
     this.articleService.getCategories()
       .subscribe((x: Category[]) => this.categories = x );
     this.id = this.route.snapshot.params['id'];
-    if (this.id != 0) {
+    if (this.id !== 0) {
       this.articleService.getOne(this.id).pipe(
         tap((x: Article) => {
           this.article = x;
@@ -86,9 +86,11 @@ export class ArticleDetailsComponent implements OnInit {
     if (!this.editor.modeVisual) {
       this.editor.toggleEditorMode(this.editor.modeVisual);
     }
-    if (this.pathInit != this.form.get("path").value && this.pathInit != '') {
+    if (this.pathInit !== this.form.get("path").value && this.pathInit != '') {
       const result = confirm("Путь статьи изменился, продолжить?");
-      if (!result) return;
+      if (!result) {
+        return;
+      }
     }
     if (this.form.valid) {
       this.showForm = false;
@@ -121,16 +123,16 @@ export class ArticleDetailsComponent implements OnInit {
     return false;
   }
 
-  updatePath(){
+  updatePath() {
     const pathValue = this.form.get("path").value;
-    if (pathValue == ''){
+    if (pathValue === '') {
       const value = this.form.get("title").value;
       const translitValue = translit(value);
       this.form.patchValue({"path": translitValue})
     }
   }
 
-  onChange(e: Event){
+  onChange(e: Event) {
     console.log(e);
   }
 }
