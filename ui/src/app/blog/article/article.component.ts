@@ -36,7 +36,7 @@ export class ArticleComponent implements OnInit {
         return x;
       }),
       tap(x => {
-        let tags = {
+        const tags = {
           description: x.metaDescription,
           keywords: x.metaKeywords,
         };
@@ -46,7 +46,7 @@ export class ArticleComponent implements OnInit {
         this.router.navigate(['/404']);
         return caught;
       })
-    )
+    );
 
 
     /*.subscribe((data: Article) => {
