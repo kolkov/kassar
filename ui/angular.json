@@ -399,6 +399,46 @@
           }
         }
       }
+    },
+    "@kolkov/translit": {
+      "root": "projects/kolkov/translit",
+      "sourceRoot": "projects/kolkov/translit/src",
+      "projectType": "library",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/kolkov/translit/tsconfig.lib.json",
+            "project": "projects/kolkov/translit/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "project": "projects/kolkov/translit/ng-package.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/kolkov/translit/src/test.ts",
+            "tsConfig": "projects/kolkov/translit/tsconfig.spec.json",
+            "karmaConfig": "projects/kolkov/translit/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/kolkov/translit/tsconfig.lib.json",
+              "projects/kolkov/translit/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "kassar",
