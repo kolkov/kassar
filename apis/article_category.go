@@ -28,7 +28,7 @@ func ServArticleCategoryResource(rg *routing.RouteGroup, service articleCategory
 	//rg.Patch("/articles/<id>", r.update)
 	rg.Get("/product-category/<id>", r.get)
 	rg.Get("/product-category/<id>", r.getByPath)
-	rg.Get("/product-category", r.query)
+	rg.Get("/product-categories", r.query)
 }
 
 func (r *articleCategoryResource) get(c *routing.Context) error {
