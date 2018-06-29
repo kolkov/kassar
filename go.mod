@@ -9,7 +9,7 @@ require (
 	github.com/fsnotify/fsnotify v1.4.7
 	github.com/go-ozzo/ozzo-dbx v1.0.15
 	github.com/go-ozzo/ozzo-routing v0.0.0-20180210022422-9dcabc145f0d
-	github.com/go-ozzo/ozzo-validation v0.0.0-20180322184344-2c68ddd4ffc1
+	github.com/go-ozzo/ozzo-validation v0.0.0-20180622164809-9d6782aa52aa
 	github.com/go-sql-driver/mysql v1.4.0
 	github.com/golang/gddo v0.0.0-20180613152826-3afa281c272c
 	github.com/hashicorp/hcl v0.0.0-20180404174102-ef8a98b0bbce
