@@ -1,12 +1,12 @@
 <h1 *ngIf="id === 0" class="mat-h1">Добавление заказа</h1>
-<h1 *ngIf="id !== 0" class="mat-h1">Изменение заказа</h1>
+<h1 *ngIf="id !== 0" class="mat-h1">Просмотр и изменение заказа</h1>
 
 <div class="product-container">
   <form [formGroup]="form" (ngSubmit)="onSubmit()" *ngIf="showForm">
     <mat-form-field class="full-width-input">
-      <input matInput placeholder="Название (без точки в конце)" formControlName="name" (blur)="updatePath()">
-      <mat-error *ngIf="isFieldInvalid('name')">
-        Введите название продукта (без точки в конце)
+      <input matInput placeholder="Заказчик" formControlName="fio">
+      <mat-error *ngIf="isFieldInvalid('fio')">
+        Заказчик (без точки в конце)
       </mat-error>
     </mat-form-field>
 
@@ -15,27 +15,41 @@
      </div>-->
 
     <mat-form-field class="full-width-input">
-      <textarea class="textarea" matInput placeholder="Описание (без точки в конце)" formControlName="description"></textarea>
-      <mat-error *ngIf="isFieldInvalid('description')">
-        Введите описание (без точки в конце)
+      <textarea class="textarea" matInput placeholder="Описание" formControlName="note"></textarea>
+      <mat-error *ngIf="isFieldInvalid('note')">
+        Примечание (без точки в конце)
       </mat-error>
     </mat-form-field>
 
     <mat-form-field class="full-width-input">
-      <input matInput placeholder="Цена в рублях" formControlName="price">
-      <mat-error *ngIf="isFieldInvalid('price')">
-        Введите цену в рублях (через запятую)
+      <input matInput placeholder="Цена заказа в рублях" formControlName="itemsTotal">
+      <mat-error *ngIf="isFieldInvalid('itemsTotal')">
+        Введите цену (в рублях)
       </mat-error>
     </mat-form-field>
 
     <mat-form-field class="full-width-input">
-      <input matInput placeholder="Путь продукта (без точки и тире в конце)" formControlName="path">
-      <mat-error *ngIf="isFieldInvalid('path')">
-        Введите путь продукта (без точки и тире в конце)
+      <input matInput placeholder="Цена всего в рублях" formControlName="grossTotal">
+      <mat-error *ngIf="isFieldInvalid('grossTotal')">
+        Введите цену всего (в рублях)
       </mat-error>
     </mat-form-field>
 
     <mat-form-field class="full-width-input">
+      <input matInput [matDatepicker]="picker" placeholder="Выберете дату" formControlName="date">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+
+    <!--  <input [matDatepicker]="myDatepicker" formControlName="date">
+      <mat-datepicker #myDatepicker></mat-datepicker>-->
+
+     <!-- <input type="date" matInput placeholder="Дата" formControlName="date">
+      <mat-error *ngIf="isFieldInvalid('date')">
+        Дата заказа
+      </mat-error>-->
+    </mat-form-field>
+
+    <!--<mat-form-field class="full-width-input">
       <input matInput placeholder="Метаописание (без точки в конце)" formControlName="metaDescription">
       <mat-error *ngIf="isFieldInvalid('metaDescription')">
         Введите метаописание статьи (без точки в конце)
@@ -53,7 +67,7 @@
       <mat-select placeholder="Раздел для публикации" formControlName="categoryId">
         <mat-option *ngFor="let option of categories" [value]="option.id">{{option.nickname}}</mat-option>
       </mat-select>
-    </mat-form-field>
+    </mat-form-field>-->
     <button mat-raised-button color="primary" type="submit">Сохранить</button>
     <button mat-raised-button color="primary" (click)="reset()">Очистить</button>
     <button mat-raised-button color="primary" routerLink="/cart">К списку</button>

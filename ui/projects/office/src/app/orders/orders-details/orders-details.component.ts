@@ -1,8 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {AngularEditorConfig} from "../../../../../kolkov/angular-editor/src/lib/config";
-import {tap} from "rxjs/operators";
+import {map, tap} from "rxjs/operators";
 import {AngularEditorComponent} from "../../../../../kolkov/angular-editor/src/lib/angular-editor.component";
-import {translit} from "../../../../../kolkov/translit/src/lib/translit";
 import {Category} from "../../../../../../src/app/models/category";
 import {ActivatedRoute, Router} from "@angular/router";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
@@ -29,17 +27,6 @@ export class OrdersDetailsComponent implements OnInit {
 
   pathInit;
 
-  editorConfig: AngularEditorConfig = {
-    editable: true,
-    spellcheck: true,
-    height: '25rem',
-    minHeight: '5rem',
-    placeholder: 'Введите текст статьи...',
-    translate: 'no',
-    defaultFontName: 'Comic Sans MS',
-    uploadUrl: 'v1/images'
-  };
-
   @ViewChild("angularEditor") editor: AngularEditorComponent;
 
   constructor(private fb: FormBuilder,
@@ -49,29 +36,33 @@ export class OrdersDetailsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.orderService.getCategories()
-      .subscribe((x: Category[]) => this.categories = x );
+    /*this.orderService.getCategories()
+      .subscribe((x: Category[]) => this.categories = x );*/
     this.id = this.route.snapshot.params['id'];
     if (this.id !== 0) {
       this.orderService.getOne(this.id).pipe(
+        map((o: Order) =>  {
+          o.date = o.date.substr(0, 10);
+          return o;
+        }),
         tap((x: Order) => {
           this.order = x;
           this.form.patchValue(this.order);
-          this.pathInit = this.form.get("path").value;
-        })
+          // this.pathInit = this.form.get("path").value;
+        }),
       ).subscribe();
     }
 
     this.form = this.fb.group({
       id: 0,
-      name: ['', Validators.required],
-      /*body: ['', Validators.required],*/
-      description: ['', Validators.required],
-      price: [0, Validators.required],
-      path: ['', Validators.required],
-      metaDescription: ['', Validators.required],
+      fio: ['', Validators.required],
+      note: ['', Validators.required],
+      itemsTotal: [0, Validators.required],
+      grossTotal: [0, Validators.required],
+      date: ['', Validators.required],
+     /* metaDescription: ['', Validators.required],
       metaKeywords: ['', Validators.required],
-      categoryId: 0
+      categoryId: 0*/
     });
 
   }
@@ -124,13 +115,13 @@ export class OrdersDetailsComponent implements OnInit {
     return false;
   }
 
-  updatePath() {
+ /* updatePath() {
     const pathValue = this.form.get("path").value;
     if (pathValue === '') {
       const value = this.form.get("title").value;
       const translitValue = translit(value);
       this.form.patchValue({"path": translitValue});
     }
-  }
+  }*/
 
 }

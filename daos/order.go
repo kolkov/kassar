@@ -32,7 +32,7 @@ func (dao *OrderDAO) GetEmail(rs app.RequestScope, orderId int) (*[]models.CartO
 
 func (dao *OrderDAO) Count(rs app.RequestScope, id int) (int, error) {
 	var count int
-	q := rs.Tx().Select("COUNT(*)").From("product")
+	q := rs.Tx().Select("COUNT(*)").From("order")
 	if id != 0 {
 		q.Where(dbx.HashExp{"category_id": id})
 	}

@@ -9,6 +9,7 @@ import {
   MatListModule, MatPaginatorModule, MatProgressSpinnerModule, MatSelectModule,
   MatSidenavModule, MatSortModule, MatTableModule, MatToolbarModule
 } from "@angular/material";
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 @NgModule({
   imports: [
@@ -43,6 +44,7 @@ import {
     MatPaginatorModule,
     MatProgressSpinnerModule,
     MatSelectModule,
+    MatDatepickerModule
   ],
   declarations: []
 })

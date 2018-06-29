@@ -7,12 +7,12 @@ import {CollectionViewer} from "@angular/cdk/collections";
 import {Observable} from "rxjs/internal/Observable";
 import {OrdersService} from "./orders.service";
 import {MatPaginator} from "@angular/material";
-import {Order, OrderList} from "./order";
+import {Order, OrderList, OrderListItem} from "./order";
 
 
-export class OrdersDataSource implements DataSource<Order> {
+export class OrdersDataSource implements DataSource<OrderListItem> {
 
-  private ordersSubject = new BehaviorSubject<Order[]>([]);
+  private ordersSubject = new BehaviorSubject<OrderListItem[]>([]);
 
   private loadingSubject = new BehaviorSubject<boolean>(false);
 
@@ -63,7 +63,7 @@ export class OrdersDataSource implements DataSource<Order> {
     });
   }
 
-  connect(collectionViewer: CollectionViewer): Observable<Order[]> {
+  connect(collectionViewer: CollectionViewer): Observable<OrderListItem[]> {
     console.log("Connecting data source");
     return this.ordersSubject.asObservable();
   }

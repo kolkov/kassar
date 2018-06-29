@@ -20,7 +20,7 @@ export class OrdersListComponent implements OnInit, AfterViewInit {
   orders: Order[];
   dataSource: OrdersDataSource;
 
-  displayedColumns = ['id', 'fio'];
+  displayedColumns = ['id', 'fio', 'grossTotal'];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 

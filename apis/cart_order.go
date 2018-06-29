@@ -44,7 +44,7 @@ func ServOrderResource(rg *routing.RouteGroup,
 		service2,
 		mapService,
 		service3}
-	rg.Get("/products/<id>", r.get)
+	rg.Get("/orders/<id>", r.get)
 	rg.Post("/orders", r.create)
 	rg.Get("/orders", r.query)
 }
