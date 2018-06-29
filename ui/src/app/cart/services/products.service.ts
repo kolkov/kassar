@@ -32,7 +32,7 @@ export class ProductsService {
 
 
   public one(path: string): Observable<Product> {
-    return this.http.get<Product>('v1/public/product/' + path).pipe(
+    return this.http.get<Product>('v1/public/products/' + path).pipe(
       catchError(this.handleError)
     );
   }
