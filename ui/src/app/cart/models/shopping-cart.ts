@@ -16,16 +16,6 @@ export class ShoppingCart {
     phone: '',
     fiasAddress: <DaDataAddress>{},
     address: <ICustomerAddress>{}
-    /*address: {
-      full: '',
-      city: '',
-      street: '',
-      building: '',
-      room: '',
-      code: '',
-      floor: '',
-      entrance: '',
-    }*/
   };
   confirmed = false;
   grossTotal = 0;
