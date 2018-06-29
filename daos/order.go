@@ -29,3 +29,23 @@ func (dao *OrderDAO) GetEmail(rs app.RequestScope, orderId int) (*[]models.CartO
 	LeftJoin("product", dbx.NewExp("`order_item`.`product_id` = `product`.`id`")).Where(dbx.HashExp{"order_id": orderId}).All(&order)
 	return &order, err
 }
+
+func (dao *OrderDAO) Count(rs app.RequestScope, id int) (int, error) {
+	var count int
+	q := rs.Tx().Select("COUNT(*)").From("product")
+	if id != 0 {
+		q.Where(dbx.HashExp{"category_id": id})
+	}
+	err := q.Row(&count)
+	return count, err
+}
+
+func (dao *OrderDAO) Query(rs app.RequestScope, offset, limit, id int) ([]models.Order, error) {
+	artists := []models.Order{}
+	q := rs.Tx().Select()
+	if id != 0 {
+		q.Where(dbx.HashExp{"category_id": id})
+	}
+	err := q.OrderBy("id").Offset(int64(offset)).Limit(int64(limit)).OrderBy("id").All(&artists)
+	return artists, err
+}

@@ -7,7 +7,7 @@ import {CollectionViewer} from "@angular/cdk/collections";
 import {Observable} from "rxjs/internal/Observable";
 import {OrdersService} from "./orders.service";
 import {MatPaginator} from "@angular/material";
-import {Order} from "./order";
+import {Order, OrderList} from "./order";
 
 
 export class OrdersDataSource implements DataSource<Order> {

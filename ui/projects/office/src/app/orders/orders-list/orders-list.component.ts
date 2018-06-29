@@ -2,11 +2,11 @@ import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/
 import {debounceTime, distinctUntilChanged, tap} from "rxjs/operators";
 import {MatPaginator, MatSort} from "@angular/material";
 import {OrdersService} from "../../orders/orders.service";
-import {Order} from "../../../../../../src/app/cart/models/order";
 import {Router} from "@angular/router";
 import {merge} from "rxjs/internal/observable/merge";
 import {OrdersDataSource} from "../../orders/orders.datasource";
 import {fromEvent} from "rxjs";
+import {Order} from "../order";
 
 @Component({
   selector: 'app-orders-list',
@@ -20,7 +20,7 @@ export class OrdersListComponent implements OnInit, AfterViewInit {
   orders: Order[];
   dataSource: OrdersDataSource;
 
-  displayedColumns = ['id', 'title'];
+  displayedColumns = ['id', 'fio'];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 

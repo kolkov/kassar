@@ -2,12 +2,12 @@ import {ArticleListItem} from "../../../../../src/app/blog/article";
 
 export class Order {
   id: number;
-  name: string;
+  fio: string;
 }
 
 export interface OrderListItem {
   id: number;
-  title: string;
+  fio: string;
 }
 
 export interface OrderList {

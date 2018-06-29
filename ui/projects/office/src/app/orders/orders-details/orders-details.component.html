@@ -1,0 +1,63 @@
+<h1 *ngIf="id === 0" class="mat-h1">Добавление заказа</h1>
+<h1 *ngIf="id !== 0" class="mat-h1">Изменение заказа</h1>
+
+<div class="product-container">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" *ngIf="showForm">
+    <mat-form-field class="full-width-input">
+      <input matInput placeholder="Название (без точки в конце)" formControlName="name" (blur)="updatePath()">
+      <mat-error *ngIf="isFieldInvalid('name')">
+        Введите название продукта (без точки в конце)
+      </mat-error>
+    </mat-form-field>
+
+    <!-- <div class="editor">
+       <angular-editor id="e1" #angularEditor formControlName="body" [config]="editorConfig"></angular-editor>
+     </div>-->
+
+    <mat-form-field class="full-width-input">
+      <textarea class="textarea" matInput placeholder="Описание (без точки в конце)" formControlName="description"></textarea>
+      <mat-error *ngIf="isFieldInvalid('description')">
+        Введите описание (без точки в конце)
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="full-width-input">
+      <input matInput placeholder="Цена в рублях" formControlName="price">
+      <mat-error *ngIf="isFieldInvalid('price')">
+        Введите цену в рублях (через запятую)
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="full-width-input">
+      <input matInput placeholder="Путь продукта (без точки и тире в конце)" formControlName="path">
+      <mat-error *ngIf="isFieldInvalid('path')">
+        Введите путь продукта (без точки и тире в конце)
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="full-width-input">
+      <input matInput placeholder="Метаописание (без точки в конце)" formControlName="metaDescription">
+      <mat-error *ngIf="isFieldInvalid('metaDescription')">
+        Введите метаописание статьи (без точки в конце)
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="full-width-input">
+      <input matInput placeholder="Ключевые слова или фразы (через запятую)" formControlName="metaKeywords">
+      <mat-error *ngIf="isFieldInvalid('metaKeywords')">
+        Введите ключевые слова или фразы статьи (через запятую)
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="full-width-input">
+      <mat-select placeholder="Раздел для публикации" formControlName="categoryId">
+        <mat-option *ngFor="let option of categories" [value]="option.id">{{option.nickname}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button mat-raised-button color="primary" type="submit">Сохранить</button>
+    <button mat-raised-button color="primary" (click)="reset()">Очистить</button>
+    <button mat-raised-button color="primary" routerLink="/cart">К списку</button>
+  </form>
+</div>
+
+

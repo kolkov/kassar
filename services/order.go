@@ -13,10 +13,10 @@ type orderDAO interface {
 	Create(rs app.RequestScope, artist *models.Order) error
 	GetEmail(rs app.RequestScope, id int) (*[]models.CartOrderItemEmail, error)
 	/*GetByPath(scope app.RequestScope, id string) (*models.Order,error)
-	// Count returns the number of artists.
+	*/
 	Count(rs app.RequestScope, id int) (int, error)
-	// Query returns the list of artists with the given offset and limit.
-	Query(rs app.RequestScope, offset, limit, id int) ([]models.Order, error)*/
+
+	Query(rs app.RequestScope, offset, limit, id int) ([]models.Order, error)
 }
 
 type OrderService struct {
@@ -45,7 +45,14 @@ func (s *OrderService) GetEmail(rs app.RequestScope, id int) (*[]models.CartOrde
 	return s.dao.GetEmail(rs, id)
 }
 
+func (s *OrderService) Count(rs app.RequestScope, id int) (int, error) {
+	return s.dao.Count(rs, id)
+}
 
+
+func (s *OrderService) Query(rs app.RequestScope, offset, limit, id int) ([]models.Order, error) {
+	return s.dao.Query(rs, offset, limit, id)
+}
 
 func SendEmailCustomer(cart *models.Order, customer *models.Customer, items *[]models.CartOrderItemEmail){
 	e := email.NewEmail()

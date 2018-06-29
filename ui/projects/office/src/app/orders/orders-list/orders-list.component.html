@@ -16,9 +16,9 @@
       </ng-container>
 
       <!-- Name Column -->
-      <ng-container matColumnDef="title">
-        <mat-header-cell *matHeaderCellDef> Название </mat-header-cell>
-        <mat-cell class="name-cell" *matCellDef="let element"><a [routerLink]="element.id" > {{element.name}}</a></mat-cell>
+      <ng-container matColumnDef="fio">
+        <mat-header-cell *matHeaderCellDef> Заказчик </mat-header-cell>
+        <mat-cell class="name-cell" *matCellDef="let element"><a [routerLink]="element.id" > {{element.fio}}</a></mat-cell>
       </ng-container>
 
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

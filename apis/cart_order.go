@@ -6,15 +6,16 @@ import (
 	"github.com/go-ozzo/ozzo-routing"
 	"kassar/services"
 	"fmt"
+	"strconv"
 )
 
 type (
 	orderService interface {
+		Get(rs app.RequestScope, id int) (*models.Order, error)
 		Create(rs app.RequestScope, model *models.Order) (*models.Order, error)
 		GetEmail(rs app.RequestScope, id int) (*[]models.CartOrderItemEmail, error)
-		/*Query(rs app.RequestScope, offset, limit, id int) ([]models.Order, error)
+		Query(rs app.RequestScope, offset, limit, id int) ([]models.Order, error)
 		Count(rs app.RequestScope, id int) (int, error)
-		GetByPath(rs app.RequestScope, id string) (*models.Order, error)*/
 	}
 
 	orderResource struct {
@@ -43,9 +44,26 @@ func ServOrderResource(rg *routing.RouteGroup,
 		service2,
 		mapService,
 		service3}
+	rg.Get("/products/<id>", r.get)
 	rg.Post("/orders", r.create)
-	/*rg.Get("/orders/<id>", r.getByPath)
-	rg.Get("/orders", r.query)*/
+	rg.Get("/orders", r.query)
+}
+
+func (r *orderResource) get(c *routing.Context) error {
+	id, err := strconv.Atoi(c.Param("id"))
+	if err != nil {
+		return err
+	}
+
+	response, err := r.service.Get(app.GetRequestScope(c), id)
+	if err != nil {
+		return err
+	}
+
+	//productOut := &models.Order{}
+	//productOut = *response
+
+	return c.Write(response)
 }
 
 func (r *orderResource) create(c *routing.Context) error {
@@ -118,4 +136,24 @@ func (r *orderResource) create(c *routing.Context) error {
 	services.SendEmailCustomer(cartOrder, customer, emailItems)
 	services.SendEmailForUs(cartOrder, customer, emailItems)
 	return c.Write(cartOrder)
+}
+
+func (r *orderResource) query(c *routing.Context) error {
+
+	id, err := strconv.Atoi(c.Request.FormValue("id"))
+	if err != nil {
+		id = 0
+	}
+	rs := app.GetRequestScope(c)
+	count, err := r.service.Count(rs, id)
+	if err != nil {
+		return err
+	}
+	paginatedList := getPaginatedListFromRequest(c, count)
+	items, err := r.service.Query(rs, paginatedList.Offset(), paginatedList.Limit(), id)
+	if err != nil {
+		return err
+	}
+	paginatedList.Items = items
+	return c.Write(paginatedList)
 }
