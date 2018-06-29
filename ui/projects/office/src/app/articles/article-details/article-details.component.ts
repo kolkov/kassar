@@ -4,7 +4,7 @@ import {ArticlesService} from "../articles.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Article} from "../../../../../../src/app/blog/article";
 import {tap} from "rxjs/operators";
-import {translit} from "../translit";
+import {translit} from "../../../../../kolkov/translit/src/lib/translit";
 import {AngularEditorComponent} from "../../../../../kolkov/angular-editor/src/lib/angular-editor.component";
 import {AngularEditorConfig} from "../../../../../kolkov/angular-editor/src/lib/config";
 import {Category} from "../../../../../../src/app/models/category";
@@ -86,7 +86,7 @@ export class ArticleDetailsComponent implements OnInit {
     if (!this.editor.modeVisual) {
       this.editor.toggleEditorMode(this.editor.modeVisual);
     }
-    if (this.pathInit !== this.form.get("path").value && this.pathInit != '') {
+    if (this.pathInit !== this.form.get("path").value && this.pathInit !== '') {
       const result = confirm("Путь статьи изменился, продолжить?");
       if (!result) {
         return;
@@ -128,7 +128,7 @@ export class ArticleDetailsComponent implements OnInit {
     if (pathValue === '') {
       const value = this.form.get("title").value;
       const translitValue = translit(value);
-      this.form.patchValue({"path": translitValue})
+      this.form.patchValue({"path": translitValue});
     }
   }
 
