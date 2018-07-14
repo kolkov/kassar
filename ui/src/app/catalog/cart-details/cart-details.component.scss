@@ -29,3 +29,11 @@
   background-color: #14679e;
   color: #fefefe;
 }
+
+.product-link {
+  margin-right: 10px;
+  &.active {
+    color: #8d0000;
+    font-weight: bold;
+  }
+}

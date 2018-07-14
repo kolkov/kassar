@@ -20,7 +20,7 @@ export class CartListComponent implements OnInit, AfterViewInit {
   products: Product[];
   dataSource: ProductsDataSource;
 
-  displayedColumns = ['id', 'title'];
+  displayedColumns = ['id', 'title', 'brand', 'category'];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 

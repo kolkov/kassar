@@ -2,6 +2,8 @@ import {Properties} from "./properties";
 
 export class Product {
   id: number;
+  categoryId: number;
+  brandId: number;
   name: string;
   product_type: string;
   description: string;
@@ -14,6 +16,7 @@ export class Product {
 
   updateFrom(src: Product): void {
     this.id = src.id;
+    this.brandId = src.brandId;
     this.name = src.name;
     this.description = src.description;
     this.price = src.price;

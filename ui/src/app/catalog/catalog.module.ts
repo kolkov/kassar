@@ -7,6 +7,11 @@ import {CartHomeComponent} from './cart-home/cart-home.component';
 import {CartDetailsComponent} from './cart-details/cart-details.component';
 import {CatalogComponent} from "./catalog.component";
 import {SharedModule} from "../shared/shared.module";
+import { AccessoriesComponent } from './cart-details/accessories/accessories.component';
+import { ReviewsComponent } from './cart-details/reviews/reviews.component';
+import { QuestionAnswerComponent } from './cart-details/question-answer/question-answer.component';
+import { DescriptionComponent } from './cart-details/description/description.component';
+import { CustomerReviewsComponent } from './cart-details/customer-reviews/customer-reviews.component';
 
 @NgModule({
   imports: [
@@ -18,7 +23,12 @@ import {SharedModule} from "../shared/shared.module";
     CatalogComponent,
     CatalogHomeComponent,
     CartHomeComponent,
-    CartDetailsComponent
+    CartDetailsComponent,
+    AccessoriesComponent,
+    ReviewsComponent,
+    QuestionAnswerComponent,
+    DescriptionComponent,
+    CustomerReviewsComponent
   ]
 })
 export class CatalogModule {

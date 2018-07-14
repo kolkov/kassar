@@ -9,6 +9,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Product} from "../../../../../../src/app/cart/models/product";
 import {translit} from "../../../../../kolkov/translit/src/lib/translit";
+import {Brand} from "../../../../../../src/app/cart/models/brand";
 
 @Component({
   selector: 'app-cart-details',
@@ -21,6 +22,26 @@ export class CartDetailsComponent implements OnInit {
   id;
 
   categories: Category[];
+  brands: Brand[] = [
+    {
+      id: 1,
+      manufacturerId: 1,
+      name: "Кассатка",
+      nickname: "Кассатка",
+    },
+    {
+      id: 2,
+      manufacturerId: 2,
+      name: "Эвотор",
+      nickname: "Эвотор",
+    },
+    {
+      id: 3,
+      manufacturerId: 3,
+      name: "Дримкас",
+      nickname: "Дримкас",
+    },
+  ];
 
   form: FormGroup;
   showForm = true;
@@ -60,7 +81,8 @@ export class CartDetailsComponent implements OnInit {
       path: ['', Validators.required],
       metaDescription: ['', Validators.required],
       metaKeywords: ['', Validators.required],
-      categoryId: 0
+      categoryId: 0,
+      brandId: 0,
     });
 
   }

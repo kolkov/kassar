@@ -25,9 +25,9 @@ import {Observable} from "rxjs/internal/Observable";
 export class StoreDetailsComponent implements OnInit/*, OnChanges*/ {
   product$: Observable<Product>;
   private _categoryId: string;
-  @Input("id")  set  categoryId(value: string){
+  @Input("id")  set  categoryId(value: string) {
     this._categoryId = value;
-    this.getProduct()
+    this.getProduct();
   }
   @Output('product') product = new EventEmitter<Product>();
 

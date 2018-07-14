@@ -21,6 +21,16 @@
         <mat-cell class="name-cell" *matCellDef="let element"><a [routerLink]="element.id" > {{element.name}}</a></mat-cell>
       </ng-container>
 
+      <ng-container matColumnDef="brand">
+        <mat-header-cell *matHeaderCellDef> Бренд </mat-header-cell>
+        <mat-cell class="brand-cell" *matCellDef="let element"><a [routerLink]="element.id" > {{element.brandId}}</a></mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="category">
+        <mat-header-cell *matHeaderCellDef> Категория </mat-header-cell>
+        <mat-cell class="category-cell" *matCellDef="let element"><a [routerLink]="element.id" > {{element.categoryId}}</a></mat-cell>
+      </ng-container>
+
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
     </mat-table>

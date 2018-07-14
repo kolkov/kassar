@@ -10,7 +10,7 @@ import {SEOService} from "../../seo.service";
   styleUrls: ['./cart-details.component.scss']
 })
 export class CartDetailsComponent implements OnInit {
-  product: EventEmitter<Product>;
+  product$: EventEmitter<Product>;
   id: string;
 
   constructor(
@@ -28,6 +28,6 @@ export class CartDetailsComponent implements OnInit {
   }
 
   myProduct(p: Product) {
-    this.seoService.setSeoData(p.name, {description: p.metaDescription, keywords: p.metaKeywords})
+    this.seoService.setSeoData(p.name, {description: p.metaDescription, keywords: p.metaKeywords});
   }
 }

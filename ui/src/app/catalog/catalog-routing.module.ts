@@ -5,6 +5,11 @@ import {CatalogHomeComponent} from "./catalog-home/catalog-home.component";
 import {CartHomeComponent} from "./cart-home/cart-home.component";
 import {CartDetailsComponent} from "./cart-details/cart-details.component";
 import {CatalogGuard} from "./catalog.guard";
+import {AccessoriesComponent} from "./cart-details/accessories/accessories.component";
+import {DescriptionComponent} from "./cart-details/description/description.component";
+import {ReviewsComponent} from "./cart-details/reviews/reviews.component";
+import {CustomerReviewsComponent} from "./cart-details/customer-reviews/customer-reviews.component";
+import {QuestionAnswerComponent} from "./cart-details/question-answer/question-answer.component";
 
 const routes: Routes = [
   {
@@ -21,7 +26,33 @@ const routes: Routes = [
       {
         path: ':id/:id',
         component: CartDetailsComponent,
+        children: [
+          {
+            path: 'accessories',
+            component: AccessoriesComponent,
 
+          },
+          {
+            path: 'reviews',
+            component: ReviewsComponent,
+
+          },
+          {
+            path: 'customer-reviews',
+            component: CustomerReviewsComponent,
+
+          },
+          {
+            path: 'question-answer',
+            component: QuestionAnswerComponent,
+
+          },
+          {
+            path: '',
+            component: DescriptionComponent,
+            pathMatch: 'full',
+          },
+        ]
       },
       {
         path: ':id',

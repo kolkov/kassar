@@ -1,3 +1,11 @@
 <div class="row">
  <app-store-details [id]="id" (product)="myProduct($event)"></app-store-details>
 </div>
+<div class="row">
+  <a class="product-link" routerLink="." routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Описание</a>
+  <a class="product-link" routerLink="accessories" routerLinkActive="active">Аксессуары</a>
+  <a class="product-link" routerLink="reviews" routerLinkActive="active">Обзоры</a>
+  <a class="product-link" routerLink="customer-reviews" routerLinkActive="active">Отзывы</a>
+  <a class="product-link" routerLink="question-answer" routerLinkActive="active">Вопрос-ответ</a>
+  <router-outlet></router-outlet>
+</div>
