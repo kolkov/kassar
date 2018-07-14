@@ -37,7 +37,22 @@ export class ArticleDetailsComponent implements OnInit {
     placeholder: 'Введите текст статьи...',
     translate: 'no',
     defaultFontName: 'Comic Sans MS',
-    uploadUrl: 'v1/images'
+    uploadUrl: 'v1/images',
+    customStyles: [
+      {
+        name: "Quote",
+        class: "quote",
+      },
+      {
+        name: 'RedText',
+        class: 'redText'
+      },
+      {
+        name: "titleText",
+        class: "titleText",
+        tag: "h1",
+      },
+    ]
   };
 
   @ViewChild("angularEditor") editor: AngularEditorComponent;

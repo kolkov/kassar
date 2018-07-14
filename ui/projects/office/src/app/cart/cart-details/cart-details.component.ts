@@ -30,17 +30,6 @@ export class CartDetailsComponent implements OnInit {
 
   pathInit;
 
-  editorConfig: AngularEditorConfig = {
-    editable: true,
-    spellcheck: true,
-    height: '25rem',
-    minHeight: '5rem',
-    placeholder: 'Введите текст статьи...',
-    translate: 'no',
-    defaultFontName: 'Comic Sans MS',
-    uploadUrl: 'v1/images'
-  };
-
   @ViewChild("angularEditor") editor: AngularEditorComponent;
 
   constructor(private fb: FormBuilder,
@@ -66,7 +55,6 @@ export class CartDetailsComponent implements OnInit {
     this.form = this.fb.group({
       id: 0,
       name: ['', Validators.required],
-      /*body: ['', Validators.required],*/
       description: ['', Validators.required],
       price: [0, Validators.required],
       path: ['', Validators.required],

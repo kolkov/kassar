@@ -26,5 +26,7 @@ require (
 	github.com/spf13/pflag v1.0.1
 	github.com/spf13/viper v1.0.2
 	golang.org/x/crypto v0.0.0-20180619200235-7f39a6fea4fe
+	golang.org/x/sys v0.0.0-20180627142611-7138fd3d9dc8
+	golang.org/x/text v0.3.0
 	gopkg.in/yaml.v2 v2.2.1
 )

@@ -9,7 +9,6 @@ import {CartDeliveryComponent} from "./components/cart-delivery/cart-delivery.co
 import {CartPaymentComponent} from "./components/cart-payment/cart-payment.component";
 import {CartConfirmComponent} from "./components/cart-confirm/cart-confirm.component";
 
-
 const routes: Routes = [
   {
     path: 'order',

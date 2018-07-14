@@ -10,10 +10,6 @@
       </mat-error>
     </mat-form-field>
 
-   <!-- <div class="editor">
-      <angular-editor id="e1" #angularEditor formControlName="body" [config]="editorConfig"></angular-editor>
-    </div>-->
-
     <mat-form-field class="full-width-input">
       <textarea class="textarea" matInput placeholder="Описание (без точки в конце)" formControlName="description"></textarea>
       <mat-error *ngIf="isFieldInvalid('description')">
@@ -22,9 +18,9 @@
     </mat-form-field>
 
     <mat-form-field class="full-width-input">
-      <input matInput placeholder="Цена в рублях" formControlName="price">
+      <input type="number" matInput placeholder="Цена в рублях" formControlName="price">
       <mat-error *ngIf="isFieldInvalid('price')">
-       Введите цену в рублях (через запятую)
+       Введите цену (в рублях)
       </mat-error>
     </mat-form-field>
 
