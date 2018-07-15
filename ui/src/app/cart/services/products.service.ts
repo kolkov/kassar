@@ -4,6 +4,7 @@ import {Observable} from "rxjs/internal/Observable";
 import {HttpClient, HttpErrorResponse, HttpParams} from "@angular/common/http";
 import {throwError} from "rxjs/internal/observable/throwError";
 import {catchError, tap} from "rxjs/operators";
+import {BehaviorSubject} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,7 @@ import {catchError, tap} from "rxjs/operators";
 export class ProductsService {
 
   path: string;
+  productId$ = new BehaviorSubject<number>(0);
 
   constructor(private http: HttpClient) {
   }

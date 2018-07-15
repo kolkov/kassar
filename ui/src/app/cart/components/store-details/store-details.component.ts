@@ -40,15 +40,12 @@ export class StoreDetailsComponent implements OnInit/*, OnChanges*/ {
 
   ngOnInit() {}
 
-  /*ngOnChanges(changes: SimpleChanges): void {
-    this.getProduct();
-  }*/
-
-  getProduct(){
+  getProduct() {
     this.product$ = this.productService.one(this._categoryId).pipe(
       tap(
         p => {
-          this.product.emit(p)
+          this.product.emit(p);
+          this.productService.productId$.next(p.id);
         }
       ),
       catchError((err, caught) => {

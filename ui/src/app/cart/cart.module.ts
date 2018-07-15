@@ -21,6 +21,11 @@ import {FormsModule} from "@angular/forms";
 import {StoreCatalogComponent} from './components/store-catalog/store-catalog.component';
 import { StoreDetailsComponent } from './components/store-details/store-details.component';
 import {NgxDaDataModule} from "../../../projects/kolkov/ngx-dadata/src/lib/ngx-da-data.module";
+import { StoreReviewComponent } from './components/store-review/store-review.component';
+import { StoreCustomerReviewsComponent } from './components/store-customer-reviews/store-customer-reviews.component';
+import { StoreDescriptionComponent } from './components/store-description/store-description.component';
+import { StoreAccessoriesComponent } from './components/store-accessories/store-accessories.component';
+import { StoreQuestionAnswerComponent } from './components/store-question-answer/store-question-answer.component';
 
 
 @NgModule({
@@ -30,8 +35,35 @@ import {NgxDaDataModule} from "../../../projects/kolkov/ngx-dadata/src/lib/ngx-d
     NgxDaDataModule,
     CartRoutingModule
   ],
-  declarations: [StoreFrontComponent, ShoppingCartComponent, CheckoutComponent, OrderCompleteComponent, CartComponent, CartServicesComponent, CartDeliveryComponent, CartPaymentComponent, CartConfirmComponent, StoreCatalogComponent, StoreDetailsComponent],
-  exports: [StoreFrontComponent, ShoppingCartComponent, StoreCatalogComponent, StoreDetailsComponent],
+  declarations: [
+    StoreFrontComponent,
+    ShoppingCartComponent,
+    CheckoutComponent,
+    OrderCompleteComponent,
+    CartComponent,
+    CartServicesComponent,
+    CartDeliveryComponent,
+    CartPaymentComponent,
+    CartConfirmComponent,
+    StoreCatalogComponent,
+    StoreDetailsComponent,
+    StoreReviewComponent,
+    StoreCustomerReviewsComponent,
+    StoreDescriptionComponent,
+    StoreAccessoriesComponent,
+    StoreQuestionAnswerComponent
+  ],
+  exports: [
+    StoreFrontComponent,
+    ShoppingCartComponent,
+    StoreCatalogComponent,
+    StoreDetailsComponent,
+    StoreReviewComponent,
+    StoreCustomerReviewsComponent,
+    StoreDescriptionComponent,
+    StoreAccessoriesComponent,
+    StoreQuestionAnswerComponent
+  ],
   providers: [PopulatedCartGuard, LocalStorageService, ShoppingCartService, ProductsService, DeliveryOptionsService]
 })
 export class CartModule {
