@@ -38,13 +38,13 @@ export class ArticleDetailsComponent implements OnInit {
     translate: 'no',
     defaultFontName: 'Comic Sans MS',
     uploadUrl: 'v1/images',
-    customStyles: [
+    customClasses: [
       {
-        name: "Quote",
+        name: "quote",
         class: "quote",
       },
       {
-        name: 'RedText',
+        name: 'redText',
         class: 'redText'
       },
       {
