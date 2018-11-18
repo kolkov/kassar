@@ -38,7 +38,7 @@ export class PrivateComponent implements OnInit, OnDestroy {
     this.mobileQuery.removeListener(this._mobileQueryListener);
   }
 
-  onLogout(){
+  onLogout() {
     this.authService.logout();
   }
 

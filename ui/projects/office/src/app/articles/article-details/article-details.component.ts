@@ -32,12 +32,19 @@ export class ArticleDetailsComponent implements OnInit {
   editorConfig: AngularEditorConfig = {
     editable: true,
     spellcheck: true,
-    height: '25rem',
+    // height: '10rem',
     minHeight: '5rem',
+    maxHeight: '20rem',
     placeholder: 'Введите текст статьи...',
     translate: 'no',
-    defaultFontName: 'Comic Sans MS',
+    // defaultFontName: 'Times New Roman',
+    showToolbar: true,
     uploadUrl: 'v1/images',
+    fonts: [
+      {class: 'Arial', name: 'Arial'},
+      {class: 'comic-sans-ms', name: 'Comic Sans MS'},
+      {class: 'times-new-roman', name: 'Times New Roman'},
+    ],
     customClasses: [
       {
         name: "quote",
@@ -149,5 +156,9 @@ export class ArticleDetailsComponent implements OnInit {
 
   onChange(e: Event) {
     console.log(e);
+  }
+
+  onBlur() {
+    console.log("Blur");
   }
 }

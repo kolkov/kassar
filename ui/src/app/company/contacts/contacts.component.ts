@@ -1,7 +1,8 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import { } from "@types/yandex-maps";
+// import { } from "@types/googlemaps";
 
-// declare var ymaps: any;
+// declare var ymaps: ymaps;
 
 @Component({
   selector: 'app-contacts',

@@ -4,5 +4,5 @@ export function jwtOptionsFactory(tokenService) {
     tokenGetter: () => {
       return tokenService.getAsyncToken();
     }
-  }
+  };
 }

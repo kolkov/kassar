@@ -11,7 +11,7 @@
     </mat-form-field>
 
     <div class="editor">
-      <angular-editor id="e1" #angularEditor formControlName="body" [config]="editorConfig"></angular-editor>
+      <angular-editor id="e1" #angularEditor (blur)="onBlur()" formControlName="body" [config]="editorConfig"></angular-editor>
     </div>
 
     <mat-form-field class="full-width-input">
